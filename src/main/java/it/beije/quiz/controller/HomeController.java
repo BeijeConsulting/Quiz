@@ -21,9 +21,9 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class HomeController {
 	
-	private List<Domanda> domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-	private LocalTime time = null;
-	private List<Risposta> scelte = null;
+	private static List<Domanda> domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+	private static LocalTime time = null;
+	private static boolean timer = false;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -60,11 +60,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
-	public String domanda(Model model, @PathVariable("index") int index) {
+	public static String domanda(Model model, @PathVariable("index") int index) {
 		
 		String ref = "";
-		if(index == 0) {
+		if(timer == false) {
 			time = LocalTime.now();
+			timer = true;
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
@@ -86,15 +87,12 @@ public class HomeController {
 			if (risposta == null) {
 				risposta = "";
 			}
-			scelte = d.getRisposte();
 //			System.out.println(Utils.formattaTesto(d.getTesto()));
 			model.addAttribute("testoDomanda",Utils.formattaTesto(d.getTesto()));
-			model.addAttribute("size",scelte.size());
+			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType",d.getAnswerType());
 			ref = "domanda";
-			for(Risposta r : scelte) {
-				
-			}
+			model.addAttribute("risposte",d.getRisposte());
 		}
 		else {
 			ref = "endQuestion";
@@ -103,4 +101,9 @@ public class HomeController {
 		return ref;
 	}
 	
+	@RequestMapping(value = "/risposta", method = RequestMethod.POST)
+	public void risposta(Model model) {
+		int index = 1;
+		domanda(model,index);
+	}
 }

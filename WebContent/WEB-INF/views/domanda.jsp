@@ -1,9 +1,4 @@
-<%@page import="it.beije.quiz.model.Risposta"%>
-<%@page import="java.time.Duration"%>
-<%@page import="java.time.LocalTime"%>
-<%@page import="it.beije.quiz.controller.Utils"%>
-<%@page import="it.beije.quiz.model.Domanda"%>
-<%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -57,21 +52,19 @@ DOMANDA ${ index + 1 } di ${ totDomande }<br>
 <br>
 ${testoDomanda }
 
-<form action = "risposta" method = "POST">
-  <input type="hidden" name="index" value="${ index}">
-  
-  <%-- ciclo sull'array di risposte e inserisco i valori di input type, name e value legati alla domanda --%>
-  <%-- for(Risposta r : scelte) { %><input type = "${ answerType}" name="<%=r.getValue() %>" value = "<%=r.getValue() %>"
-  <%-- se la risposta utente non è null metto checked le risposte contenute in risposta utente %>
-  <%if(d.getRispostaUtente() != null)
-	  {if(d.getRispostaUtente().contains(r.getValue())){ %> checked<% }} %> /><%=r.getText() %><br> <% } --%>
+<form action = "risposta" method = "post">
+  <input type="hidden" name="index" value="${ index }">
+  <c:forEach var="scelte" items="${ risposte }">
+  <input type = "${ answerType}"  name="${ scelte.value }" value = "${ scelte.value }" 
+  <c:if test="${ rispUtente.contains(scelte.value)} ">checked</c:if > > ${ scelte.text } <br>
+  </c:forEach>
   <br><input type="submit" value="Invio">
 </form>
 <br>
 <br>
-<%-- if (index > 0) { -%><a href="domanda.jsp?index=<%= index - 1 %>">&lt;&lt;Prec.</a><% } %>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<% if (index != tot) { %><a href="domanda.jsp?index=<%= index + 1 %>">Succ.&gt;&gt;</a><% } --%>
 
+<c:if test="${index > 0 }"><a href="${ index - 1 }">&lt;&lt;Prec.</a></c:if>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<c:if test="${index != tot }"><a href="${ index + 1 }">Succ.&gt;&gt;</a></c:if>
 </body>
 </html>
