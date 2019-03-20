@@ -1,4 +1,4 @@
-package it.beije.quiz.controller;
+package it.beije.quiz;
 
 import java.io.File;
 import java.util.ArrayList;

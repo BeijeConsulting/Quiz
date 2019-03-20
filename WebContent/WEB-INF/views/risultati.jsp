@@ -3,12 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Fine del Quiz</title>
+	<meta charset="ISO-8859-1">
+	<title>QUIZ</title>
 </head>
 <body>
-DOMANDE TERMINATE
-<br><br>
-<a href="risposta">VEDI LE RISPOSTE</a>
+	${ body }
 </body>
 </html>

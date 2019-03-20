@@ -1,11 +1,11 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>QUIZ</title>
+	<meta charset="ISO-8859-1">
+	<title>QUIZ</title>
 </head>
 <body>
 
@@ -35,8 +35,8 @@ function myTimer() {
 		  ore--;
 	  } else {
     		clearInterval(timer);
-    		//document.getElementById("timer").innerHTML = 'TEMPO SCADUTO';
-    		location.href = "/quiz/risposta";
+    		document.getElementById("timer").innerHTML = 'TEMPO SCADUTO';
+    		//location.href = "/quiz/risposta";
 	  }
   }
   
@@ -50,21 +50,21 @@ var timer = setInterval(myTimer, 1000);
 
 DOMANDA ${ index + 1 } di ${ totDomande }<br>
 <br>
-${testoDomanda }
+${testoDomanda}
 
-<form action = "risposta" method = "post">
+<form action = "/quiz/domanda" method = "post">
   <input type="hidden" name="index" value="${ index }">
   <c:forEach var="scelte" items="${ risposte }">
-  <input type = "${ answerType}"  name="${ scelte.value }" value = "${ scelte.value }" 
-  <c:if test="${ rispUtente.contains(scelte.value)} ">checked</c:if > > ${ scelte.text } <br>
+    <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : scelte.value }' value = "${ scelte.value }"
+    ${ rispUtente.contains(scelte.value) ? "checked" : "" } > ${ scelte.text } <br>
   </c:forEach>
   <br><input type="submit" value="Invio">
 </form>
 <br>
 <br>
 
-<c:if test="${index > 0 }"><a href="${ index - 1 }">&lt;&lt;Prec.</a></c:if>
+<c:if test="${index > 0 }"><a href="/quiz/domanda/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<c:if test="${index != tot }"><a href="${ index + 1 }">Succ.&gt;&gt;</a></c:if>
+<c:if test="${index < tot-1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
 </body>
 </html>
