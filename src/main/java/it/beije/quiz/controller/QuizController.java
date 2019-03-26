@@ -4,23 +4,20 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 
+import it.beije.quiz.DButils;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Risposta;
-//import it.beije.quiz.model.User;
 
 @Controller
 @SessionScope
@@ -29,43 +26,7 @@ public class QuizController {
 	private List<Domanda> domande;
 	private int tot;
 	private LocalTime time = null;
-
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		System.out.println("Home Page Requested, locale = " + locale);
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate);
-//
-//		return "home";
-//	}
-
-//	@RequestMapping(value = "/user", method = RequestMethod.POST)
-//	public String user(@Validated User user, Model model) {
-//		System.out.println("User Page Requested");
-//		model.addAttribute("userName", user.getUserName());
-//		return "user";
-//	}
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
-		
-		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-			tot = domande.size();
-		}
-		
-		model.addAttribute("totDomande", tot);
-		
-		return "index";
-	}
+	private boolean auth = false;
 	
 	private void setTimer(Model model) {
 		if (time == null) {
@@ -104,6 +65,66 @@ public class QuizController {
 		else {
 			return "riepilogo";
 		}
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String init(Model model) {
+		
+		return "login";
+	}
+	
+	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+	public String sub(Model model) {
+		
+		return "subscribe";
+	}
+	
+	@RequestMapping(value = "/sub", method = RequestMethod.POST)
+	public String subscrive(Model model, HttpServletRequest request) {
+		
+		String path = null;
+		String user = request.getParameter("user");
+		String password = request.getParameter("password");
+		String passwordControl = request.getParameter("password2");
+		
+		auth = DButils.findUser(user);
+		if(auth) {
+			path = "exist";
+		}
+		else {
+			if (password.equals(passwordControl)) {
+				DButils.addUser(user, password);
+				path = "login";
+			}
+			else {
+				path = "errorSub";
+			}
+		}
+			
+		return path;
+	}
+	
+	@RequestMapping(value = "/start", method = RequestMethod.POST)
+	public String start(Model model, HttpServletRequest request) {
+		
+		String path = null;
+		String user = request.getParameter("user");
+		String password = request.getParameter("password");
+		
+		auth = DButils.findUser(user, password);
+		if(auth) {
+			path = "index";
+			if (domande == null) {
+				domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+				tot = domande.size();
+				model.addAttribute("totDomande", tot);
+			}
+		}
+		else {
+			path = "error";
+		}
+			
+		return path;
 	}
 	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
