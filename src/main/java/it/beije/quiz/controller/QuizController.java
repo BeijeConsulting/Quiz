@@ -1,16 +1,17 @@
 package it.beije.quiz.controller;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
-//import it.beije.quiz.model.User;
+
 
 @Controller
 @SessionScope
@@ -155,4 +156,23 @@ public class QuizController {
 		
 		return "risultati";
 	}
+	
+	
+	
+	/////// REST
+	
+	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
+	public void testrest(Model model, HttpServletResponse response) throws IOException {
+		System.out.println("entra??");
+		List<Risposta> risposte = new ArrayList<Risposta>();
+		Risposta r = new Risposta();
+		r.setValue("A");
+		r.setText("risposta prova");
+		risposte.add(r);
+		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "A", "checkbox", risposte);
+		
+		response.setContentType("application/json");
+		response.getWriter().append(domanda.toJson());
+	}
+
 }

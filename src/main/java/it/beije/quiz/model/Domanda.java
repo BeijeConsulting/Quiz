@@ -88,4 +88,23 @@ public class Domanda {
 		return builder.toString();
 	}
 
+	public String toJson() {
+		StringBuilder builder = new StringBuilder("{");
+		builder.append("\"id\":").append(id).append(';');
+		builder.append("\"book\":\"").append(book).append("\";");
+		builder.append("\"chapter\":").append(chapter).append(';');
+		builder.append("\"question\":").append(question).append(';');
+		builder.append("\"testo\":\"").append(testo).append("\";");
+		builder.append("\"rispostaEsatta\":\"").append(rispostaEsatta).append("\";");
+		builder.append("\"rispostaUtente\":\"").append(rispostaUtente).append("\";");
+		builder.append("\"answerType\":\"").append(answerType).append("\";");
+		builder.append("\"risposte\":{");
+		for (Risposta r:risposte) {
+			builder.append("\"value\":\"").append(r.getValue()).append("\";");
+			builder.append("\"text\":\"").append(r.getText()).append("\";");
+		}
+		builder.append("}}");
+		
+		return builder.toString();
+	}
 }
