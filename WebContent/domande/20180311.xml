@@ -1,0 +1,1225 @@
+<?xml version="1.0" ?>
+<domande>
+	<domanda id="2" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="47">
+		<testo>
+Which statements about calling the compilation command javac and the execution command java are true?
+
+I. java may use a period . to separate packages.
+II. javac takes a .java file and returns a .class file.
+III. java may use a slash (/) to separate packages.
+
+A. I only
+B. II only
+C. I and II
+D. I, II, and III
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="22" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="38">
+		<testo>
+What variable type of red allows the following application to compile?
+
+package tornado;
+public class Kansas {
+	public static void main(String[] args) {
+		int colorOfRainbow = 10;
+		________ red = 5;
+		switch(colorOfRainbow) {
+			default:
+				System.out.print("Home");
+				break;
+			case red:
+				System.out.print("Away");
+		}
+	}
+}
+
+A. long
+B. double
+C. int
+D. None of the above
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="21" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="40">
+		<testo>
+What is the output of the following application?
+
+package transporter;
+public class TurtleVsHare {
+	public static void main(String[] arguments) {
+		int turtle = 10 * (2 + (3 + 2) / 5);
+		int hare = turtle &lt; 5 ? 10 : 25;
+		System.out.print(turtle &lt; hare ? "Hare wins!" : "Turtle wins!");
+	}
+}
+
+A. Hare wins!
+B. Turtle wins!
+C. The code does not compile.
+D. The code compiles but throws a division by zero error at runtime.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="4" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="44">
+		<testo>
+Given the following application, what is the expected output?
+
+public class Keyboard {
+	private boolean numLock = true;
+	static boolean capLock = false;
+	public static void main(String... shortcuts) {
+		System.out.print(numLock+" "+capLock);
+	}
+}
+
+A. true false
+B. false false
+C. It does not compile.
+D. It compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="49" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="45">
+		<testo>
+Fill in the blanks: ____________methods must have a different list of parameters, while ____________methods must have the exact same return type.
+
+A. Overloaded, overridden
+B. Inherited, overridden
+C. Overridden, overloaded
+D. None of the above
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="50" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="43">
+		<testo>
+Which of the following modifiers cannot be applied to an interface method?
+
+A. final
+B. default
+C. static
+D. abstract
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="6" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="40">
+		<testo>
+Given that a Math class exists in both the java.lang and pocket.complex packages, what is the result of compiling the following class?
+
+1: package pocket;
+2: import pocket.complex.*;
+3: import java.util.*;
+4: public class Calculator {
+5: 	public static void main(String[] args) {
+6: 		System.out.print(Math.floor(5));
+7: 	}
+8: }
+
+A. The code does not compile because of line 2.
+B. The code does not compile because of line 3.
+C. The code does not compile because of line 6.
+D. The code compiles without issue.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="9" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="48">
+		<testo>
+Which of the following is not a possible output of this code, assuming it runs to completion?
+
+package store;
+public class Toy {
+	public void play() {
+		System.out.print("play-");
+	}
+	public void finalize() {
+		System.out.print("clean-");
+	}
+	public static void main(String[] args) {
+		Toy car = new Toy();
+		car.play();
+		System.gc();
+		Toy doll = new Toy();
+		doll.play();
+	}
+}
+
+A. play-
+B. play-play-
+C. play-play-clean-
+D. play-play-clean-clean-
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="12" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="45">
+		<testo>
+Fill in the blanks to indicate whether a primitive or wrapper class can be assigned without the compiler using the autoboxing feature.
+
+	_______first = Integer.parseInt("5");
+	_______second = Integer.valueOf("5");
+	
+A. int, int
+B. int, Integer
+C. Integer, int
+D. Integer, Integer
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="31" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="48">
+		<testo>
+What is the output of the following?
+
+12:	int result = 8;
+13:	for: while (result > 7) {
+14:		result++;
+15:		do {
+16:			result--;
+17:		} while (result > 5);
+18:		break for;
+19:	}
+20:	System.out.println(result);
+
+A. 5
+B. 8
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="13" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="43">
+		<testo>
+Which of the following is the output of this code, assuming it runs to completion?
+
+package store;
+public class Toy {
+	public void play() {
+		System.out.print("play-");
+	}
+	public void finalizer() {
+		System.out.print("clean-");
+	}
+	public static void main(String[] fun) {
+		Toy car = new Toy();
+		car.play();
+		System.gc();
+		Toy doll = new Toy();
+		doll.play();
+	}
+}
+
+A. play-
+B. play-play-
+C. play-clean-play-
+D. play-play-clean-clean-
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="61" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="48">
+		<testo>
+What is the output of the following?
+
+12:	List&lt;String&gt; magazines = new ArrayList();
+13:	magazines.add("Readers Digest");
+14:	magazines.add("People");
+15:	magazines.clear();
+16:	magazines.add("The Economist");
+17:	magazines.remove(1);
+18:	System.out.println(magazines.size());
+
+A. 0
+B. 1
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="15" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="49">
+		<testo>
+Fill in the blanks: The operators –,______________ ,______________,______________ , and % are listed in the same or increasing level of operator precedence.
+
+A. +, /, *
+B. --, -, *
+C. ++, /, *
+D. *, ++, %
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="16" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="47">
+		<testo>
+What is the value of (5 + (!2 + 8) * 3 - 3 % 2)/2 in Java?
+
+A. 2
+B. 11
+C. 16
+D. None of the above
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="17" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="45">
+		<testo>
+Fill in the blanks: A switch statement can have______________ case statements and______________ default statements.
+
+A. at most one, at least one
+B. any number of, at most one
+C. at least one, any number of
+D. at least one, at most one
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="11" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="46">
+		<testo>
+How many objects are eligible for garbage collection right before the end of the main method?
+
+1:	public class Person {
+2:		public Person youngestChild;
+3:
+4:		public static void main(String... args) {
+5:			Person elena = new Person();
+6:			Person diana = new Person();
+7:			elena.youngestChild = diana;
+8:			diana = null;
+9:			Person zoe = new Person();
+10:			elena.youngestChild = zoe;
+11:			zoe = null;
+12:		}
+13:	}
+
+A. None
+B. One
+C. Two
+D. Three
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="19" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="43">
+		<testo>
+Fill in the blanks: The______________ operator is true if either of the operands are true, while the______________ operator flips a boolean value.
+
+A. +, -
+B. &amp;&amp;, !
+C. |, -
+D. ||, !
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="20" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="41">
+		<testo>
+What is the output of the following application?
+
+public class CountEntries {
+	public static int getResult(int threshold) {
+		return threshold > 5 ? 1 : 0;
+	}
+	public static final void main(String[] days) {
+		System.out.print(getResult(5)+getResult(1)
+			+getResult(0)+getResult(2)+"");
+	}
+}
+
+A. 0
+B. 1
+C. 0000
+D. 1000
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="67" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="39">
+		<testo>
+Which of the following can fill in the blank so the following code prints true?
+
+String happy = " :) - (: ";
+String really = happy.trim();
+String question = ______________________;
+System.out.println(really.equals(question));
+
+A. happy.substring(0, happy.length() - 1)
+B. happy.substring(0, happy.length())
+C. happy.substring(1, happy.length() - 1)
+D. happy.substring(1, happy.length())
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="70" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="26">
+		<testo>
+Which of the following can fill in the blank to make the code compile?
+
+import java.util.function.*;
+public class Card {
+	public static void main(String[] s) {
+		Predicate&lt;String&gt; pred =____________ -> true;
+	}
+}
+
+A. (Integer i)
+B. (Object o)
+C. (String s)
+D. None of the above
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="23" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="50">
+		<testo>
+What is the output of the following when run as java unix.EchoFirst seed flower?
+
+package unix;
+import java.util.*;
+public class EchoFirst {
+	public static void main(String[] args) {
+		Arrays.sort(args);
+		String result = Arrays.binarySearch(args, args[0]);
+		System.out.println(result);
+	}
+}
+
+A. 0
+B. 1
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="18" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="3" question="44">
+		<testo>
+Given the following code snippet, what is the value of movieRating after it is executed?
+
+int characters = 5;
+int story = 3;
+double movieRating = characters &lt;= 4 ? 3 : story&gt;1 ? 2 : 1;
+
+A. 2.0
+B. 3.0
+C. The code does not compile but would compile if parentheses were added.
+D. None of the above
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="25" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="47">
+		<testo>
+What does the following output?
+
+String[] os = new String[] { "Linux", "Mac", "Windows" };
+System.out.println(Arrays.binarySearch(os, "Linux"));
+
+A. 0
+B. 1
+C. 2
+D. The output is not defined.
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="68" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="34">
+		<testo>
+What does the following output?
+
+Predicate clear = c -&gt; c.equals("clear");
+System.out.println(clear.test("pink"));
+
+A. true
+B. false
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="27" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="45">
+		<testo>
+How many lines does the following code output?
+
+String[] days = new String[] { "Sunday", "Monday", "Tuesday",
+	"Wednesday", "Thursday", "Friday", "Saturday" };
+for (int i = 1; i &lt; days.length; i++)
+	System.out.println(days[i]);
+
+A. Six
+B. Seven
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="28" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="42">
+		<testo>
+What is the result of running the following program?
+
+1:	package fun;
+2:	public class Sudoku {
+3:		static int[][] game;
+4:
+5:		public static void main(String[] args) {
+6:			game[3][3] = 6;
+7:			Object[] obj = game;
+8:			game[3][3] = "X";
+9:			System.out.println(game[3][3]);
+10:		}
+11:	}
+
+A. X
+B. The code does not compile.
+C. The code compiles but throws a NullPointerException at runtime.
+D. The code compiles but throws a different exception at runtime.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="35" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="43">
+		<testo>
+How many lines does the following code output?
+
+import java.util.*;
+public class Exams {
+	public static void main(String[] args) {
+		List&lt;String&gt; exams = Arrays.asList("OCA", "OCP");
+		for (String e1 : exams)
+			for (String e2 : exams)
+				System.out.println(e1 + " " + e2);
+	}
+}
+
+A. One
+B. Four
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="30" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="50">
+		<testo>
+Which of the following can fill in the blank to have the code compile successfully?
+
+package nyc;
+public class TouristBus {
+	public static void main(String... args) {
+		String[] nycTourLoops = new String[] { "Downtown", "Uptown", "Brooklyn"	};
+		String[] times = new String[] { "Day", "Night" };
+		for (_____________ i &lt; 1; i++, j++)
+			System.out.println(nycTourLoops[i] + " " + times[j]);
+	}
+}
+
+A. int i=0; j=0;
+B. int i=0, j=0;
+C. int i=0; int j=0;
+D. int i=0, int j=0;
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="47" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="47">
+		<testo>
+Fill in the blanks: The ____________determines which attributes exist in memory, while the ____________determines which attributes are accessible by the caller.
+
+A. reference type, signature
+B. object type, superclass
+C. reference type, object type
+D. object type, reference type
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="32" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="47">
+		<testo>
+What is the output of the following?
+
+public class Shoelaces {
+	public static void main(String[] args) {
+		String tie = null;
+		while (tie == null);
+			tie = "shoelace";
+			System.out.print(tie);
+	}
+}
+
+A. null
+B. shoelace
+C. shoelaceshoelace
+D. None of the above
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="33" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="45">
+		<testo>
+Which of the following best describes the flow of execution in this for loop if the loop body is run exactly once?
+
+for (alpha; beta; gamma) {
+	delta;
+}
+
+A. alpha, delta, gamma, beta
+B. alpha, beta, delta, gamma, beta
+C. alpha, delta, gamma, alpha, beta
+D. alpha, beta, delta, gamma, alpha, beta
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="26" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="46">
+		<testo>
+What is the output of the following when run as java Count "1 2"?
+
+public class Count {
+	public static void main(String target[]) {
+		System.out.println(target.length);
+	}
+}
+
+A. 0
+B. 1
+C. 2
+D. The code does not compile.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="34" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="44">
+		<testo>
+Which of the following best describes the flow of execution in this for loop if beta always returns false?
+
+for (alpha; beta; gamma) {
+	delta;
+}
+
+A. alpha
+B. alpha, beta
+C. alpha, beta, gamma
+D. None of the above
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="1" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="50">
+		<testo>
+Which statement about the JVM is true?
+
+A. The JVM schedules garbage collection on a predictable schedule.
+B. The JVM ensures that the application will always terminate.
+C. The JVM requires a properly defined entry point method to execute the
+application.
+D. A Java compiled code can be run on any computer.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="36" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="41">
+		<testo>
+Fill in the blank so this code compiles and does not cause an infinite loop.
+
+t: while (true) {
+	f: while(true) {
+		_____________
+	}
+}
+
+A. break;
+B. break f;
+C. break t;
+D. None of the above
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="65" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="42">
+		<testo>
+What does the following output?
+
+List&lt;Integer&gt; pennies = new ArrayList&lt;&gt;();
+pennies.add(3);
+pennies.add(2);
+pennies.add(1);
+pennies.remove(2);
+System.out.println(pennies);
+
+A. [3, 1]
+B. [3, 2]
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="39" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="47">
+		<testo>
+What is the output of the following application?
+
+package sports;
+public class Football {
+	public static Long getScore(Long timeRemaining) {
+		return 2*timeRemaining; // m1
+	}
+	public static void main(String[] refs) {
+		final int startTime = 4;
+		System.out.print(getScore(startTime)); // m2
+	}
+}
+
+A. 8
+B. The code does not compile because of line m1.
+C. The code does not compile because of line m2.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="7" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="39">
+		<testo>
+What is the proper filename extension for a Java source file?
+
+A. .jav
+B. .class
+C. .source
+D. .java
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="8" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="49">
+		<testo>
+Which converts a primitive to a wrapper class object without using autoboxing?
+
+A. Call the asObject() method
+B. Call the constructor of the wrapper class
+C. Call the convertToObject() method
+D. Call the toObject() method
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="40" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="45">
+		<testo>
+What is the output of the following application?
+
+package jungle;
+public class RainForest extends Forest {
+	public RainForest(long treeCount) {
+		this.treeCount = treeCount+1;
+	}
+	public static void main(String[] birds) {
+		System.out.print(new RainForest(5).treeCount);
+	}
+}
+class Forest {
+	public long treeCount;
+	public Forest(long treeCount) {
+		this.treeCount = treeCount+2;
+	}
+}
+
+A. 5
+B. 6
+C. 8
+D. The code does not compile.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="55" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="45">
+		<testo>
+If a try statement has catch blocks for both IllegalArgumentException and ClassCastException, then which of the following statements is correct?
+
+A. The catch block for IllegalArgumentException must appear before the catch block for ClassCastException.
+B. The catch block for ClassCastException must appear before the catch block for IllegalArgumentException.
+C. The catch blocks for these two exception types can be declared in any order.
+D. A try statement cannot be declared with these two catch block types because they are incompatible.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="38" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="48">
+		<testo>
+Which of the following is a valid method name in Java?
+
+A. $sprint()
+B. \jog13()
+C. walk#()
+D. %run()
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="43" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="41">
+		<testo>
+Given the following method declaration signature, which of the following is a valid call of this method?
+
+public void call(int count, String me, String... data)
+
+A. call(9,"me",10,"Al")
+B. call(5)
+C. call(2,"home","sweet")
+D. call("answering","service")
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="37" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="5" question="40">
+		<testo>
+What is the result of the following code?
+6:	int count = 0;
+7:	do {
+8:		do {
+9:			count++;
+10:		} while (count &lt; 2);
+11:		break;
+12:	} while (true);
+13:	System.out.println(count);
+
+A. 2
+B. 3
+C. The code does not compile.
+D. This is an infinite loop.
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="45" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="50">
+		<testo>
+Given that EOFException is a subclass of IOException, what is the output of the following application?
+
+package ai;
+import java.io.*;
+class Machine {
+	public boolean turnOn() throws EOFException {return true;}
+}
+public class Robot extends Machine {
+	public boolean turnOn() throws IOException {return false;}
+	public static void main(String[] doesNotCompute) throws Exception {
+		Machine m = new Robot();
+		System.out.print(m.turnOn());
+	}
+}
+
+A. true
+B. false
+C. The code does not compile.
+D. The code compiles but produces an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="46" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="49">
+		<testo>
+Which of the following is the best reason for creating a default interface method?
+
+A. Allow interface methods to be inherited.
+B. Add backward compatibility to existing interfaces.
+C. Give an interface the ability to create concrete methods.
+D. Allow an interface to define a method at the class level.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="10" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="47">
+		<testo>
+Which is a valid constructor for this class?
+
+public class TennisBall {
+}
+
+A. public TennisBall static create() { return new TennisBall(); }
+B. public TennisBall static newInstance() { return new TennisBall():}
+C. public TennisBall() {}
+D. public void TennisBall() {}
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="48" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="46">
+		<testo>
+Which of the following statements about no-argument constructors is correct?
+
+A. If a parent class does not include a no-argument constructor, a child class cannot declare one.
+B. If a parent class does not include a no-argument constructor (nor a default one inserted by the compiler), a child class must contain at least one constructor definition.
+C. If a parent class contains a no-argument constructor, a child class must contain a no-argument constructor.
+D. If a parent class contains a no-argument constructor, a child class must contain at least one constructor.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="5" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="43">
+		<testo>
+Given the following class definition, what is the maximum number of import statements that can be discarded and still have the code compile?
+For this question, assume that the Broccoli class is in the food.vegetables package, and the Apple class is the food.fruit package.
+
+package food;
+import food.vegetables.*;
+import food.fruit.*;
+import java.util.Date;
+public class Grocery {
+	Apple a; Broccoli b; Date c;
+}
+
+A. 0
+B. 1
+C. 2
+D. 3
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="42" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="42">
+		<testo>
+Which statement about a static variable is true?
+
+A. The value of a static variable must be set when the variable is declared or in a static initialization block.
+B. It is not possible to read static final variables outside the class in which they are defined.
+C. It is not possible to reference static methods using static imports.
+D. A static variable is always available in all instances of the class.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="51" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="7" question="42">
+		<testo>
+Given the class definitions below, which value, when inserted into the blank line, does not allow the class to compile?
+
+public class Canine {}
+public class Dog extends Canine {}
+public class Wolf extends Canine {}
+public final class Husky extends Dog {}
+public class Zoologist {
+	Canine animal;
+	public final void setAnimal(Dog animal) { this.animal = animal; }
+	public static void main(String[] furryFriends) {
+		new Zoologist().setAnimal(_____________);
+	}
+}
+
+A. new Husky()
+B. new Dog()
+C. new Wolf()
+D. null
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="3" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="1" question="46">
+		<testo>
+What is the result of compiling and executing the following class?
+
+package sports;
+public class Bicycle {
+	String color = "red";
+	private void printColor(String color) {
+		color = "purple";
+		System.out.print(color);
+	}
+	public static void main(String[] rider) {
+		new Bicycle().printColor("blue");
+	}
+}
+
+A. red
+B. purple
+C. blue
+D. It does not compile.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="53" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="48">
+		<testo>
+Given an application that hosts a website, which of the following would most likely result in a java.lang.Error being thrown?
+
+A. Two users try to register an account at the same time.
+B. The application temporarily loses connection to the network.
+C. A user enters their password incorrectly.
+D. The application runs out of memory.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="41" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="43">
+		<testo>
+Which of the following is not a true statement?
+
+A. The first line of every constructor is a call to the parent constructor via the super() command.
+B. A class does not have to have a constructor explicitly defined.
+C. A constructor may pass arguments to the parent constructor.
+D. A final instance variable whose value is not set when they are declared or in an initialization block should be set by the constructor.
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="54" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="46">
+		<testo>
+What is the output of the following application?
+
+package broken;
+class Problem implements RuntimeException {}
+public class BiggerProblem extends Problem {
+	public static void main(String uhOh[]) {
+		try {
+			throw new BiggerProblem();
+		} catch (BiggerProblem re) {
+			System.out.print("Problem?");
+		} catch (Problem e) {
+			System.out.print("Handled");
+		} finally {
+			System.out.print("Fixed!");
+		}
+	}
+}
+
+A. Problem?Fixed!
+B. Handled.Fixed!
+C. Problem?Handled.Fixed!
+D. The code does not compile.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="57" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="41">
+		<testo>
+Given the following application, which type of exception will be printed in the stack trace at runtime?
+
+package carnival;
+public class WhackAnException {
+	public static void main(String... hammer) {
+		try {
+			throw new ClassCastException();
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException();
+		} catch (RuntimeException e) {
+			throw new NullPointerException();
+		} finally {
+			throw new RuntimeException();
+		}
+	}
+}
+
+A. IllegalArgumentException
+B. NullPointerException
+C. RuntimeException
+D. The code does not compile.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="58" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="40">
+		<testo>
+What is the output of the following application?
+
+package clothing;
+public class Coat {
+	public Long zipper() throws Exception {
+		try {
+			String checkZipper = (String)new Object();
+		} catch (Exception e) {
+			throw RuntimeException("Broken!");
+		}
+		return null;
+	}
+	public static void main(String... warmth) {
+		try {
+			new Coat().zipper();
+			System.out.print("Finished!");
+		} catch (Throwable t) {}
+	}
+}
+
+A. Finished!
+B. Finished!, followed by a stack trace
+C. The application does not produce any output at runtime.
+D. The code does not compile.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="52" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="50">
+		<testo>
+What is the output of the following application?
+
+package bed;
+public class Sleep {
+	public static void snore() {
+		try {
+			String sheep[] = new String[3];
+			System.out.print(sheep[3]);
+		} catch (RuntimeException e) {
+			System.out.print("Awake!");
+		} finally {
+			throw new Exception(); // x1
+		}
+	}
+	public static void main(String... sheep) { // x2
+		new Sleep().snore(); // x3
+	}
+}
+
+A. Awake!, followed by a stack trace
+B. The code does not compile because of line x1.
+C. The code does not compile because of line x2.
+D. The code does not compile because of line x3.
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="14" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="2" question="42">
+		<testo>
+Fill in the blank to make the code compile:
+
+package animal;
+public class Cat {
+	public String name;
+	public static void main(String[] meow) {
+		Cat cat = new Cat();
+		______________ = "Sadie";
+	}
+}
+
+A. cat.name
+B. cat-name
+C. cat.setName
+D. cat[name]
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="29" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="43">
+		<testo>
+What is the output of the following?
+
+String[][] listing = new String[][] { { "Book" }, { "Game", "29.99" } };
+System.out.println(listing.length + " " + listing[0].length);
+
+A. 2 1
+B. 2 2
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>A</risposteEsatte>
+	</domanda>
+	<domanda id="62" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="46">
+		<testo>
+Which of the following types can you pass as a parameter to the replace() method on the String class?
+
+I. char
+II. String
+III. StringBuilder
+
+A. I
+B. I and II
+C. II and III
+D. I, II, and III
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="63" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="45">
+		<testo>
+What is the result of the following?
+
+import java.time.*;
+import java.time.format.*;
+public class HowLong {
+	public static void main(String[] args) {
+		LocalDate newYears = LocalDate.of(2017, 1, 1);
+		Period period = Period.ofDays(1);
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("mm-dd-yyyy");
+		System.out.print(format.format(newYears.minus(period)));
+	}
+}
+
+A. 01-01-2017
+B. 12-31-2016
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="44" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="6" question="40">
+		<testo>
+Given the following class, which line of code when inserted below would prevent the class from compiling?
+
+public class Drink {
+	public static void water() {}
+	public void get() {
+		// INSERT CODE HERE
+	}
+}
+
+A. water();
+B. this.Drink.water();
+C. this.water();
+D. Drink.water();
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="64" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="44">
+		<testo>
+What is the smallest unit you can add to a LocalTime object?
+
+A. Second
+B. Millisecond
+C. Nanosecond
+D. Picosecond
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="56" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="8" question="43">
+		<testo>
+What is the output of the following application?
+
+package city;
+public class Street {
+	public static void dancing() throws RuntimeException {
+		try {
+			throw new IllegalArgumentException();
+		} catch (Error) {
+			System.out.print("Unable!");
+		}
+	}
+	public static void main(String... count) throws RuntimeException {
+		dancing();
+	}
+}
+
+A. Unable!
+B. The application does not produce any output.
+C. The application compiles but produces a stack trace at runtime.
+D. The code does not compile.
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="66" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="41">
+		<testo>
+What is the output of the following class?
+
+1:	package rocket;
+2:	public class Countdown {
+3:		public static void main(String[] args) {
+4:			StringBuilder builder = new StringBuilder("54321");
+5:			builder.substring(2);
+6:			System.out.println(builder.charAt(1));
+7:		}
+8:	}
+
+A. 1
+B. 2
+C. 3
+D. 4
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="59" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="49">
+		<testo>
+What is the output of the following?
+
+public class Costume {
+	public static void main(String[] black) {
+		String witch = 'b';
+		String tail = "lack";
+		witch = witch.concat(tail);
+		System.out.println(witch);
+	}
+}
+
+A. b
+B. black
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+	<domanda id="24" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="4" question="49">
+		<testo>
+Which of these four array references can point to an array that is different from the others?
+
+A. int[][][][] nums1a, nums1b;
+B. int[][][] nums2a[], nums2b;
+C. int[][] nums3a[][], nums3b[][];
+D. int[] nums4a[][][], numbs4b[][][];
+		</testo>
+		<risposteEsatte>B</risposteEsatte>
+	</domanda>
+	<domanda id="69" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="31">
+		<testo>
+Which equivalent code can replace i -&gt; i != 0 in the following line?
+Predicate&lt;Integer&gt; ip = i -&gt; i != 0;
+A. i -&gt; { i != 0 }
+B. i -&gt; { i != 0; }
+C. i -&gt; { return i != 0 }
+D. i -&gt; { return i != 0; }
+		</testo>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="60" book="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809" chapter="9" question="50">
+		<testo>
+What is the result of the following?
+
+LocalDate xmas = LocalDate.of(2016, 12, 25);
+xmas.setYear(2017);
+System.out.println(xmas.getYear());
+
+A. 2016
+B. 2017
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+		</testo>
+		<risposteEsatte>C</risposteEsatte>
+	</domanda>
+</domande>
