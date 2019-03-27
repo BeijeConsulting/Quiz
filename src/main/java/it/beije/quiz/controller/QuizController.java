@@ -3,7 +3,6 @@ package it.beije.quiz.controller;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import org.springframework.web.context.annotation.SessionScope;
 import it.beije.quiz.DButils;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Risposta;
 
 @Controller
 @SessionScope
@@ -186,20 +184,15 @@ public class QuizController {
 	/////// REST
 	
 	@RequestMapping(value = "/api/domanda/{index}", method = RequestMethod.GET)
-	public void testrest(Model model, HttpServletResponse response, @PathVariable("index") int index) throws IOException {
+	public void testrest(Model model, HttpServletResponse response,  @PathVariable("index") int index) throws IOException {
 		
-//		List<Risposta> risposte = new ArrayList<Risposta>();
-//		Risposta r = new Risposta();
-//		r.setValue("A");
-//		r.setText("risposta prova");
-//		risposte.add(r);
-//		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "A", "checkbox", risposte);
-		
-		setTimer(model);
+		domande = Utils.readFileDomande("C:\\temp\\domande.xml");
 		Domanda domanda = domande.get(index);
 		
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());
+		
+
 	}
 
 }
