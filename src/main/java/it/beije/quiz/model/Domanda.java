@@ -98,12 +98,12 @@ public class Domanda {
 		builder.append("\"rispostaEsatta\":\"").append(rispostaEsatta).append("\";");
 		builder.append("\"rispostaUtente\":\"").append(rispostaUtente).append("\";");
 		builder.append("\"answerType\":\"").append(answerType).append("\";");
-		builder.append("\"risposte\":{");
+		builder.append("\"risposte\":[{");
 		for (Risposta r:risposte) {
 			builder.append("\"value\":\"").append(r.getValue()).append("\";");
 			builder.append("\"text\":\"").append(r.getText()).append("\";");
 		}
-		builder.append("}}");
+		builder.append("}]}");
 		
 		return builder.toString();
 	}

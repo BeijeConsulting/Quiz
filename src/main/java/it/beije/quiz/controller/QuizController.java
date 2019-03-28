@@ -179,8 +179,6 @@ public class QuizController {
 		return "risultati";
 	}
 	
-	
-	
 	/////// REST
 	
 	@RequestMapping(value = "/api/domanda/{index}", method = RequestMethod.GET)
@@ -191,7 +189,6 @@ public class QuizController {
 		
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());
-		
 
 	}
 
