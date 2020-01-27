@@ -1,0 +1,585 @@
+<?xml version="1.0" ?>
+<domande>
+	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="1">
+		<testo>
+			What modifiers are implicitly applied to all interface methods? (Choose all that apply)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">protected</risposta>
+			<risposta value="B">public</risposta>
+			<risposta value="C">static</risposta>
+			<risposta value="D">void</risposta>
+			<risposta value="E">abstract</risposta>
+			<risposta value="F">default</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione> 
+			All interface methods are implicitly public, so option B is correct and option A is
+			not. Interface methods may be declared as static or default but are never implicitly
+			added, so options C and F are incorrect. Option D is incorrect—void is not a modifier;
+			it is a return type. Option E is a tricky one, because prior to Java 8 all interface methods would be assumed to be abstract. Since Java 8 now includes default and static
+			methods and they are never abstract, you cannot assume the abstract modifier will be
+			implicitly applied to all methods by the compiler.
+		</spiegazione>
+	</domanda>
+	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="2">
+		<testo>
+			What is the output of the following code?
+			
+			1: class Mammal {
+			2:	 public Mammal(int age) {
+			3: 		System.out.print("Mammal");
+			4: 	}
+			5: }
+			6: public class Platypus extends Mammal {
+			7:	 public Platypus() {
+			8: 		System.out.print("Platypus");
+			9:  }
+			10: public static void main(String[] args) {
+			11: 	new Mammal(5);
+			12: }
+			13:}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Platypus</risposta>
+			<risposta value="B">Mammal</risposta>
+			<risposta value="C">PlatypusMammal</risposta>
+			<risposta value="D">MammalPlatypus</risposta>
+			<risposta value="E">The code will not compile because of line 8.</risposta>
+			<risposta value="F">The code will not compile because of line 11.</risposta>
+		</risposte>
+		<risposteEsatte>E</risposteEsatte>
+		<spiegazione> 
+			The code will not compile because the parent class Mammal doesn’t define a no-argument constructor, so the first line of a Platypus constructor should be an explicit call
+			to super(int age). If there was such a call, then the output would be MammalPlatypus,
+			since the super constructor is executed before the child constructor.
+		</spiegazione>
+	</domanda>
+	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="3">
+		<testo>
+			Which of the following statements can be inserted in the blank line so that the code will compile successfully? (Choose all that apply)
+			
+			public interface CanHop {}
+			public class Frog implements CanHop {
+				public static void main(String[] args) {
+				__________	frog = new TurtleFrog();
+				}
+			}
+			public class BrazilianHornedFrog extends Frog {}
+			public class TurtleFrog extends Frog {}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Frog</risposta>
+			<risposta value="B">TurtleFrog</risposta>
+			<risposta value="C">BrazilianHornedFrog</risposta>
+			<risposta value="D">CanHop</risposta>
+			<risposta value="E">Object</risposta>
+			<risposta value="F">Long</risposta>
+		</risposte>
+		<risposteEsatte>A, B, D, E</risposteEsatte>
+		<spiegazione> 
+			The blank can be filled with any class or interface that is a supertype of
+			TurtleFrog. Option A is a superclass of TurtleFrog, and option B is the same class,
+			so both are correct. BrazilianHornedFrog is not a superclass of TurtleFrog, so option
+			C is incorrect. TurtleFrog inherits the CanHope interface, so option D is correct. All
+			classes inherit Object, so option E is correct. Finally, Long is an unrelated class that is
+			not a superclass of TurtleFrog, and is therefore incorrect.
+		</spiegazione>
+	</domanda>
+	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="4">
+		<testo>
+			Which statement(s) are correct about the following code? (Choose all that apply)
+			
+			public class Rodent {
+				protected static Integer chew() throws Exception {
+					System.out.println("Rodent is chewing");
+					return 1;
+				}
+			}
+			public class Beaver extends Rodent {
+				public Number chew() throws RuntimeException {
+					System.out.println("Beaver is chewing on wood");
+					return 2;
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">It will compile without issue.</risposta>
+			<risposta value="B">It fails to compile because the type of the exception the method throws is a subclass of the type of exception the parent method throws.</risposta>
+			<risposta value="C">It fails to compile because the return types are not covariant.</risposta>
+			<risposta value="D">It fails to compile because the method is protected in the parent class and public in the subclass.</risposta>
+			<risposta value="E">It fails to compile because of a static modifier mismatch between the two methods.</risposta>
+		</risposte>
+		<risposteEsatte>C, E</risposteEsatte>
+		<spiegazione> 
+			The code doesn’t compile, so option A is incorrect. Option B is also not correct
+			because the rules for overriding a method allow a subclass to define a method with an
+			exception that is a subclass of the exception in the parent method. Option C is correct because the return types are not covariant; in particular, Number is not a subclass
+			of Integer. Option D is incorrect because the subclass defines a method that is more
+			accessible than the method in the parent class, which is allowed. Finally, option E is
+			correct because the method is declared as static in the parent class and not so in the
+			child class. For nonprivate methods in the parent class, both methods must use static
+			(hide) or neither should use static (override).
+		</spiegazione>
+	</domanda>
+	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="5">
+		<testo>
+			Which of the following may only be hidden and not overridden? (Choose all that apply)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">private instance methods</risposta>
+			<risposta value="B">protected instance methods</risposta>
+			<risposta value="C">public instance methods</risposta>
+			<risposta value="D">static methods</risposta>
+			<risposta value="E">public variables</risposta>
+			<risposta value="F">private variables</risposta>
+		</risposte>
+		<risposteEsatte>A, D, E, F</risposteEsatte>
+		<spiegazione> 
+			First off, options B and C are incorrect because protected and public methods may be overridden, not hidden. Option A is correct because private methods are
+			always hidden in a subclass. Option D is also correct because static methods cannot
+			be overridden, only hidden. Options E and F are correct because variables may only be
+			hidden, regardless of the access modifier.
+		</spiegazione>
+	</domanda>
+	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="6">
+		<testo>
+			Choose the correct statement about the following code:
+			
+			1: interface HasExoskeleton {
+			2: 	abstract int getNumberOfSections();
+			3: }
+			4: abstract class Insect implements HasExoskeleton {
+			5: 	abstract int getNumberOfLegs();
+			6: }
+			7: public class Beetle extends Insect {
+			8: 	int getNumberOfLegs() { return 6; }
+			9: }
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">It compiles and runs without issue.</risposta>
+			<risposta value="B">The code will not compile because of line 2.</risposta>
+			<risposta value="C">The code will not compile because of line 4.</risposta>
+			<risposta value="D">The code will not compile because of line 7.</risposta>
+			<risposta value="E">It compiles but throws an exception at runtime.</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione> 
+			The code fails to compile because Beetle, the first concrete subclass, doesn’t implement getNumberOfSections(), which is inherited as an abstract method; therefore,
+			option D is correct. Option B is incorrect because there is nothing wrong with this
+			interface method definition. Option C is incorrect because an abstract class is not
+			required to implement any abstract methods, including those inherited from an interface. Option E is incorrect because the code fails at compilation-time.
+		</spiegazione>
+	</domanda>
+	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="7">
+		<testo>
+			Which of the following statements about polymorphism are true? (Choose all that apply)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">A reference to an object may be cast to a subclass of the object without an explicit cast.</risposta>
+			<risposta value="B">If a method takes a superclass of three objects, then any of those classes may be passed as a parameter to the method.</risposta>
+			<risposta value="C">A method that takes a parameter with type java.lang.Object will take any reference.</risposta>
+			<risposta value="D">All cast exceptions can be detected at compile-time.</risposta>
+			<risposta value="E">By defining a public instance method in the superclass, you guarantee that the specific method will be called in the parent class at runtime.</risposta>
+		</risposte>
+		<risposteEsatte>B, C</risposteEsatte>
+		<spiegazione> 
+			A reference to an object requires an explicit cast if referenced with a subclass,
+			so option A is incorrect. If the cast is to a superclass reference, then an explicit cast is
+			not required. Because of polymorphic parameters, if a method takes the superclass of
+			an object as a parameter, then any subclass references may be used without a cast, so
+			option B is correct. All objects extend java.lang.Object, so if a method takes that
+			type, any valid object, including null, may be passed; therefore, option C is correct.
+			Some cast exceptions can be detected as errors at compile-time, but others can only be
+			detected at runtime, so D is incorrect. Due to the nature of polymorphism, a public
+			instance method can be overridden in a subclass and calls to it will be replaced even in
+			the superclass it was defined, so E is incorrect.
+		</spiegazione>
+	</domanda>
+	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="8">
+		<testo>
+			Choose the correct statement about the following code:
+			
+			1: public interface Herbivore {
+			2: 	int amount = 10;
+			3: 	public static void eatGrass();
+			4: 	public int chew() {
+			5: 		return 13;
+			6: 	}
+			7: }
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">It compiles and runs without issue.</risposta>
+			<risposta value="B">The code will not compile because of line 2.</risposta>
+			<risposta value="C">The code will not compile because of line 3.</risposta>
+			<risposta value="D">The code will not compile because of line 4.</risposta>
+			<risposta value="E">The code will not compile because of lines 2 and 3.</risposta>
+			<risposta value="F">The code will not compile because of lines 3 and 4.</risposta>
+		</risposte>
+		<risposteEsatte>F</risposteEsatte>
+		<spiegazione> 
+			The interface variable amount is correctly declared, with public and static being
+			assumed and automatically inserted by the compiler, so option B is incorrect. The
+			method declaration for eatGrass() on line 3 is incorrect because the method has been
+			marked as static but no method body has been provided. The method declaration for
+			chew() on line 4 is also incorrect, since an interface method that provides a body must
+			be marked as default or static explicitly. Therefore, option F is the correct answer
+			since this code contains two compile-time errors.
+		</spiegazione>
+	</domanda>
+	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="9">
+		<testo>
+			 Choose the correct statement about the following code:
+			 
+			1: public interface CanFly {
+			2: 	void fly();
+			3: }
+			4: interface HasWings {
+			5: 	public abstract Object getWindSpan();
+			6: }
+			7: abstract class Falcon implements CanFly, HasWings {
+			8: }
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">It compiles without issue.</risposta>
+			<risposta value="B">The code will not compile because of line 2.</risposta>
+			<risposta value="C">The code will not compile because of line 4.</risposta>
+			<risposta value="D">The code will not compile because of line 5.</risposta>
+			<risposta value="E">The code will not compile because of lines 2 and 5.</risposta>
+			<risposta value="F">The code will not compile because the class Falcon doesn’t implement the interface methods.</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione> 
+			Although the definition of methods on lines 2 and 5 vary, both will be converted to
+			public abstract by the compiler. Line 4 is fine, because an interface can have public or default access. Finally, the class Falcon doesn’t need to implement the interface
+			methods because it is marked as abstract. Therefore, the code will compile without
+			issue.
+		</spiegazione>
+	</domanda>
+	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="10">
+		<testo>
+			Which statements are true for both abstract classes and interfaces? (Choose all that apply)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">All methods within them are assumed to be abstract.</risposta>
+			<risposta value="B">Both can contain public static final variables.</risposta>
+			<risposta value="C">Both can be extended using the extend keyword.</risposta>
+			<risposta value="D">Both can contain default methods.</risposta>
+			<risposta value="E">Both can contain static methods.</risposta>
+			<risposta value="F">Neither can be instantiated directly.</risposta>
+			<risposta value="G">Both inherit java.lang.Object.</risposta>
+		</risposte>
+		<risposteEsatte>B, C, E, F</risposteEsatte>
+		<spiegazione> 
+			Option A is wrong, because an abstract class may contain concrete methods. Since Java 8, interfaces may also contain concrete methods in form of static or
+			default methods. Although all variables in interfaces are assumed to be public static
+			final, abstract classes may contain them as well, so option B is correct. Both abstract
+			classes and interfaces can be extended with the extends keyword, so option C is correct. Only interfaces can contain default methods, so option D is incorrect. Both
+			abstract classes and interfaces can contain static methods, so option E is correct. Both
+			structures require a concrete subclass to be instantiated, so option F is correct. Finally,
+			though an instance of an object that implements an interface inherits java.lang.
+			Object, the interface itself doesn’t; otherwise, Java would support multiple inheritance
+			for objects, which it doesn’t. Therefore, option G is incorrect.
+		</spiegazione>
+	</domanda>
+	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="11">
+		<testo>
+			What modifiers are assumed for all interface variables? (Choose all that apply)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">public</risposta>
+			<risposta value="B">protected</risposta>
+			<risposta value="C">private</risposta>
+			<risposta value="D">static</risposta>
+			<risposta value="E">final</risposta>
+			<risposta value="F">abstract</risposta>
+		</risposte>
+		<risposteEsatte>A, D, E</risposteEsatte>
+		<spiegazione> 
+			Interface variables are assumed to be public static final; therefore, options
+			A, D, and E are correct. Options B and C are incorrect because interface variables must
+			be public—interfaces are implemented by classes, not inherited by interfaces. Option F
+			is incorrect because variables can never be abstract.
+		</spiegazione>
+	</domanda>
+	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="12">
+		<testo>
+			What is the output of the following code?
+			
+			1: interface Nocturnal {
+			2: 	default boolean isBlind() { return true; }
+			3: }
+			4: public class Owl implements Nocturnal {
+			5: 	public boolean isBlind() { return false; }
+			6:	public static void main(String[] args) {
+			7: 	Nocturnal nocturnal = (Nocturnal)new Owl();
+			8: 	System.out.println(nocturnal.isBlind());
+			9: }
+			10: }
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">true</risposta>
+			<risposta value="B">false</risposta>
+			<risposta value="C">The code will not compile because of line 2.</risposta>
+			<risposta value="D">The code will not compile because of line 5.</risposta>
+			<risposta value="E">The code will not compile because of line 7.</risposta>
+			<risposta value="F">The code will not compile because of line 8.</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione> 
+			This code compiles and runs without issue, outputting false, so option B is the
+			correct answer. The first declaration of isBlind() is as a default interface method,
+			assumed public. The second declaration of isBlind() correctly overrides the default
+			interface method. Finally, the newly created Owl instance may be automatically cast to
+			a Nocturnal reference without an explicit cast, although adding it doesn’t break the
+			code.
+		</spiegazione>
+	</domanda>
+	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="13">
+		<testo>
+			What is the output of the following code?
+			
+			1: class Arthropod
+			2: 	public void printName(double input) { System.out.print("Arthropod"); }
+			3: }
+			4: public class Spider extends Arthropod {
+			5: 	public void printName(int input) { System.out.print("Spider"); }
+			6: 	public static void main(String[] args) {
+			7: 		Spider spider = new Spider();
+			8: 		spider.printName(4);
+			9: 		spider.printName(9.0);
+			10: }
+			11:}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">SpiderArthropod</risposta>
+			<risposta value="B">ArthropodSpider</risposta>
+			<risposta value="C">SpiderSpider</risposta>
+			<risposta value="D">ArthropodArthropod</risposta>
+			<risposta value="E">The code will not compile because of line 5.</risposta>
+			<risposta value="F">The code will not compile because of line 9.</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione> 
+			The code compiles and runs without issue, so options E and F are incorrect. The
+			printName() method is an overload in Spider, not an override, so both methods may
+			be called. The call on line 8 references the version that takes an int as input defined
+			in the Spider class, and the call on line 9 references the version in the Arthropod class
+			that takes a double. Therefore, SpiderArthropod is output and option A is the correct
+			answer.
+		</spiegazione>
+	</domanda>
+	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="14">
+		<testo>
+			Which statements are true about the following code? (Choose all that apply)
+			
+			1: interface HasVocalCords {
+			2: 	public abstract void makeSound();
+			3: }
+			4: public interface CanBark extends HasVocalCords {
+			5: 	public void bark();
+			6: }
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">The CanBark interface doesn’t compile.</risposta>
+			<risposta value="B">A class that implements HasVocalCords must override the makeSound() method.</risposta>
+			<risposta value="C">A class that implements CanBark inherits both the makeSound() and bark() methods.</risposta>
+			<risposta value="D">A class that implements CanBark only inherits the bark() method.</risposta>
+			<risposta value="E">An interface cannot extend another interface.</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione> 
+			The code compiles without issue, so option A is wrong. Option B is incorrect, since
+			an abstract class could implement HasVocalCords without the need to override the
+			makeSound() method. Option C is correct; any class that implements CanBark automatically inherits its methods, as well as any inherited methods defined in the parent
+			interface. Because option C is correct, it follows that option D is incorrect. Finally, an
+			interface can extend multiple interfaces, so option E is incorrect.
+		</spiegazione>
+	</domanda>
+	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="15">
+		<testo>
+			Which of the following is true about a concrete subclass? (Choose all that apply)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">A concrete subclass can be declared as abstract.</risposta>
+			<risposta value="B">A concrete subclass must implement all inherited abstract methods.</risposta>
+			<risposta value="C">A concrete subclass must implement all methods defined in an inherited interface.</risposta>
+			<risposta value="D">A concrete subclass cannot be marked as final.</risposta>
+			<risposta value="E">Abstract methods cannot be overridden by a concrete subclass.</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione> 
+			Concrete classes are, by definition, not abstract, so option A is incorrect. A concrete
+			class must implement all inherited abstract methods, so option B is correct. Option C
+			is incorrect; a superclass may have already implemented an inherited interface, so the
+			concrete subclass would not need to implement the method. Concrete classes can be
+			both final and not final, so option D is incorrect. Finally, abstract methods must be
+			overridden by a concrete subclass, so option E is incorrect.
+		</spiegazione>
+	</domanda>
+	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="16">
+		<testo>
+			What is the output of the following code?
+			
+			1: abstract class Reptile {
+			2: 	public final void layEggs() { System.out.println("Reptile laying eggs");
+			   }
+			3: 		public static void main(String[] args) {
+			4: 		Reptile reptile = new Lizard();
+			5: 		reptile.layEggs();
+			6: 		}
+			7: }
+			8: public class Lizard extends Reptile {
+			9: 	public void layEggs() { System.out.println("Lizard laying eggs"); }
+			10:}
+
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Reptile laying eggs</risposta>
+			<risposta value="B">Lizard laying eggs</risposta>
+			<risposta value="C">The code will not compile because of line 4.</risposta>
+			<risposta value="D">The code will not compile because of line 5.</risposta>
+			<risposta value="E">The code will not compile because of line 9.</risposta>
+		</risposte>
+		<risposteEsatte>E</risposteEsatte>
+		<spiegazione> 
+			The code doesn’t compile, so options A and B are incorrect. The issue with line 9 is
+			that layEggs() is marked as final in the superclass Reptile, which means it cannot be
+			overridden. There are no errors on any other lines, so options C and D are incorrect.
+		</spiegazione>
+	</domanda>
+	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="17">
+		<testo>
+			What is the output of the following code?
+			
+			1: public abstract class Whale {
+			2: 	public abstract void dive() {};
+			3: 	public static void main(String[] args) {
+			4: 		Whale whale = new Orca();
+			5: 		whale.dive();
+			6: }
+			7:}
+			8: class Orca extends Whale {
+			9: 	public void dive(int depth) { System.out.println("Orca diving"); }
+			10:}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Orca diving</risposta>
+			<risposta value="B">The code will not compile because of line 2.</risposta>
+			<risposta value="C">The code will not compile because of line 8.</risposta>
+			<risposta value="D">The code will not compile because of line 9.</risposta>
+			<risposta value="E">The output cannot be determined from the code provided.</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione> 
+			This may look like a complex question, but it is actually quite easy. Line 2 contains
+			an invalid definition of an abstract method. Abstract methods cannot contain a body,
+			so the code will not compile and option B is the correct answer. If the body {} was
+			removed from line 2, the code would still not compile, although it would be line 8 that
+			would throw the compilation error. Since dive() in Whale is abstract and Orca extends
+			Whale, then it must implement an overridden version of dive(). The method on line
+			9 is an overloaded version of dive(), not an overridden version, so Orca is an invalid
+			subclass and will not compile.
+		</spiegazione>
+	</domanda>
+	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="18">
+		<testo>
+			What is the output of the following code? (Choose all that apply)
+			
+			1: interface Aquatic {
+			2: 	public default int getNumberOfGills(int input) { return 2; }
+			3: }
+			4: public class ClownFish implements Aquatic {
+			5: 	public String getNumberOfGills() { return "4"; }
+			6: 	public String getNumberOfGills(int input) { return "6"; }
+			7: 	public static void main(String[] args) {
+			8: 		System.out.println(new ClownFish().getNumberOfGills(-1));
+			9: 	}
+			10:}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">2</risposta>
+			<risposta value="B">4</risposta>
+			<risposta value="C">6</risposta>
+			<risposta value="D">The code will not compile because of line 5.</risposta>
+			<risposta value="E">The code will not compile because of line 6.</risposta>
+			<risposta value="F">The code will not compile because of line 8.</risposta>
+		</risposte>
+		<risposteEsatte>E</risposteEsatte>
+		<spiegazione> 
+			The code doesn’t compile because line 6 contains an incompatible override of the
+			getNumberOfGills(int input) method defined in the Aquatic interface. In particular,
+			int and String are not covariant returns types, since int is not a subclass of String.
+			Note that line 5 compiles without issue; getNumberOfGills() is an overloaded method
+			that is not related to the parent interface method that takes an int value.
+		</spiegazione>
+	</domanda>
+	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="19">
+		<testo>
+			Which of the following statements can be inserted in the blank so that the code will compile successfully? (Choose all that apply)
+			
+			public class Snake {}
+			public class Cobra extends Snake {}
+			public class GardenSnake {}
+			public class SnakeHandler {
+			 private Snake snake;
+			 public void setSnake(Snake snake) { this.snake = snake; }
+			 public static void main(String[] args) {
+				new SnakeHandler().setSnake( );
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">new Cobra()</risposta>
+			<risposta value="B">new GardenSnake()</risposta>
+			<risposta value="C">new Snake()</risposta>
+			<risposta value="D">new Object()</risposta>
+			<risposta value="E">new String("Snake")</risposta>
+			<risposta value="F">null</risposta>
+		</risposte>
+		<risposteEsatte>A, C, F</risposteEsatte>
+		<spiegazione> 
+			First off, Cobra is a subclass of Snake, so option A can be used. GardenSnake is
+			not defined as a subclass of Snake, so it cannot be used and option B is incorrect. The
+			class Snake is not marked as abstract, so it can be instantiated and passed, so option
+			C is correct. Next, Object is a superclass of Snake, not a subclass, so it also cannot be
+			used and option D is incorrect. The class String is unrelated in this example, so option
+			E is incorrect. Finally, a null value can always be passed as an object value, regardless
+			of type, so option F is correct.
+		</spiegazione>
+	</domanda>
+	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="5" question="20">
+		<testo>
+			What is the result of the following code?
+			
+			1: public abstract class Bird {
+			2: 	private void fly() { System.out.println("Bird is flying"); }
+			3: 	public static void main(String[] args) {
+			4: 		Bird bird = new Pelican();
+			5: 		bird.fly();
+			6: 	}
+			7: }
+			8: class Pelican extends Bird {
+			9: 	protected void fly() { System.out.println("Pelican is flying"); }
+			10:}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Bird is flying</risposta>
+			<risposta value="B">Pelican is flying </risposta>
+			<risposta value="C">The code will not compile because of line 4.</risposta>
+			<risposta value="D">The code will not compile because of line 5.</risposta>
+			<risposta value="E">The code will not compile because of line 9. </risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione> 
+			The code compiles and runs without issue, so options C, D, and E are incorrect.
+			The trick here is that the method fly() is marked as private in the parent class Bird,
+			which means it may only be hidden, not overridden. With hidden methods, the specific
+			method used depends on where it is referenced. Since it is referenced within the Bird
+			class, the method declared on line 2 was used, and option A is correct. Alternatively,
+			if the method was referenced within the Pelican class, or if the method in the parent
+			class was marked as protected and overridden in the subclass, then the method on line
+			9 would have been used.
+		</spiegazione>
+	</domanda>
+</domande>
