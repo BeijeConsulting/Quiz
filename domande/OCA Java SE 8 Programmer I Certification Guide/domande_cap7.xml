@@ -1,0 +1,432 @@
+<?xml version="1.0" ?>
+<domande>
+	<domanda id="xx" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="xx">
+		<testo>
+			What is the output of the following code:
+			
+			class Course {
+				String courseName;
+				Course() {
+					Course c = new Course();
+					c.courseName = "Oracle";
+				}
+			}
+			class EJavaGuruPrivate {
+				public static void main(String args[]) {
+					Course c = new Course();
+					c.courseName = "Java";
+					System.out.println(c.courseName);
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">The code will print Java.</risposta>
+			<risposta value="B">The code will print Oracle</risposta>
+			<risposta value="C">The code will not compile.</risposta>
+			<risposta value="D">The code will throw an exception or an error at runtime.</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: This class will throw a StackOverflowError at runtime. The easiest way
+			to look for a StackOverflowError is to locate recursive method calls. In the question’s
+			code, the constructor of the class Course creates an object of the class Course, which
+			will call the constructor again. Hence, this becomes a recursive call and ends up
+			throwing a StackOverflowError at runtime. (As you know, an exception or an error
+			can be thrown only at runtime, not compile time.)
+		</spiegazione>
+	</domanda>
+	<domanda id="2" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="2">
+		<testo>
+			Select the correct option(s):
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">You cannot handle runtime exceptions.</risposta>
+			<risposta value="B">You should not handle errors.</risposta>
+			<risposta value="C">If a method throws a checked exception, it must be either handled by the method or specified in its throws clause. </risposta>
+			<risposta value="D">If a method throws a runtime exception, it may include the exception in its throws clause</risposta>
+			<risposta value="E">Runtime exceptions are checked exceptions.</risposta>
+		</risposte>
+		<risposteEsatte>B, C, D</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (a) is incorrect. You can handle runtime exceptions the way you
+			can handle a checked exception in your code: using a try-catch block.
+			Option (b) is correct. You shouldn’t try to handle errors in your code. Or, to put it
+			another way, you can’t do much when an error is thrown by your code. Instead of trying to handle errors in your code, you should resolve the code that results in these
+			errors. For example, StackOverflowError is an error that will be thrown by your code
+			if your code executes a method recursively without any exit condition. This repetition
+			will consume all the space on the stack and result in a StackOverflowError.
+			Option (c) is correct. If you fail to implement either of these options, your code
+			won’t compile.
+			Option (d) is correct. It isn’t mandatory for runtime exceptions to be included in
+			a method’s throws clause. Usually this inclusion is unnecessary, but if you do include
+			it, your code will execute without any issues.
+			Option (e) is incorrect. A runtime exception and all its subclasses are not checked
+			exceptions.
+		</spiegazione>
+	</domanda>
+	<domanda id="3" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="3">
+		<testo>
+			Examine the following code and select the correct option(s):
+			
+			class EJavaGuruExcep {
+				public static void main(String args[]) {
+					EJavaGuruExcep var = new EJavaGuruExcep();
+					var.printArrValues(args);
+			}
+				void printArrValues(String[] arr) {
+					try {
+						System.out.println(arr[0] + ":" + arr[1]);
+					} catch (NullPointerException e) {
+						System.out.println("NullPointerException");
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("IndexOutOfBoundsException");
+					} catch (ArrayIndexOutOfBoundsException e) {
+						System.out.println("ArrayIndexOutOfBoundsException");
+					}
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			If the class EJavaGuruExcep is executed using the following command, it prints NullPointerException:
+			
+				java EJavaGuruExcep
+			</risposta>
+			<risposta value="B">
+			If the class EJavaGuruExcep is executed using the following command, it prints IndexOutOfBoundsException:
+
+				java EJavaGuruExcep
+			</risposta>
+			<risposta value="C">
+			If the class EJavaGuruExcep is executed using the following command, it prints ArrayIndexOutOfBoundsException:
+
+				java EJavaGuruExcep one
+			</risposta>
+			<risposta value="D">The code will fail to compile</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: The key to answering this question is to be aware of the following two facts:
+				■ Exceptions are classes. If an exception’s base class is used in a catch block, it
+				can catch all the exceptions of its derived class. If you try to catch an exception
+				from its derived class afterward, the code won’t compile.
+				■ ArrayIndexOutOfBoundsException is a derived class of IndexOutOfBoundsException.
+			The rest of the points try to trick you into believing that the question is based on the
+			arguments passed to a main method.
+		</spiegazione>
+	</domanda>
+	<domanda id="4" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="4">
+		<testo>
+			What is the output of the following code?
+			
+			class EJava {
+				void method() {
+					try {
+						guru();
+						return;
+					} finally {
+						System.out.println("finally 1");
+					}
+				}
+				void guru() {
+					System.out.println("guru");
+					throw new StackOverflowError();
+				}
+				public static void main(String args[]) {
+					EJava var = new EJava();
+					var.method();
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+				guru
+				finally 1
+			</risposta>
+			<risposta value="B">
+				guru
+				finally 1
+				Exception in thread "main" java.lang.StackOverflowError
+			</risposta>
+			<risposta value="C">
+				guru
+				Exception in thread "main" java.lang.StackOverflowError
+			</risposta>
+			<risposta value="D">guru</risposta>
+			<risposta value="E">The code fails to compile.</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione>
+			Explanation: No compilation errors exist with the code.
+			The method guru throws StackOverflowError, which is not a checked exception.
+			Even though your code shouldn’t throw an error, it is possible syntactically. Your code
+			will compile successfully.
+			The call to the method guru is immediately followed by the keyword return, which is
+			supposed to end the execution of the method method. But the call to guru is placed
+			within a try-catch block, with a finally block. Because guru doesn’t handle the error
+			StackOverflowError itself, the control looks for the exception handler in the method
+			method. This calling method doesn’t handle this error but defines a finally block. The
+			control then executes the finally block. Because the code can’t find an appropriate
+			handler to handle this error, it propagates to the JVM, which abruptly halts the code. 
+		</spiegazione>
+	</domanda>
+	<domanda id="5" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="5">
+		<testo>
+			What is the output of the following code?
+			
+			class Quest5 {
+				public static void main(String args[]) {
+					int arr[] = new int[5];
+					arr = new int[]{1,2,3,4};
+					int x = arr[1]-- + arr[0]-- /arr[0] * arr[4];
+					System.out.println(x);
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">The code outputs a value. </risposta>
+			<risposta value="B">The code outputs a value followed by an exception.</risposta>
+			<risposta value="C">ArithmeticException</risposta>
+			<risposta value="D">NullPointerException</risposta>
+			<risposta value="E">IndexOutOfBoundsException</risposta>
+			<risposta value="F">ArrayIndexOutOfBoundsException</risposta>
+			<risposta value="G">Compilation error</risposta>
+			<risposta value="H">None of the above</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>
+			Explanation: Apart from testing your exception-handling skills, this question also tests
+			you in operator precedence. The code throws an ArithmeticException in an attempt
+			to evaluate the following expression:
+			
+				int x = arr[1]-- + arr[0]-- /arr[0] * arr[4];
+			
+			Before execution of the preceding line of code, arr[1] stores value 2, arr[0] stores
+			value 1, and arr[4] isn’t initialized. So an attempt to access arr[4] would result in an
+			ArrayIndexOutOfBoundsException.
+			In an arithmetic operation, post- and pre-increment operators have the highest
+			precedence. So the first pass reduces this equation to
+				
+				int x = 2 + 1 /0 * undefined;
+			
+			Both * and / have equal precedence level here. What matters beyond operator precedence is reading the same-level operations from left to right. This is why / is computed before * in the present expression. So an attempt to execute 1/0 throws an
+			ArithmeticException.  
+		</spiegazione>
+	</domanda>
+	<domanda id="6" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="6">
+		<testo>
+			Which of the following methods will not compile?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			private void method1(String name) {
+				if (name.equals("star"))
+					throw new IllegalArgumentException(name);
+			}
+			</risposta>
+			<risposta value="B">
+			private void method2(int age) {
+				if (age > 30)
+					throw Exception();
+			}
+			</risposta>
+			<risposta value="C">
+			public Object method3(boolean accept) {
+				if (accept)
+					throw new StackOverflowError();
+				else
+					return new StackOverflowError();
+			}
+			</risposta>
+			<risposta value="D">
+			protected double method4() throws Exception {
+				 throw new Throwable();
+			}
+			</risposta>
+			<risposta value="E">
+			public double method5() throws Exception {
+				return 0.7;
+			}
+			</risposta>
+		</risposte>
+		<risposteEsatte>B, D</risposteEsatte>
+		<spiegazione>
+			Explanation: Methods that compile successfully might not be implemented correctly.
+			This question only asks about the methods that will follow the syntax rules so that they
+			compile successfully.
+			Option (a) code compiles successfully. Because IllegalArgumentException is a
+			runtime exception, method1() can throw it without declaring it to be thrown in its
+			throws statement.
+			Option (b) code won’t compile. method2() throws a checked exception, that is,
+			Exception, without declaring it to be thrown in its throws statement.
+			Although the code in option (c) makes little sense, it will compile successfully. A
+			method can throw a StackOverflowError (an unchecked exception) without including it in the throws clause of its method declaration.
+			Option (d) code won’t compile. If a method declares to throw a checked exception, its body can’t throw a more general exception in its body. method4() declares to
+			throw Exception but throws Throwable, which is not allowed (Exception subclasses
+			Throwable).
+			Option (e) code will compile successfully. If a method declares to throw Exception,
+			it might not actually throw it. This only applies to Exception (because RuntimeException subclasses it), runtime exceptions, and errors. 
+		</spiegazione>
+	</domanda>
+	<domanda id="7" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="7">
+		<testo>
+			What is the output of the following code?
+			
+			class TryFinally {
+				int tryAgain() {
+					int a = 10;
+					try {
+						++a;
+					} finally {
+						a++;
+					}
+					return a;
+				}
+				public static void main(String args[]) {
+					System.out.println(new TryFinally().tryAgain());
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">10</risposta>
+			<risposta value="B">11</risposta>
+			<risposta value="C">12</risposta>
+			<risposta value="D">Compilation error</risposta>
+			<risposta value="E">Runtime exception </risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>
+			Explanation: The try block executes, incrementing the value of variable a to 11. This
+			step is followed by execution of the finally block, which also increments the value of
+			variable a by 1, to 12. The method tryAgain returns the value 12, which is printed by
+			the method main.
+			There are no compilation issues with the code. A try block can be followed by a
+			finally block without any catch blocks. Even though the try block doesn’t throw
+			any exceptions, it compiles successfully. The following is an example of a try-catch
+			block that won’t compile because it tries to catch a checked exception that’s never
+			thrown by the try block:
+				try {
+					++a;
+				} catch (java.io.FileNotFoundException e) {
+				}
+		</spiegazione>
+	</domanda>
+	<domanda id="8" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="8">
+		<testo>
+			What is the output of the following code?
+			
+			class EJavaBase {
+				void myMethod() throws ExceptionInInitializerError {
+					System.out.println("Base");
+				}
+			}
+			class EJavaDerived extends EJavaBase {
+				void myMethod() throws RuntimeException {
+					System.out.println("Derived");
+				}
+			}
+			class EJava3 {
+				public static void main(String args[]) {
+					EJavaBase obj = new EJavaDerived();
+					obj.myMethod();
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Base</risposta>
+			<risposta value="B">Derived</risposta>
+			<risposta value="C">
+				Derived
+				Base
+			</risposta>
+			<risposta value="D">
+				Base
+				Derived
+			</risposta>
+			<risposta value="E">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione>
+			Explanation: The rule that if a base class method doesn’t throw an exception, an overriding method in the derived class can’t throw an exception applies only to checked
+			exceptions. It doesn’t apply to runtime (unchecked) exceptions or errors. A base or
+			overridden method is free to throw any error or runtime exception.
+		</spiegazione>
+	</domanda>
+	<domanda id="9" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="9">
+		<testo>
+			Which of the following statements are true?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">A user-defined class may not throw an IllegalStateException. It must be thrown only by Java API classes.</risposta>
+			<risposta value="B">System.out.println will throw a NullPointerException if an uninitialized instance variable of type String is passed to it to print its value.</risposta>
+			<risposta value="C">
+				NumberFormatException is thrown by multiple methods from the Java API
+				when invalid numbers are passed on as Strings to be converted to the specified number format.
+			</risposta>
+			<risposta value="D">ExceptionInInitializerError may be thrown by the JVM when a static initializer in your code throws a NullPointerException.</risposta>
+		</risposte>
+		<risposteEsatte>C, D</risposteEsatte>
+		<spiegazione>
+			Option (a) is incorrect. A user-defined class can throw any exception from the Java API.
+			Option (b) is incorrect. An uninitialized instance variable of type String will be
+			assigned a default value of null. When you pass this variable to System.out.println
+			to print it, it will print null. If you try to access any non-static member (variable or
+			method) of this null object, then a NullPointerException will be thrown. 
+		</spiegazione>
+	</domanda>
+	<domanda id="10" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="10">
+		<testo>
+			What is the output of the following code?
+			
+			class EJava {
+				void foo() {
+				try {
+					String s = null;
+					System.out.println("1");
+					try {
+						System.out.println(s.length());
+					} catch (NullPointerException e) {
+						System.out.println("inner");
+					}
+					System.out.println("2");
+					} catch (NullPointerException e) {
+						System.out.println("outer");
+					}
+				}
+				public static void main(String args[]) {
+					EJava obj = new EJava();
+					obj.foo();
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+				1
+				inner
+				2
+				outer
+			</risposta>
+			<risposta value="B">
+				1
+				outer
+			</risposta>
+			<risposta value="C">
+				1
+				inner
+			</risposta>
+			<risposta value="D">
+				1
+				inner
+				2
+			</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: First of all, nested try-catch statements don’t throw compilation errors.
+			Because the variable s hasn’t been initialized, an attempt to access its method
+			length() will throw a NullPointerException. The inner try-catch block handles
+			this exception and prints inner. The control then moves on to complete the remaining code in the outer try-catch block, printing 2. Because the NullPointerException
+			was already handled in the inner try-catch block, it’s not handled in the outer trycatch block.
+		</spiegazione>
+	</domanda>
+</domande>

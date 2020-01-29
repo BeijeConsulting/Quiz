@@ -1,0 +1,382 @@
+<?xml version="1.0" ?>
+<domande>
+	<domanda id="1" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="1">
+		<testo>
+			What’s the output of the following code?
+			 
+			class Loop2 {
+			 public static void main(String[] args) {
+				 int i = 10;
+				 do
+					 while (i &#60; 15)
+						i = i + 20;
+				 while (i &#60; 2);
+				 System.out.println(i);
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">10</risposta>
+			<risposta value="B">30</risposta>
+			<risposta value="C">31</risposta>
+			<risposta value="D">32</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione>
+			Explanation: The condition specified in the do-while loop evaluates to false (because
+			10&#60;2 evaluates to false). But the control enters the do-while loop because the do-while
+			loop executes at least once—its condition is checked at the end of the loop. The while
+			loop evaluates to true for the first iteration and adds 20 to i, making it 30. The while loop
+			doesn’t execute for the second time. Hence, the value of the variable i at the end of the
+			execution of the previous code is 30.
+		</spiegazione>
+	</domanda>
+	<domanda id="2" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="2">
+		<testo>
+			What’s the output of the following code?
+			
+			class Loop2 {
+			 public static void main(String[] args) {
+				 int i = 10;
+				 do
+					 while (i++ &#60; 15)
+						i = i + 20;
+				 while (i &#60; 2);
+				 System.out.println(i);
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">10</risposta>
+			<risposta value="B">30</risposta>
+			<risposta value="C">31</risposta>
+			<risposta value="D">32</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: If you attempted to answer question 5-1, it’s likely that you would select
+			the same answer for this question. I deliberately used the same question text and
+			variable names (with a small difference) because you may encounter a similar pattern
+			in the OCA Java SE 8 Programmer I exam. This question includes one difference:
+			unlike question 5-1, it uses a postfix unary operator in the while condition.
+			 The condition specified in the do-while loop evaluates to false (because 10&#60;2
+			evaluates to false). But the control enters the do-while loop because the do-while
+			loop executes at least once—its condition is checked at the end of the loop. This question prints out 32, not 30, because the condition specified in the while loop (which
+			has an increment operator) executes twice.
+			 In this question, the while loop condition executes twice. For the first evaluation,
+			i++ &#60; 15 (that is, 10&#60;15) returns true and increments the value of variable i by 1 (due
+			to the postfix increment operator). The loop body modifies the value of i to 31. The
+			second condition evaluates i++&#60;15 (that is, 31&#60;15) to false. But because of the postfix increment operator value of i, the value increments to 32. The final value is
+			printed as 32.
+		</spiegazione>
+	</domanda>
+	<domanda id="3" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="3">
+		<testo>
+			Which of the following statements is true?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">The enhanced for loop can’t be used within a regular for loop</risposta>
+			<risposta value="B">The enhanced for loop can’t be used within a while loop.</risposta>
+			<risposta value="C">The enhanced for loop can be used within a do-while loop.</risposta>
+			<risposta value="D">The enhanced for loop can’t be used within a switch construct</risposta>
+			<risposta value="E">All of the above statements are false.</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>
+			Explanation: The enhanced for loop can be used within all types of looping and conditional constructs. Notice the use of “can” and “can’t” in the answer options. It’s
+			important to take note of these subtle differences. 
+		</spiegazione>
+	</domanda>
+	<domanda id="4" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="4">
+		<testo>
+			What’s the output of the following code?
+			
+			int a = 10;
+			if (a++ > 10) {
+				System.out.println("true");
+			}
+			{
+				System.out.println("false");
+			}
+			System.out.println("ABC");
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+				true
+				false
+				ABC
+			</risposta>
+			<risposta value="B">
+				false
+				ABC
+			</risposta>
+			<risposta value="C">
+				true
+				ABC
+			</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione>
+			Explanation: First of all, the code has no compilation errors. This question has a
+			trick—the following code snippet isn’t part of the if construct:
+			
+				{
+				 System.out.println("false");
+				}
+			
+			Hence, the value false will print no matter what, regardless of whether the condition
+			in the if construct evaluates to true or false.
+			Because the opening and closing braces for this code snippet are placed right after
+			the if construct, it leads you to believe that this code snippet is the else part of the if
+			construct. Also, note that an if construct uses the keyword else to define the else
+			part. This keyword is missing in this question.
+			The if condition (that is, a++ > 10) evaluates to false because the postfix increment operator (a++) increments the value of the variable a immediately after its earlier value is used. 10 isn’t greater than 10, so this condition evaluates to false. 
+		</spiegazione>
+	</domanda>
+	<domanda id="5" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="5">
+		<testo>
+			Given the following code, which of the optional lines of code can individually
+			replace the //INSERT CODE HERE line so that the code compiles successfully?
+			
+			class EJavaGuru {
+				public static void main(String args[]) {
+					int num = 10;
+					final int num2 = 20;
+					switch (num) {
+						// INSERT CODE HERE
+						break;
+						default: System.out.println("default");
+					}
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">case 10*3: System.out.println(2);</risposta>
+			<risposta value="B">case num: System.out.println(3);</risposta>
+			<risposta value="C">case 10/3: System.out.println(4);</risposta>
+			<risposta value="D">case num2: System.out.println(5);</risposta>
+		</risposte>
+		<risposteEsatte>A, C, D</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (a) is correct. Compile-time constants, including expressions, are
+			permissible in the case labels.
+			Option (b) is incorrect. The case labels should be compile-time constants. A nonfinal variable isn’t a compile-time constant because it can be reassigned a value during
+			the course of a class’s execution. Although the previous class doesn’t assign a value to
+			it, the compiler still treats it as a changeable variable.
+			Option (c) is correct. The value specified in the case labels should be assignable to
+			the variable used in the switch construct. You may think that 10/3 will return a decimal number, which can’t be assigned to the variable num, but this operation discards
+			the decimal part and compares 3 with the variable num.
+			Option (d) is correct. The variable num2 is defined as a final variable and assigned
+			a value on the same line of code, with its declaration. Hence, it’s considered to be a
+			compile-time constant. 
+		</spiegazione>
+	</domanda>
+	<domanda id="6" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="6">
+		<testo>
+			class EJavaGuru {
+				public static void main(String args[]) {
+					int num = 20;
+					final int num2;
+					num2 = 20;
+					switch (num) {
+						default: System.out.println("default");
+						case num2: System.out.println(4);
+						break;
+					}
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">default</risposta>
+			<risposta value="B">
+				default
+				4
+			</risposta>
+			<risposta value="C">4</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: The code will fail to compile. The case labels require compile-time constant values, and the variable num2 doesn’t qualify as such. Although the variable num2
+			is defined as a final variable, it isn’t assigned a value with its declaration. The code
+			assigns a literal value 20 to this variable after its declaration, but it isn’t considered to
+			be a compile-time constant by the Java compiler.
+		</spiegazione>
+	</domanda>
+	<domanda id="7" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="7">
+		<testo>
+			class EJavaGuru {
+				public static void main(String args[]) {
+					int num = 120;
+					switch (num) {
+						default: System.out.println("default");
+						case 0: System.out.println("case1");
+						case 10*2-20: System.out.println("case2");
+						break;
+					}
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+				default
+				case1
+				case2
+			</risposta>
+			<risposta value="B">
+				case1
+				case2
+			</risposta>
+			<risposta value="C">case2</risposta>
+			<risposta value="D">Compilation error</risposta>
+			<risposta value="E">Runtime exception</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: The expressions used for both case labels—0 and 10*2-20—evaluate to
+			the constant value 0. Because you can’t define duplicate case labels for the switch
+			statement, the code will fail to compile with an error message that states that the code
+			defines a duplicate case label.
+		</spiegazione>
+	</domanda>
+	<domanda id="8" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="8">
+		<testo>
+			class EJavaGuru3 {
+				public static void main(String args[]) {
+					byte foo = 120;
+					switch (foo) {
+						default: System.out.println("ejavaguru"); break;
+						case 2: System.out.println("e"); break;
+						case 120: System.out.println("ejava");
+						case 121: System.out.println("enum");
+						case 127: System.out.println("guru"); break;
+					}
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+				ejava
+				enum
+				guru
+			</risposta>
+			<risposta value="B">ejava</risposta>
+			<risposta value="C">
+				ejavaguru
+				e
+			</risposta>
+			<risposta value="D">
+				ejava
+				enum
+				guru
+				ejavaguru
+			</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>
+			Explanation: For a switch case construct, control enters the case labels when a
+			matching case is found. The control then falls through the remaining case labels
+			until it’s terminated by a break statement. The control exits the switch construct
+			when it encounters a break statement or it reaches the end of the switch construct.
+			In this example, a matching label is found for case label 120. The control executes
+			the statement for this case label and prints ejava to the console. Because a break
+			statement doesn’t terminate the case label, the control falls through to case label 121.
+			The control executes the statement for this case label and prints enum to the console.
+			Because a break statement doesn’t terminate this case label also, the control falls
+			through to case label 127. The control executes the statement for this case label and
+			prints guru to the console. This case label is terminated by a break statement, so the
+			control exits the switch construct. 
+		</spiegazione>
+	</domanda>
+	<domanda id="9" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="9">
+		<testo>
+			What’s the output of the following code?
+			
+			class EJavaGuru4 {
+				public static void main(String args[]) {
+					boolean myVal = false;
+					if (myVal=true)
+					for (int i = 0; i &#60; 2; i++) System.out.println(i);
+					else System.out.println("else");
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">else</risposta>
+			<risposta value="B">
+				0
+				1
+				2
+			</risposta>
+			<risposta value="C">
+				0
+				1
+			</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>
+			Explanation: First of all, the expression used in the if construct isn’t comparing the
+			value of the variable myVal with the literal value true—it’s assigning the literal value
+			true to it. The assignment operator (=) assigns the literal value. The comparison
+			operator (==) is used to compare values. Because the resulting value is a boolean
+			value, the compiler doesn’t complain about the assignment in the if construct.
+			 The code is deliberately poorly indented because you may encounter similarly
+			poor indentation in the OCA Java SE 8 Programmer I exam. The for loop is part of
+			the if construct, which prints 0 and 1. The else part doesn’t execute because the if
+			condition evaluates to true. The code has no compilation errors.
+		</spiegazione>
+	</domanda>
+	<domanda id="10" book="OCA Java SE 8 Programmer I Certification Guide" chapter="5" question="10">
+		<testo>
+			What’s the output of the following code?
+			
+			class EJavaGuru5 {
+				public static void main(String args[]) {
+					int i = 0;
+					for (; i &#60; 2; i=i+5) {
+						if (i &#60; 5) continue;
+						System.out.println(i);
+					}
+					System.out.println(i);
+				}
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Compilation error</risposta>
+			<risposta value="B">
+				0
+				5
+			</risposta>
+			<risposta value="C">
+				0
+				5
+				10
+			</risposta>
+			<risposta value="D">10</risposta>
+			<risposta value="E">
+				0
+				1
+				5
+			</risposta>
+			<risposta value="F">5</risposta>
+		</risposte>
+		<risposteEsatte>F</risposteEsatte>
+		<spiegazione>
+			Explanation: First, the following line of code has no compilation errors:
+			for (; i &#60; 2; i=i+5) {
+			Using the initialization block is optional in a for loop. In this case, using a semicolon
+			(;) terminates it.
+			 For the first for iteration, the variable i has a value of 0. Because this value is less
+			than 2, the following if construct evaluates to true and the continue statement
+			executes:
+			if (i &#60; 5) continue;
+			Because the continue statement ignores all the remaining statements in a for loop
+			iteration, the control doesn’t print the value of the variable i, which leads the control
+			to move on to the next for iteration. In the next for iteration, the value of the variable i is 5. The for loop condition evaluates to false and the control moves out of
+			the for loop. After the for loop, the code prints out the value of the variable i, which
+			increments once using the code i=i+5
+		</spiegazione>
+	</domanda>
+</domande>

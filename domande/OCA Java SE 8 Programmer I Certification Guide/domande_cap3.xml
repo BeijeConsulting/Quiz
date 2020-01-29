@@ -1,0 +1,446 @@
+<?xml version="1.0" ?>
+<domande>
+	<domanda id="1" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="1">
+		<testo>
+			Which option defines a well-encapsulated class?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			class Template {
+			 public String font;
+			}
+			</risposta>
+			<risposta value="B">
+			class Template2 {
+			 public String font;
+			 public void setFont(String font) {
+				this.font = font;
+			 }
+			 public String getFont() {
+				return font;
+			 }
+			}
+			</risposta>
+			<risposta value="C">
+			class Template3 {
+			 private String font;
+			 public String author;
+			 public void setFont(String font) {
+				this.font = font;
+			 }
+			 public String getFont() {
+				return font;
+			 }
+			 public void setAuthor(String author) {
+				this.author = author;
+			 }
+			 public String getAuthor() {
+				return author;
+			 }
+			}
+			</risposta>
+			<risposta value="D">None of the above</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: Options (a), (b), and (c) are incorrect because they all define a public
+			instance variable. A well-encapsulated class should be like a capsule, hiding its instance
+			variables from the outside world. The only way you should access and modify instance
+			variables is through the public methods of a class to ensure that the outside world
+			can access only the variables the class allows it to. By defining methods to assign values to its instance variables, a class can control the range of values that can be assigned
+			to them. 
+		</spiegazione>
+	</domanda>
+	<domanda id="2" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="2">
+		<testo>
+			Examine the following code and select the correct option(s):
+			
+			public class Person {
+			 public int height;
+			 public void setHeight(int newHeight) {
+				if (newHeight &#60;= 300)
+					height = newHeight;
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">The height of a Person can never be set to more than 300.</risposta>
+			<risposta value="B">The preceding code is an example of a well-encapsulated class.</risposta>
+			<risposta value="C">The class would be better encapsulated if the height validation weren’t set to 300.</risposta>
+			<risposta value="D">Even though the class isn’t well encapsulated, it can be inherited by other classes.</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: This class isn’t well encapsulated because its instance variable height is
+			defined as a public member. Because the instance variable can be directly accessed
+			by other classes, the variable doesn’t always use the method setHeight to set its
+			height. The class Person can’t control the values that can be assigned to its public
+			variable height. 
+		</spiegazione>
+	</domanda>
+	<domanda id="3" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="3">
+		<testo>
+			Which of the following methods correctly accepts three integers as method
+			arguments and returns their sum as a floating-point number?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			public void addNumbers(byte arg1, int arg2, int arg3) {
+			 double sum = arg1 + arg2 + arg3;
+			}
+			</risposta>
+			<risposta value="B">
+			public double subtractNumbers(byte arg1, int arg2, int arg3) {
+			 double sum = arg1 + arg2 + arg3;
+			 return sum;
+			}
+			</risposta>
+			<risposta value="C">
+			public double numbers(long arg1, byte arg2, double arg3) {
+			 return arg1 + arg2 + arg3;
+			}
+			</risposta>
+			<risposta value="D">
+			public float wakaWakaAfrica(long a1, long a2, short a977) {
+			 double sum = a1 + a2 + a977;
+			 return (float)sum;
+			}
+			</risposta>
+		</risposte>
+		<risposteEsatte>B, D</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (a) is incorrect. The question specifies the method should return a
+			decimal number (type double or float), but this method doesn’t return any value.
+			 Option (b) is correct. This method accepts three integer values that can be automatically converted to an integer: byte, int, and int. It computes the sum of these
+			integer values and returns it as a decimal number (data type double). Note that the
+			name of the method is subtractNumbers, which doesn’t make it an invalid option.
+			Practically, you wouldn’t name a method subtractNumbers if it’s adding them. But
+			syntactically and technically, this option meets the question’s requirements and is a
+			correct option.
+			 Option (c) is incorrect. This method doesn’t accept integers as the method arguments. The type of the method argument arg3 is double, which isn’t an integer.
+			 Option (d) is correct. Even though the name of the method seems weird, it
+			accepts the correct argument list (all integers) and returns the result in the correct
+			data type (float).
+		</spiegazione>
+	</domanda>
+	<domanda id="4" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="4">
+		<testo>
+			Which of the following statements are true?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">If the return type of a method is int, the method can return a value of type byte.</risposta>
+			<risposta value="B">A method may or may not return a value.</risposta>
+			<risposta value="C">
+			If the return type of a method is void, it can define a return statement without a value, as follows:
+						return;
+			</risposta>
+			<risposta value="D">A method may or may not accept any method arguments.</risposta>
+			<risposta value="E">A method should accept at least one method argument or define its return type.</risposta>
+			<risposta value="F">A method whose return type is String can’t return null.</risposta>
+		</risposte>
+		<risposteEsatte>A, B, C, D</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (e) is incorrect. There’s no constraint on the number of arguments that can be passed to a method, regardless of whether the method returns a value.
+			Option (f) is incorrect. You can’t return the value null for methods that return
+			primitive data types. You can return null for methods that return objects (String is a
+			class and not a primitive data type).
+		</spiegazione>
+	</domanda>
+	<domanda id="5" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="5">
+		<testo>
+			Given the following definition of class Person,
+
+			class Person {
+			 public String name;
+			 public int height;
+			}
+			what is the output of the following code?
+			class EJavaGuruPassObjects1 {
+			 public static void main(String args[]) {
+			 Person p = new Person();
+			 p.name = "EJava";
+			WOW! eBook
+			www.wowebook.org
+			Answers to sample exam questions 215
+			 anotherMethod(p);
+			 System.out.println(p.name);
+			 someMethod(p);
+			 System.out.println(p.name);
+			 }
+			 static void someMethod(Person p) {
+			 p.name = "someMethod";
+			 System.out.println(p.name);
+			 }
+			 static void anotherMethod(Person p) {
+			 p = new Person();
+			 p.name = "anotherMethod";
+			 System.out.println(p.name);
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">xxxxx</risposta>
+			<risposta value="B">xxxxx</risposta>
+			<risposta value="C">xxxxx</risposta>
+			<risposta value="D">xxxxx</risposta>
+			<risposta value="E">xxxxx</risposta>
+			<risposta value="F">xxxxx</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione>
+			Explanation: The class EJavaGuruPassObject1 defines two methods, someMethod and
+			anotherMethod. The method someMethod modifies the value of the object parameter
+			passed to it. Hence, the changes are visible within this method and in the calling
+			method (method main). But the method anotherMethod reassigns the reference variable passed to it. Changes to any of the values of this object are limited to this method.
+			They aren’t reflected in the calling method (the main method). 
+		</spiegazione>
+	</domanda>
+	<domanda id="xx" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="xx">
+		<testo>
+			What is the output of the following code?
+			
+			class EJavaGuruPassPrim {
+			 public static void main(String args[]) {
+				 int ejg = 10;
+				 anotherMethod(ejg);
+				 System.out.println(ejg);
+				 someMethod(ejg);
+				 System.out.println(ejg);
+			 }
+			 static void someMethod(int val) {
+				++val;
+				System.out.println(val);
+			 }
+			 static void anotherMethod(int val) {
+				val = 20;
+				System.out.println(val);
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			20
+			10
+			11
+			11
+			</risposta>
+			<risposta value="B">
+			20
+			20
+			11
+			10
+			</risposta>
+			<risposta value="C">
+			20
+			10
+			11
+			10
+			</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>
+			Explanation: When primitive data types are passed to a method, the values of the variables in the calling method remain the same. This behavior doesn’t depend on
+			whether the primitive values are reassigned other values or modified by addition, subtraction, or multiplication—or any other operation.
+		</spiegazione>
+	</domanda>
+	<domanda id="7" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="7">
+		<testo>
+			Given the following signature of method eJava, choose the options that correctly overload this method:
+			
+				public String eJava(int age, String name, double duration)
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">private String eJava(int val, String firstName, double dur)</risposta>
+			<risposta value="B">public void eJava(int val1, String val2, double val3)</risposta>
+			<risposta value="C">String eJava(String name, int age, double duration)</risposta>
+			<risposta value="D">float eJava(double name, String age, byte duration)</risposta>
+			<risposta value="E">ArrayList&#60;String>eJava() </risposta>
+			<risposta value="F">char[] eJava(double numbers)</risposta>
+			<risposta value="G">String eJava()</risposta>
+		</risposte>
+		<risposteEsatte>C, D, E, F, G</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (a) is incorrect. Overloaded methods can change the access modifiers, but changing the access modifier alone won’t make it an overloaded method. This
+			option also changes the names of the method parameters, but that doesn’t make any
+			difference to a method signature.
+			 Option (b) is incorrect. Overloaded methods can change the return type of the
+			method, but changing the return type won’t make it an overloaded method.
+			 Option (c) is correct. Changing the placement of the types of the method parameters overloads it.
+			 Option (d) is correct. Changing the return type of a method and the placement of
+			the types of the method parameters overloads it.
+			 Option (e) is correct. Changing the return type of a method and making a change
+			in the parameter list overloads it.
+			 Option (f) is correct. Changing the return type of a method and making a change
+			in the parameter list overloads it.
+			 Option (g) is correct. Changing the parameter list also overloads a method.
+		</spiegazione>
+	</domanda>
+	<domanda id="8" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="8">
+		<testo>
+			Given the following code,
+
+			class Course {
+			 void enroll(long duration) {
+				System.out.println("long");
+			 }
+			 void enroll(int duration) {
+				System.out.println("int");
+			 }
+			 void enroll(String s) {
+				System.out.println("String");
+			 }
+			 void enroll(Object o) {
+				System.out.println("Object");
+			 }
+			}
+			
+			what is the output of the following code?
+			
+			class EJavaGuru {
+			 public static void main(String args[]) {
+				 Course course = new Course();
+				 char c = 10;
+				 course.enroll(c);
+				 course.enroll("Object");
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Compilation error</risposta>
+			<risposta value="B">Runtime exception</risposta>
+			<risposta value="C">
+			int
+			String
+			</risposta>
+			<risposta value="D">
+			long
+			Object
+			</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>
+			Explanation: No compilation issues exist with the code. You can overload methods by
+			changing the type of the method arguments in the list. Using method arguments with
+			data types having a base-derived class relationship (Object and String classes) is
+			acceptable. Using method arguments with data types for which one can be automatically converted to the other (int and long) is also acceptable.
+			 When the code executes course.enroll(c), char can be passed to two overloaded
+			enroll methods that accept int and long. The char gets expanded to its nearest
+			type—int—so course.enroll(c) calls the overloaded method that accepts int, printing int. The code course.enroll("Object") is passed a String value. Although
+			String is also an Object, this method calls the specific (not general) type of the argument passed to it. So course.enroll("Object") calls the overloaded method that
+			accepts String, printing String.
+		</spiegazione>
+	</domanda>
+	<domanda id="9" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="9">
+		<testo>
+			Examine the following code and select the correct options:
+			
+			class EJava {
+			 public EJava() {
+				 this(7);
+				 System.out.println("public");
+			 }
+			 private EJava(int val) {
+				 this("Sunday");
+				 System.out.println("private");
+			 }
+			 protected EJava(String val) {
+				System.out.println("protected");
+			 }
+			}
+			class TestEJava {
+			 public static void main(String[] args) {
+				EJava eJava = new EJava();
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">The class EJava defines three overloaded constructors.</risposta>
+			<risposta value="B">The class EJava defines two overloaded constructors. The private constructor
+								isn’t counted as an overloaded constructor.
+			</risposta>
+			<risposta value="C">Constructors with different access modifiers can’t call each other.</risposta>
+			<risposta value="D">
+			The code prints the following:
+			
+			protected
+			private
+			public
+			</risposta>
+			<risposta value="E">
+			The code prints the following:
+			
+			public
+			private
+			protected
+			</risposta>
+		</risposte>
+		<risposteEsatte>A, D</risposteEsatte>
+		<spiegazione>
+			Explanation: You can define overloaded constructors with different access modifiers
+			in the same way that you define overloaded methods with different access modifiers.
+			But a change in only the access modifier can’t be used to define overloaded methods
+			or constructors. private methods and constructors are also counted as overloaded
+			methods.
+			The following line of code calls EJava’s constructor, which doesn’t accept any
+			method argument:
+			
+				EJava eJava = new EJava();
+			
+			The no-argument constructor of this class calls the constructor that accepts an int
+			argument, which in turn calls the constructor with the String argument. Because the
+			constructor with the String constructor doesn’t call any other methods, it prints
+			protected and returns control to the constructor that accepts an int argument.
+			This constructor prints private and returns control to the constructor that doesn’t
+			accept any method argument. This constructor prints public and returns control to
+			the main method.
+		</spiegazione>
+	</domanda>
+	<domanda id="10" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="10">
+		<testo>
+			Select the incorrect options:
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			If a user defines a private constructor for a public class, Java creates a public
+			default constructor for the class
+			</risposta>
+			<risposta value="B">A class that gets a default constructor doesn’t have overloaded constructors.</risposta>
+			<risposta value="C">A user can overload the default constructor of a class.</risposta>
+			<risposta value="D">
+			The following class is eligible for default constructor:
+			
+			class EJava {}
+			</risposta>
+			<risposta value="E">
+			The following class is also eligible for a default constructor:
+			
+			class EJava {
+			 void EJava() {}
+			}
+			</risposta>
+		</risposte>
+		<risposteEsatte>A, C</risposteEsatte>
+				<spiegazione>
+			Explanation: Option (a) is incorrect. If a user defines a constructor for a class with
+			any access modifier, it’s no longer an eligible candidate to be provided with a default
+			constructor.
+			 Option (b) is correct. A class gets a default constructor only when it doesn’t have any
+			constructor. A default or an automatic constructor can’t exist with other constructors.
+			 Option (c) is incorrect. A default constructor can’t coexist with other constructors.
+			A default constructor is automatically created by the Java compiler if the user doesn’t
+			define any constructor in a class. If the user reopens the source code file and adds a
+			constructor to the class, upon recompilation no default constructor will be created for
+			the class.
+			 Option (d) is correct. Because this class doesn’t have a constructor, Java will create
+			a default constructor for it.
+			 Option (e) is also correct. This class also doesn’t have a constructor, so it’s eligible
+			for the creation of a default constructor. The following isn’t a constructor because the
+			return type of a constructor isn’t void:
+			
+				void EJava() {}
+			
+			It’s a regular and valid method, with the same name as its class.
+		</spiegazione>
+	</domanda>
+</domande>

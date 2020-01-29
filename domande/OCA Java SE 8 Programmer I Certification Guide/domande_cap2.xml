@@ -1,0 +1,309 @@
+<?xml version="1.0" ?>
+<domande>
+	<domanda id="1" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="1">
+		<testo>
+			Given:
+			
+			int myChar = 97;
+			int yourChar = 98;
+			System.out.print((char)myChar + (char)yourChar);
+			
+			int age = 20;
+			System.out.print(" ");
+			System.out.print((float)age);
+			
+			What is the output?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">195 20.0</risposta>
+			<risposta value="B">195 20</risposta>
+			<risposta value="C">ab 20.0</risposta>
+			<risposta value="D">ab 20</risposta>
+			<risposta value="E">Compilation error</risposta>
+			<risposta value="F">Runtime exception</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>
+			Explanation: When a char primitive data type is used as an operand to arithmetic
+			operators, its corresponding ASCII value is used in the arithmetic operation. Though
+			char)myChar explicitly casts int variable myChar to char type, its value 97 is used in
+			the arithmetic operation. When literal value 20 is explicitly cast to a float type, it outputs its value as a decimal number, that is, 20.0. 
+		</spiegazione>
+	</domanda>
+	<domanda id="2" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="2">
+		<testo>
+			Which of the options are correct for the following code?
+			
+			public class Prim { 							// line 1
+			 public static void main(String[] args) { 		// line 2
+				char a = 'a'; 								// line 3
+				char b = -10; 								// line 4
+				char c = '1'; 								// line 5
+				integer d = 1000; 							// line 6
+				System.out.println(++a + b++ * c - d); 		// line 7
+			 } 												// line 8
+			} 												// line 9
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Code at line 4 fails to compile.</risposta>
+			<risposta value="B">Code at line 5 fails to compile.</risposta>
+			<risposta value="C">Code at line 6 fails to compile.</risposta>
+			<risposta value="D">Code at line 7 fails to compile.</risposta>
+		</risposte>
+		<risposteEsatte>A, C, D</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (a) is correct. The code at line 4 fails to compile because you
+			can’t assign a negative value to a primitive char data type without casting.
+			Option (c) is correct. There is no primitive data type with the name “integer.” The
+			valid data types are int and Integer (a wrapper class with I in uppercase).
+			Option (d) is correct. The variable d remains undefined on line 7 because its declaration fails to compile on line 6. So the arithmetic expression (++a + b++ * c - d)
+			that uses variable d fails to compile. There are no issues with using the variable c of
+			the char data type in an arithmetic expression. The char data types are internally
+			stored as unsigned integer values and can be used in arithmetic expressions.
+		</spiegazione>
+	</domanda>
+	<domanda id="3" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="3">
+		<testo>
+			What is the output of the following code?
+			
+			public class Foo {
+			 public static void main(String[] args) {
+				int a = 10;
+				long b = 20;
+				short c = 30;
+				System.out.println(++a + b++ * c);
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">611</risposta>
+			<risposta value="B">641</risposta>
+			<risposta value="C">930</risposta>
+			<risposta value="D">960</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>
+			Explanation: The prefix increment operator (++) used with the variable a will increment its value before it’s used in the expression ++a + b++ * c. The postfix increment
+			operator (++) used with the variable b will increment its value after its initial value is
+			used in the expression ++a + b++ * c.
+			Therefore, the expression ++a + b++ * c evaluates with the following values:
+				11 + 20 * 30
+				
+			Because the multiplication operator has a higher precedence than the addition operator, the values 20 and 30 are multiplied before the result is added to the value 11.
+			The example expression evaluates as follows:
+			
+				(++a + b++ * c)
+				= 11 + 20 * 30
+				= 11 + 600
+				= 611		
+		</spiegazione>
+	</domanda>
+	<domanda id="4" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="4">
+		<testo>
+			Given:
+			
+			Boolean buy = new Boolean(true);
+			Boolean sell = new Boolean(true);
+			System.out.print(buy == sell);
+			
+			boolean buyPrim = buy.booleanValue();
+			System.out.print(!buyPrim);
+			
+			System.out.print(buy && sell);
+			
+			What is the output?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">falsefalsefalse</risposta>
+			<risposta value="B">truefalsetrue</risposta>
+			<risposta value="C">falsetruetrue</risposta>
+			<risposta value="D">falsefalsetrue</risposta>
+			<risposta value="E">Compilation error</risposta>
+			<risposta value="F">Runtime exception</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: The Boolean instances buy and sell are created using constructors.
+			Constructors don’t refer to existing instances in cache; they create new instances.
+			Because the comparison operator == compares object references and not the primitive value stored by a wrapper instance, buy == sell returns false.
+			The method booleanValue() can be used to get the primitive boolean value
+			stored by a Boolean wrapper instance. So buy.booleanValue() returns false. Because
+			wrapper instances can be used with arithmetic and logical operators, buy && sell compiles, returning true.		
+		</spiegazione>
+	</domanda>
+	<domanda id="5" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="5">
+		<testo>
+			Which of the following options contain correct code to declare and initialize
+			variables to store whole numbers?
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">bit a = 0;</risposta>
+			<risposta value="B">integer a2 = 7;</risposta>
+			<risposta value="C">long a3 = 0x10C;</risposta>
+			<risposta value="D">short a4 = 0512;</risposta>
+			<risposta value="E">double a5 = 10;</risposta>
+			<risposta value="F">byte a7 = -0;</risposta>
+			<risposta value="G">long a8 = 123456789;</risposta>
+		</risposte>
+		<risposteEsatte>C, D, F, G</risposteEsatte>
+		<spiegazione>
+			Explanation: Options (a) and (b) are incorrect. There are no primitive data types in
+			Java with the names bit and integer. The correct names are byte and int.
+			 Option (c) is correct. It assigns a hexadecimal literal value to the variable a3.
+			 Option (d) is correct. It assigns an octal literal value to the variable a4.
+			 Option (e) is incorrect. It defines a variable of type double, which is used to store
+			decimal numbers, not integers.
+			 Option (f) is correct. -0 is a valid literal value.
+			 Option (g) is correct. 123456789 is a valid integer literal value that can be assigned
+			to a variable of type long.
+		</spiegazione>
+	</domanda>
+	<domanda id="6" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="6">
+		<testo>
+			Select the options that, when inserted at // INSERT CODE HERE, will make the following code output a value of 11:
+			public class IncrementNum {
+			 public static void main(String[] args) {
+				int ctr = 50;
+				// INSERT CODE HERE
+				System.out.println(ctr % 20);
+			 }
+			}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">ctr += 1;</risposta>
+			<risposta value="B">ctr =+ 1;</risposta>
+			<risposta value="C">++ctr;</risposta>
+			<risposta value="D">ctr = 1;</risposta>
+		</risposte>
+		<risposteEsatte>A, C</risposteEsatte>
+		<spiegazione>
+			Explanation: To output a value of 11, the value of the variable ctr should be 51
+			because 51%20 is 11. Operator % outputs the remainder from a division operation. The
+			current value of the variable ctr is 50. It can be incremented by 1 using the correct
+			assignment or increment operator.
+			 Option (b) is incorrect. Java does not define a =+ operator. The correct operator
+			is +=.
+			 Option (d) is incorrect because it’s assigning a value of 1 to the variable result,
+			not incrementing it by 1.
+		</spiegazione>
+	</domanda>
+	<domanda id="7" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="7">
+		<testo>
+			What is the output of the following code?
+			
+			int a = 10;
+			int b = 20;
+			int c = (a * (b + 2)) - 10-4 * ((2*2) - 6;
+			System.out.println(c);
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">218</risposta>
+			<risposta value="B">232</risposta>
+			<risposta value="C">246</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+	</domanda>
+	<domanda id="8" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="8">
+		<testo>
+			What is true about the following lines of code?
+			
+			boolean b = false;
+			int i = 90;
+			System.out.println(i >= b);
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Code prints true</risposta>
+			<risposta value="B">Code prints false</risposta>
+			<risposta value="C">Code prints 90 >= false</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Explanation: The code will fail to compile; hence, it can’t execute. You can’t compare
+			incomparable types, such as a boolean value with a number.
+		</spiegazione>
+	</domanda>
+	<domanda id="9" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="9">
+		<testo>
+			Examine the following code and select the correct options:
+			public class Prim { 											// line 1
+			 public static void main(String[] args) { 						// line 2
+				int num1 = 12; 												// line 3
+				float num2 = 17.8f; 										// line 4
+				boolean eJavaResult = true; 								// line 5
+				boolean returnVal = num1 >= 12 && num2 &#60; 4.567 			// line 6
+									|| eJavaResult == true;
+				System.out.println(returnVal); 								// line 7
+			 } 																// line 8
+			} 																// line 9
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Code prints false</risposta>
+			<risposta value="B">Code prints true</risposta>
+			<risposta value="C">
+			Code will print true if code on line 6 is modified to the following:
+			boolean returnVal = (num1 >= 12 && num2 &#60; 4.567) || eJavaResult == true;
+			</risposta>
+			<risposta value="D">
+			Code will print true if code on line 6 is modified to the following:
+			boolean returnVal = num1 >= 12 && (num2 &#60; 4.567 || eJavaResult == false);
+			</risposta>
+		</risposte>
+		<risposteEsatte>B, C</risposteEsatte>
+		<spiegazione>
+			Explanation: Option (a) is incorrect because the code prints true.
+			Option (d) is incorrect because the code prints false.
+			The code in option (c) uses parentheses to indicate which expression should evaluate prior to the rest. Here are the steps of execution:
+			
+				boolean returnVal = (num1 >= 12 && num2 &#60; 4.567) || eJavaResult == true;
+				returnVal = false || eJavaResult == true;
+				returnVal = true;
+			
+			The original code in the question doesn’t use parentheses to group the expressions.
+			In this case, because the operator && has a higher operator precedence than ||, the
+			expression 'num1 >= 12 && num2 &#60; 4.567' will be the first expression to execute. Here
+			are the steps of execution:
+			
+				boolean returnVal = num1 >= 12 && num2 &#60; 4.567 || eJavaResult == true;
+				returnVal = false || eJavaResult == true;
+				returnVal = true;
+		</spiegazione>
+	</domanda>
+	<domanda id="10" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="10">
+		<testo>
+			Given:
+			
+			boolean myBool = false;                    // line 1
+			int yourInt = 10;                          // line 2
+			float hisFloat = 19.54f;                   // line 3
+			System.out.println(hisFloat = yourInt);    // line 4
+			System.out.println(yourInt > 10);          // line 5
+			System.out.println(myBool = false);        // line 6
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">
+			true
+			true
+			false
+			</risposta>
+			<risposta value="B">
+			10.0
+			false
+			false
+			</risposta>
+			<risposta value="C">
+			false
+			false
+			false
+			</risposta>
+			<risposta value="D">Compilation error</risposta>
+		</risposte>
+		<risposteEsatte>B</risposteEsatte>
+		<spiegazione>
+			Explanation: The expression myBool = false uses the assignment operator (=) and
+			not a comparison operator (==). This expression assigns the boolean literal false to
+			myBool; it doesn’t compare false with myBool. Watch out for similar (trick) assignments in the exam, which may seem to be comparing values.
+		</spiegazione>
+	</domanda>
+</domande>
