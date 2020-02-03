@@ -10,7 +10,7 @@
 			<risposta value="C">--</risposta>
 			<risposta value="D">!</risposta>
 			<risposta value="E">%</risposta>
-			<risposta value="F">&#60;=</risposta>
+			<risposta value="F">&lt;=</risposta>
 		</risposte>
 		<risposteEsatte>A, D</risposteEsatte>
 		<spiegazione> 
@@ -52,7 +52,7 @@
 			1: public class CompareValues {
 			2: 	public static void main(String[] args) {
 			3: 		int x = 0;
-			4: 		while(x++ &#60; 10) {}
+			4: 		while(x++ &lt; 10) {}
 			5: 			String message = x > 10 ? "Greater than" : false;
 			6: 			System.out.println(message+","+x);
 			7: }
@@ -103,7 +103,7 @@
 		<testo>
 			What is the output of the following code snippet?
 			
-			3: java.util.List&#60;Integer> list = new java.util.ArrayList&#60;Integer>();
+			3: java.util.List&lt;Integer&gt; list = new java.util.ArrayList&lt;Integer&gt;();
 			4: list.add(10);
 			5: list.add(14);
 			6: for(int x : list) {
@@ -131,7 +131,7 @@
 			What is the output of the following code snippet?
 			3: int x = 4;
 			4: long y = x * 4 - x++;
-			5: if(y&#60;10) System.out.println("Too Low");
+			5: if(y&lt;10) System.out.println("Too Low");
 			6: else System.out.println("Just right");
 			7: else System.out.println("Too High");
 		</testo>
@@ -158,7 +158,7 @@
 			1: public class TernaryTester {
 			2: 	public static void main(String[] args) {
 			3: 		int x = 5;
-			4: 		System.out.println(x > 2 ? x &#60; 4 ? 10 : 8 : 7);
+			4: 		System.out.println(x > 2 ? x &lt; 4 ? 10 : 8 : 7);
 			5: }}
 		</testo>
 		<risposte type="checkbox">
@@ -174,10 +174,10 @@
 			As you learned in the section “Ternary Operator,” although parentheses are not
 			required, they do greatly increase code readability, such as the following equivalent
 			statement:
-			System.out.println((x > 2) ? ((x &#60; 4) ? 10 : 8) : 7)
+			System.out.println((x > 2) ? ((x &lt; 4) ? 10 : 8) : 7)
 			We apply the outside ternary operator fi rst, as it is possible the inner ternary expression
 			may never be evaluated. Since (x>2) is true, this reduces the problem to:
-			System.out.println((x &#60; 4) ? 10 : 8)
+			System.out.println((x &lt; 4) ? 10 : 8)
 			Since x is greater than 2, the answer is 8, or option D in this case
 		</spiegazione>
 	</domanda>
@@ -212,7 +212,7 @@
 		<testo>
 			How many times will the following code print "Hello World"?
 			
-			3: for(int i=0; i&#60;10 ; ) {
+			3: for(int i=0; i&lt;10 ; ) {
 			4: 		i = i++;
 			5: 		System.out.println("Hello World");
 			6: }
@@ -357,7 +357,7 @@
 			What is the output of the following code snippet?
 			
 			3: int x = 1, y = 15;
-			4: while x &#60; 10
+			4: while x &lt; 10
 			5: y––;
 			6: x++;
 			7: System.out.println(x+", "+y);
@@ -385,7 +385,7 @@
 			3: do {
 			4: int y = 1;
 			5: System.out.print(y++ + " ");
-			6: } while(y &#60;= 10);
+			6: } while(y &lt;= 10);
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">1 2 3 4 5 6 7 8 9</risposta>
@@ -436,8 +436,8 @@
 			What is the output of the following code snippet?
 			
 			3: int count = 0;
-			4: ROW_LOOP: for(int row = 1; row &#60;=3; row++)
-			5: 	for(int col = 1; col &#60;=2 ; col++) {
+			4: ROW_LOOP: for(int row = 1; row &lt;=3; row++)
+			5: 	for(int col = 1; col &lt;=2 ; col++) {
 			6: 		if(row * col % 2 == 0) continue ROW_LOOP;
 			7: 		count++;
 			8: 	}
@@ -494,7 +494,7 @@
 			11. After the iteration of the second loop, m is updated to 7, n to 5, and x to the sum
 			of the new values for m + n, 11 + 12 = 23. After the iteration of the third loop, m is
 			updated to 6, n to 7, and x to the sum of the new values for m + n, 23 + 13 = 36. On
-			the fourth iteration of the loop, m > n evaluates to false, as 6 &#60; 7 is not true. The
+			the fourth iteration of the loop, m > n evaluates to false, as 6 &lt; 7 is not true. The
 			loop ends and the most recent value of x, 36, is output, so the correct answer is option
 			D.
 		</spiegazione>

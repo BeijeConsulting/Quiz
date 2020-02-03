@@ -47,6 +47,7 @@
 			Options b, c, and d won’t compile. Option b uses invalid syntax in the import statement. Options c and d try to import classes from nonexistent packages—java.default
 			and default. 
 		</spiegazione>
+	</domanda>
 	<domanda id="2" book="OCA Java SE 8 Programmer I Certification Guide" chapter="1" question="2">
 		<testo>
 			The following numbered list of Java class components is not in any particular

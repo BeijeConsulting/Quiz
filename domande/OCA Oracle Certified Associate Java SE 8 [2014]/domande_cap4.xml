@@ -82,7 +82,7 @@
 			<risposta value="D">public void moreD(String... values, int... nums) {}</risposta>
 			<risposta value="E">public void moreE(String[] values, ...int nums) {}</risposta>
 			<risposta value="F">public void moreF(String... values, int[] nums) {}</risposta>
-			<risposta value="G">public void moreG(String[] values, int[] nums) {}risposta>
+			<risposta value="G">public void moreG(String[] values, int[] nums) {}</risposta>
 		</risposte>
 		<risposteEsatte>A, B, G</risposteEsatte>
 		<spiegazione> 
@@ -389,7 +389,7 @@
 			1: import java.util.*;
 			2: // INSERT CODE HERE
 			3: public class Imports {
-			4: 	public void method(ArrayList<String> list) {
+			4: 	public void method(ArrayList&lt;String&gt; list) {
 			5: 		sort(list);
 			6: 	}
 			7: }
@@ -397,10 +397,10 @@
 		<risposte type="checkbox">
 			<risposta value="A">import static java.util.Collections;</risposta>
 			<risposta value="B">import static java.util.Collections.*;</risposta>
-			<risposta value="C">import static java.util.Collections.sort(ArrayList<String>);</risposta>
+			<risposta value="C">import static java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta>
 			<risposta value="D">static import java.util.Collections;</risposta>
 			<risposta value="E">static import java.util.Collections.*;</risposta>
-			<risposta value="F">static import java.util.Collections.sort(ArrayList<String>);</risposta>
+			<risposta value="F">static import java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta>
 		</risposte>
 		<risposteEsatte>B</risposteEsatte>
 		<spiegazione> 
@@ -801,9 +801,9 @@
 			5: 	public static void main(String[] args) {
 			6: 		Panda p1 = new Panda();
 			7: 		p1.age = 1;
-			8: 		check(p1, p -> p.age &#60; 5);
+			8: 		check(p1, p -> p.age &lt; 5);
 			9: 	}
-			10: private static void check(Panda panda, Predicate&#60;Panda> pred) {
+			10: private static void check(Panda panda, Predicate&lt;Panda&gt; pred) {
 			11: 	String result = pred.test(panda) ? "match" : "not match";
 			12: 	System.out.print(result);
 			13: } }
@@ -863,7 +863,7 @@
 		<testo>
 			Which of the following lambda expressions can fill in the blank? (Choose all that apply)
 			
-			List&#60;String> list = new ArrayList&#60;>();
+			List&lt;String&gt; list = new ArrayList&lt;&gt;();
 			list.removeIf(___________________);
 		</testo>
 		<risposte type="checkbox">

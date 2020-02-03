@@ -8,9 +8,9 @@
 			 public static void main(String[] args) {
 				 int i = 10;
 				 do
-					 while (i &#60; 15)
+					 while (i &lt; 15)
 						i = i + 20;
-				 while (i &#60; 2);
+				 while (i &lt; 2);
 				 System.out.println(i);
 			 }
 			}
@@ -24,7 +24,7 @@
 		<risposteEsatte>B</risposteEsatte>
 		<spiegazione>
 			Explanation: The condition specified in the do-while loop evaluates to false (because
-			10&#60;2 evaluates to false). But the control enters the do-while loop because the do-while
+			10&lt;2 evaluates to false). But the control enters the do-while loop because the do-while
 			loop executes at least once—its condition is checked at the end of the loop. The while
 			loop evaluates to true for the first iteration and adds 20 to i, making it 30. The while loop
 			doesn’t execute for the second time. Hence, the value of the variable i at the end of the
@@ -39,9 +39,9 @@
 			 public static void main(String[] args) {
 				 int i = 10;
 				 do
-					 while (i++ &#60; 15)
+					 while (i++ &lt; 15)
 						i = i + 20;
-				 while (i &#60; 2);
+				 while (i &lt; 2);
 				 System.out.println(i);
 			 }
 			}
@@ -59,14 +59,14 @@
 			variable names (with a small difference) because you may encounter a similar pattern
 			in the OCA Java SE 8 Programmer I exam. This question includes one difference:
 			unlike question 5-1, it uses a postfix unary operator in the while condition.
-			 The condition specified in the do-while loop evaluates to false (because 10&#60;2
+			 The condition specified in the do-while loop evaluates to false (because 10&lt;2
 			evaluates to false). But the control enters the do-while loop because the do-while
 			loop executes at least once—its condition is checked at the end of the loop. This question prints out 32, not 30, because the condition specified in the while loop (which
 			has an increment operator) executes twice.
 			 In this question, the while loop condition executes twice. For the first evaluation,
-			i++ &#60; 15 (that is, 10&#60;15) returns true and increments the value of variable i by 1 (due
+			i++ &lt; 15 (that is, 10&lt;15) returns true and increments the value of variable i by 1 (due
 			to the postfix increment operator). The loop body modifies the value of i to 31. The
-			second condition evaluates i++&#60;15 (that is, 31&#60;15) to false. But because of the postfix increment operator value of i, the value increments to 32. The final value is
+			second condition evaluates i++&lt;15 (that is, 31&lt;15) to false. But because of the postfix increment operator value of i, the value increments to 32. The final value is
 			printed as 32.
 		</spiegazione>
 	</domanda>
@@ -297,7 +297,7 @@
 				public static void main(String args[]) {
 					boolean myVal = false;
 					if (myVal=true)
-					for (int i = 0; i &#60; 2; i++) System.out.println(i);
+					for (int i = 0; i &lt; 2; i++) System.out.println(i);
 					else System.out.println("else");
 				}
 			}
@@ -335,8 +335,8 @@
 			class EJavaGuru5 {
 				public static void main(String args[]) {
 					int i = 0;
-					for (; i &#60; 2; i=i+5) {
-						if (i &#60; 5) continue;
+					for (; i &lt; 2; i=i+5) {
+						if (i &lt; 5) continue;
 						System.out.println(i);
 					}
 					System.out.println(i);
@@ -365,13 +365,13 @@
 		<risposteEsatte>F</risposteEsatte>
 		<spiegazione>
 			Explanation: First, the following line of code has no compilation errors:
-			for (; i &#60; 2; i=i+5) {
+			for (; i &lt; 2; i=i+5) {
 			Using the initialization block is optional in a for loop. In this case, using a semicolon
 			(;) terminates it.
 			 For the first for iteration, the variable i has a value of 0. Because this value is less
 			than 2, the following if construct evaluates to true and the continue statement
 			executes:
-			if (i &#60; 5) continue;
+			if (i &lt; 5) continue;
 			Because the continue statement ignores all the remaining statements in a for loop
 			iteration, the control doesn’t print the value of the variable i, which leads the control
 			to move on to the next for iteration. In the next for iteration, the value of the variable i is 5. The for loop condition evaluates to false and the control moves out of

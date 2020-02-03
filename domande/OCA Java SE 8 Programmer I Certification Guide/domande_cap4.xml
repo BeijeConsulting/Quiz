@@ -97,7 +97,7 @@
 			<risposta value="A">
 				The following code executes without an error or exception:
 				
-				ArrayList&#60;Long> lst = new ArrayList<>();
+				ArrayList&lt;Long&gt; lst = new ArrayList&lt;&gt;();
 				lst.add(10);
 			</risposta>
 			<risposta value="B">
@@ -163,7 +163,7 @@
 			import java.util.*; 												// line 1
 			class EJavaGuruArrayList { 											// line 2
 			 public static void main(String args[]) { 							// line 3
-				 ArrayList&#60;String> ejg = new ArrayList&#60;>(); 			// line 4
+				 ArrayList&lt;String&gt; ejg = new ArrayList&lt;&gt;(); 		// line 4
 				 ejg.add("One"); 												// line 5
 				 ejg.add("Two"); 												// line 6
 				 System.out.println(ejg.contains(new String("One"))); 			// line 7

@@ -454,8 +454,8 @@
 			is a reference to an object. main() is a method.
 		</spiegazione>
 	</domanda>
-		<testo>
 	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="18">
+		<testo>
 			Which represent the order in which the following statements can be assembled into a program that will compile successfully? (Choose all that apply)
 			
 			A: class Rabbit {}

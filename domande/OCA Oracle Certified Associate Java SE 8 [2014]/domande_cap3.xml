@@ -483,7 +483,7 @@
 		<testo>
 			What is the result of the following statements?
 			
-			6: List&#60;String> list = new ArrayList&#60;String>();
+			6: List&lt;String&gt; list = new ArrayList&lt;String&gt;();
 			7: list.add("one");
 			8: list.add("two");
 			9: list.add(7);
@@ -506,7 +506,7 @@
 		<testo>
 			What is the result of the following statements?
 			
-			3: ArrayList&#60;Integer> values = new ArrayList&#60;>();
+			3: ArrayList&lt;Integer&gt; values = new ArrayList&lt;&gt;();
 			4: values.add(4);
 			5: values.add(5);
 			6: values.set(1, 6);
@@ -555,7 +555,7 @@
 		<testo>
 			What is the result of the following?
 			
-			4: List&#60;Integer> list = Arrays.asList(10, 4, -1, 5);
+			4: List&lt;Integer&gt; list = Arrays.asList(10, 4, -1, 5);
 			5: Collections.sort(list);
 			6: Integer array[] = list.toArray(new Integer[4]);
 			7: System.out.println(array[0]);
@@ -580,7 +580,7 @@
 			What is the result of the following?
 			
 			6: String [] names = {"Tom", "Dick", "Harry"};
-			7: List&#60;String> list = names.asList();
+			7: List&lt;String&gt; list = names.asList();
 			8: list.set(0, "Sue");
 			9: System.out.println(names[0]);
 		</testo>
@@ -602,7 +602,7 @@
 		<testo>
 			What is the result of the following?
 			
-			List&#60;String> hex = Arrays.asList("30", "8", "3A", "FF");
+			List&lt;String&gt; hex = Arrays.asList("30", "8", "3A", "FF");
 			Collections.sort(hex);
 			int x = Collections.binarySearch(hex, "8");
 			int y = Collections.binarySearch(hex, "3A");
@@ -630,7 +630,7 @@
 		<testo>
 			Which of the following are true statements about the following code? (Choose all that apply)
 			
-			4: List&#60;Integer> ages = new ArrayList&#60;>();
+			4: List&lt;Integer&gt; ages = new ArrayList&lt;&gt;();
 			5: ages.add(Integer.parseInt("5"));
 			6: ages.add(Integer.valueOf("6"));
 			7: ages.add(7);
@@ -656,9 +656,9 @@
 		<testo>
 			What is the result of the following?
 			
-			List&#60;String> one = new ArrayList&#60;String>();
+			List&lt;String&gt; one = new ArrayList&lt;String&gt;();
 			one.add("abc");
-			List&#60;String> two = new ArrayList&#60;>();
+			List&lt;String&gt; two = new ArrayList&lt;&gt;();
 			two.add("abc");
 			if (one == two)
 			 System.out.println("A");

@@ -109,7 +109,7 @@
 			boolean buyPrim = buy.booleanValue();
 			System.out.print(!buyPrim);
 			
-			System.out.print(buy && sell);
+			System.out.print(buy &amp;&amp; sell);
 			
 			What is the output?
 		</testo>
@@ -128,7 +128,7 @@
 			Because the comparison operator == compares object references and not the primitive value stored by a wrapper instance, buy == sell returns false.
 			The method booleanValue() can be used to get the primitive boolean value
 			stored by a Boolean wrapper instance. So buy.booleanValue() returns false. Because
-			wrapper instances can be used with arithmetic and logical operators, buy && sell compiles, returning true.		
+			wrapper instances can be used with arithmetic and logical operators, buy &amp;&amp; sell compiles, returning true.		
 		</spiegazione>
 	</domanda>
 	<domanda id="5" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="5">
@@ -210,12 +210,12 @@
 			
 			boolean b = false;
 			int i = 90;
-			System.out.println(i >= b);
+			System.out.println(i &gt;= b);
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">Code prints true</risposta>
 			<risposta value="B">Code prints false</risposta>
-			<risposta value="C">Code prints 90 >= false</risposta>
+			<risposta value="C">Code prints 90 &gt;= false</risposta>
 			<risposta value="D">Compilation error</risposta>
 		</risposte>
 		<risposteEsatte>D</risposteEsatte>
@@ -232,7 +232,7 @@
 				int num1 = 12; 												// line 3
 				float num2 = 17.8f; 										// line 4
 				boolean eJavaResult = true; 								// line 5
-				boolean returnVal = num1 >= 12 && num2 &#60; 4.567 			// line 6
+				boolean returnVal = num1 &gt;= 12 &amp;&amp; nu&lt;60; 4.567 			// line 6
 									|| eJavaResult == true;
 				System.out.println(returnVal); 								// line 7
 			 } 																// line 8
@@ -243,11 +243,11 @@
 			<risposta value="B">Code prints true</risposta>
 			<risposta value="C">
 			Code will print true if code on line 6 is modified to the following:
-			boolean returnVal = (num1 >= 12 && num2 &#60; 4.567) || eJavaResult == true;
+			boolean returnVal = (num1 &gt;= 12 &amp;&amp; num2 &lt; 4.567) || eJavaResult == true;
 			</risposta>
 			<risposta value="D">
 			Code will print true if code on line 6 is modified to the following:
-			boolean returnVal = num1 >= 12 && (num2 &#60; 4.567 || eJavaResult == false);
+			boolean returnVal = num1 &gt;= 12 &amp;&amp; (num2 &lt; 4.567 || eJavaResult == false);
 			</risposta>
 		</risposte>
 		<risposteEsatte>B, C</risposteEsatte>
@@ -256,16 +256,16 @@
 			Option (d) is incorrect because the code prints false.
 			The code in option (c) uses parentheses to indicate which expression should evaluate prior to the rest. Here are the steps of execution:
 			
-				boolean returnVal = (num1 >= 12 && num2 &#60; 4.567) || eJavaResult == true;
+				boolean returnVal = (num1 &gt;= 12 &amp;&amp; num2 &lt; 4.567) || eJavaResult == true;
 				returnVal = false || eJavaResult == true;
 				returnVal = true;
 			
 			The original code in the question doesn’t use parentheses to group the expressions.
-			In this case, because the operator && has a higher operator precedence than ||, the
-			expression 'num1 >= 12 && num2 &#60; 4.567' will be the first expression to execute. Here
+			In this case, because the operator &amp;&amp; has a higher operator precedence than ||, the
+			expression 'num1 &gt;= 12 &amp;&amp; num2 &lt; 4.567' will be the first expression to execute. Here
 			are the steps of execution:
 			
-				boolean returnVal = num1 >= 12 && num2 &#60; 4.567 || eJavaResult == true;
+				boolean returnVal = num1 &gt;= 12 &amp;&amp; num2 &lt; 4.567 || eJavaResult == true;
 				returnVal = false || eJavaResult == true;
 				returnVal = true;
 		</spiegazione>

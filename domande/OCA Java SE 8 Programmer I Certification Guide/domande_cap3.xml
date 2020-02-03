@@ -58,7 +58,7 @@
 			public class Person {
 			 public int height;
 			 public void setHeight(int newHeight) {
-				if (newHeight &#60;= 300)
+				if (newHeight &lt;= 300)
 					height = newHeight;
 			 }
 			}
@@ -255,7 +255,7 @@
 			<risposta value="B">public void eJava(int val1, String val2, double val3)</risposta>
 			<risposta value="C">String eJava(String name, int age, double duration)</risposta>
 			<risposta value="D">float eJava(double name, String age, byte duration)</risposta>
-			<risposta value="E">ArrayList&#60;String>eJava() </risposta>
+			<risposta value="E">ArrayList&lt;String&gt;eJava() </risposta>
 			<risposta value="F">char[] eJava(double numbers)</risposta>
 			<risposta value="G">String eJava()</risposta>
 		</risposte>
