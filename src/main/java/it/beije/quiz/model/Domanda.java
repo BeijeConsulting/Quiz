@@ -115,4 +115,21 @@ public class Domanda {
 		builder.append("\"spiegazione\":").append(spiegazione).append("\";");
 		return builder.toString();
 	}
+	
+	public String effettuaDomanda() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("id : ").append(id).append('\n');
+		builder.append("book : ").append(book).append('\n');
+		builder.append("chapter : ").append(chapter).append('\n');
+		builder.append("question : ").append(question).append('\n');
+		builder.append("testo : ").append(testo).append('\n');
+		builder.append("answerType : ").append(answerType).append('\n');
+		builder.append("RISPOSTE\n");
+		for (Risposta r : risposte) {
+			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
+		}
+		builder.append("----------------------------\n");
+		
+		return builder.toString();
+	}
 }
