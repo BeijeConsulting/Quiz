@@ -16,9 +16,11 @@ public class Domanda {
 	private List<Risposta> risposte;
 	private String rispostaUtente = "";
 	private String rispostaEsatta;
+	private String spiegazione;
 	
 	public Domanda(int id, String book, int chapter, int question, String testo,
-			String rispostaEsatta, String answerType, List<Risposta> risposte) {
+			String answerType, List<Risposta> risposte,
+			String rispostaEsatta, String spiegazione) {
 		this.id = id;
 		this.book = book;
 		this.chapter = chapter;
@@ -27,6 +29,7 @@ public class Domanda {
 		this.rispostaEsatta = rispostaEsatta;
 		this.answerType = answerType;
 		this.risposte = risposte;
+		this.spiegazione = spiegazione;
 	}
 	
 	public int getId() {
@@ -43,6 +46,10 @@ public class Domanda {
 	
 	public String getRispostaEsatta() {
 		return rispostaEsatta;
+	}
+
+	public String getSpiegazione() {
+		return spiegazione;
 	}
 
 	public List<Risposta> getRisposte() {
