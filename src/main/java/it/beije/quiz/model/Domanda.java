@@ -90,6 +90,7 @@ public class Domanda {
 		for (Risposta r : risposte) {
 			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
 		}
+		builder.append("\nspiegazione : ").append(spiegazione).append('\n');
 		builder.append("----------------------------\n");
 		
 		return builder.toString();
@@ -110,8 +111,8 @@ public class Domanda {
 			builder.append("\"value\":\"").append(r.getValue()).append("\";");
 			builder.append("\"text\":\"").append(r.getText()).append("\";");
 		}
-		builder.append("}}");
-		
+		builder.append("}}").append("\";");
+		builder.append("\"spiegazione\":").append(spiegazione).append("\";");
 		return builder.toString();
 	}
 }

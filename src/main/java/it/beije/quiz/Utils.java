@@ -17,6 +17,7 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	//*** Per un elemento generico ritorna una lista degli elementi al suo interno ***
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -33,6 +34,7 @@ public class Utils {
 	}
 
 	public static List<Domanda> readFileDomande(String pathFile) {
+		//*** Inizializza una lista in cui saranno aggiunte tutte le domande inserite all'interno di un file xml ***
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
 		try {
@@ -50,6 +52,7 @@ public class Utils {
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
+	        //*** Per ogni domanda estrae e salva nelle rispettive liste i vari valori per creare l'oggetto "domanda" ***
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
 		        int id = Integer.parseInt(domanda.getAttribute("id"));
@@ -72,7 +75,7 @@ public class Utils {
 		        }
 		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???;
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
@@ -87,6 +90,7 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	//*** Formatta il testo per renderlo compatibile con un file jsp(?) ***
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -95,6 +99,7 @@ public class Utils {
 		return testo;
 	}
 	
+	//*** Verifica che la risposta data sia corretta (per ogni risposta data correttamente viene eliminata la relativa lettera per una verifica in caso di risposte multiple) ***
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
