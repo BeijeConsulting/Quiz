@@ -157,7 +157,10 @@ public class QuizController {
 		return "risultati";
 	}
 	
-	
+	@RequestMapping(value = "/newDomanda", method = RequestMethod.POST)
+	public void newDomanda() {
+		
+	}
 	
 	/////// REST
 	
