@@ -31,13 +31,16 @@ public class AggiungiDomandaServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		System.out.println(request.getParameter("param_testo"));
+//		System.out.println(request.getParameter("param_testo"));
+		
+		
+		
 		String libro= request.getParameter("param_libro");
 		int id=Integer.parseInt( request.getParameter("param_id"));
 		int capitolo= Integer.parseInt(request.getParameter("param_capitolo"));
 		int idDomanda=Integer.parseInt( request.getParameter("param_nDomanda"));
 		String testo= request.getParameter("param_testo");
-		String[] risposte= request.getParameter("param_risposte").split(",");
+		String[] risposte= request.getParameter("param_risposte").split(";");
 		String type= request.getParameter("param_type");
 		String risposteEsatte= request.getParameter("param_risposteEsatte");
 		String spiegazione= request.getParameter("param_spiegazione");
@@ -50,23 +53,26 @@ public class AggiungiDomandaServlet extends HttpServlet {
 			ris.setText(risposte[i]);
 			ris.setValue(Character.toString((char)(65+i)));
 			listRisposte.add(ris);
-			System.out.println(ris.getValue());
+//			System.out.println(ris.getValue());
 		}
+		
 		
 		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
 		
 		
 		File fileXML=new File("C:\\Users\\Padawan14\\git\\Quiz\\QuizdomandeProva.xml");
-//		response.sendRedirect("./aggiungiDomanda.jsp");
+
 		Utils.aggiungiDomanda(domanda, fileXML);
 		
 		
 		List <Domanda> listaDomande=Utils.readFileDomande(fileXML.getPath());
 		StringBuilder visualDomande= new StringBuilder();
+		response.sendRedirect("./aggiungiDomanda.jsp");
 		
-		for(Domanda d: listaDomande)
-			visualDomande.append(d.toString());
-		response.getWriter().append(visualDomande);
+		
+//		for(Domanda d: listaDomande)
+//			visualDomande.append(d.toString());
+//		response.getWriter().append(visualDomande);
 	}
 
 }
