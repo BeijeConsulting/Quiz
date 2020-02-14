@@ -15,27 +15,33 @@ import org.w3c.dom.NodeList;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 
-public class Utils {
+public class Utils 
+{
 	
-	public static List<Element> getChildElements(Element element) {
+	public static List<Element> getChildElements(Element element) //Metodo dinamico che prende l'elemento (quello che c'è tra due tag) e lo inserisce in un ArrayList di elementi
+	{ 
 		List<Element> childElements = new ArrayList<Element>();
 		
-		NodeList nodeList = element.getChildNodes();
+		NodeList nodeList = element.getChildNodes(); //Estrapola i nodi figli (il nodo è il tag principali, i nodi figli sono i contenuti degli altri tag)
         Node node = null;
-        for (int i = 0; i < nodeList.getLength(); i++) {
+        for (int i = 0; i < nodeList.getLength(); i++)
+        {
         	node = nodeList.item(i);
-        	if (node.getNodeType() == Node.ELEMENT_NODE) {
+        	if (node.getNodeType() == Node.ELEMENT_NODE) //Ciascun nodo viene inserito nell'ArrayList verificando che sia del tipo corretto
+        	{ 
         		childElements.add((Element)node);
         	}
         }
 		
-		return childElements;
+		return childElements; //Restituisce così l'ArrayList elementi figli creati.
 	}
 
-	public static List<Domanda> readFileDomande(String pathFile) {
-		List<Domanda> arrayDomande = new ArrayList<Domanda>();
+	public static List<Domanda> readFileDomande(String pathFile)
+	{
+		List<Domanda> arrayDomande = new ArrayList<Domanda>(); //Un ArrayList di Domande
 		
-		try {
+		try 
+		{ //Leggo il file XML
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
 
@@ -44,26 +50,28 @@ public class Utils {
 	        Document document = builder.parse(new File(pathFile));
 	        Element element = document.getDocumentElement();	        
 //	        System.out.println(element.getTagName());
-	        List<Element> domande = Utils.getChildElements(element);
+	        List<Element> domande = Utils.getChildElements(element); //Richiamo il metodo che mi inserisce gli elementi nell'ArrayList domande
 //	        System.out.println(domande);
 	        	        
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
-	        for (Element domanda : domande) {
-	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
-		        String book = domanda.getAttribute("book");
-		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-		        int question = Integer.parseInt(domanda.getAttribute("question"));
-		        String testo = contenutoDomanda.get(0).getTextContent();
+	        for (Element domanda : domande)
+	        {
+	        	contenutoDomanda = Utils.getChildElements(domanda); //Ciascun elemento di domande viene controllato e il contenuto salvato in contenutoDomanda
+		        int id = Integer.parseInt(domanda.getAttribute("id")); //Salvo ID
+		        String book = domanda.getAttribute("book"); //Nome libro
+		        int chapter = Integer.parseInt(domanda.getAttribute("chapter")); //Capitolo
+		        int question = Integer.parseInt(domanda.getAttribute("question")); //Conenuto della domanda
+		        String testo = contenutoDomanda.get(0).getTextContent(); //contenutoDomanda contiene i nodi figli di domanda e il primo elemento è sempre il testo che viene memorizzato nella stringa testo
 		        
 		        //caricare le risposte possibili
-		        rispostePossibili = contenutoDomanda.get(1);
-		        String answerType = rispostePossibili.getAttribute("type");
-		        elementiRisposta = Utils.getChildElements(rispostePossibili);
+		        rispostePossibili = contenutoDomanda.get(1); //La prima parte del file XML, e cioè il contenuto, viene inserito come Element sull'oggetto rispostePossibili
+		        String answerType = rispostePossibili.getAttribute("type"); //Inserisce all'interno della stringa answerType le opazioni di risposta 
+		        elementiRisposta = Utils.getChildElements(rispostePossibili); //Sull'ArrayList elementiRisposta inserisce le risposte sotto forma di elementi
 		        List<Risposta> risposte = new ArrayList<Risposta>();
-		        for (Element risposta : elementiRisposta) {
+		        for (Element risposta : elementiRisposta) //Sull'ArrayList risposte vengono inserite le risposte sotto forma di value ABC
+		        {
 		        	Risposta r = new Risposta();
 		        	r.setValue(risposta.getAttribute("value"));
 		        	r.setText(risposta.getTextContent());
@@ -72,7 +80,7 @@ public class Utils {
 		        }
 		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???;
+		        String spiegazione = ???; //DA DOVE PRENDO LA SPEIGAZIONE?
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
@@ -80,28 +88,37 @@ public class Utils {
 //	        	System.out.println(d);
 	        }	        		
 	        
-		} catch (Exception e) {
+		} 
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		
 		return arrayDomande;
 	}
 	
-	public static String formattaTesto(String testo) {
-		if (testo != null && testo.length() > 0) {
+	public static String formattaTesto(String testo)
+	{
+		if (testo != null && testo.length() > 0)
+		{
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
 		}
 		
 		return testo;
 	}
 	
-	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
-		for (int i = 0; i < risposta.length(); i++) {
+	public static boolean controllaRisposta(String rispostaEsatta, String risposta)
+	{
+		for (int i = 0; i < risposta.length(); i++)
+		{
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;
-			if (rispostaEsatta.indexOf(c) < 0) {
+			if (rispostaEsatta.indexOf(c) < 0)
+			{
 				return false;//se non trovo la risposta termino il ciclo
-			} else {
+			} 
+			else
+			{
 				//tolgo risposta esatta da elenco risposte esatte per evitare duplicati
 				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
 			}
