@@ -7,7 +7,6 @@
 <title>Inserisci domande</title>
 <style>
 body {
-	font-size: medium;
 }
 
 .divInsertQuestion {
@@ -17,6 +16,8 @@ body {
 	width: 90%;
 	border-radius: 6px;
 	margin: auto;
+	background: #ccc;
+	box-shadow: 5px 5px 10px #888;
 }
 
 label {
@@ -85,19 +86,26 @@ function createNewResponse() {
 </script>
 </head>
 <body>
-<h2>INSERIMENTO DOMANDE</h2>
+
 
 <div class="divInsertQuestion">
-	<form action="../insertDomanda" method="post">
+<h2>INSERIMENTO DOMANDE</h2>
+	<form action="InsertDomanda" method="post">
 		<table cellspacing="10px">
 			<tr>
-				<td>Numero domanda:&nbsp;</td><td><input class="number" type="number" placeholder="Es: 3" name="numDomanda" min="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Capitolo:&nbsp;<input class="number" type="number" placeholder="Es: 3" name="numDomanda" min="1"/></td>
+				<td>Numero domanda:&nbsp;</td><td><input class="number" type="number" placeholder="Es: 3" name="numDomanda" min="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Capitolo:&nbsp;<input class="number" type="number" placeholder="Es: 3" name="numCapitolo" min="1"/></td>
 			</tr>
 			<tr>
-				<td>Book:&nbsp;</td><td><input type="text" name="bookName" placeholder="nome del libro" /></td>
+				<td>Book:&nbsp;</td><td><select name="bookName" style="border-radius: 6px; padding: 5px; width: 600px; padding: 5px; border: 1px solid #000;">
+										  <option value="OCA Oracle Certified Associate Java SE 8 [2014]">OCA Oracle Certified Associate Java SE 8 [2014]</option>
+										  <option value="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809">OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809</option>
+										</select></td>
 			</tr>
 			<tr>
 				<td class="valignTop">Testo:&nbsp;</td><td><textarea name="testoDomanda" placeholder="testo della domanda"></textarea></td>
+			</tr>
+			<tr>
+				<td>Tipo domanda:</td><td><label style="width: 20px; position: relative; top: -10px;" for="check">Multiple choice</label><input style="width: 20px;" type="radio" name="typeQuestion" value="checkbox" style="height: 20px;" checked="checked" />&nbsp;&nbsp;&nbsp;<label style="width: 50px; position: relative; top: -10px;" for="radio">Single choice</label><input style="width: 20px;" type="radio" name="typeQuestion" value="radio" style="height: 20px;" /></td>
 			</tr>
 			<tr>
 				<td class="valignTop">Risposte:&nbsp;<button type="button" onclick="createNewResponse()">+</button>&nbsp;</td><td class="risposte"><div style="float: left;"><input type="text" maxlength="5" class="number" name="valueRisposta1" placeholder="A" /></div><div><input style="width: 538px;" type="text" placeholder="testo della risposta" name="risposta1" /></div></td>
