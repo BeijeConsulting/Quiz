@@ -7,7 +7,6 @@
 <title>Setta Risposte</title>
 </head>
 <body>
-<%= request.getSession().getAttribute("numeroRisposte"); %>
 
 	<h4></h4>
 
