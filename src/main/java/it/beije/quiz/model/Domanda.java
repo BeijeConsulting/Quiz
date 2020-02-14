@@ -90,6 +90,7 @@ public class Domanda {
 		for (Risposta r : risposte) {
 			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
 		}
+		builder.append("Spiegazione : ").append(spiegazione);
 		builder.append("----------------------------\n");
 		
 		return builder.toString();

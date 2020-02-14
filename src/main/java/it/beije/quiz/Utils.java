@@ -17,6 +17,9 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	/*
+	 * Restituisce la lista di Element figli dell'element passato come parametro
+	 */
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -32,6 +35,10 @@ public class Utils {
 		return childElements;
 	}
 
+	/*
+	 * Legge il file .xml contenente le domande del quiz,
+	 * compone una lista di domande e la restituisce
+	 */
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
@@ -44,6 +51,7 @@ public class Utils {
 	        Document document = builder.parse(new File(pathFile));
 	        Element element = document.getDocumentElement();	        
 //	        System.out.println(element.getTagName());
+	        // restituisce lista di domanda
 	        List<Element> domande = Utils.getChildElements(element);
 //	        System.out.println(domande);
 	        	        
@@ -51,14 +59,19 @@ public class Utils {
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
+	        	
 	        	contenutoDomanda = Utils.getChildElements(domanda);
+	        	
+	        	// prende gli attributi
 		        int id = Integer.parseInt(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
+		        
+		        // prende il testo della domanda
 		        String testo = contenutoDomanda.get(0).getTextContent();
 		        
-		        //caricare le risposte possibili
+		        // caricare le risposte possibili
 		        rispostePossibili = contenutoDomanda.get(1);
 		        String answerType = rispostePossibili.getAttribute("type");
 		        elementiRisposta = Utils.getChildElements(rispostePossibili);
@@ -71,9 +84,13 @@ public class Utils {
 		        	risposte.add(r);
 		        }
 		        
+		        // legge le risposte esatte
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???;
 		        
+		        // legge la spiegazione
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
+		        
+		        // crea l'oggetto domanda e o aggiunge alla lista arrayDomande
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
 	        	
@@ -87,6 +104,9 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	/*
+	 * sostituisce il '\n' con <br> e '\t' con 4 spazi 
+	 */
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -95,12 +115,23 @@ public class Utils {
 		return testo;
 	}
 	
+	/*
+	 * Legge la stringa della risposta dell'utente carattere per carattere.
+	 * Salta i caratteri 'spazio' e ','
+	 * Se il carattere della risposta dell'utente non è presente nella stringa delle risposte esatte 
+	 * esce dal ciclo e ritorna false.
+	 * In caso contrario la risposta corretta dell'utente viene eliminata dalla stringa delle risposte
+	 * corrette per evitare duplicati.
+	 * Il ciclo for continua fino alla completa scansione della stringa della risposta data dall'utete.
+	 * 
+	 * Ritorna l'esito del controllo della lunghezza della stringa risposte corrette == 0
+	 */
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;
 			if (rispostaEsatta.indexOf(c) < 0) {
-				return false;//se non trovo la risposta termino il ciclo
+				return false; //se non trovo la risposta termino il ciclo
 			} else {
 				//tolgo risposta esatta da elenco risposte esatte per evitare duplicati
 				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
@@ -108,6 +139,10 @@ public class Utils {
 		}
 		
 		return rispostaEsatta.length() == 0;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(readFileDomande("C:\\Users\\Padawan04\\git\\Quiz\\domande\\OCA Java SE 8 Programmer I Certification Guide\\domande_cap1.xml"));
 	}
 
 }
