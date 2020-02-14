@@ -17,21 +17,31 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	/*Questo metodo ci restituisce una List di Element
+	 * con i figli dell'elemento che noi passiamo (es. domande
+	 * ha come figlie domande question, che a sua volta ha come figlie
+	 * le varie risposte).
+	 * 
+	 */
+	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
 		NodeList nodeList = element.getChildNodes();
         Node node = null;
-        for (int i = 0; i < nodeList.getLength(); i++) {
+        for (int i = 0; i < nodeList.getLength(); i++) {  //scorre la nodeList selezionata
         	node = nodeList.item(i);
-        	if (node.getNodeType() == Node.ELEMENT_NODE) {
+        	if (node.getNodeType() == Node.ELEMENT_NODE) {   
         		childElements.add((Element)node);
         	}
         }
 		
 		return childElements;
 	}
-
+	
+	
+	//
+    
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
@@ -45,18 +55,18 @@ public class Utils {
 	        Element element = document.getDocumentElement();	        
 //	        System.out.println(element.getTagName());
 	        List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
+	        System.out.println(domande);
 	        	        
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
-	        	contenutoDomanda = Utils.getChildElements(domanda);
+	        	contenutoDomanda = Utils.getChildElements(domanda); //prende gli attributi di domanda
 		        int id = Integer.parseInt(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
-		        String testo = contenutoDomanda.get(0).getTextContent();
+		        String testo = contenutoDomanda.get(0).getTextContent();  //String per il testo della domanda
 		        
 		        //caricare le risposte possibili
 		        rispostePossibili = contenutoDomanda.get(1);
@@ -72,7 +82,8 @@ public class Utils {
 		        }
 		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???;
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
+		        //legge la spiegazione, che sa si troverà alla posizione standard 3.
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
@@ -87,6 +98,11 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	/* Aggiunge degli spazi al successivo file HTML, sostituendo
+	 * \n con il tag <br> e\t con 4 tag che creano spazi più ampi.
+	 * 
+	 */
+	
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -94,6 +110,15 @@ public class Utils {
 		
 		return testo;
 	}
+	
+	/*Il metodo inizialmente si occupa di ciclare per tutta la lunghezza della risposta,
+	 * in caso di possibile risposta multipla. La nostra risposta verrà inserita al primo indirizzo
+	 * saltando con lo statement continue nel caso ci fossero caratteri come lo spazio o la virgola.
+	 * Successivamente controlla che la rispostaesatta corrisponda alla nostra risposta data
+	 *(non essendo minore di 0, quindi -1, sarà corretta). Nel caso ritornerà false,
+	 * altrimenti eseguirà lo statement successivo. Il ciclo continua fino al
+	 * termine della scansione della lungheza della String rispostaesatta.
+	 */
 	
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
@@ -103,7 +128,10 @@ public class Utils {
 				return false;//se non trovo la risposta termino il ciclo
 			} else {
 				//tolgo risposta esatta da elenco risposte esatte per evitare duplicati
-				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
+				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");  
+				/*Assegna uno spazio vuoto alle risposte corrette,
+				*in modo da non creare errori quando si controllerà la risposta successiva.
+				*/
 			}
 		}
 		
