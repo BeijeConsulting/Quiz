@@ -17,6 +17,7 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	//metodo per prendere gli elementi figli di un elemento
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -32,6 +33,7 @@ public class Utils {
 		return childElements;
 	}
 
+	//legge e parsa l'xml
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
@@ -50,7 +52,7 @@ public class Utils {
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
-	        for (Element domanda : domande) {
+	        for (Element domanda : domande) {     //prende gli elementi figli del tag domanda e li aggiunge alla lista
 	        	contenutoDomanda = Utils.getChildElements(domanda);
 		        int id = Integer.parseInt(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
@@ -59,11 +61,12 @@ public class Utils {
 		        String testo = contenutoDomanda.get(0).getTextContent();
 		        
 		        //caricare le risposte possibili
-		        rispostePossibili = contenutoDomanda.get(1);
-		        String answerType = rispostePossibili.getAttribute("type");
-		        elementiRisposta = Utils.getChildElements(rispostePossibili);
+		        //prende gli elementi figli del tag domanda e li aggiunge alla lista elementiRisposta
+		        rispostePossibili = contenutoDomanda.get(1);  
+		        String answerType = rispostePossibili.getAttribute("type"); 
+		        elementiRisposta = Utils.getChildElements(rispostePossibili);  
 		        List<Risposta> risposte = new ArrayList<Risposta>();
-		        for (Element risposta : elementiRisposta) {
+		        for (Element risposta : elementiRisposta) { 
 		        	Risposta r = new Risposta();
 		        	r.setValue(risposta.getAttribute("value"));
 		        	r.setText(risposta.getTextContent());
@@ -72,8 +75,8 @@ public class Utils {
 		        }
 		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???;
-		        
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
+
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
 	        	
@@ -87,6 +90,7 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	//formatta il testo tramutando i caratteri a capo di java in html
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -95,6 +99,8 @@ public class Utils {
 		return testo;
 	}
 	
+	
+	//controlla che la risposta o le risposte combacino con le risposte esatte. poi toglie la risposta esatta per evitare duplicati
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);

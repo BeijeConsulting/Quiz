@@ -84,6 +84,7 @@ public class Domanda {
 		builder.append("question : ").append(question).append('\n');
 		builder.append("testo : ").append(testo).append('\n');
 		builder.append("rispostaEsatta : ").append(rispostaEsatta).append('\n');
+		builder.append("spiegazione : ").append(spiegazione).append('\n');
 		builder.append("rispostaUtente : ").append(rispostaUtente).append('\n');
 		builder.append("answerType : ").append(answerType).append('\n');
 		builder.append("RISPOSTE\n");
