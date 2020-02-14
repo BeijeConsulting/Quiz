@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>quiz</display-name>
-
-	<!-- Add Spring MVC DispatcherServlet as front controller >
-	<servlet>
-        <servlet-name>spring</servlet-name>
-        <servlet-class>
-                org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-        <init-param>
-       		<param-name>contextConfigLocation</param-name>
-       		<param-value>/WEB-INF/spring-servlet.xml</param-value>
-    		</init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
- 
-    <servlet-mapping>
-        <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern> 
-    </servlet-mapping -->
+  <servlet>
+    <description></description>
+    <display-name>FormDomande</display-name>
+    <servlet-name>FormDomande</servlet-name>
+    <jsp-file>/FormDomande.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormDomande</servlet-name>
+    <url-pattern>/FormDomande</url-pattern>
+  </servlet-mapping>
 </web-app>
