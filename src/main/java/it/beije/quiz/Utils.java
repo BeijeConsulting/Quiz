@@ -91,7 +91,7 @@ public class Utils {
 
 				//CE 20200214: salva il valore della risposta esatta, e della spiegazione in due variabili diverse.
 				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-				String spiegazione ="spiegazione";
+				String spiegazione =contenutoDomanda.get(3).getTextContent();
 
 				//CE 202200214: crea la domanda con tutti i dati, e la aggiunge in nella lista arrayDomande.
 				Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
