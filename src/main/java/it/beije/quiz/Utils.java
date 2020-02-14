@@ -91,7 +91,7 @@ public class Utils {
 //		        PRENDO RISPOSTA ESATTA ELEMENTO N°3 DELL'ELEMENT DOMANDA
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        
-//		        PRENDO SPIEGAZIONE ELEMENTO N°3 DELL'ELEMENT DOMANDA
+//		        PRENDO SPIEGAZIONE - ELEMENTO N°4 DELL'ELEMENT DOMANDA
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 //		        POPOLA NEL COSTRUTTORE DEL NUOVO OGGETTO CREATO DOMANDA CON I VARI ATTRIBUTI + RISPOSTE ECC..
