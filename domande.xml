@@ -20,7 +20,7 @@ Which of the following can replace line 2 to make this code compile? (Choose all
 			<risposta value="E">static import java.util.Collections.*;</risposta>
 			<risposta value="F">static import java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta>
 		</risposte>
-		<risposteEsatte>B</risposteEsatte>
+		<risposteEsatte>BE</risposteEsatte>
 		<spiegazione>
 			Explanation: A class that isn’t defined in a package gets implicitly defined in Java’s
 			default package. But such classes can’t be accessed by classes or interfaces, which are
@@ -51,7 +51,7 @@ Which of the following can replace line 2 to make this code compile? (Choose all
 			<risposta value="E">static import java.util.Collections.*;</risposta>
 			<risposta value="F">static import java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta>
 		</risposte>
-		<risposteEsatte>B</risposteEsatte>
+		<risposteEsatte>AB</risposteEsatte>
 		<spiegazione>
 			Explanation: A class that isn’t defined in a package gets implicitly defined in Java’s
 			default package. But such classes can’t be accessed by classes or interfaces, which are
