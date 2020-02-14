@@ -13,8 +13,10 @@ body {
 .divInsertQuestion {
 	border: 2px solid #000;
 	padding: 10px;
-	width: 770px;
+	max-width: 770px;
+	width: 90%;
 	border-radius: 6px;
+	margin: auto;
 }
 
 label {
@@ -27,6 +29,7 @@ input {
 	border: 1px solid #000;
 	height: 30px;
 	padding: 5px;
+	border: 1px solid #000;
 }
 
 textarea {
@@ -34,8 +37,9 @@ textarea {
 	width: 100%;
 	border-radius: 5px;
 	border: 1px solid #000;
-	height: 150px;
+	height: 100px;
 	padding: 5px;
+	border: 1px solid #000;
 }
 
 .number {
@@ -48,7 +52,7 @@ textarea {
 
 .buttom {
 	width: 200px;
-	background: DodgerBlue;
+	background: grey;
 	color: #fff;
 	border: 0px solid;
 }
@@ -59,24 +63,29 @@ textarea {
 
 .buttom:hover {
 	width: 200px;
-	background: blue;
+	background: DodgerBlue;
 	color: #fff;
 	border: 0px solid;
 	cursor: pointer;
 }
+
+h2 {
+	text-align:center;
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 var c = 2;
 function createNewResponse() {
-   	$('.risposte').append('<input style="margin-top: 5px;" type="text" name="risposta' + c + '" placeholder="X - testo della risposta" />');
+   	$('.risposte').append('<div style="margin-top: 5px;"><div style="float: left;"><input type="text" maxlength="5" name="valueRisposta' + c + '" class="number" placeholder="A" /></div><div><input style="width: 538px;" type="text" placeholder="testo della risposta" name="risposta' + c + '" /></div></div>');
    	c++;
 }
 </script>
 </head>
 <body>
-<h2>Inserimento domande:</h2>
+<h2>INSERIMENTO DOMANDE</h2>
 
 <div class="divInsertQuestion">
 	<form action="../insertDomanda" method="post">
@@ -91,7 +100,7 @@ function createNewResponse() {
 				<td class="valignTop">Testo:&nbsp;</td><td><textarea name="testoDomanda" placeholder="testo della domanda"></textarea></td>
 			</tr>
 			<tr>
-				<td class="valignTop">Risposte:<br><br><button type="button" onclick="createNewResponse()">+</button>&nbsp;</td><td class="risposte"><input type="text" placeholder="A - testo della risposta" name="risposta1" /></td>
+				<td class="valignTop">Risposte:&nbsp;<button type="button" onclick="createNewResponse()">+</button>&nbsp;</td><td class="risposte"><div style="float: left;"><input type="text" maxlength="5" class="number" name="valueRisposta1" placeholder="A" /></div><div><input style="width: 538px;" type="text" placeholder="testo della risposta" name="risposta1" /></div></td>
 			</tr>
 			<tr>
 				<td>Risposte corrette:&nbsp;</td><td><input type="text" name="risposteEsatte" placeholder="ABE" /></td>
