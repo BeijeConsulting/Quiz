@@ -79,8 +79,8 @@ public class Utils
 		        	risposte.add(r);
 		        }
 		        
-		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???; //DA DOVE PRENDO LA SPEIGAZIONE?
+		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent(); //Risposta esatta
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
