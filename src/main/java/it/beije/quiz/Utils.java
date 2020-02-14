@@ -16,7 +16,7 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 
 public class Utils {
-	
+	//Crea una lista degli elementi e degli attributi dell' oggetto element e ne ritorna solo i tipi ELEMENT
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -31,7 +31,9 @@ public class Utils {
 		
 		return childElements;
 	}
-
+	/* Fa un ciclo per prende gli elementi del File passato come parametro in input, prende le risposte possibili
+	 * e le mette in un ArrayList. Infine crea una nuova domanda con tutti gli elementi selezionati e la aggiunge 
+	 * ad un ArrayList di domande che  verrà ritornato dal metodo. */
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
@@ -88,6 +90,7 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	//Verrà restituito il testo in input formattato per HTML. Il testo non deve essere vuoto.
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -95,7 +98,10 @@ public class Utils {
 		
 		return testo;
 	}
-	
+	/* Fa un ciclo per confrontare la presenza del carattere della risposta nella rispostEsatta.
+	 * Se la risposta è giusta il carattere verrà rimosso dalla rispostaEsatta.
+	 * Viceversa verrà ritornato false (Risposta Sbagliata).
+	 * Se rispostaEsatta è vuota ritornerà true (Risposta Giusta). */
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
