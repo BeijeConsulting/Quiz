@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -113,6 +117,54 @@ public class Utils {
 		}
 		
 		return rispostaEsatta.length() == 0;
+	}
+
+	public static void writeFileDomande(Domanda dom, String path) throws Exception {
+		
+		File file = new File(path);
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        Document document = builder.parse(path);
+        Element docElement = document.getDocumentElement();
+        Element domanda = document.createElement("domanda");
+        
+        domanda.setAttribute("id", dom.getId()+"");
+        domanda.setAttribute("book", dom.getBook());
+        domanda.setAttribute("chapter", dom.getChapter()+"");
+        domanda.setAttribute("question", dom.getQuestion()+"");
+        
+        Element testo = document.createElement("testo");
+        testo.setTextContent(dom.getTesto());
+        domanda.appendChild(testo);
+        
+        Element risposte = document.createElement("risposte");
+        risposte.setAttribute("type", dom.getAnswerType());
+        for(Risposta r : dom.getRisposte()) {
+        	Element risposta = document.createElement("risposta");
+        	risposta.setAttribute("value", r.getValue());
+        	risposta.setTextContent(r.getText());
+        	domanda.appendChild(risposta);
+        }
+        
+        Element rispEsatte = document.createElement("risposteEsatte");
+        rispEsatte.setTextContent(dom.getRispostaEsatta());
+        domanda.appendChild(rispEsatte);
+        
+        Element spiegazione = document.createElement("spiegazione");
+        spiegazione.setTextContent(dom.getSpiegazione());
+        domanda.appendChild(spiegazione);
+        
+        docElement.appendChild(domanda);
+        
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        StreamResult result = new StreamResult(path);
+        DOMSource source = new DOMSource(document);
+        transformer.transform(source, result);
+
+		System.out.println("File saved!");
+		
 	}
 
 }

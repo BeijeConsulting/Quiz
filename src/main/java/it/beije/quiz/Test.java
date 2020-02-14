@@ -8,7 +8,8 @@ import it.beije.quiz.model.Risposta;
 
 public class Test {
 
-	private static final String PATH = "C:\\Users\\Padawan09\\git\\Quiz\\domande.xml";
+	public static final String PATH = "C:\\Users\\Padawan09\\git\\Quiz\\domande.xml";
+
 	public static void main(String[] args) {
 		List<Domanda> listaDomande = Utils.readFileDomande(PATH);
 		Scanner scan = new Scanner(System.in);
