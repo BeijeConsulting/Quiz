@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Setta Risposte</title>
+<title>Insert title here</title>
 </head>
 <body>
+<jsp:useBean id="liveForm" class="it.beije.quiz.model.LiveForm" scope="session"></jsp:useBean>
+<jsp:setProperty property="numeroRisposte" name="liveForm" param="numeroRisposte"/>	
 
-	<h4></h4>
+
+numero: <jsp:getProperty property="numeroRisposte" name="liveForm"/>	
 
 </body>
 </html>
