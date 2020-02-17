@@ -22,6 +22,7 @@ public class Servlet1 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		LiveForm live =(LiveForm) request.getSession().getAttribute("liveForm");
 		live.setNumeroRisposte(Integer.parseInt(request.getParameter("numeroRisposte")));
 		live.setPrimoGiro(false);
@@ -41,3 +42,23 @@ public class Servlet1 extends HttpServlet {
 		
 
 }
+=======
+		// TODO Auto-generated method stub
+		LiveForm live =(LiveForm) request.getSession().getAttribute("liveForm");
+		live.setNumeroRisposte(Integer.parseInt(request.getParameter("numeroRisposte")));
+		live.setPrimoGiro(false);
+		
+		
+		String book = request.getParameter("book");
+		int chapter = Integer.parseInt(request.getParameter("chapter"));
+		String testo = request.getParameter("testo");
+		String answerType = request.getParameter("answerType");
+		
+		
+		request.getSession().setAttribute("domanda", new Domanda(id_domanda++,book,chapter,id_domanda,testo,answerType));
+		request.getSession().setAttribute("liveForm", live);
+		response.sendRedirect("NewDomanda.jsp");
+	}
+
+}
+>>>>>>> refs/remotes/origin/padawan08

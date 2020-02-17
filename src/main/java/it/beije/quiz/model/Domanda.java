@@ -8,50 +8,6 @@ public class Domanda {
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
 	private int id;
-	private String book;
-	private int chapter;
-	private int question;
-	private String testo;
-	private String answerType;
-	private List<Risposta> risposte;
-	private String rispostaUtente = "";
-	private String rispostaEsatta;
-	private String spiegazione;
-	
-public Domanda() {}
-	
-	public Domanda(int id, String book, int chapter, int question, String testo,
-			String answerType, List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
-		this.id = id;
-		this.book = book;
-		this.chapter = chapter;
-		this.question = question;
-		this.testo = testo;
-		this.rispostaEsatta = rispostaEsatta;
-		this.answerType = answerType;
-		this.risposte = risposte;
-		this.spiegazione = spiegazione;
-	}
-	public Domanda(int id, String book, int chapter, int question, String testo,
-			String answerType) {
-		this.id = id;
-		this.book = book;
-		this.chapter = chapter;
-		this.question = question;
-		this.testo = testo;
-	}
-	
-	public Domanda(List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
-		this.rispostaEsatta = rispostaEsatta;
-		this.risposte = risposte;
-		this.spiegazione = spiegazione;
-	}
-	
-	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -132,8 +88,193 @@ public Domanda() {}
 		this.spiegazione = spiegazione;
 	}
 
+	private String book;
+	private int chapter;
+	private int question;
+	private String testo;
+	private String answerType;
+	private List<Risposta> risposte;
+	private String rispostaUtente = "";
+	private String rispostaEsatta;
+	private String spiegazione;
+	
+<<<<<<< HEAD
+public Domanda() {}
+=======
+	public Domanda() {}
+>>>>>>> refs/remotes/origin/padawan08
+	
+	public Domanda(int id, String book, int chapter, int question, String testo,
+			String answerType, List<Risposta> risposte,
+			String rispostaEsatta, String spiegazione) {
+		this.id = id;
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.testo = testo;
+		this.rispostaEsatta = rispostaEsatta;
+		this.answerType = answerType;
+		this.risposte = risposte;
+		this.spiegazione = spiegazione;
+	}
+	public Domanda(int id, String book, int chapter, int question, String testo,
+			String answerType) {
+		this.id = id;
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.testo = testo;
+<<<<<<< HEAD
+	}
+	
+	public Domanda(List<Risposta> risposte,
+			String rispostaEsatta, String spiegazione) {
+		this.rispostaEsatta = rispostaEsatta;
+		this.risposte = risposte;
+		this.spiegazione = spiegazione;
+	}
 	
 	
+	
+	
+	public int getId() {
+		return id;
+=======
+		this.answerType=answerType;
+>>>>>>> refs/remotes/origin/padawan08
+	}
+<<<<<<< HEAD
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getBook() {
+		return book;
+	}
+
+	public void setBook(String book) {
+		this.book = book;
+	}
+
+	public int getChapter() {
+		return chapter;
+	}
+
+	public void setChapter(int chapter) {
+		this.chapter = chapter;
+	}
+
+	public int getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(int question) {
+		this.question = question;
+	}
+
+	public String getTesto() {
+		return testo;
+	}
+
+	public void setTesto(String testo) {
+		this.testo = testo;
+	}
+
+	public String getAnswerType() {
+		return answerType;
+	}
+
+	public void setAnswerType(String answerType) {
+		this.answerType = answerType;
+	}
+
+	public List<Risposta> getRisposte() {
+		return risposte;
+	}
+
+	public void setRisposte(List<Risposta> risposte) {
+		this.risposte = risposte;
+	}
+
+	public String getRispostaUtente() {
+		return rispostaUtente;
+	}
+
+	public void setRispostaUtente(String rispostaUtente) {
+		this.rispostaUtente = rispostaUtente;
+	}
+
+	public String getRispostaEsatta() {
+		return rispostaEsatta;
+	}
+
+	public void setRispostaEsatta(String rispostaEsatta) {
+		this.rispostaEsatta = rispostaEsatta;
+	}
+
+	public String getSpiegazione() {
+		return spiegazione;
+	}
+
+	public void setSpiegazione(String spiegazione) {
+		this.spiegazione = spiegazione;
+	}
+
+	
+	
+=======
+	
+	public Domanda(List<Risposta> risposte,
+			String rispostaEsatta, String spiegazione) {
+		this.rispostaEsatta = rispostaEsatta;
+		this.risposte = risposte;
+		this.spiegazione = spiegazione;
+	}
+//	
+//	public int getId() {
+//		return id;
+//	}
+//	
+//	public int getChapter() {
+//		return chapter;
+//	}
+//	
+//	public String getTesto() {
+//		return testo;
+//	}
+//	
+//	public String getRispostaEsatta() {
+//		return rispostaEsatta;
+//	}
+//
+//	public String getSpiegazione() {
+//		return spiegazione;
+//	}
+//
+//	public List<Risposta> getRisposte() {
+//		return risposte;
+//	}
+//
+//	public String getBook() {
+//		return book;
+//	}
+//
+//	public int getQuestion() {
+//		return question;
+//	}
+//	
+//	public String getRispostaUtente() {
+//		return rispostaUtente;
+//	}
+//	public void setRispostaUtente(String rispostaUtente) {
+//		this.rispostaUtente = rispostaUtente;
+//	}
+//	
+//	public String getAnswerType() {
+//		return answerType;
+//	}
+>>>>>>> refs/remotes/origin/padawan08
 	
 	
 	public String toString() {

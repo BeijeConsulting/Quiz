@@ -1,7 +1,13 @@
 package it.beije.quiz.model;
 
+<<<<<<< HEAD
 public class LiveForm {
 
+=======
+
+
+public class LiveForm {
+>>>>>>> refs/remotes/origin/padawan08
 	private int numeroRisposte;
 
 	private boolean primoGiro = true;

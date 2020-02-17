@@ -178,5 +178,7 @@ public class QuizController {
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());
 	}
+	
+	
 
 }
