@@ -9,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
 
 import it.beije.quiz.model.*;
 
@@ -16,14 +20,14 @@ import it.beije.quiz.model.*;
 /**
  * Servlet implementation class insertDomanda
  */
-@WebServlet("/InsertDomanda")
-public class InsertDomanda extends HttpServlet {
+@WebServlet("/CreateDomanda")
+public class CreateDomanda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertDomanda() {
+    public CreateDomanda() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -61,6 +65,16 @@ public class InsertDomanda extends HttpServlet {
 		String spiegazione = (String)request.getParameter("spiegazione");
 		
 		Domanda d = new Domanda(domanda, book, capitolo, domanda, testo, answerType, listaRisposte, risposteCorrette, spiegazione);
+		
+		try {
+			Utils.writeXML(d);
+		} catch (TransformerException | ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		response.sendRedirect("confermainserimento.jsp");	
 

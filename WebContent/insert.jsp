@@ -90,10 +90,10 @@ function createNewResponse() {
 
 <div class="divInsertQuestion">
 <h2>INSERIMENTO DOMANDE</h2>
-	<form action="InsertDomanda" method="post">
+	<form action="CreateDomanda" method="post">
 		<table cellspacing="10px">
 			<tr>
-				<td>Numero domanda:&nbsp;</td><td><input class="number" type="number" placeholder="Es: 3" name="numDomanda" min="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Capitolo:&nbsp;<input class="number" type="number" placeholder="Es: 3" name="numCapitolo" min="1"/></td>
+				<td>Numero domanda:&nbsp;</td><td><input class="number" type="number" placeholder="Es: 3" name="numDomanda" min="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Capitolo:&nbsp;<input type="text" placeholder="Es: 3" name="numCapitolo" min="1"/></td>
 			</tr>
 			<tr>
 				<td>Book:&nbsp;</td><td><select name="bookName" style="border-radius: 6px; padding: 5px; width: 600px; padding: 5px; border: 1px solid #000;">

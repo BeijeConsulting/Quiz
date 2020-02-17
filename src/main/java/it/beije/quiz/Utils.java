@@ -1,16 +1,24 @@
 package it.beije.quiz;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
@@ -141,8 +149,70 @@ public class Utils {
 		return rispostaEsatta.length() == 0;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(readFileDomande("C:\\Users\\Padawan04\\git\\Quiz\\domande\\OCA Java SE 8 Programmer I Certification Guide\\domande_cap1.xml"));
+	
+	public static void writeXML(Domanda domanda) throws TransformerException, ParserConfigurationException, SAXException, IOException {
+	
+		String pathXML = "domande/" + domanda.getBook() + "/domande_cap" + domanda.getChapter() + ".xml";
+		System.out.println(pathXML);
+		
+		File f = new File(pathXML);
+		System.out.println(f.getAbsolutePath());
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+
+		Document document = builder.newDocument();
+		Element docElement = document.createElement("domande");
+		document.appendChild(docElement);
+		
+		// domande
+		
+	
+		// domanda
+		Element question = document.createElement("domanda");
+		question.setAttribute("id", ""+domanda.getId());
+		question.setAttribute("book", domanda.getBook());
+		question.setAttribute("chapter", ""+domanda.getChapter());
+		question.setAttribute("question", ""+domanda.getQuestion());
+
+		// testo domanda
+		Element testo = document.createElement("testo");
+		testo.setTextContent(domanda.getTesto());
+		question.appendChild(testo);
+
+		// risposte
+		Element risposte = document.createElement("risposte");
+		risposte.setAttribute("type", domanda.getAnswerType());
+		question.appendChild(risposte);
+
+		for(Risposta r : domanda.getRisposte()) {
+			Element risp = document.createElement("risposta");
+			risp.setAttribute("value", r.getValue());
+			risp.setTextContent(r.getText());
+
+			risposte.appendChild(risp);
+		}
+		
+		// risposteEsatte
+		Element risposteEsatte = document.createElement("risposteEsatte");
+		risposteEsatte.setTextContent(domanda.getRispostaEsatta());
+		question.appendChild(risposteEsatte);
+		
+		// spiegazione
+		Element spiegazione = document.createElement("spiegazione");
+		spiegazione.setTextContent(domanda.getSpiegazione());
+		question.appendChild(spiegazione);
+
+		docElement.appendChild(question);
+	
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		DOMSource source = new DOMSource(document);
+		StreamResult result = new StreamResult(new File(pathXML));
+	
+		transformer.transform(source, result);
+	
 	}
+
 
 }
