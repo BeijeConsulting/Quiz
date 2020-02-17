@@ -120,6 +120,7 @@ public class Domanda {
 		this.chapter = chapter;
 		this.question = question;
 		this.testo = testo;
+		this.answerType=answerType;
 	}
 	
 	public Domanda(List<Risposta> risposte,
