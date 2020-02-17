@@ -24,5 +24,7 @@ public class Servlet2 extends HttpServlet {
 		
 		response.sendRedirect("NewDomanda.jsp");
 	}
+	
+	
 
 }

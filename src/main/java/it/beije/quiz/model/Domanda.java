@@ -8,6 +8,50 @@ public class Domanda {
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
 	private int id;
+	private String book;
+	private int chapter;
+	private int question;
+	private String testo;
+	private String answerType;
+	private List<Risposta> risposte;
+	private String rispostaUtente = "";
+	private String rispostaEsatta;
+	private String spiegazione;
+	
+public Domanda() {}
+	
+	public Domanda(int id, String book, int chapter, int question, String testo,
+			String answerType, List<Risposta> risposte,
+			String rispostaEsatta, String spiegazione) {
+		this.id = id;
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.testo = testo;
+		this.rispostaEsatta = rispostaEsatta;
+		this.answerType = answerType;
+		this.risposte = risposte;
+		this.spiegazione = spiegazione;
+	}
+	public Domanda(int id, String book, int chapter, int question, String testo,
+			String answerType) {
+		this.id = id;
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.testo = testo;
+	}
+	
+	public Domanda(List<Risposta> risposte,
+			String rispostaEsatta, String spiegazione) {
+		this.rispostaEsatta = rispostaEsatta;
+		this.risposte = risposte;
+		this.spiegazione = spiegazione;
+	}
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -88,46 +132,8 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 
-	private String book;
-	private int chapter;
-	private int question;
-	private String testo;
-	private String answerType;
-	private List<Risposta> risposte;
-	private String rispostaUtente = "";
-	private String rispostaEsatta;
-	private String spiegazione;
 	
-	public Domanda() {}
 	
-	public Domanda(int id, String book, int chapter, int question, String testo,
-			String answerType, List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
-		this.id = id;
-		this.book = book;
-		this.chapter = chapter;
-		this.question = question;
-		this.testo = testo;
-		this.rispostaEsatta = rispostaEsatta;
-		this.answerType = answerType;
-		this.risposte = risposte;
-		this.spiegazione = spiegazione;
-	}
-	public Domanda(int id, String book, int chapter, int question, String testo,
-			String answerType) {
-		this.id = id;
-		this.book = book;
-		this.chapter = chapter;
-		this.question = question;
-		this.testo = testo;
-	}
-	
-	public Domanda(List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
-		this.rispostaEsatta = rispostaEsatta;
-		this.risposte = risposte;
-		this.spiegazione = spiegazione;
-	}
 	
 	
 	public String toString() {
