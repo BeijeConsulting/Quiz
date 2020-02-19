@@ -72,7 +72,11 @@ public class Utils {
 		        }
 		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
+<<<<<<< HEAD
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();;
+=======
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
+>>>>>>> refs/remotes/origin/master
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
