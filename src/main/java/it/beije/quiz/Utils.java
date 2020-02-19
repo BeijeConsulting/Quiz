@@ -72,7 +72,7 @@ public class Utils {
 		        }
 		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = ???;
+		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
