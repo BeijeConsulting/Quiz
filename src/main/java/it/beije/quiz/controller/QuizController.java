@@ -23,7 +23,7 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 
 
-@Controller
+@Controller // dice che questo è un controller quindi tutto quello che c'è all'interno finirà nell handlerMapping per poi essere chiamato dagli dispatcherServelet
 @SessionScope
 public class QuizController {
 	
@@ -55,8 +55,8 @@ public class QuizController {
 //		return "user";
 //	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
+	@RequestMapping(value = "/", method = RequestMethod.GET) // se si chiama un sito e non si specifica nessuna pagina "/" vuol dire che si chiama la root del sito. @RequestMapping ha un comportamento simile ad un doGet/doPost
+	public String init(Model model) { 						
 		
 		if (domande == null) {
 			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
