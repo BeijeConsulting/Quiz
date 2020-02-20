@@ -13,9 +13,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 public class Utils {
+	
+	
+	
 	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
@@ -28,8 +32,31 @@ public class Utils {
         		childElements.add((Element)node);
         	}
         }
-		
 		return childElements;
+	}
+	
+	public static List<Libro> readFileLibri() {
+		List<Libro> elencoLibri = new ArrayList<>();
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+
+	        Document document = builder.parse(new File(Libro.PATH_INDEX_BOOKS));
+	        Element element = document.getDocumentElement();	        
+
+	        List<Element> elementLibri = Utils.getChildElements(element);
+	        for(Element e : elementLibri) {
+	        	Libro l = new Libro();
+	        	l.setIdBook(e.getAttribute("id_book"));
+	        	l.setTitle(e.getAttribute("title"));
+	        	l.setNameDir(e.getAttribute("dir"));
+	        	elencoLibri.add(l);
+	        }
+	     
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return elencoLibri;
 	}
 
 	public static List<Domanda> readFileDomande(String pathFile) {
@@ -52,7 +79,7 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
+		        int id = Integer.parseInt(domanda.getAttribute("id"));//****************************************
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
