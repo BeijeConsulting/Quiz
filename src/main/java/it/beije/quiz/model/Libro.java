@@ -1,11 +1,14 @@
 package it.beije.quiz.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Libro {
 	String dir;
 	String title;
 	String id_book;
+	List<Domanda> lista = new ArrayList<Domanda>();
+	
 	public String getDir() {
 		return dir;
 	}
@@ -30,5 +33,5 @@ public class Libro {
 	public void setLista(List<Domanda> lista) {
 		this.lista = lista;
 	}
-	List<Domanda> lista;
+	
 }
