@@ -108,7 +108,7 @@ public class Utils {
         for(int i = 0; i < nodeLibri.getLength(); i++) {
         	Libro lib = new Libro();
         	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
-        }
+        } 
 >>>>>>> refs/remotes/origin/Progetto_Dinal
 	} 
 
