@@ -87,10 +87,29 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+<<<<<<< HEAD
 	public static List<Libro> getListBook() {
 		String path = "/domande";
 		List<Libro> libri = new ArrayList<Libro>();
 		
+=======
+	public static List<Libro> getLibri() {
+		File fileXml = new File("/domande/index.xml");
+		List<Libro> libri = ArrayList<Libro>();
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        Document document = builder.parse(fileXml);
+        Element element = document.getDocumentElement();       
+        
+        NodeList nodeLibri = element.getElementsByTagName("index");
+        
+        for(int i = 0; i < nodeLibri.getLength(); i++) {
+        	Libro lib = new Libro();
+        	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
+        }
+>>>>>>> refs/remotes/origin/Progetto_Dinal
 	}
 	
 	public static String formattaTesto(String testo) {
