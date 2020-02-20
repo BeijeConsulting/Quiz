@@ -92,6 +92,7 @@ public class Utils {
 	}
 	
 
+	// Lettura file index.xml e popolamento lista di Libro
 	public static List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
 		
 		File fileXml = new File("C:\\Users\\Padawan04\\git\\Quiz\\domande\\index.xml");
@@ -140,9 +141,4 @@ public class Utils {
 		
 		return rispostaEsatta.length() == 0;
 	}
-	
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		getLibri();
-	}
-
 }
