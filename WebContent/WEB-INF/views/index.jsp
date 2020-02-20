@@ -9,6 +9,13 @@
 <body>
 	Questa è la pagina di ingresso al tuo Quiz Online<br>
 	<br>
+	
+	Seleziona il libro con cui vuoi esercitarti:<br><br>
+	<input type="checkbox" id="oca_manual" >
+    <label for="vehicle1"> "OCA Oracle Certified Associate Java SE 8 [2014]</label><br>
+    <input type="checkbox" id="oca_certification_guide_manning">
+    <label for="vehicle1"> "OCA Java SE 8 Programmer I Certification Guide</label><br><br>
+	
 	Totale domande caricate : ${ totDomande }<br>
 	Tempo disponibile : ${ totDomande * 2 } minuti<br>
 	<br>
