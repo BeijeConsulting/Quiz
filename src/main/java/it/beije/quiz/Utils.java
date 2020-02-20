@@ -87,6 +87,12 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	public static List<Libro> getListBook() {
+		String path = "/domande";
+		List<Libro> libri = new ArrayList<Libro>();
+		
+	}
+	
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
