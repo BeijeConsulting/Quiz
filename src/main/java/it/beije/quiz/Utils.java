@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 public class Utils {
@@ -52,11 +53,12 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
+
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
 		        String testo = contenutoDomanda.get(0).getTextContent();
+//		        String id = generateId(chapter, question, book);
 		        
 		        //caricare le risposte possibili
 		        rispostePossibili = contenutoDomanda.get(1);
@@ -74,8 +76,8 @@ public class Utils {
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
-	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
-	        	arrayDomande.add(d);
+//	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
+//	        	arrayDomande.add(d);
 	        	
 //	        	System.out.println(d);
 	        }	        		
@@ -108,6 +110,18 @@ public class Utils {
 		}
 		
 		return rispostaEsatta.length() == 0;
+	}
+	
+	public String generateId(int chapter, int question, String book) {
+		
+		String id="";
+		
+		//List<Libro> libri= readFileLibri();
+		List<Libro> libri= new ArrayList<Libro>();
+		
+		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getId_book()+chapter+question;
+		
+		return id;
 	}
 
 }

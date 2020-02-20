@@ -59,10 +59,16 @@ public class QuizController {
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+			domande = Utils.readFileDomande("");
 			tot = domande.size();
 		}
+		List<String> libri= new ArrayList<>();
 		
+		libri.add("libro1");
+		libri.add("libro2");
+		libri.add("libro3");
+		
+		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		
 		return "index";
