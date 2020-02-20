@@ -109,7 +109,7 @@ public class Utils {
         	Libro lib = new Libro();
         	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
         } 
->>>>>>> refs/remotes/origin/Progetto_Dinal
+>>>>>>> refs/remotes/origin/Progetto_Dinal 
 	} 
 
 	public static String formattaTesto(String testo) {
