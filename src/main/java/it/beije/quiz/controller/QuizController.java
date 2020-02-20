@@ -1,5 +1,6 @@
 package it.beije.quiz.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
+import org.xml.sax.SAXException;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 
@@ -27,40 +31,36 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 	
-	private List<Domanda> domande;
+	private List<Domanda> domande = new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
 
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		System.out.println("Home Page Requested, locale = " + locale);
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate);
-//
-//		return "home";
-//	}
-
-//	@RequestMapping(value = "/user", method = RequestMethod.POST)
-//	public String user(@Validated User user, Model model) {
-//		System.out.println("User Page Requested");
-//		model.addAttribute("userName", user.getUserName());
-//		return "user";
-//	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
+	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
 		
-		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-			tot = domande.size();
+		if (domande.size() == 0) {
+			
+			List<Libro> libri = Utils.getLibri();
+			String directory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
+			
+			for(Libro lib : libri) {
+				String dir = directory + lib.getDir();
+				System.out.println(dir);
+				File f = new File(dir);
+				for(File file : f.listFiles()) {
+					if(!file.isDirectory()) {
+						domande.addAll(Utils.readFileDomande(file.getAbsolutePath()));
+					}
+				}
+				lib.setLista(domande);
+				System.out.println("domande nel libro : " + lib.getLista().size());
+			}
+			System.out.println("libri : " + libri.size());
+			
+			//Se Libro1 selezionato carichi queste doamnde
+//			domande = Utils.readFileDomande("C:\\Users\\Padawan04\\git\\Quiz\\domande\\oca_manual\\domande_cap1.xml");
+//			tot = domande.size();
 		}
 		
 		model.addAttribute("totDomande", tot);
