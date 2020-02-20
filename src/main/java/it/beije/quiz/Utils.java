@@ -17,6 +17,39 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	
+	public static List<File> selezionaFileDiInteresse(String dir){
+		
+		File file = null;
+		List<File> filez = new ArrayList<File>();
+		if (dir != null) {
+			String path = "C:\\Users\\Padawan13\\git\\Quiz\\domande\\"+ dir;
+			int i = 1;
+			if(dir.equals("oca_manual")) {
+				file = new File(path + "\\domande_Assessment_Test.xml");
+				filez.add(file);
+			}
+			file = new File(path + "\\domande_cap" + i + ".xml");
+			
+			while (file.exists()) {
+				filez.add(file);
+				file = new File(path + "\\domande_cap" + (++i) + ".xml");
+			}
+			
+		}
+			return filez;
+	}
+	
+	
+	public static void caricaFileInteressanti(List<File> filez) {
+		
+		
+	}
+	
+	
+	
+	
+	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		

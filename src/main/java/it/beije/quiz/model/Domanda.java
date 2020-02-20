@@ -74,8 +74,11 @@ public class Domanda {
 	public String getAnswerType() {
 		return answerType;
 	}
-	
-	
+
+	public void setAnswerType(String answerType) {
+		this.answerType = answerType;
+	}
+
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("id : ").append(id).append('\n');
