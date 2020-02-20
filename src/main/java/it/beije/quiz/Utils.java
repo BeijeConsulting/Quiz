@@ -1,16 +1,18 @@
 package it.beije.quiz;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
@@ -90,9 +92,11 @@ public class Utils {
 	}
 	
 
-	public static List<Libro> getLibri() {
-		File fileXml = new File("/domande/index.xml");
-		List<Libro> libri = ArrayList<Libro>();
+	public static List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
+		
+		File fileXml = new File("C:\\Users\\Padawan04\\git\\Quiz\\domande\\index.xml");
+		
+		List<Libro> libri = new ArrayList<Libro>();
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -100,15 +104,17 @@ public class Utils {
         Document document = builder.parse(fileXml);
         Element element = document.getDocumentElement();       
         
-        NodeList nodeLibri = element.getElementsByTagName("index");
+        NodeList nodeLibri = element.getElementsByTagName("quiz");
         
         for(int i = 0; i < nodeLibri.getLength(); i++) {
         	Libro lib = new Libro();
-        	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
-        	lib.setTitle((String)nodeLibri.item(i).getAttributes("title"));
-        	lib.setId_Book((String)nodeLibri.item(i).getAttributes("id_book"));
+        	Element libro = (Element) nodeLibri.item(i);
+        	lib.setDir((String)libro.getAttribute("dir"));
+        	lib.setTitle((String)libro.getAttribute("title"));
+        	lib.setId_book((String)libro.getAttribute("id_book"));
+        	libri.add(lib);
         }
-        
+        System.out.println("libri : " + libri.size());
         return libri;
 	}
 	
@@ -133,6 +139,10 @@ public class Utils {
 		}
 		
 		return rispostaEsatta.length() == 0;
+	}
+	
+	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+		getLibri();
 	}
 
 }
