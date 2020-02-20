@@ -103,6 +103,8 @@ public class Utils {
         for(int i = 0; i < nodeLibri.getLength(); i++) {
         	Libro lib = new Libro();
         	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
+        	lib.setDir((String)nodeLibri.item(i).getAttributes("title"));
+        	lib.setDir((String)nodeLibri.item(i).getAttributes("id_book"));
         }
 	}
 	
