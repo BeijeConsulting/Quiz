@@ -59,7 +59,7 @@ public class QuizController {
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+			domande = Utils.readFileDomande("C:\\Users\\Padawan11\\git\\Quiz\\domande\\OCA Java SE 8 Programmer I Certification Guide\\domande_cap1.xml");
 			tot = domande.size();
 		}
 		
