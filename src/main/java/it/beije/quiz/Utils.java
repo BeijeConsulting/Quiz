@@ -110,8 +110,8 @@ public class Utils {
         	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
         }
 >>>>>>> refs/remotes/origin/Progetto_Dinal
-	}
-	
+	} 
+
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
