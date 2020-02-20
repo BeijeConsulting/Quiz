@@ -12,7 +12,7 @@
 	Seleziona da quale libro prendere le domande: <br>
 	
 	<input type="checkbox" id="libro1" name="libro1" value="oca_manual"> OCA Oracle Certified Associate Java SE 8 [2014] <br>
-	<input type="checkbox" id="libro2" name="libro2" value="oca_manual">  OCA Java SE 8 Programmer I Certification Guide <br><br>
+	<input type="checkbox" id="libro2" name="libro2" value="oca_certification_guide_manning">  OCA Java SE 8 Programmer I Certification Guide <br><br>
 	
 	
 	Totale domande caricate : ${ totDomande }<br>
