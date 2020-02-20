@@ -71,7 +71,8 @@ public class Utils {
 		        	risposte.add(r);
 		        }
 		        
-		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
+		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent().replace(" ", "").replace(",", "");
+		        
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
@@ -103,10 +104,11 @@ public class Utils {
         for(int i = 0; i < nodeLibri.getLength(); i++) {
         	Libro lib = new Libro();
         	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
-        	lib.setDir((String)nodeLibri.item(i).getAttributes("title"));
-        	lib.setDir((String)nodeLibri.item(i).getAttributes("id_book"));
-        	// commento
+        	lib.setTitle((String)nodeLibri.item(i).getAttributes("title"));
+        	lib.setId_Book((String)nodeLibri.item(i).getAttributes("id_book"));
         }
+        
+        return libri;
 	}
 	
 	public static String formattaTesto(String testo) {
