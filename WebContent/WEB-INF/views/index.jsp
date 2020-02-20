@@ -11,6 +11,7 @@
 	<br>
 	
 	Seleziona il libro con cui vuoi esercitarti:<br><br>
+	
 	<input type="checkbox" id="oca_manual" >
     <label for="book"> "OCA Oracle Certified Associate Java SE 8 [2014]</label><br>
     <input type="checkbox" id="oca_certification_guide_manning">
