@@ -105,6 +105,7 @@ public class Utils {
         	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
         	lib.setDir((String)nodeLibri.item(i).getAttributes("title"));
         	lib.setDir((String)nodeLibri.item(i).getAttributes("id_book"));
+        	// commento
         }
 	}
 	
