@@ -59,7 +59,7 @@ public class QuizController {
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+			domande = Utils.readFileDomande("C:\\Users\\Padawan06\\git\\QuizQ\\domande.xml");
 			tot = domande.size();
 		}
 		
@@ -107,6 +107,7 @@ public class QuizController {
 		}
 	}
 	
+	//
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index) {
 		
