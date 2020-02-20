@@ -35,7 +35,7 @@ public class QuizController {
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+			domande = Utils.readFileDomande("C:\\temp\\domande_cap1.xml");
 			tot = domande.size();
 		}
 		
