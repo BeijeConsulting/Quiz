@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -17,15 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
+import org.w3c.dom.Element;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 
 @Controller
 @SessionScope
 public class QuizController {
+	
 	
 	private static final String PATH_DOMANDE = "";
 	private List<Domanda> domande;
@@ -64,11 +68,9 @@ public class QuizController {
 			domande = Utils.readFileDomande(PATH_DOMANDE);
 			tot = domande.size();
 		}
-		List<String> libri= new ArrayList<>();
-		
-		libri.add("libro1");
-		libri.add("libro2");
-		libri.add("libro3");
+		List<Libro> libri= Utils.readFileLibri();
+		for(Libro l : libri)
+			System.out.println(l.getIdBook());
 		
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
@@ -129,7 +131,9 @@ public class QuizController {
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
-
+		
+		
+	        
 		Enumeration<String> enums = request.getParameterNames();
 		StringBuilder builder = new StringBuilder();
 		while (enums.hasMoreElements()) {
@@ -168,6 +172,15 @@ public class QuizController {
 		return "risultati";
 	}
 	
+	@RequestMapping(value = "/caricaLibri", method = RequestMethod.POST)
+	public String caricaLibri(Model model,HttpServletRequest request) {
+		String[] libri = request.getParameterValues("bookSelection");
+		
+		for(String l : libri)
+			System.out.println(l);
+		
+		return "index";
+	}
 	
 	
 	/////// REST
@@ -180,10 +193,10 @@ public class QuizController {
 		r.setValue("A");
 		r.setText("risposta prova");
 		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+//		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
 		
 		response.setContentType("application/json");
-		response.getWriter().append(domanda.toJson());
+//		response.getWriter().append(domanda.toJson());
 	}
 
 }

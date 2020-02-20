@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Libro {
 	
-	public static final String PATH_INDEX_BOOKS = null;
+	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
 	
 	 private String idBook;
 	 private String title;

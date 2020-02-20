@@ -18,7 +18,7 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
-	
+	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
 	
 	
 	public static List<Element> getChildElements(Element element) {
@@ -41,7 +41,7 @@ public class Utils {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
 
-	        Document document = builder.parse(new File(Libro.PATH_INDEX_BOOKS));
+	        Document document = builder.parse(new File(PATH_INDEX_BOOKS));
 	        Element element = document.getDocumentElement();	        
 
 	        List<Element> elementLibri = Utils.getChildElements(element);
@@ -80,13 +80,11 @@ public class Utils {
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
 
-		        int id = Integer.parseInt(domanda.getAttribute("id"));//****************************************
-
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
 		        String testo = contenutoDomanda.get(0).getTextContent();
-//		        String id = generateId(chapter, question, book);
+		        String id = generateId(chapter, question, book);
 		        
 		        //caricare le risposte possibili
 		        rispostePossibili = contenutoDomanda.get(1);
@@ -104,10 +102,10 @@ public class Utils {
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
-//	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
-//	        	arrayDomande.add(d);
+	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
+	        	arrayDomande.add(d);
 	        	
-//	        	System.out.println(d);
+	        	System.out.println(d);
 	        }	        		
 	        
 		} catch (Exception e) {
@@ -140,7 +138,7 @@ public class Utils {
 		return rispostaEsatta.length() == 0;
 	}
 	
-	public String generateId(int chapter, int question, String book) {
+	public static String generateId(int chapter, int question, String book) {
 		
 		String id="";
 		
