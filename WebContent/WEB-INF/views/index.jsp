@@ -9,6 +9,11 @@
 <body>
 	Questa è la pagina di ingresso al tuo Quiz Online<br>
 	<br>
+	Seleziona da quale libro prendere le domande: <br>
+	
+	
+	
+	
 	Totale domande caricate : ${ totDomande }<br>
 	Tempo disponibile : ${ totDomande * 2 } minuti<br>
 	<br>
