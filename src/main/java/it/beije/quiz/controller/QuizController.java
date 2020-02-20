@@ -61,17 +61,33 @@ public class QuizController {
 //	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
+	public String init(Model model, HttpServletRequest request) {
+		System.out.println("index Page Requested : " + request.getRequestURI());
+		String[] checkboxValues=null;
 		
-		if (domande == null) {
-
-			domande = Utils.readFileDomande(PATH_DOMANDE);
-			tot = domande.size();
-		}
 		List<Libro> libri= Utils.readFileLibri();
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
+		if (request.getParameterValues("bookSelection")!=null) {
+			checkboxValues = request.getParameterValues("bookSelection");
+			
+			for(String v : checkboxValues)
+				System.out.println(v);
+			
+//			for(Libro l : libri) {
+//				String idBook = l.getIdBook();
+//				for(String v : checkboxValues) {
+//					if(idBook.equals(v)) {
+//						List <Domanda> ciclaDomande = l.caricaDomande();
+//						for(Domanda d : ciclaDomande)
+//							domande.add(d);
+//						
+//					}
+//				}
+//			}
+		}
+				
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		
@@ -121,8 +137,8 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
-	public String domanda(Model model, @PathVariable("index") int index) {
-		
+	public String domanda(Model model, @PathVariable("index") int index,HttpServletRequest request) {
+		System.out.println("index Page Requested : " + request.getRequestURI());
 		setTimer(model);
 		
 		return caricaDomanda(model, index);
@@ -131,7 +147,7 @@ public class QuizController {
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
-		
+		System.out.println("index Page Requested : " + request.getRequestURI());
 		
 	        
 		Enumeration<String> enums = request.getParameterNames();

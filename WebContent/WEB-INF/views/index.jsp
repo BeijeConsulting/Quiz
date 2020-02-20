@@ -18,10 +18,10 @@ Tempo disponibile : ${ totDomande * 2 } minuti<br>
 
 Seleziona i libri da utilizzare:<br>
 
-<form action="/Quiz/caricaLibri" method="POST">
+<form action="./" method="get">
 
-	<c:forEach var="scelte" items="${ libri }">
-	<input type="checkbox" value='${scelte.idBook}' name="bookSelection">${ scelte.title}<br>
+	<c:forEach var="scelte" items="${libri}">
+	<input type="checkbox" value='${scelte.idBook}' name="bookSelection">${scelte.title}<br>
 	</c:forEach>
 	
 <input type="submit" value="START">
