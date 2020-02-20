@@ -87,6 +87,24 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	public static List<Libro> getLibri() {
+		File fileXml = new File("/domande/index.xml");
+		List<Libro> libri = ArrayList<Libro>();
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        Document document = builder.parse(fileXml);
+        Element element = document.getDocumentElement();       
+        
+        NodeList nodeLibri = element.getElementsByTagName("index");
+        
+        for(int i = 0; i < nodeLibri.getLength(); i++) {
+        	Libro lib = new Libro();
+        	lib.setDir((String)nodeLibri.item(i).getAttributes("dir"));
+        }
+	}
+	
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
