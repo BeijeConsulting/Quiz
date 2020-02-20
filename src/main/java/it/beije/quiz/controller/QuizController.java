@@ -27,6 +27,7 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 	
+	private static final String PATH_DOMANDE = "";
 	private List<Domanda> domande;
 	private int tot;
 	private LocalTime time = null;
@@ -59,7 +60,8 @@ public class QuizController {
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande("");
+
+			domande = Utils.readFileDomande(PATH_DOMANDE);
 			tot = domande.size();
 		}
 		List<String> libri= new ArrayList<>();
@@ -93,6 +95,9 @@ public class QuizController {
 	}
 	
 	private String caricaDomanda(Model model, int index) {
+	
+		//*********************************************************************************
+		
 		if (index < tot) {
 			Domanda d = domande.get(index);
 			String risposta = d.getRispostaUtente();

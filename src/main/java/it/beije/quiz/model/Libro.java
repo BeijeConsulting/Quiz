@@ -4,18 +4,13 @@ import java.util.List;
 
 public class Libro {
 	
-	 private String id_book;
+	public static final String PATH_INDEX_BOOKS = null;
+	
+	 private String idBook;
 	 private String title;
 	 private String nameDir;
 	 private List<Domanda> questions = null;
 	 
-	public String getId_book() {
-		return id_book;
-	}
-	
-	public void setId_book(String id_book) {
-		this.id_book = id_book;
-	}
 	
 	public String getTitle() {
 		return title;
@@ -41,6 +36,10 @@ public class Libro {
 		this.questions = questions;
 	}
 	
-	 
-	 
-}
+	public String getIdBook() {
+		return idBook;
+	}
+	public void setIdBook(String idBook) {
+		this.idBook = idBook;
+	}
+}	

@@ -18,6 +18,9 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	
+	
+	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -29,8 +32,31 @@ public class Utils {
         		childElements.add((Element)node);
         	}
         }
-		
 		return childElements;
+	}
+	
+	public static List<Libro> readFileLibri() {
+		List<Libro> elencoLibri = new ArrayList<>();
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+
+	        Document document = builder.parse(new File(Libro.PATH_INDEX_BOOKS));
+	        Element element = document.getDocumentElement();	        
+
+	        List<Element> elementLibri = Utils.getChildElements(element);
+	        for(Element e : elementLibri) {
+	        	Libro l = new Libro();
+	        	l.setIdBook(e.getAttribute("id_book"));
+	        	l.setTitle(e.getAttribute("title"));
+	        	l.setNameDir(e.getAttribute("dir"));
+	        	elencoLibri.add(l);
+	        }
+	     
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return elencoLibri;
 	}
 
 	public static List<Domanda> readFileDomande(String pathFile) {
@@ -53,6 +79,8 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
+
+		        int id = Integer.parseInt(domanda.getAttribute("id"));//****************************************
 
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
@@ -119,7 +147,7 @@ public class Utils {
 		//List<Libro> libri= readFileLibri();
 		List<Libro> libri= new ArrayList<Libro>();
 		
-		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getId_book()+chapter+question;
+		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getIdBook()+chapter+question;
 		
 		return id;
 	}
