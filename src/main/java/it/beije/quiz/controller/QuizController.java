@@ -60,7 +60,7 @@ public class QuizController {
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande(PATH_DOMANDE);
+			domande = Utils.readFileDomande(PATH_DOMANDE); //*******************************************
 			tot = domande.size();
 		}
 		
