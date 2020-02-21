@@ -9,7 +9,14 @@
 <body>
 	Totale domande caricate : ${ totDomande }<br>
 	Tempo disponibile : ${ totDomande * 2 } minuti<br>
-	<input type="submit" value="CARICA">
+	
+	<form action="./" method="GET">
+		<input type="submit" value="MODIFICA" />
+	</form>
+
+	<form action="./domanda/0" method="GET">
+		<input type="submit" value="START" />
+	</form>
 
 </body>
 </html>

@@ -42,17 +42,24 @@ public class QuizController {
 		return "index";
 	}
 	
-	//@RequestMapping(value="/confermaselezione", method = RequestMethod.GET)
 
-	@RequestMapping(value="/", method = RequestMethod.POST)
+//	@RequestMapping(value="/confermaselezione", method = RequestMethod.POST)
+//	public String confermaDomande(Model model) {
+//		model.addAttribute("totDomande", model.getAttribute("totDomande"));
+//		return "confermaselezione";
+//	}
+
+	@RequestMapping(value="/confermaselezione", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
 		boolean scelta = false;
-
+		tot = 0;
+		domande.clear();
 		String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
 		List<Libro> libri = Utils.getLibri();
 		
 		for(int l = 1; l <= libri.size(); l++) {
 			String directory = "";
+			System.out.println(request.getParameter("libro" + l));
 			if (request.getParameter("libro" + l) != null) {
 			    scelta = true;
 				directory = request.getParameter("libro" + l);
@@ -71,12 +78,12 @@ public class QuizController {
 					File f = new File(dir);
 					for(File file : f.listFiles()) {
 						if(!file.isDirectory()) {
-							domande.addAll(Utils.readFileDomande(file.getAbsolutePath()));
+							domande.addAll(Utils.readFileDomande(file.getAbsolutePath(), directory));
 						}
 					}
 					libri.get(l-1).setLista(domande);
 					tot += libri.get(l-1).getLista().size();
-					domande.clear();
+					//domande.clear();
 				}
 //			}
 //			System.out.println("libri : " + libri.size());
@@ -85,10 +92,10 @@ public class QuizController {
 		}
 
 		model.addAttribute("totDomande", tot);
-		tot = 0;
+//		tot = 0;
 		
 
-		return "index";
+		return "confermaselezione";
 	}
 
 	private void setTimer(Model model) {
@@ -110,7 +117,9 @@ public class QuizController {
 	}
 
 	private String caricaDomanda(Model model, int index) {
+		System.out.println("tot: " + tot + "index: " + index); 
 		if (index < tot) {
+			
 			Domanda d = domande.get(index);
 			String risposta = d.getRispostaUtente();
 			//System.out.println("risposta : " + risposta);
@@ -185,6 +194,7 @@ public class QuizController {
 
 		return "risultati";
 	}
+	
 
 
 

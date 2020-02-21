@@ -41,7 +41,7 @@ public class Utils {
 		return childElements;
 	}
 
-	public static List<Domanda> readFileDomande(String pathFile) {
+	public static List<Domanda> readFileDomande(String pathFile, String dir) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 
 		try {
@@ -50,7 +50,8 @@ public class Utils {
 
 			// Load the input XML document, parse it and return an instance of the
 			// Document class.
-			Document document = builder.parse(new File(pathFile));
+			File f = new File(pathFile);
+			Document document = builder.parse(f);
 			Element element = document.getDocumentElement();
 //	        System.out.println(element.getTagName());
 			List<Element> domande = Utils.getChildElements(element);
@@ -61,11 +62,13 @@ public class Utils {
 			Element rispostePossibili = null;
 			for (Element domanda : domande) {
 				contenutoDomanda = Utils.getChildElements(domanda);
-				String id = "";// domanda.getAttribute("id"));
+				
 				String book = domanda.getAttribute("book");
 				String chapter = domanda.getAttribute("chapter");
 				String question = domanda.getAttribute("question");
 				String testo = contenutoDomanda.get(0).getTextContent();
+				String id = dir + "|" + chapter + "|" + question;
+				System.out.println("ID: " + id);
 
 				// caricare le risposte possibili
 				rispostePossibili = contenutoDomanda.get(1);
@@ -123,7 +126,7 @@ public class Utils {
 	// Lettura file index.xml e popolamento lista di Libro
 	public static List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
 
-		File fileXml = new File("C:\\Users\\Padawan12\\git\\Quiz\\domande\\index.xml");
+		File fileXml = new File("C:\\Users\\Padawan04\\git\\Quiz\\domande\\index.xml");
 
 		String filePath = new File("").getAbsolutePath();
 		System.out.println("File: " + filePath);
