@@ -43,12 +43,14 @@ public class QuizController {
 
 		return "index";
 	}
+	
+	@RequestMapping(value="/confermaselezione", method = RequestMethod.GET)
 
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
 		boolean scelta = false;
 
-		String baseDirectory = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
+		String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
 		List<Libro> libri = Utils.getLibri();
 		
 		for(int l = 1; l <= libri.size(); l++) {
