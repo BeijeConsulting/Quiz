@@ -7,6 +7,10 @@ import java.util.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.jdt.internal.compiler.apt.util.EclipseFileManager;
 import org.w3c.dom.Document;
@@ -15,6 +19,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import it.beije.cilacap.rubrica.Contatto;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
@@ -91,6 +96,28 @@ public class Utils {
 		}
 
 		return arrayDomande;
+	}
+
+	public static void writeDomandeXML(String domanda, String pathfile) throws Exception {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+
+		Document document = builder.newDocument(); // creazione nuovo documento XML
+		Element docElement = document.createElement("domanda"); // creazione elemento radice 
+		document.appendChild(docElement); // appendo l'elemento radice al documento XML
+
+		// write the content into xml file
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		DOMSource source = new DOMSource(document);
+		StreamResult result = new StreamResult(new File(pathfile));
+
+		// Output to console for testing
+		// StreamResult result = new StreamResult(System.out);
+
+		transformer.transform(source, result);
+
+		System.out.println("File saved!");
 	}
 
 	// Lettura file index.xml e popolamento lista di Libro
