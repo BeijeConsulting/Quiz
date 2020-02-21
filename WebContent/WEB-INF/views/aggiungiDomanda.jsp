@@ -31,12 +31,14 @@ Form per aggiungere una domanda al quiz
 
 <h3>Inserisci i seguenti dati:</h3>
 		<label for="libro">Libro:</label> 
+		
+		<%--Clark:	Da sistemare, forse serve il metodo di lettura sull'index.xml per prender i libri e cambiare i parametri --%>
 		<select id="libro" name="libro" form="formDomande" >
 			<option  value="OCA Java Se 8 Programmer I Certification Guide">OCA Java Se 8 Programmer I Certification Guide</option>
 			<option value="OCA Oracle Certified Associate Java SE 8 [2014]">OCA Oracle Certified Associate Java SE 8 [2014]</option>
 		</select>
 		
-		 <form action="AggiungiDomandaServlet" method="POST" id="formDomande">
+		 <form action="./salvaDomanda" method="POST" id="formDomande">
 		 <br><br>
 		 Id domanda :  <input type="text" name="param_id" >
 		 

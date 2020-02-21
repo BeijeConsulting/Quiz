@@ -168,6 +168,69 @@ public class QuizController {
 		return "risultati";
 	}
 
+	
+	/****************BRANCH CLARK*****************/
+	@RequestMapping(value="/salvaDomanda", method=RequestMethod.POST)
+	public String salvaDomanda(Model model, HttpServletRequest request) {
+		
+		// Prende gli attributi dalla view, per Domanda.
+		String libro= request.getParameter("param_libro");
+		int id=Integer.parseInt( request.getParameter("param_id"));
+		int capitolo= Integer.parseInt(request.getParameter("param_capitolo"));
+		int idDomanda=Integer.parseInt( request.getParameter("param_nDomanda"));
+		String testo= request.getParameter("param_testo");
+		String[] risposte= request.getParameter("param_risposte").split(";");
+		String type= request.getParameter("param_type");
+		String risposteEsatte= request.getParameter("param_risposteEsatte");
+		String spiegazione= request.getParameter("param_spiegazione");
+
+		
+		List<Risposta> listRisposte= new ArrayList<Risposta>();
+		Risposta ris= null;
+		for(int i=0; i<risposte.length;i++) {
+			ris= new Risposta();
+			ris.setText(risposte[i]);
+			ris.setValue(Character.toString((char)(65+i)));
+			listRisposte.add(ris);
+		}
+		
+		
+		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
+		
+		//TODO manca metodo per prendere la dir del libro dal file index xml sapendo il titolo.
+		
+		
+		//String directory=domanda.getBooks().getDir();
+		
+		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
+		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
+		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\oca_manual\\domande_cap"+capitolo+".xml";
+		
+		File fileXML=new File(path);
+
+		Utils.aggiungiDomanda(domanda, fileXML);
+		
+//		Clark: per debug
+//		List <Domanda> listaDomande=Utils.readFileDomande(fileXML.getPath());
+//		for(Domanda d:listaDomande)
+//			System.out.println(d);
+	
+		
+		return "aggiungiDomanda";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/******************************************/
 	/////// REST
 
 	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
