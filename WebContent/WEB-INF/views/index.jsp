@@ -33,7 +33,16 @@
 			<label for="book">${libro.getTitle()}</label>
 			<br>
 		</c:forEach>
-
+		<input type="submit" value="START">
 	</form>
+
+	<c:forEach items="${listaLibri}" var="element">
+		
+			<input type="checkbox" id="book" name="dir">
+			<label for="book">${libro.getTitle()}</label>
+			`${element.title}`
+			
+		
+	</c:forEach>
 </body>
 </html>
