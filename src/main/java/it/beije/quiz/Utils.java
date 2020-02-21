@@ -56,7 +56,7 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
+		        int id = 0; //Integer.parseInt(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
@@ -117,7 +117,7 @@ public class Utils {
         	lib.setId_book((String)libro.getAttribute("id_book"));
         	libri.add(lib);
         }
-        System.out.println("libri : " + libri.size());
+//        System.out.println("libri : " + libri.size());
         
         return libri;
 	}

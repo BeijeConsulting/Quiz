@@ -11,15 +11,16 @@
 	<br>
 	Seleziona da quale libro prendere le domande: <br>
 	
-	<input type="checkbox" id="libro1" name="libro1" value="oca_manual"> OCA Oracle Certified Associate Java SE 8 [2014] <br>
-	<input type="checkbox" id="libro2" name="libro2" value="oca_certification_guide_manning">  OCA Java SE 8 Programmer I Certification Guide <br><br>
+	<form action="#" method="post">
+		<input type="checkbox" id="libro1" name="libro1" value="oca_manual"> OCA Oracle Certified Associate Java SE 8 [2014] <br>
+		<input type="checkbox" id="libro2" name="libro2" value="oca_certification_guide_manning">  OCA Java SE 8 Programmer I Certification Guide <br><br>
 	
 	
 	Totale domande caricate : ${ totDomande }<br>
 	Tempo disponibile : ${ totDomande * 2 } minuti<br>
 	<br>
-	<form action="./domanda/0" method="get">
-		<input type="submit" value="START">
+	
+		<input type="submit" value="CARICA">
 	</form>
 </body>
 </html>

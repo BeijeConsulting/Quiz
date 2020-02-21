@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <domande>
-	<domanda id="xx" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="xx">
+	<domanda id="1" book="OCA Java SE 8 Programmer I Certification Guide" chapter="7" question="1">
 		<testo>
 			What is the output of the following code:
 			
