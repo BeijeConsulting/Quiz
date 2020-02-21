@@ -35,6 +35,8 @@ public class QuizController {
 	private List<Domanda> domande ;
 	private int tot ;
 	private LocalTime time = null;
+	List<Libro> libri;
+	String[] checkboxValues;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -62,37 +64,18 @@ public class QuizController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model, HttpServletRequest request) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
-		String[] checkboxValues=null;
-
-		List<Libro> libri= Utils.readFileLibri();
+		
+		libri = Utils.readFileLibri();
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
-		if (request.getParameterValues("bookSelection")!=null) {
-			checkboxValues = request.getParameterValues("bookSelection");
 			
-			for(String v : checkboxValues)
-				System.out.println(v);
 			
-			for(Libro l : libri) {
-				String idBook = l.getIdBook();
-				for(String v : checkboxValues) {
-					if(idBook.equals(v)) {
-						List <Domanda> ciclaDomande = l.caricaQuestions();
-						for(Domanda d : ciclaDomande)
-							domande.add(d);
-						
-					}
-				}
-			}
-		
-		domande.size();
 
 //		if (domande == null) {
 //			domande = Utils.readFileDomande(PATH_DOMANDE); //*******************************************
 //			tot = domande.size();
 //
-		}
 				
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
@@ -122,6 +105,7 @@ public class QuizController {
 	
 		//*********************************************************************************
 		
+		
 		if (index < tot) {
 			Domanda d = domande.get(index);
 			String risposta = d.getRispostaUtente();
@@ -145,7 +129,26 @@ public class QuizController {
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index,HttpServletRequest request) {
 		System.out.println("Index Page Requested : " + request.getRequestURI());
+		
+		
+		if (request.getParameterValues("bookSelection")!=null) {
+			checkboxValues = request.getParameterValues("bookSelection");
+		
+			for(Libro l : libri) {
+				String idBook = l.getIdBook();
+				for(String v : checkboxValues) {
+					if(idBook.equals(v)) {
+						List <Domanda> ciclaDomande = l.caricaQuestions();
+						domande.addAll(ciclaDomande);
+					}
+				}
+			}
+			tot = domande.size();
+		}
+		
 		setTimer(model);
+		
+		
 		
 		return caricaDomanda(model, index);
 	}
