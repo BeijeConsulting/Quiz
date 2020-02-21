@@ -235,8 +235,8 @@ public class Utils {
 	        	risposte.setAttribute("type", d.getAnswerType());
 	        	for(Risposta r : d.getRisposte()) {
 	        		Element risposta = document.createElement("risposta");
-	        		risposte.setAttribute("value", r.getValue());
-	        		risposte.setTextContent(r.getText());
+	        		risposta.setAttribute("value", r.getValue());
+	        		risposta.setTextContent(r.getText());
 	        		risposte.appendChild(risposta);
 	        	}
 	        	domanda.appendChild(risposte);

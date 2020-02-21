@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><index>
 	<quiz dir="oca_manual" id_book="oca_manual" title="OCA Oracle Certified Associate Java SE 8 [2014]"/>
-	<quiz dir="oca_certification_guide_manning" id_book="oca_certification_guide_manning" title="OCA Java SE 8 Programmer I Certification Guide"/>
-</index>
+	<quiz dir="oca_certification_guide_manning" id_book="oca_certification_guide_manning" title="OCA Java SE 8 Programmer I Certification Guide"/><quiz dir="CiaoPaolo" id_book="LibroDelleInfamità" title="Cicciogamerèunciccionedimerda"/></index>

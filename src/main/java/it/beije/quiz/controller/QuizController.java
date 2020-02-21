@@ -34,7 +34,7 @@ public class QuizController {
 	private List<Domanda> domande=new ArrayList<>();
 	private int tot ;
 	private LocalTime time = null;
-	List<Libro> libri=new ArrayList<>();;
+	List<Libro> libri=new ArrayList<>();
 	String[] checkboxValues;
 	private int globalNumeroRisposte;
 
