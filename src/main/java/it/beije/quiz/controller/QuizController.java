@@ -36,13 +36,13 @@ public class QuizController {
 	private LocalTime time = null;
 
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
 		
 		if (domande.size() == 0) {
 			
 			List<Libro> libri = Utils.getLibri();
-			String directory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
+			String directory = "C:/Users/Padawan11/git/Quiz/domande/";
 			
 			for(Libro lib : libri) {
 				String dir = directory + lib.getDir();
