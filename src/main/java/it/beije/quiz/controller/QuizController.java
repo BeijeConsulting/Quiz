@@ -188,14 +188,30 @@ public class QuizController {
 		
 		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
 		
-		//TODO manca metodo per prendere la dir del libro dal file index xml sapendo il titolo.
+		List <Libro> listaLibri=Utils.caricaLibriDaIndexXML("domande/index.xml");
 		
+		String dir;
+		System.out.println(domanda.getBooks().getTitle());
+		for(Libro libro1:listaLibri) {
+			
+			if(libro1.getTitle().equalsIgnoreCase(domanda.getBook())) {
+				System.out.println(libro1.getTitle());
+				
+				domanda.getBooks().setDir(libro1.getDir());
+				domanda.getBooks().setIdBook(libro1.getIdBook());
+				break;
+				
+			}
+			
+		}
+		dir=domanda.getBooks().getDir();	
 		
+		System.out.println(dir);
 		//String directory=domanda.getBooks().getDir();
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
 		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
-		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\oca_manual\\domande_cap"+capitolo+".xml";
+		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
 		
 		File fileXML=new File(path);
 
