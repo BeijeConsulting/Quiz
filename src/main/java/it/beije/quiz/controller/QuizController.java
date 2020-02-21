@@ -56,7 +56,37 @@ public class QuizController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 
+	@RequestMapping(value="/creaLibro", method=RequestMethod.GET)
+	public String creaLibro(Model model, HttpServletRequest request) {
+		Libro libro=new Libro();
+		
+		String IDlibro=request.getParameter("IDbook");
+		String titolo=request.getParameter("title");
+		int capitolo=Integer.parseInt(request.getParameter("chapter"));
+		String domanda=request.getParameter("question");
+		
+		libro.setIdBook(IDlibro);
+		libro.setTitle(titolo);
+		libro.setNcapitoli(capitolo);
+//		libro.setDomanda(null);
+		
+		File file=new File("/Quiz/domande/index.xml");
+	    List<Libro> lista= Utils.caricaLibriDaIndexXML(file);
+	    lista.add(libro);
+	    try {
+			Utils.scriviSuXML(lista, file.getPath());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("IDLibro", IDlibro);
+		model.addAttribute("Titolo", titolo);
+		model.addAttribute("Capitolo", capitolo);
+		model.addAttribute("Domanda", domanda);
+		
+		return "index";
 	
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) {
