@@ -8,14 +8,14 @@ public class Libro {
 	private String id_book;
 	private String title;
 	private String dir;
-	private List<List<Domanda>> domande;
+	private List<Domanda> domande;
 	
 	
 
-	public List<List<Domanda>> getDomande() {
+	public List<Domanda> getDomande() {
 		return domande;
 	}
-	public void setDomande(List<List<Domanda>> domande) {
+	public void setDomande(List<Domanda> domande) {
 		this.domande = domande;
 	}
 	public String getId_book() {

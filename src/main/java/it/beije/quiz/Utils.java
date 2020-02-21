@@ -36,9 +36,6 @@ public class Utils {
 
 		return childElements;
 	}
-	
-
-
 	public static List<Libro> popolaLibro(File file) throws ParserConfigurationException, SAXException, IOException {
 		List<Libro> lista = new ArrayList<Libro>();
 		
@@ -65,8 +62,6 @@ public class Utils {
 		return lista;
 		
 	}
-
-	
 	public static List<Domanda> readFileDomande(String pathFile) {
 
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
@@ -90,10 +85,10 @@ public class Utils {
 	 			Element rispostePossibili = null;
 	 			for (Element domanda : domande) {
 	 				contenutoDomanda = Utils.getChildElements(domanda);
-	 				int id = Integer.parseInt(domanda.getAttribute("id"));
+	 				String id = domanda.getAttribute("id");
 	 				String book = domanda.getAttribute("book");
-	 				int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-	 				int question = Integer.parseInt(domanda.getAttribute("question"));
+	 				String chapter = domanda.getAttribute("chapter");
+	 				String question = domanda.getAttribute("question");
 	 				String testo = contenutoDomanda.get(0).getTextContent();
 
 	 				// caricare le risposte possibili
@@ -125,7 +120,6 @@ public class Utils {
 	    
 		return arrayDomande;
 	}
-
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -133,7 +127,6 @@ public class Utils {
 
 		return testo;
 	}
-
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);

@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.springframework.stereotype.Controller;
@@ -30,33 +31,48 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 
-	private List<Domanda> domande1;
+	private List<Domanda> domande1=new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
 	private List<Libro> libri;
+	private int totale;
+	private List<Integer> numL= new ArrayList<Integer>();
 
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
-		ArrayList<ArrayList<Domanda>> domande = new ArrayList<ArrayList<Domanda>>();
-		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\index.xml"));
+	public String index(HttpServletRequest request,HttpSession session) {
+		System.out.println("index Page Requested : " + request.getRequestURI());
 
-		if (domande1 == null) {
-			for (Libro l : libri) {
-				File folder = new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\" + l.getDir());
+		return "index";
+	}
+	
+	@RequestMapping(value = "/totaleDomande", method = RequestMethod.GET)
+	public String init(Model model,HttpSession session,HttpServletResponse response, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
+		ArrayList<ArrayList<Domanda>> domande = new ArrayList<ArrayList<Domanda>>();
+		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml"));
+
+			    for(int i=0;i<libri.size();i++) {
+				File folder = new File("C:\\Users\\Padawan07\\git\\Quiz\\domande\\" + libri.get(i).getDir());
+				System.out.println(folder.getAbsolutePath());
 				for (final File fileEntry : folder.listFiles()) {
 					System.out.println(fileEntry.getName());
-					domande1 = Utils.readFileDomande(folder + "\\" + fileEntry.getName());
-				//domande.addAll( domande1);
-				
+					domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				}
-				
+				libri.get(i).setDomande(domande1);
+				domande1=new ArrayList<Domanda>();
 			}
-			tot = libri.get(0).getDomande().size();
+			for(int i=0; i<=libri.size();i++) {
+				if(request.getParameter("libro"+(i+1))!=null) {
+					numL.add(i);
+					tot+=libri.get(i).getDomande().size();
+					}
+			}
 			System.out.println(domande.size());
-		}
-
 		model.addAttribute("totDomande", tot);
-		return "index";
+		totale=tot;
+		tot=0;
+		
+		return "totaleDomande";
 	}
 
 	private void setTimer(Model model) {
@@ -78,8 +94,9 @@ public class QuizController {
 	}
 
 	private String caricaDomanda(Model model, int index) {
-		if (index < tot) {
-			Domanda d = domande1.get(index);
+		for(int k = 0; k<numL.size();k++) 
+			if (index < totale) {
+			Domanda d = libri.get(numL.get(k)).getDomande().get(index);
 			String risposta = d.getRispostaUtente();
 			// System.out.println("risposta : " + risposta);
 			if (risposta == null) {
@@ -90,7 +107,6 @@ public class QuizController {
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
 			model.addAttribute("risposte", d.getRisposte());
-
 			return "domanda";
 		} else {
 			return "riepilogo";
@@ -117,7 +133,7 @@ public class QuizController {
 				builder.append(request.getParameter(name));
 			}
 		}
-		domande1.get(index).setRispostaUtente(builder.toString());
+		libri.get(1).getDomande().get(index).setRispostaUtente(builder.toString());
 
 		setTimer(model);
 
@@ -156,7 +172,7 @@ public class QuizController {
 		r.setValue("A");
 		r.setText("risposta prova");
 		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+		Domanda domanda = new Domanda("1", "book", "2", "3", "questa è una prova", "checkbox", risposte, "A", "nessuna");
 
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());
