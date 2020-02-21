@@ -30,25 +30,29 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 
-	private List<Domanda> domande;
+	private List<Domanda> domande1;
 	private int tot;
 	private LocalTime time = null;
 	private List<Libro> libri;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
-
+		ArrayList<ArrayList<Domanda>> domande = new ArrayList<ArrayList<Domanda>>();
 		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\index.xml"));
 
-		if (domande == null) {
+		if (domande1 == null) {
 			for (Libro l : libri) {
 				File folder = new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\" + l.getDir());
 				for (final File fileEntry : folder.listFiles()) {
-					domande = Utils.readFileDomande(folder + "\\" + fileEntry.getName());
-					l.setDomande(domande);
+					System.out.println(fileEntry.getName());
+					domande1 = Utils.readFileDomande(folder + "\\" + fileEntry.getName());
+				//domande.addAll( domande1);
+				
 				}
+				
 			}
 			tot = libri.get(0).getDomande().size();
+			System.out.println(domande.size());
 		}
 
 		model.addAttribute("totDomande", tot);
@@ -61,7 +65,7 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
-		int tot = domande.size();
+		int tot = domande1.size();
 		int secondi = 2 * 60 * tot;
 		long hours = (secondi - diff.getSeconds()) / 3600;
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
@@ -75,7 +79,7 @@ public class QuizController {
 
 	private String caricaDomanda(Model model, int index) {
 		if (index < tot) {
-			Domanda d = domande.get(index);
+			Domanda d = domande1.get(index);
 			String risposta = d.getRispostaUtente();
 			// System.out.println("risposta : " + risposta);
 			if (risposta == null) {
@@ -113,7 +117,7 @@ public class QuizController {
 				builder.append(request.getParameter(name));
 			}
 		}
-		domande.get(index).setRispostaUtente(builder.toString());
+		domande1.get(index).setRispostaUtente(builder.toString());
 
 		setTimer(model);
 
@@ -124,7 +128,7 @@ public class QuizController {
 	public String risultati(Model model) {
 		// ELABORAZIONE RISPOSTE
 		StringBuilder builder = new StringBuilder();
-		for (Domanda d : domande) {
+		for (Domanda d : domande1) {
 			boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
 
 			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
