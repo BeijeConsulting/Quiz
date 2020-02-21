@@ -3,19 +3,22 @@ package it.beije.quiz.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import it.beije.quiz.Utils;
 
 public class Libro {
 	
+<<<<<<< HEAD
 //	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
 	private static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+=======
+	private static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
+>>>>>>> refs/remotes/origin/BranchDelBosco09
 	private String idBook;
 	private String title;
 	private String nameDir;
-	private List<Domanda> questions = null;
 	 
-	
 	public String getTitle() {
 		return title;
 	}
@@ -30,14 +33,6 @@ public class Libro {
 	
 	public void setNameDir(String nameDir) {
 		this.nameDir = nameDir;
-	}
-	
-	public List<Domanda> getQuestions() {
-		return questions;
-	}
-	
-	public void setQuestions(List<Domanda> questions) {
-		this.questions = questions;
 	}
 	
 	public String getIdBook() {
@@ -56,10 +51,9 @@ public class Libro {
 		
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-			System.out.println("entroooo22222");
-			if (listOfFiles[i].isFile() && listOfFiles[i].getName().matches("^.*\\.[xml]$")) {
-				System.out.println("entroooo3333");
-				System.out.println(listOfFiles[i].getAbsolutePath());
+
+			if (listOfFiles[i].isFile() && Pattern.matches("^.*\\.[xml]$", listOfFiles[i].getName())) {
+
 				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getAbsolutePath()));
 			}
 		}
