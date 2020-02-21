@@ -31,13 +31,28 @@ a:hover{color:#333;text-decoration:underline;}
 							height: 25px;              /* altezza             */
 						    width: 80px;                 /* larghezza           */
 							background:#666;color:#fff;
-							padding:15px 30x;
+							padding:15px 30px;
 						    font-family:oswald;
 						    padding: 2px;  
 							background-color: #666;
   							
 							}
+			#button2         {
+							
+							background:#666;color:#fff;
+							height:25px;
+							width: 200px;
+						    font-family:oswald;
+						    padding: 2px;  
+							background-color: #666;
+  							
+							}				
 			#button:hover   {
+							color:#ffff00;
+							box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); 
+							
+							}
+			#button2:hover  {
 							color:#ffff00;
 							box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); 
 							
