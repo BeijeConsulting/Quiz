@@ -19,7 +19,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 import it.beije.quiz.model.*;
 
 public class Utils {
@@ -29,7 +28,7 @@ public class Utils {
 		File file = null;
 		List<File> filez = new ArrayList<File>();
 		if (dir != null) {
-			String path = "C:\\Users\\Padawan13\\git\\Quiz\\domande\\" + dir;
+			String path = "C:\\Users\\Padawan05\\git\\Quiz\\domande\\" + dir;
 			int i = 1;
 			if (dir.equals("oca_manual")) {
 				file = new File(path + "\\domande_Assessment_Test.xml");
@@ -105,6 +104,38 @@ public class Utils {
 		}
 
 		return childElements;
+	}
+
+	public static void scriviSuXML(List<Libro> libro, String pathfile) throws Exception {
+//STRING
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        Document document = builder.newDocument();
+        Element docElement = document.createElement("index");
+        document.appendChild(docElement);
+        
+        for (Libro l : libro) {
+        	Element quiz = document.createElement("quiz");
+        quiz.setAttribute("id_book", l.getIdBook());
+        quiz.setAttribute("title", l.getTitle());
+        quiz.setAttribute("dir", l.getDir());
+
+        	docElement.appendChild(quiz);
+        }
+
+		// write the content into xml file
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		DOMSource source = new DOMSource(document);
+		StreamResult result = new StreamResult(new File(pathfile));
+
+		// Output to console for testing
+		//StreamResult result = new StreamResult(System.out);
+
+		transformer.transform(source, result);
+
+		System.out.println("File saved!");
 	}
 
 	public static List<Domanda> readFileDomande(String pathFile) {

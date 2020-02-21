@@ -1,11 +1,14 @@
 package it.beije.quiz.model;
 
+import java.util.List;
+
 public class Libro {
 	
 	private String idBook;
 	private String dir;
 	private String title;
-	private Domanda domanda;
+	private int nCapitoli;
+	private List<Domanda> domanda;
 	
 	
 
@@ -16,8 +19,12 @@ public class Libro {
 	public String getTitle() {
 		return title;
 	}
+	
+	public int getNcapitoli() {
+		return nCapitoli;
+	}
 
-	public Domanda getDomanda() {
+	public List<Domanda> getDomanda() {
 		return domanda;
 	}
 
@@ -35,8 +42,12 @@ public class Libro {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public void setNcapitoli(int nCapitoli) {
+		this.nCapitoli=nCapitoli;
+	}
 
-	public void setDomanda(Domanda domanda) {
+	public void setDomanda(List<Domanda> domanda) {
 		this.domanda = domanda;
 	}
 
