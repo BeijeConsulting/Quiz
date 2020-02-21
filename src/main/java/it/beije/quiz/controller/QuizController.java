@@ -43,7 +43,7 @@ public class QuizController {
 			
 			List<Libro> libri = Utils.getLibri();
 			String directory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
-			
+
 			for(Libro lib : libri) {
 				String dir = directory + lib.getDir();
 				System.out.println(dir);

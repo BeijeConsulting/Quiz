@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.eclipse.jdt.internal.compiler.apt.util.EclipseFileManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -94,7 +95,8 @@ public class Utils {
 
 	// Lettura file index.xml e popolamento lista di Libro
 	public static List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
-		
+		String filePath = new File("").getAbsolutePath();
+		System.out.println("File: " + filePath);
 		File fileXml = new File("C:\\Users\\Padawan04\\git\\Quiz\\domande\\index.xml");
 		
 		List<Libro> libri = new ArrayList<Libro>();
@@ -116,6 +118,7 @@ public class Utils {
         	libri.add(lib);
         }
         System.out.println("libri : " + libri.size());
+        
         return libri;
 	}
 	
