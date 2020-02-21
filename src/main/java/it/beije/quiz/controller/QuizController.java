@@ -76,6 +76,7 @@ public class QuizController {
 					}
 					libri.get(l-1).setLista(domande);
 					tot += libri.get(l-1).getLista().size();
+					domande.clear();
 				}
 //			}
 //			System.out.println("libri : " + libri.size());
@@ -84,6 +85,8 @@ public class QuizController {
 		}
 
 		model.addAttribute("totDomande", tot);
+		tot = 0;
+		
 
 		return "index";
 	}
