@@ -1,6 +1,7 @@
 package it.beije.quiz.model;
 
 import java.util.List;
+import it.beije.quiz.model.Risposta;
 
 public class Domanda {
 
@@ -32,7 +33,21 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 		Libro l = new Libro();
 		l.setTitle(book);
+		//Clark:
+		/* Proposta creazione libro
+		 * 
+		 *this.books=new Libro();
+		 *
+		 *books.setTitle(book);
+		 *
+		 *
+		 * 
+		 */
+		
 	}
+
+
+	
 
 	public int getId() {
 		return id;
@@ -134,4 +149,15 @@ public class Domanda {
 
 		return builder.toString();
 	}
+	
+	
+	
+	
+	
+	
+	//Clark: per prendere la dir del file XML, dove aggiungo la domanda
+	public Libro getBooks() {
+		return books;
+	}
+
 }
