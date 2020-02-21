@@ -156,7 +156,7 @@ public class Utils {
 	public static Libro createLibro(Libro l) {	 
 		
         for(Libro presente : readFileLibri())
-        	if(!(presente.getIdBook().equals(l.getIdBook()) || presente.getNameDir().equals(l.getNameDir()))) 
+        	if(presente.getIdBook().equals(l.getIdBook()) || presente.getNameDir().equals(l.getNameDir())) 
         		return null;
         
         //crea una nuova directory

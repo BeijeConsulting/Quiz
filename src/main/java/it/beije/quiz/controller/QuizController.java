@@ -200,7 +200,6 @@ public class QuizController {
 		}
 		
 		model.addAttribute("body", builder.toString());
-		
 		return "risultati";
 	}
 	
