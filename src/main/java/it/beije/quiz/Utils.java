@@ -31,6 +31,7 @@ public class Utils {
 		
 		return childElements;
 	}
+	
 
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
