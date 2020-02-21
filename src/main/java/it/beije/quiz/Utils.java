@@ -153,12 +153,15 @@ public class Utils {
 		return id;
 	}
 	
-	public static Libro createLibro(Libro l) {	 
+	private static Libro createLibro(Libro l) {	 
 		
-        for(Libro presente : readFileLibri())
+        for(Libro presente : readFileLibri()) {
+        	if(presente.getIdBook().equals(l.getIdBook()) && presente.getNameDir().equals(l.getNameDir())
+        			&& presente.getTitle().equals(l.getTitle())) 
+        		return presente;
         	if(presente.getIdBook().equals(l.getIdBook()) || presente.getNameDir().equals(l.getNameDir())) 
         		return null;
-        
+        }
         //crea una nuova directory
 		File file = new File(Libro.LIB_PATH+l.getNameDir());
 		if(!file.mkdir()) return null;
@@ -189,12 +192,14 @@ public class Utils {
 		return l;
 	}
 	
-	public static void caricaDomande(String path, List<Domanda> elDomande) {
+	public static void caricaDomande(Libro l, List<Domanda> elDomande, String nomeFile) {
 		
 		try {
+			l = createLibro(l);
+			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        File file = new File(path);
+	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile);
 	        Document document;
 	        Element docElement;
 			
@@ -242,6 +247,9 @@ public class Utils {
 			DOMSource source = new DOMSource(document);
 			StreamResult result = new StreamResult(file);
 			transformer.transform(source, result);
+		}catch(NullPointerException e) {
+			System.out.println("Errore nella creazione della directory");
+			e.printStackTrace();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
