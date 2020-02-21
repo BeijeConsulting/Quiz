@@ -32,7 +32,6 @@ public class QuizController {
 	private int tot;
 	private LocalTime time = null;
 
-
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
