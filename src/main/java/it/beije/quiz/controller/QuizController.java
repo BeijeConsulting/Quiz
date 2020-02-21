@@ -38,38 +38,15 @@ public class QuizController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
-		
-		if (domande.size() == 0) {
-			
-			List<Libro> libri = Utils.getLibri();
-			String directory = "C:/Users/Padawan11/git/Quiz/domande/";
-			
-			for(Libro lib : libri) {
-				String dir = directory + lib.getDir();
-				System.out.println(dir);
-				File f = new File(dir);
-				for(File file : f.listFiles()) {
-					if(!file.isDirectory()) {
-						domande.addAll(Utils.readFileDomande(file.getAbsolutePath()));
-					}
-				}
-				lib.setLista(domande);
-				System.out.println("domande nel libro : " + lib.getLista().size());
-			}
-			System.out.println("libri : " + libri.size());
-			
-			//Se Libro1 selezionato carichi queste doamnde
-//			domande = Utils.readFileDomande("C:\\Users\\Padawan04\\git\\Quiz\\domande\\oca_manual\\domande_cap1.xml");
-//			tot = domande.size();
-		}
-		
-		model.addAttribute("totDomande", tot);
-		
+
+		//model.addAttribute("totDomande", tot);
+
 		return "index";
 	}
 
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
+		boolean scelta = false;
 
 		String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
 		List<Libro> libri = Utils.getLibri();
@@ -77,6 +54,7 @@ public class QuizController {
 		for(int l = 1; l <= libri.size(); l++) {
 			String directory = "";
 			if (request.getParameter("libro" + l) != null) {
+			    scelta = true;
 				directory = request.getParameter("libro" + l);
 				System.out.println(directory);
 			} else {
