@@ -1,0 +1,39 @@
+<style type="text/css">
+html,body{margin:0;padding:0;}
+body{margin:0; padding:0;background: #e2e2e0; color: #666;font: 16px/28px;font-family: 'Open Sans', sans-serif; line-height:22px;}
+h1,h2{font-family:oswald;text-transform:uppercase;font-weight:normal;}
+a{color:#21aabd;text-decoration:none;}
+a:hover{color:#333;text-decoration:underline;}
+
+
+	#container		{width: 1000px;height: 550px;margin: 0 auto;background:#fff}
+		
+		/*** Header ***/
+		#header			{width:960px;padding:20px;background:#21aabd;}
+		#header h1	{color:#fff;}
+			
+		.item-evi		{width:280px;padding:20px;float:left;}
+		#content		{width:620px;padding:20px;float:left;}
+			#content .articolo	{border-bottom:1px solid #eee;min-height:190px;padding:0px 0 10px 0;}
+			#content .articolo img{float:left;margin: 0 20px 0 0;}
+			
+			#content .last		{border-bottom:none;}
+		#submit {
+				  background-color: #fff; /* colore di sfondo    */
+				  border: 2px solid #333;  /* bordo dell'elemento */
+				  color: #333;               /* colore del testo    */
+				  font-weight: bold;         /* testo in grassetto  */
+				  padding: 1px;                /* padding             */
+				  height: 25px;              /* altezza             */
+				  width: 80px;               /* larghezza           */
+				}
+				#submit2 {
+				  background-color: #fff; /* colore di sfondo    */
+				  border: 2px solid #333;  /* bordo dell'elemento */
+				  color: #333;               /* colore del testo    */
+				  font-weight: bold;         /* testo in grassetto  */
+				  padding: 1px;                /* padding             */
+				  height: 25px;              /* altezza             */
+				  width: 160px;               /* larghezza           */
+				}
+</style>

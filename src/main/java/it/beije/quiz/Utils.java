@@ -20,7 +20,6 @@ public class Utils {
 	
 	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Padawan06\\git\\QuizQ\\domande\\index.xml";
 	
-	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -79,7 +78,7 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-
+	        	String id_ = domanda.getAttribute("id");
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
@@ -105,7 +104,7 @@ public class Utils {
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
 	        	
-	        	System.out.println(d);
+//	        	System.out.println(d);
 	        }	        		
 	        
 		} catch (Exception e) {

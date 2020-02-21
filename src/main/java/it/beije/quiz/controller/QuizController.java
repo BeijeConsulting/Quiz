@@ -32,10 +32,11 @@ public class QuizController {
 	
 	
 	private static final String PATH_DOMANDE = "";
-	private List<Domanda> domande;
-	private int tot;
+	private List<Domanda> domande=new ArrayList<>();
+	private int tot ;
 	private LocalTime time = null;
-
+	List<Libro> libri;
+	String[] checkboxValues;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -44,32 +45,24 @@ public class QuizController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model, HttpServletRequest request) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
+
 		String[] checkboxValues=null;
 		List<Libro> libri= Utils.readFileLibri();
+
+		
+		libri = Utils.readFileLibri();
+
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
+
 		if (request.getParameterValues("bookSelection")!=null) {
 			checkboxValues = request.getParameterValues("bookSelection");
 			
 			for(String v : checkboxValues)
-				System.out.println(v);
-			
-			
-//			for(Libro l : libri) {
-//				String idBook = l.getIdBook();
-//				for(String v : checkboxValues) {
-//					if(idBook.equals(v)) {
-//						List <Domanda> ciclaDomande = l.caricaDomande();
-//						for(Domanda d : ciclaDomande)
-//							domande.add(d);
-//						
-//					}
-//				}
-//			}
+				System.out.println(v);		
+
 		}
-		
-		
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		
@@ -82,7 +75,7 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
-		int tot = domande.size();
+		
 		int secondi = 2 * 60 * tot;
 		long hours = (secondi - diff.getSeconds())/3600;
 		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
@@ -98,10 +91,11 @@ public class QuizController {
 	
 		//*********************************************************************************
 		
+		
 		if (index < tot) {
 			Domanda d = domande.get(index);
 			String risposta = d.getRispostaUtente();
-			//System.out.println("risposta : " + risposta);
+			System.out.println("risposta : " + risposta);
 			if (risposta == null) {
 				risposta = "";
 			}
@@ -120,8 +114,23 @@ public class QuizController {
 	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index,HttpServletRequest request) {
-		System.out.println("index Page Requested : " + request.getRequestURI());
+		System.out.println("Index Page Requested : " + request.getRequestURI());
+		
+		if (request.getParameterValues("bookSelection")!=null) {
+			checkboxValues = request.getParameterValues("bookSelection");
+		
+			for(String v : checkboxValues) {
+				for(Libro l : libri) {
+					if(l.getIdBook().equals(v)) 
+						domande.addAll(l.caricaQuestions());
+				}
+			}
+			tot = domande.size();
+		}
+		
 		setTimer(model);
+		
+		
 		
 		return caricaDomanda(model, index);
 	}
@@ -130,7 +139,6 @@ public class QuizController {
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
-		
 	        
 		Enumeration<String> enums = request.getParameterNames();
 		StringBuilder builder = new StringBuilder();
@@ -170,31 +178,31 @@ public class QuizController {
 		return "risultati";
 	}
 	
-	@RequestMapping(value = "/caricaLibri", method = RequestMethod.POST)
-	public String caricaLibri(Model model,HttpServletRequest request) {
-		String[] libri = request.getParameterValues("bookSelection");
-		
-		for(String l : libri)
-			System.out.println(l);
-		
-		return "index";
-	}
+//	@RequestMapping(value = "/caricaLibri", method = RequestMethod.POST)
+//	public String caricaLibri(Model model,HttpServletRequest request) {
+//		String[] libri = request.getParameterValues("bookSelection");
+//		
+//		for(String l : libri)
+//			System.out.println(l);
+//		
+//		return "index";
+//	}
 	
 	
 	/////// REST
-	
-	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
-	public void testrest(Model model, HttpServletResponse response) throws IOException {
-		System.out.println("entra??");
-		List<Risposta> risposte = new ArrayList<Risposta>();
-		Risposta r = new Risposta();
-		r.setValue("A");
-		r.setText("risposta prova");
-		risposte.add(r);
+//	
+//	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
+//	public void testrest(Model model, HttpServletResponse response) throws IOException {
+//		System.out.println("entra??");
+//		List<Risposta> risposte = new ArrayList<Risposta>();
+//		Risposta r = new Risposta();
+//		r.setValue("A");
+//		r.setText("risposta prova");
+//		risposte.add(r);
 //		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
-		
-		response.setContentType("application/json");
+//		
+//		response.setContentType("application/json");
 //		response.getWriter().append(domanda.toJson());
-	}
+//	}
 
 }
