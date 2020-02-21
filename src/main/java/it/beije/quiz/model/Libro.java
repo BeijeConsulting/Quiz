@@ -12,6 +12,8 @@ public class Libro {
 
 //	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
 	private static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+	
+	private String checked="";
 
 	private String idBook;
 	private String title;
@@ -39,7 +41,14 @@ public class Libro {
 	public void setIdBook(String idBook) {
 		this.idBook = idBook;
 	}
+	
+	public String getChecked() {
+		return checked;
+	}
 
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
 	
 	public List<Domanda> caricaQuestions() {
 		System.out.println("entroooo");

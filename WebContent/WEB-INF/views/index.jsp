@@ -10,6 +10,7 @@
 <title>Inizia il tuo Quiz OnLine</title>
 </head>
 <body>
+<h5> ${newDomandaCreata }</h5> 
 Questa è la pagina di ingresso al tuo Quiz Online<br>
 <br>
 Totale domande caricate : ${ totDomande }<br>
@@ -25,6 +26,10 @@ Seleziona i libri da utilizzare:<br>
 	</c:forEach>
 	
 <input type="submit" value="START">
+</form>
+
+<form action="./NewDomanda" method="get">
+<input type="submit" value="INSERISCI NUOVA DOMANDA">
 </form>
 </body>
 </html>
