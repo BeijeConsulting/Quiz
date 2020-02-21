@@ -78,9 +78,15 @@ public class QuizController {
 				String idBook = l.getIdBook();
 				for(String v : checkboxValues) {
 					if(idBook.equals(v)) {
+						
+						System.out.println(v);
+						
 						List <Domanda> ciclaDomande = l.caricaQuestions();
-						for(Domanda d : ciclaDomande)
-							domande.add(d);
+						for(Domanda d : ciclaDomande) {
+							
+							System.out.println(d.getQuestion());
+							
+							domande.add(d);}
 						
 					}
 				}
