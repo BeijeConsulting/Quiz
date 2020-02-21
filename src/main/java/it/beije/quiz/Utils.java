@@ -137,7 +137,7 @@ public class Utils {
 				//tolgo risposta esatta da elenco risposte esatte per evitare duplicati
 				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
 			}
-		}
+		} 
 		
 		return rispostaEsatta.length() == 0;
 	}
