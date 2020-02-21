@@ -192,7 +192,7 @@ public class Utils {
 		return l;
 	}
 	
-	public static void caricaDomande(Libro l, List<Domanda> elDomande, String nomeFile) {
+	public static void caricaDomande(Libro l, String nomeFile, Domanda... elDomande) {
 		
 		try {
 			l = createLibro(l);
@@ -209,6 +209,7 @@ public class Utils {
 		        docElement = document.getDocumentElement();
 		        List<Element> dom = Utils.getChildElements(docElement);
 		        idDomanda = Integer.parseInt(dom.get(dom.size()-1).getAttribute("id")) +1;
+		        //ulteriore controllo
 		        for(Element e : dom) {
 		        	if(Integer.parseInt(e.getAttribute("id"))==idDomanda) idDomanda++;
 		        }
