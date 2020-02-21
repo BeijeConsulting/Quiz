@@ -7,10 +7,10 @@ public class Domanda {
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
-	private int id;
+	private String id;
 	private String book;
-	private int chapter;
-	private int question;
+	private String chapter;
+	private String question;
 	private String testo;
 	private String answerType;
 	private List<Risposta> risposte;
@@ -18,7 +18,7 @@ public class Domanda {
 	private String rispostaEsatta;
 	private String spiegazione;
 	
-	public Domanda(int id, String book, int chapter, int question, String testo,
+	public Domanda(String id, String book, String chapter, String question, String testo,
 			String answerType, List<Risposta> risposte,
 			String rispostaEsatta, String spiegazione) {
 		this.id = id;
@@ -32,11 +32,11 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public int getChapter() {
+	public String getChapter() {
 		return chapter;
 	}
 	
@@ -60,7 +60,7 @@ public class Domanda {
 		return book;
 	}
 
-	public int getQuestion() {
+	public String getQuestion() {
 		return question;
 	}
 	
