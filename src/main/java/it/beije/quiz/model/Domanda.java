@@ -3,13 +3,13 @@ package it.beije.quiz.model;
 import java.util.List;
 
 public class Domanda {
-	
+
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
 	private int id;
 	private String book;
-//	private Book books;
+	private Libro books;
 	private int chapter;
 	private int question;
 	private String testo;
@@ -18,10 +18,9 @@ public class Domanda {
 	private String rispostaUtente = "";
 	private String rispostaEsatta;
 	private String spiegazione;
-	
-	public Domanda(int id, String book, int chapter, int question, String testo,
-			String answerType, List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
+
+	public Domanda(int id, String book, int chapter, int question, String testo, String answerType,
+			List<Risposta> risposte, String rispostaEsatta, String spiegazione) {
 		this.id = id;
 		this.book = book;
 		this.chapter = chapter;
@@ -31,20 +30,37 @@ public class Domanda {
 		this.answerType = answerType;
 		this.risposte = risposte;
 		this.spiegazione = spiegazione;
+		Libro l = new Libro();
+		l.setTitle(book);
+		l.set
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
+	public String getIdBook() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(books.getIdBook()).append("|").append(this.getChapter()).append("|").append(this.getQuestion());
+		return sb.toString();
+
+	}
 	
+//	public void setBook() {
+//		
+//		Libro book = new Libro();
+//		book.setIdBook(idBook);
+//	}
+
 	public int getChapter() {
 		return chapter;
 	}
-	
+
 	public String getTesto() {
 		return testo;
 	}
-	
+
 	public String getRispostaEsatta() {
 		return rispostaEsatta;
 	}
@@ -64,14 +80,15 @@ public class Domanda {
 	public int getQuestion() {
 		return question;
 	}
-	
+
 	public String getRispostaUtente() {
 		return rispostaUtente;
 	}
+
 	public void setRispostaUtente(String rispostaUtente) {
 		this.rispostaUtente = rispostaUtente;
 	}
-	
+
 	public String getAnswerType() {
 		return answerType;
 	}
@@ -95,7 +112,7 @@ public class Domanda {
 			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
 		}
 		builder.append("----------------------------\n");
-		
+
 		return builder.toString();
 	}
 
@@ -110,12 +127,12 @@ public class Domanda {
 		builder.append("\"rispostaUtente\":\"").append(rispostaUtente).append("\";");
 		builder.append("\"answerType\":\"").append(answerType).append("\";");
 		builder.append("\"risposte\":{");
-		for (Risposta r:risposte) {
+		for (Risposta r : risposte) {
 			builder.append("\"value\":\"").append(r.getValue()).append("\";");
 			builder.append("\"text\":\"").append(r.getText()).append("\";");
 		}
 		builder.append("}}");
-		
+
 		return builder.toString();
 	}
 }

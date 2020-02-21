@@ -21,6 +21,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 @Controller
@@ -41,6 +42,8 @@ public class QuizController {
 
 		String pathDir1 = req.getParameter("dir1");
 		String pathDir2 = req.getParameter("dir2");
+		
+		 //TODO metodo che metcha i dir dentro index.xml
 		
 		List<File> globalz = Utils.selezionaFileDiInteresse(pathDir1);
 		globalz.addAll(Utils.selezionaFileDiInteresse(pathDir2));
@@ -88,6 +91,7 @@ public class QuizController {
 	private String caricaDomanda(Model model, int index) {
 		if (index < tot) {
 			Domanda d = domande.get(index);
+			
 			String risposta = d.getRispostaUtente();
 			// System.out.println("risposta : " + risposta);
 			if (risposta == null) {

@@ -108,6 +108,8 @@ public class Utils {
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
+	        	
+	        	d.b
 	        	arrayDomande.add(d);
 	        	
 //	        	System.out.println(d);
