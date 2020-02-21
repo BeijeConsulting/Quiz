@@ -38,13 +38,17 @@ public class QuizController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
 
-		
-		Utils.popolaLibro(new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\index.xml"));
-	
-		
+		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\index.xml"));
+
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\Users\\Padawan02\\git\\Quiz\\domande\\oca_certification_guide_manning\\domande_cap1.xml");
-			tot = domande.size();
+			for (Libro l : libri) {
+				File folder = new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\" + l.getDir());
+				for (final File fileEntry : folder.listFiles()) {
+					domande = Utils.readFileDomande(folder + "\\" + fileEntry.getName());
+					l.setDomande(domande);
+				}
+			}
+			tot = libri.get(0).getDomande().size();
 		}
 
 		model.addAttribute("totDomande", tot);

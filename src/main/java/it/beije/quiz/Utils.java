@@ -40,7 +40,7 @@ public class Utils {
 
 
 	public static List<Libro> popolaLibro(File file) throws ParserConfigurationException, SAXException, IOException {
-		
+		List<Libro> lista = new ArrayList<Libro>();
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
@@ -49,79 +49,80 @@ public class Utils {
 		Document document = builder.parse(file);
 		Element element = document.getDocumentElement();     
 	
-        NodeList indici = element.getElementsByTagName("index");
-
+        List<Element> elementi = getChildElements(element);
+      
+        
+		for(int i=0;i<elementi.size();i++)
+		{
+			Libro libro = new Libro();
+				libro.setId_book(elementi.get(i).getAttribute("id_book"));
+				libro.setTitle(elementi.get(i).getAttribute("title"));
+				libro.setDir(elementi.get(i).getAttribute("dir"));
+			
+				lista.add(libro);
+		}
+       		
+		return lista;
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		return null;
-		
-		
-		
-		
-		
-
 	}
 
+	
 	public static List<Domanda> readFileDomande(String pathFile) {
+
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
+	
 
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
+	  
+	         try {
+	 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	 			DocumentBuilder builder = factory.newDocumentBuilder();
 
-			// Load the input XML document, parse it and return an instance of the
-			// Document class.
-			Document document = builder.parse(new File(pathFile));
-			Element element = document.getDocumentElement();
-//	        System.out.println(element.getTagName());
-			List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
+	 			// Load the input XML document, parse it and return an instance of the
+	 			// Document class.
+	 			Document document = builder.parse(new File(pathFile));
+	 			Element element = document.getDocumentElement();
+//	 	        System.out.println(element.getTagName());
+	 			List<Element> domande = Utils.getChildElements(element);
+//	 	        System.out.println(domande);
 
-			List<Element> contenutoDomanda = null;
-			List<Element> elementiRisposta = null;
-			Element rispostePossibili = null;
-			for (Element domanda : domande) {
-				contenutoDomanda = Utils.getChildElements(domanda);
-				int id = Integer.parseInt(domanda.getAttribute("id"));
-				String book = domanda.getAttribute("book");
-				int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-				int question = Integer.parseInt(domanda.getAttribute("question"));
-				String testo = contenutoDomanda.get(0).getTextContent();
+	 			List<Element> contenutoDomanda = null;
+	 			List<Element> elementiRisposta = null;
+	 			Element rispostePossibili = null;
+	 			for (Element domanda : domande) {
+	 				contenutoDomanda = Utils.getChildElements(domanda);
+	 				int id = Integer.parseInt(domanda.getAttribute("id"));
+	 				String book = domanda.getAttribute("book");
+	 				int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
+	 				int question = Integer.parseInt(domanda.getAttribute("question"));
+	 				String testo = contenutoDomanda.get(0).getTextContent();
 
-				// caricare le risposte possibili
-				rispostePossibili = contenutoDomanda.get(1);
-				String answerType = rispostePossibili.getAttribute("type");
-				elementiRisposta = Utils.getChildElements(rispostePossibili);
-				List<Risposta> risposte = new ArrayList<Risposta>();
-				for (Element risposta : elementiRisposta) {
-					Risposta r = new Risposta();
-					r.setValue(risposta.getAttribute("value"));
-					r.setText(risposta.getTextContent());
+	 				// caricare le risposte possibili
+	 				rispostePossibili = contenutoDomanda.get(1);
+	 				String answerType = rispostePossibili.getAttribute("type");
+	 				elementiRisposta = Utils.getChildElements(rispostePossibili);
+	 				List<Risposta> risposte = new ArrayList<Risposta>();
+	 				for (Element risposta : elementiRisposta) {
+	 					Risposta r = new Risposta();
+	 					r.setValue(risposta.getAttribute("value"));
+	 					r.setText(risposta.getTextContent());
 
-					risposte.add(r);
-				}
+	 					risposte.add(r);
+	 				}
 
-				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-				String spiegazione = contenutoDomanda.get(3).getTextContent();
+	 				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
+	 				String spiegazione = contenutoDomanda.get(3).getTextContent();
 
-				Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta,
-						spiegazione);
-				arrayDomande.add(d);
+	 				Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta,
+	 						spiegazione);
+	 				arrayDomande.add(d);
 
-//	        	System.out.println(d);
-			}
+	 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+	 		} catch (Exception e) {
+	 			e.printStackTrace();
+	 		}
+	        
+	    
 		return arrayDomande;
 	}
 
