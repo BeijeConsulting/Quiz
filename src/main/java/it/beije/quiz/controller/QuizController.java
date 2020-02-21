@@ -45,10 +45,8 @@ public class QuizController {
 		List<File> globalz = Utils.selezionaFileDiInteresse(pathDir1);
 		globalz.addAll(Utils.selezionaFileDiInteresse(pathDir2));
 		
-//		List<File> gloablFile = Utils.unisciFileDiInteresse(Utils.selezionaFileDiInteresse(pathDir1), Utils.selezionaFileDiInteresse(pathDir2));
 		
-		for(File file : globalz) {
-			
+		for(File file : globalz) {			
 			domande.addAll(Utils.readFileDomande(file.getPath()));
 		}
 		tot = domande.size(); 	

@@ -9,6 +9,7 @@ public class Domanda {
 
 	private int id;
 	private String book;
+//	private Book books;
 	private int chapter;
 	private int question;
 	private String testo;
