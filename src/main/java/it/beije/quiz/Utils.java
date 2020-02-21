@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +22,7 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
-	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
+	public static final String PATH_INDEX_BOOKS = Libro.LIB_PATH+"index.xml";
 	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
@@ -147,6 +151,42 @@ public class Utils {
 		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getIdBook()+chapter+question;
 		
 		return id;
+	}
+	
+	public static Libro createLibro(Libro l) {	 
+		
+        for(Libro presente : readFileLibri())
+        	if(!(presente.getIdBook().equals(l.getIdBook()) || presente.getNameDir().equals(l.getNameDir()))) 
+        		return null;
+        
+        //crea una nuova directory
+		File file = new File(Libro.LIB_PATH+l.getNameDir());
+		if(!file.mkdir()) return null;
+		
+		//scrive su index.xml
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        File fileIndex = new File(PATH_INDEX_BOOKS);
+	        Document document = builder.parse(fileIndex);
+	        Element docElement = document.getDocumentElement();
+	        Element elLibro = document.createElement("quiz");
+	        elLibro.setAttribute("id_book", l.getIdBook());
+	        elLibro.setAttribute("title", l.getTitle());
+	        elLibro.setAttribute("dir", l.getNameDir());
+	        docElement.appendChild(elLibro);
+	        
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(fileIndex);
+			transformer.transform(source, result);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	
+		return l;
 	}
 
 }

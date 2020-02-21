@@ -1,15 +1,12 @@
 package it.beije.quiz.controller;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,20 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
-import org.w3c.dom.Element;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
-import it.beije.quiz.model.Risposta;
 
 
 @Controller
 @SessionScope
 public class QuizController {
 	
-	
-	private static final String PATH_DOMANDE = "";
 	private List<Domanda> domande=new ArrayList<>();
 	private int tot ;
 	private LocalTime time = null;
@@ -69,7 +62,6 @@ public class QuizController {
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
-<<<<<<< HEAD
 		if (request.getParameterValues("bookSelection")!=null) {
 			checkboxValues = request.getParameterValues("bookSelection");
 			
@@ -95,15 +87,8 @@ public class QuizController {
 			}
 		
 		domande.size();
-
-//		if (domande == null) {
-//			domande = Utils.readFileDomande(PATH_DOMANDE); //*******************************************
-//			tot = domande.size();
-//
 		}
 				
-=======
->>>>>>> refs/remotes/origin/BranchDelBosco
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		

@@ -11,8 +11,7 @@ import it.beije.quiz.Utils;
 public class Libro {
 	
 
-//	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
-	private static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+	public static final String LIB_PATH=new File("").getAbsolutePath()+"\\domande\\";
 
 	private String idBook;
 	private String title;
@@ -49,22 +48,12 @@ public class Libro {
 		System.out.println(LIB_PATH+nameDir);
 		
 		File[] listOfFiles = folder.listFiles();
-<<<<<<< HEAD
-=======
-		
 
->>>>>>> refs/remotes/origin/BranchDelBosco
 		for (int i = 0; i < listOfFiles.length; i++) {
-<<<<<<< HEAD
 			Pattern pat = Pattern.compile("^.*\\.[xml]$");
 			Matcher m = pat.matcher(listOfFiles[i].getName());
 			if (listOfFiles[i].isFile() && m.matches()) {
-				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getAbsolutePath()));
-=======
-//			&& Pattern.matches("^.*\\.[xml]$", listOfFiles[i].getName())
-			if (listOfFiles[i].isFile() ) {
-				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getPath()));				
->>>>>>> refs/remotes/origin/BranchDelBosco
+				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getPath()));
 			}
 		}
 		
