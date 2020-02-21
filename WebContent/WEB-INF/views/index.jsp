@@ -18,7 +18,7 @@ Tempo disponibile : ${ totDomande * 2 } minuti<br>
 
 Seleziona i libri da utilizzare:<br>
 
-<form action="./" method="get">
+<form action="./domanda/0" method="get">
 
 	<c:forEach var="scelte" items="${libri}">
 	<input type="checkbox" value='${scelte.idBook}' name="bookSelection">${scelte.title}<br>

@@ -32,8 +32,8 @@ public class QuizController {
 	
 	
 	private static final String PATH_DOMANDE = "";
-	private List<Domanda> domande;
-	private int tot;
+	private List<Domanda> domande = Utils.readFileDomande("C:\\Users\\Beijeù\\git\\Quiz\\domande\\oca_certification_guide_manning\\domande_cap1.xml");
+	private int tot = domande.size();
 	private LocalTime time = null;
 
 
@@ -100,7 +100,7 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
-		int tot = domande.size();
+		
 		int secondi = 2 * 60 * tot;
 		long hours = (secondi - diff.getSeconds())/3600;
 		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
@@ -119,7 +119,7 @@ public class QuizController {
 		if (index < tot) {
 			Domanda d = domande.get(index);
 			String risposta = d.getRispostaUtente();
-			//System.out.println("risposta : " + risposta);
+			System.out.println("risposta : " + risposta);
 			if (risposta == null) {
 				risposta = "";
 			}
@@ -138,7 +138,7 @@ public class QuizController {
 	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index,HttpServletRequest request) {
-		System.out.println("index Page Requested : " + request.getRequestURI());
+		System.out.println("Index Page Requested : " + request.getRequestURI());
 		setTimer(model);
 		
 		return caricaDomanda(model, index);
@@ -188,31 +188,31 @@ public class QuizController {
 		return "risultati";
 	}
 	
-	@RequestMapping(value = "/caricaLibri", method = RequestMethod.POST)
-	public String caricaLibri(Model model,HttpServletRequest request) {
-		String[] libri = request.getParameterValues("bookSelection");
-		
-		for(String l : libri)
-			System.out.println(l);
-		
-		return "index";
-	}
+//	@RequestMapping(value = "/caricaLibri", method = RequestMethod.POST)
+//	public String caricaLibri(Model model,HttpServletRequest request) {
+//		String[] libri = request.getParameterValues("bookSelection");
+//		
+//		for(String l : libri)
+//			System.out.println(l);
+//		
+//		return "index";
+//	}
 	
 	
 	/////// REST
-	
-	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
-	public void testrest(Model model, HttpServletResponse response) throws IOException {
-		System.out.println("entra??");
-		List<Risposta> risposte = new ArrayList<Risposta>();
-		Risposta r = new Risposta();
-		r.setValue("A");
-		r.setText("risposta prova");
-		risposte.add(r);
+//	
+//	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
+//	public void testrest(Model model, HttpServletResponse response) throws IOException {
+//		System.out.println("entra??");
+//		List<Risposta> risposte = new ArrayList<Risposta>();
+//		Risposta r = new Risposta();
+//		r.setValue("A");
+//		r.setText("risposta prova");
+//		risposte.add(r);
 //		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
-		
-		response.setContentType("application/json");
+//		
+//		response.setContentType("application/json");
 //		response.getWriter().append(domanda.toJson());
-	}
+//	}
 
 }

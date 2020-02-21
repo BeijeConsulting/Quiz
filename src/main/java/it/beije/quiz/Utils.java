@@ -105,7 +105,7 @@ public class Utils {
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
 	        	
-	        	System.out.println(d);
+//	        	System.out.println(d);
 	        }	        		
 	        
 		} catch (Exception e) {
