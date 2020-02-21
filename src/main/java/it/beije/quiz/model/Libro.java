@@ -3,6 +3,7 @@ package it.beije.quiz.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import it.beije.quiz.Utils;
 
@@ -29,14 +30,6 @@ public class Libro {
 		this.nameDir = nameDir;
 	}
 	
-	public List<Domanda> getQuestions() {
-		return questions;
-	}
-	
-	public void setQuestions(List<Domanda> questions) {
-		this.questions = questions;
-	}
-	
 	public String getIdBook() {
 		return idBook;
 	}
@@ -51,7 +44,7 @@ public class Libro {
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile() && listOfFiles[i].getName().matches("^.*\\.[xml]$")) {
+			if (listOfFiles[i].isFile() && Pattern.matches("^.*\\.[xml]$", listOfFiles[i].getName())) {
 				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getAbsolutePath()));
 			}
 		}
