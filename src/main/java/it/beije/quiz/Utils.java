@@ -107,7 +107,7 @@ public class Utils {
 	}
 
 	public static void scriviSuXML(List<Libro> libro, String pathfile) throws Exception {
-
+//STRING
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 
