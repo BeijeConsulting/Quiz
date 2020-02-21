@@ -44,7 +44,7 @@ public class QuizController {
 		return "index";
 	}
 	
-	@RequestMapping(value="/confermaselezione", method = RequestMethod.GET)
+	//@RequestMapping(value="/confermaselezione", method = RequestMethod.GET)
 
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
