@@ -78,7 +78,7 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-
+	        	String id_ = domanda.getAttribute("id");
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));

@@ -32,9 +32,11 @@ public class QuizController {
 	
 	
 	private static final String PATH_DOMANDE = "";
-	private List<Domanda> domande ;
+	private List<Domanda> domande=new ArrayList<>();
 	private int tot ;
 	private LocalTime time = null;
+	List<Libro> libri;
+	String[] checkboxValues;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -62,12 +64,12 @@ public class QuizController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model, HttpServletRequest request) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
-		String[] checkboxValues=null;
-
-		List<Libro> libri= Utils.readFileLibri();
+		
+		libri = Utils.readFileLibri();
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
+<<<<<<< HEAD
 		if (request.getParameterValues("bookSelection")!=null) {
 			checkboxValues = request.getParameterValues("bookSelection");
 			
@@ -100,6 +102,8 @@ public class QuizController {
 //
 		}
 				
+=======
+>>>>>>> refs/remotes/origin/BranchDelBosco
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		
@@ -128,6 +132,7 @@ public class QuizController {
 	
 		//*********************************************************************************
 		
+		
 		if (index < tot) {
 			Domanda d = domande.get(index);
 			String risposta = d.getRispostaUtente();
@@ -151,7 +156,22 @@ public class QuizController {
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index,HttpServletRequest request) {
 		System.out.println("Index Page Requested : " + request.getRequestURI());
+		
+		if (request.getParameterValues("bookSelection")!=null) {
+			checkboxValues = request.getParameterValues("bookSelection");
+		
+			for(String v : checkboxValues) {
+				for(Libro l : libri) {
+					if(l.getIdBook().equals(v)) 
+						domande.addAll(l.caricaQuestions());
+				}
+			}
+			tot = domande.size();
+		}
+		
 		setTimer(model);
+		
+		
 		
 		return caricaDomanda(model, index);
 	}
@@ -160,7 +180,6 @@ public class QuizController {
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
-		
 	        
 		Enumeration<String> enums = request.getParameterNames();
 		StringBuilder builder = new StringBuilder();
