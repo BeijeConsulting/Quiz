@@ -8,14 +8,11 @@ import it.beije.quiz.Utils;
 
 public class Libro {
 	
-//	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
 	private static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
 	private String idBook;
 	private String title;
 	private String nameDir;
-	private List<Domanda> questions = null;
 	 
-	
 	public String getTitle() {
 		return title;
 	}
