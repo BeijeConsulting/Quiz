@@ -39,6 +39,13 @@ public class Libro {
 	public void setDomanda(Domanda domanda) {
 		this.domanda = domanda;
 	}
+
+	@Override
+	public String toString() {
+		return "Libro [idBook=" + idBook + ", dir=" + dir + ", title=" + title + "]";
+	}
+	
+	
 	
 	
 

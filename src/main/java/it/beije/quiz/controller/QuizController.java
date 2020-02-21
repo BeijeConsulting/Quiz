@@ -31,23 +31,17 @@ public class QuizController {
 	private List<Domanda> domande = new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
-	public void settaIdDomande(List<Domanda> domande) {
-		for(Domanda d: domande) {
-			
-		}
-	}
+	private List<Libro> listaLibriInXML = new ArrayList<Libro>();
 
 	@RequestMapping(value = "/caricaDomande", method = RequestMethod.POST)
-	public String loadDomande(Model model, HttpServletRequest req) {
-
-		String pathDir1 = req.getParameter("dir1");
-		String pathDir2 = req.getParameter("dir2");
+	public String loadDomande(Model model, HttpServletRequest req) {		
 		
-		 //TODO metodo che metcha i dir dentro index.xml
+		List<File> globalz = new ArrayList<File>();
 		
-		List<File> globalz = Utils.selezionaFileDiInteresse(pathDir1);
-		globalz.addAll(Utils.selezionaFileDiInteresse(pathDir2));
-		
+		for(int i = 0; i < listaLibriInXML.size(); i++) {
+			String pathDir = req.getParameter("dir" + i);
+			globalz.addAll(Utils.selezionaFileDiInteresse(pathDir));
+		}		
 		
 		for(File file : globalz) {			
 			domande.addAll(Utils.readFileDomande(file.getPath()));
@@ -64,7 +58,14 @@ public class QuizController {
 //			domande = Utils.readFileDomande("C:\\temp\\domande_cap1.xml");
 //			tot = domande.size();
 //		}
-
+		
+//		model.addAttribute("numLibri", listaLibriInXML.size());
+//		for(int i = 0; i < listaLibriInXML.size(); i++) {
+//			model.addAttribute("dirLibro"+i, listaLibriInXML.get(i).getDir());
+//			model.addAttribute("titleLibro"+i, listaLibriInXML.get(i).getTitle());
+//		}
+		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
+		model.addAttribute("listaLibri", listaLibriInXML);
 		model.addAttribute("totDomande", tot);
 
 		return "index";
