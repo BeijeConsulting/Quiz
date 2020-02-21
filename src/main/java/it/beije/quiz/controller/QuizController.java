@@ -32,10 +32,9 @@ public class QuizController {
 	
 	
 	private static final String PATH_DOMANDE = "";
-	private List<Domanda> domande = Utils.readFileDomande("C:\\Users\\Beijeù\\git\\Quiz\\domande\\oca_certification_guide_manning\\domande_cap1.xml");
-	private int tot = domande.size();
+	private List<Domanda> domande ;
+	private int tot ;
 	private LocalTime time = null;
-
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -64,7 +63,7 @@ public class QuizController {
 	public String init(Model model, HttpServletRequest request) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
 		String[] checkboxValues=null;
-		
+
 		List<Libro> libri= Utils.readFileLibri();
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
@@ -75,17 +74,24 @@ public class QuizController {
 			for(String v : checkboxValues)
 				System.out.println(v);
 			
-//			for(Libro l : libri) {
-//				String idBook = l.getIdBook();
-//				for(String v : checkboxValues) {
-//					if(idBook.equals(v)) {
-//						List <Domanda> ciclaDomande = l.caricaDomande();
-//						for(Domanda d : ciclaDomande)
-//							domande.add(d);
-//						
-//					}
-//				}
-//			}
+			for(Libro l : libri) {
+				String idBook = l.getIdBook();
+				for(String v : checkboxValues) {
+					if(idBook.equals(v)) {
+						List <Domanda> ciclaDomande = l.caricaQuestions();
+						for(Domanda d : ciclaDomande)
+							domande.add(d);
+						
+					}
+				}
+			}
+		
+		domande.size();
+
+//		if (domande == null) {
+//			domande = Utils.readFileDomande(PATH_DOMANDE); //*******************************************
+//			tot = domande.size();
+//
 		}
 				
 		model.addAttribute("libri", libri);
