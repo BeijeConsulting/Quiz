@@ -202,10 +202,16 @@ public class Utils {
 	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile);
 	        Document document;
 	        Element docElement;
-			
+			int idDomanda = 1;
 	        if(file.exists()) {
+	        	
 				document = builder.parse(file);
 		        docElement = document.getDocumentElement();
+		        List<Element> dom = Utils.getChildElements(docElement);
+		        idDomanda = Integer.parseInt(dom.get(dom.size()-1).getAttribute("id")) +1;
+		        for(Element e : dom) {
+		        	if(Integer.parseInt(e.getAttribute("id"))==idDomanda) idDomanda++;
+		        }
 			}else {
 				document = builder.newDocument();
 		        docElement = document.createElement("domande");
@@ -214,7 +220,7 @@ public class Utils {
 	        
 	        for(Domanda d : elDomande) {
 	        	Element domanda = document.createElement("domanda");
-	        	domanda.setAttribute("id", d.getId());
+	        	domanda.setAttribute("id", idDomanda+"");
 	        	domanda.setAttribute("book", d.getBook());
 	        	domanda.setAttribute("chapter", d.getChapter()+"");
 	        	domanda.setAttribute("question", d.getQuestion()+"");
@@ -254,5 +260,7 @@ public class Utils {
 			e.printStackTrace();
 		}	
 	}
+	
+	
 
 }
