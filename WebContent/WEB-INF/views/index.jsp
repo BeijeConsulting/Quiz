@@ -10,7 +10,7 @@
 <title>Inizia il tuo Quiz OnLine</title>
 </head>
 <body>
-Questa è la pagina di ingresso al tuo Quiz Online<br>
+Questa è la pagina di ingresso al tuo Quiz Online <title>Inizia il tuo Quiz OnLine</title><br> <img src="https://www.metodoin.it/new/wp-content/uploads/2013/11/java-logo.jpg"  height="200" width="300">
 <br>
 Totale domande caricate : ${ totDomande }<br>
 Tempo disponibile : ${ totDomande * 2 } minuti<br>
@@ -22,9 +22,14 @@ Seleziona i libri da utilizzare:<br>
 
 	<c:forEach var="scelte" items="${libri}">
 	<input type="checkbox" value='${scelte.idBook}' name="bookSelection">${scelte.title}<br>
-	</c:forEach>
-	
-<input type="submit" value="START">
+	</c:forEach>	
+<input type="submit" value="START"><br>
+
 </form>
+
+<form action="nuovoLibro">
+	<input type="submit" value="Inserisci un nuovo libro">
+</form>
+
 </body>
 </html>

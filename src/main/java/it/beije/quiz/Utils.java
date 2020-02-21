@@ -18,7 +18,7 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
-	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
+	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Padawan06\\git\\QuizQ\\domande\\index.xml";
 	
 	
 	public static List<Element> getChildElements(Element element) {
