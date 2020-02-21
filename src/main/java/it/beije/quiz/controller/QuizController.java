@@ -21,6 +21,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 @Controller

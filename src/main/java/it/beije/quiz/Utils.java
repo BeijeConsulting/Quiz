@@ -19,13 +19,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-<<<<<<< HEAD
-import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Libro;
-import it.beije.quiz.model.Risposta;
-=======
+
 import it.beije.quiz.model.*;
->>>>>>> refs/remotes/origin/TeamClaRiGa_Cla
 
 public class Utils {
 
@@ -125,41 +120,7 @@ public class Utils {
 			Element element = document.getDocumentElement();
 //	        System.out.println(element.getTagName());
 			List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
-<<<<<<< HEAD
-
-			List<Element> contenutoDomanda = null;
-			List<Element> elementiRisposta = null;
-			Element rispostePossibili = null;
-			for (Element domanda : domande) {
-				contenutoDomanda = Utils.getChildElements(domanda);
-				int id = Integer.parseInt(domanda.getAttribute("id"));
-				String book = domanda.getAttribute("book");
-				int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-				int question = Integer.parseInt(domanda.getAttribute("question"));
-				String testo = contenutoDomanda.get(0).getTextContent();
-
-				// caricare le risposte possibili
-				rispostePossibili = contenutoDomanda.get(1);
-				String answerType = rispostePossibili.getAttribute("type");
-				elementiRisposta = Utils.getChildElements(rispostePossibili);
-				List<Risposta> risposte = new ArrayList<Risposta>();
-				for (Element risposta : elementiRisposta) {
-					Risposta r = new Risposta();
-					r.setValue(risposta.getAttribute("value"));
-					r.setText(risposta.getTextContent());
-
-					risposte.add(r);
-				}
-
-				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-				String spiegazione = contenutoDomanda.get(3).getTextContent();
-
-				Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta,
-						spiegazione);
-
-=======
-	        	        
+//	        System.out.println(domande);	        	        
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
@@ -190,7 +151,6 @@ public class Utils {
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	
 	        	arrayDomande.add(d);
->>>>>>> refs/remotes/origin/TeamClaRiGa_Cla
 //	        	System.out.println(d);
 				arrayDomande.add(d);
 			}
