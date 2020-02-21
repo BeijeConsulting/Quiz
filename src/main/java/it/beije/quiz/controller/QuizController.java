@@ -64,11 +64,16 @@ public class QuizController {
 //			model.addAttribute("dirLibro"+i, listaLibriInXML.get(i).getDir());
 //			model.addAttribute("titleLibro"+i, listaLibriInXML.get(i).getTitle());
 //		}
-		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
-		model.addAttribute("listaLibri", listaLibriInXML);
-		model.addAttribute("totDomande", tot);
+//		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
+//		model.addAttribute("listaLibri", listaLibriInXML);
+//		model.addAttribute("totDomande", tot);
 
-		return "index";
+// Clark: 
+//  
+//		return "index";
+		
+		return "mainForm";
+		
 	}
 
 	private void setTimer(Model model) {
@@ -223,18 +228,22 @@ public class QuizController {
 //			System.out.println(d);
 	
 		
-		return "aggiungiDomanda";
+		return "mainForm";
 	}
 	
 	
+	@RequestMapping(value = "/seleziona/{index}", method = RequestMethod.POST)
+	public String aggiungiDomanda(Model model,  @PathVariable("index") int index) {
+		if(index==0)
+		return "aggiungiDomanda";
+		else if(index == 1)
+			return "libro";
+		
+		return "index";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	
 	/******************************************/
