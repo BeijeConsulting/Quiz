@@ -22,11 +22,11 @@ Seleziona i libri da utilizzare:<br>
 
 	<c:forEach var="scelte" items="${libri}">
 	<input type="checkbox" value='${scelte.idBook}' name="bookSelection">${scelte.title}<br>
-	</c:forEach>	
+	</c:forEach>
+	
 <input type="submit" value="START"><br>
 
 </form>
-
 <form action="nuovoLibro">
 	<input type="submit" value="Inserisci un nuovo libro">
 </form>

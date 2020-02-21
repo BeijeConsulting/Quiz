@@ -40,17 +40,11 @@ public class QuizController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "nuovoLibro", method = RequestMethod.GET)
-	public String formLibro(Model model, HttpServletRequest request) {
-		
-		return "formlibro";
-	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model, HttpServletRequest request) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
 		String[] checkboxValues=null;
-		
 		List<Libro> libri= Utils.readFileLibri();
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
@@ -60,6 +54,7 @@ public class QuizController {
 			
 			for(String v : checkboxValues)
 				System.out.println(v);
+			
 			
 //			for(Libro l : libri) {
 //				String idBook = l.getIdBook();
@@ -73,7 +68,8 @@ public class QuizController {
 //				}
 //			}
 		}
-				
+		
+		
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		
