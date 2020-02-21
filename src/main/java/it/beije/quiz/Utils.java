@@ -199,7 +199,7 @@ public class Utils {
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile);
+	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile+".xml");
 	        Document document;
 	        Element docElement;
 			int idDomanda = 1;
@@ -235,8 +235,8 @@ public class Utils {
 	        	risposte.setAttribute("type", d.getAnswerType());
 	        	for(Risposta r : d.getRisposte()) {
 	        		Element risposta = document.createElement("risposta");
-	        		risposte.setAttribute("value", r.getValue());
-	        		risposte.setTextContent(r.getText());
+	        		risposta.setAttribute("value", r.getValue());
+	        		risposta.setTextContent(r.getText());
 	        		risposte.appendChild(risposta);
 	        	}
 	        	domanda.appendChild(risposte);
