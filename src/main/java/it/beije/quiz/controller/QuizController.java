@@ -41,6 +41,8 @@ public class QuizController {
 
 		return "index";
 	}
+	
+	//@RequestMapping(value="/confermaselezione", method = RequestMethod.GET)
 
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
@@ -74,6 +76,7 @@ public class QuizController {
 					}
 					libri.get(l-1).setLista(domande);
 					tot += libri.get(l-1).getLista().size();
+					domande.clear();
 				}
 //			}
 //			System.out.println("libri : " + libri.size());
@@ -82,6 +85,8 @@ public class QuizController {
 		}
 
 		model.addAttribute("totDomande", tot);
+		tot = 0;
+		
 
 		return "index";
 	}
@@ -187,7 +192,7 @@ public class QuizController {
 		r.setValue("A");
 		r.setText("risposta prova");
 		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+		Domanda domanda = new Domanda("1", "book", "2","3", "questa è una prova", "checkbox", risposte, "A", "nessuna");
 
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());

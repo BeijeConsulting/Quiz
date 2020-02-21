@@ -76,10 +76,16 @@ body {
 	<br>
 	Seleziona da quale libro prendere le domande: <br>
 	
+<<<<<<< HEAD
 	<label class="container"><input type="checkbox">OCA Oracle Certified Associate Java SE 8 [2014]
 		<span class="checkmark">
 		</span>
 	</label>
+=======
+	<form action="./" method="post">
+		<input type="checkbox" id="libro1" name="libro1" value="oca_manual"> OCA Oracle Certified Associate Java SE 8 [2014] <br>
+		<input type="checkbox" id="libro2" name="libro2" value="oca_certification_guide_manning">  OCA Java SE 8 Programmer I Certification Guide <br><br>
+>>>>>>> refs/remotes/origin/AndreaG
 	
 	<label class="container"><input type="checkbox">OCA Java SE 8 Programmer I Certification Guide
 		<span class="checkmark">
@@ -94,6 +100,15 @@ body {
 	<button type="button" class="btn btn-info">START</button>
 	
 	</form>
+<<<<<<< HEAD
 
+=======
+	<br>	
+	<form action="./domanda/0" method="GET">
+		<input type="submit" value="START">
+	</form>
+	
+	
+>>>>>>> refs/remotes/origin/AndreaG
 </body>
 </html>
