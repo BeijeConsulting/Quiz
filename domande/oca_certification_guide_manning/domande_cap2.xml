@@ -203,6 +203,9 @@
 			<risposta value="D">Compilation error</risposta>
 		</risposte>
 		<risposteEsatte>D</risposteEsatte>
+		<spiegazione>
+			Ciao
+		</spiegazione>
 	</domanda>
 	<domanda id="8" book="OCA Java SE 8 Programmer I Certification Guide" chapter="2" question="8">
 		<testo>

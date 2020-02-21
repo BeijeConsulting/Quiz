@@ -2,6 +2,7 @@ package it.beije.quiz.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,10 +11,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,33 +34,49 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 
-	private List<Domanda> domande1;
+	private List<Domanda> domande1 = new ArrayList<Domanda>();
 	private int tot;
+	private int totale=0;
 	private LocalTime time = null;
 	private List<Libro> libri;
+	private ArrayList<Integer> numL=new ArrayList<Integer>();
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) throws ParserConfigurationException, SAXException, IOException {
-		ArrayList<ArrayList<Domanda>> domande = new ArrayList<ArrayList<Domanda>>();
+	@RequestMapping(value = "/", method = RequestMethod.GET) // index è una parola chiave prende quello che indichi nel
+																// name="prefix" value="/WEB-INF/views/"
+	public String index(HttpServletRequest request, Model model) {
+
+		return "index";
+	}
+
+	@RequestMapping(value = "/totaledomande", method = RequestMethod.GET)
+	public String init(Model model, HttpServletRequest request,HttpSession session)
+			throws ParserConfigurationException, SAXException, IOException {
 		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\index.xml"));
+		for (int i = 0; i < libri.size(); i++) {
+			File folder = new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\" + libri.get(i).getDir());
+			for (final File fileEntry : folder.listFiles()) {
+				System.out.println();
+				domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 
-		if (domande1 == null) {
-			for (Libro l : libri) {
-				File folder = new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\" + l.getDir());
-				for (final File fileEntry : folder.listFiles()) {
-					System.out.println(fileEntry.getName());
-					domande1 = Utils.readFileDomande(folder + "\\" + fileEntry.getName());
-				//domande.addAll( domande1);
-				
-				}
-				
 			}
-			tot = libri.get(0).getDomande().size();
-			System.out.println(domande.size());
+
+			libri.get(i).setDomande(domande1);
+			domande1 = new ArrayList<Domanda>();
+
 		}
 
-		model.addAttribute("totDomande", tot);
-		return "index";
+		for (int i = 0; i < libri.size(); i++) {
+			if (request.getParameter("libro"+(i+1))!= null) {
+				tot += libri.get(i).getDomande().size();
+				numL.add(i);
+				
+		}
+		}
+		totale=tot;
+		model.addAttribute("totDomande", totale);
+	
+		tot = 0;
+		return "totaledomande";
 	}
 
 	private void setTimer(Model model) {
@@ -65,20 +85,23 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
+		
 		int tot = domande1.size();
-		int secondi = 2 * 60 * tot;
+		int secondi = 2 * 60 * totale;
 		long hours = (secondi - diff.getSeconds()) / 3600;
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
 		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
 
-		model.addAttribute("totDomande", tot);
+		model.addAttribute("totDomande", totale);
 		model.addAttribute("ore", hours);
 		model.addAttribute("minuti", minutes);
 		model.addAttribute("secondi", seconds);
 	}
 
 	private String caricaDomanda(Model model, int index) {
-		if (index < tot) {
+		
+		for(int i=0;i<numL.size();i++) {
+		if (index < totale) {
 			Domanda d = domande1.get(index);
 			String risposta = d.getRispostaUtente();
 			// System.out.println("risposta : " + risposta);
@@ -90,11 +113,11 @@ public class QuizController {
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
 			model.addAttribute("risposte", d.getRisposte());
-
 			return "domanda";
-		} else {
-			return "riepilogo";
+		} 
 		}
+			
+			return "riepilogo";
 	}
 
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
@@ -105,7 +128,7 @@ public class QuizController {
 		return caricaDomanda(model, index);
 	}
 
-	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
+	@RequestMapping(value = "/domanda", method = RequestMethod.GET)
 	public String risposta(Model model, HttpServletRequest request, @RequestParam("index") int index) {
 
 		Enumeration<String> enums = request.getParameterNames();
@@ -117,8 +140,9 @@ public class QuizController {
 				builder.append(request.getParameter(name));
 			}
 		}
+		for(int i=0;i<numL.size();i++) {
 		domande1.get(index).setRispostaUtente(builder.toString());
-
+		}
 		setTimer(model);
 
 		return caricaDomanda(model, ++index);
@@ -156,7 +180,8 @@ public class QuizController {
 		r.setValue("A");
 		r.setText("risposta prova");
 		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+		Domanda domanda = new Domanda("1", "book", "2", " 3", "questa è una prova", "checkbox", risposte, "A",
+				"nessuna");
 
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());

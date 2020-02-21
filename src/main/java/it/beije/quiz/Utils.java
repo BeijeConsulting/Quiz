@@ -90,10 +90,10 @@ public class Utils {
 	 			Element rispostePossibili = null;
 	 			for (Element domanda : domande) {
 	 				contenutoDomanda = Utils.getChildElements(domanda);
-	 				int id = Integer.parseInt(domanda.getAttribute("id"));
+	 				String id = (domanda.getAttribute("id"));
 	 				String book = domanda.getAttribute("book");
-	 				int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-	 				int question = Integer.parseInt(domanda.getAttribute("question"));
+	 				String chapter = (domanda.getAttribute("chapter"));
+	 				String question = (domanda.getAttribute("question"));
 	 				String testo = contenutoDomanda.get(0).getTextContent();
 
 	 				// caricare le risposte possibili
