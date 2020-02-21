@@ -9,12 +9,10 @@ import it.beije.quiz.Utils;
 
 public class Libro {
 	
-<<<<<<< HEAD
+
 //	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
 	private static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
-=======
-	private static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
->>>>>>> refs/remotes/origin/BranchDelBosco09
+
 	private String idBook;
 	private String title;
 	private String nameDir;
@@ -47,20 +45,19 @@ public class Libro {
 		System.out.println("entroooo");
 		List<Domanda> listaD = new ArrayList<Domanda>();
 		File folder = new File(LIB_PATH+nameDir);
+		System.out.println(LIB_PATH+nameDir);
+		
 		File[] listOfFiles = folder.listFiles();
 		
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-
-			if (listOfFiles[i].isFile() && Pattern.matches("^.*\\.[xml]$", listOfFiles[i].getName())) {
-
-				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getAbsolutePath()));
+//			&& Pattern.matches("^.*\\.[xml]$", listOfFiles[i].getName())
+			if (listOfFiles[i].isFile() ) {
+				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getPath()));				
 			}
 		}
 		
-//		for(Domanda d : listaD) {
-//			System.out.println(d.toString());
-//		}
+		
 		
 		return listaD;
 	}

@@ -32,7 +32,7 @@ public class QuizController {
 	
 	
 	private static final String PATH_DOMANDE = "";
-	private List<Domanda> domande ;
+	private List<Domanda> domande=new ArrayList<>();
 	private int tot ;
 	private LocalTime time = null;
 	List<Libro> libri;
@@ -69,14 +69,6 @@ public class QuizController {
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
-			
-			
-
-//		if (domande == null) {
-//			domande = Utils.readFileDomande(PATH_DOMANDE); //*******************************************
-//			tot = domande.size();
-//
-				
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		
@@ -130,17 +122,13 @@ public class QuizController {
 	public String domanda(Model model, @PathVariable("index") int index,HttpServletRequest request) {
 		System.out.println("Index Page Requested : " + request.getRequestURI());
 		
-		
 		if (request.getParameterValues("bookSelection")!=null) {
 			checkboxValues = request.getParameterValues("bookSelection");
 		
-			for(Libro l : libri) {
-				String idBook = l.getIdBook();
-				for(String v : checkboxValues) {
-					if(idBook.equals(v)) {
-						List <Domanda> ciclaDomande = l.caricaQuestions();
-						domande.addAll(ciclaDomande);
-					}
+			for(String v : checkboxValues) {
+				for(Libro l : libri) {
+					if(l.getIdBook().equals(v)) 
+						domande.addAll(l.caricaQuestions());
 				}
 			}
 			tot = domande.size();
@@ -157,7 +145,6 @@ public class QuizController {
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
-		
 	        
 		Enumeration<String> enums = request.getParameterNames();
 		StringBuilder builder = new StringBuilder();
