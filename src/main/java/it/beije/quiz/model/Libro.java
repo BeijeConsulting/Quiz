@@ -3,6 +3,7 @@ package it.beije.quiz.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import it.beije.quiz.Utils;
@@ -10,10 +11,11 @@ import it.beije.quiz.Utils;
 public class Libro {
 	
 
-//	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\index.xml";
-	private static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
-	
 	private String checked="";
+
+	//public static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
+	public static final String LIB_PATH=new File("").getAbsolutePath()+"\\domande\\";
+
 
 	private String idBook;
 	private String title;
@@ -57,12 +59,12 @@ public class Libro {
 		System.out.println(LIB_PATH+nameDir);
 		
 		File[] listOfFiles = folder.listFiles();
-		
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-//			&& Pattern.matches("^.*\\.[xml]$", listOfFiles[i].getName())
-			if (listOfFiles[i].isFile() ) {
-				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getPath()));				
+			Pattern pat = Pattern.compile("^.*\\.[xml]$");
+			Matcher m = pat.matcher(listOfFiles[i].getName());
+			if (listOfFiles[i].isFile() && m.matches()) {
+				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getPath()));
 			}
 		}
 		

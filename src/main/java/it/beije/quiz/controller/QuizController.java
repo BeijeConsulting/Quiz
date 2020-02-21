@@ -1,16 +1,16 @@
 package it.beije.quiz.controller;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
-import org.w3c.dom.Element;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
@@ -32,8 +31,6 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 	
-	
-	private static final String PATH_DOMANDE = "";
 	private List<Domanda> domande=new ArrayList<>();
 	private int tot ;
 	private LocalTime time = null;
@@ -72,6 +69,33 @@ public class QuizController {
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
+		if (request.getParameterValues("bookSelection")!=null) {
+			checkboxValues = request.getParameterValues("bookSelection");
+			
+			for(String v : checkboxValues)
+				System.out.println(v);
+			
+			for(Libro l : libri) {
+				String idBook = l.getIdBook();
+				for(String v : checkboxValues) {
+					if(idBook.equals(v)) {
+						
+						System.out.println(v);
+						
+						List <Domanda> ciclaDomande = l.caricaQuestions();
+						for(Domanda d : ciclaDomande) {
+							
+							System.out.println(d.getQuestion());
+							
+							domande.add(d);}
+						
+					}
+				}
+			}
+		
+		domande.size();
+		}
+				
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		model.addAttribute("newDomandaCreata","");
@@ -185,7 +209,6 @@ public class QuizController {
 		}
 		
 		model.addAttribute("body", builder.toString());
-		
 		return "risultati";
 	}
 	
@@ -307,7 +330,7 @@ public class QuizController {
 		Domanda domanda = new Domanda(null,libro.getTitle() ,chapter,question,testo,answerType,risposte,rispostaEsatta,spiegazione);
 		System.out.println(domanda.toString());
 		
-//		Utils.caricaDomanda(libro,nomeFile,domanda);
+		Utils.caricaDomande(libro,nomeFile,domanda);
 		
 		model.addAttribute("newDomandaCreata","Nuova domanda inserita correttamente");
 		
