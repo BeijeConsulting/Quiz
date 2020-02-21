@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.eclipse.jdt.internal.compiler.apt.util.EclipseFileManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -55,7 +56,7 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
+		        int id = 0; //Integer.parseInt(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
@@ -94,8 +95,9 @@ public class Utils {
 
 	// Lettura file index.xml e popolamento lista di Libro
 	public static List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
-		
-		File fileXml = new File("C:/Users/Padawan11/git/Quiz/domande/index.xml");
+		String filePath = new File("").getAbsolutePath();
+		System.out.println("File: " + filePath);
+		File fileXml = new File("C:\\Users\\Padawan04\\git\\Quiz\\domande\\index.xml");
 		
 		List<Libro> libri = new ArrayList<Libro>();
 		
@@ -115,7 +117,8 @@ public class Utils {
         	lib.setId_book((String)libro.getAttribute("id_book"));
         	libri.add(lib);
         }
-        System.out.println("libri : " + libri.size());
+//        System.out.println("libri : " + libri.size());
+        
         return libri;
 	}
 	
