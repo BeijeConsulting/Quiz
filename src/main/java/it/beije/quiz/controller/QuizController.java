@@ -189,7 +189,7 @@ public class QuizController {
 		r.setValue("A");
 		r.setText("risposta prova");
 		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+		Domanda domanda = new Domanda("1", "book", "2","3", "questa è una prova", "checkbox", risposte, "A", "nessuna");
 
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());
