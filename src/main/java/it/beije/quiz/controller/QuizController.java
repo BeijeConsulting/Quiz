@@ -64,11 +64,16 @@ public class QuizController {
 //			model.addAttribute("dirLibro"+i, listaLibriInXML.get(i).getDir());
 //			model.addAttribute("titleLibro"+i, listaLibriInXML.get(i).getTitle());
 //		}
-		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
-		model.addAttribute("listaLibri", listaLibriInXML);
-		model.addAttribute("totDomande", tot);
+//		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
+//		model.addAttribute("listaLibri", listaLibriInXML);
+//		model.addAttribute("totDomande", tot);
 
-		return "index";
+// Clark: 
+//  
+//		return "index";
+		
+		return "mainForm";
+		
 	}
 
 	private void setTimer(Model model) {
@@ -188,14 +193,30 @@ public class QuizController {
 		
 		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
 		
-		//TODO manca metodo per prendere la dir del libro dal file index xml sapendo il titolo.
+		List <Libro> listaLibri=Utils.caricaLibriDaIndexXML("domande/index.xml");
 		
+		String dir;
+		System.out.println(domanda.getBooks().getTitle());
+		for(Libro libro1:listaLibri) {
+			
+			if(libro1.getTitle().equalsIgnoreCase(domanda.getBook())) {
+				System.out.println(libro1.getTitle());
+				
+				domanda.getBooks().setDir(libro1.getDir());
+				domanda.getBooks().setIdBook(libro1.getIdBook());
+				break;
+				
+			}
+			
+		}
+		dir=domanda.getBooks().getDir();	
 		
+		System.out.println(dir);
 		//String directory=domanda.getBooks().getDir();
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
 		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
-		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\oca_manual\\domande_cap"+capitolo+".xml";
+		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
 		
 		File fileXML=new File(path);
 
@@ -207,18 +228,22 @@ public class QuizController {
 //			System.out.println(d);
 	
 		
-		return "aggiungiDomanda";
+		return "mainForm";
 	}
 	
 	
+	@RequestMapping(value = "/seleziona/{index}", method = RequestMethod.POST)
+	public String aggiungiDomanda(Model model,  @PathVariable("index") int index) {
+		if(index==0)
+		return "aggiungiDomanda";
+		else if(index == 1)
+			return "libro";
+		
+		return "index";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	
 	/******************************************/
