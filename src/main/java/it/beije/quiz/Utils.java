@@ -188,5 +188,63 @@ public class Utils {
 	
 		return l;
 	}
+	
+	public static void caricaDomande(String path, List<Domanda> elDomande) {
+		
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        File file = new File(path);
+	        Document document;
+	        Element docElement;
+			
+	        if(file.exists()) {
+				document = builder.parse(file);
+		        docElement = document.getDocumentElement();
+			}else {
+				document = builder.newDocument();
+		        docElement = document.createElement("domande");
+		        document.appendChild(docElement);
+			}
+	        
+	        for(Domanda d : elDomande) {
+	        	Element domanda = document.createElement("domanda");
+	        	domanda.setAttribute("id", d.getId());
+	        	domanda.setAttribute("book", d.getBook());
+	        	domanda.setAttribute("chapter", d.getChapter()+"");
+	        	domanda.setAttribute("question", d.getQuestion()+"");
+	        	docElement.appendChild(domanda);
+	        	
+	        	Element testo = document.createElement("testo");
+	        	testo.setTextContent(d.getTesto());
+	        	domanda.appendChild(testo);
+	        	
+	        	Element risposte = document.createElement("risposte");
+	        	risposte.setAttribute("type", d.getAnswerType());
+	        	for(Risposta r : d.getRisposte()) {
+	        		Element risposta = document.createElement("risposta");
+	        		risposte.setAttribute("value", r.getValue());
+	        		risposte.setTextContent(r.getText());
+	        		risposte.appendChild(risposta);
+	        	}
+	        	domanda.appendChild(risposte);
+	        	
+	        	Element risposteEsatte = document.createElement("risposteEsatte");
+	        	risposteEsatte.setTextContent(d.getRispostaEsatta());
+	        	domanda.appendChild(risposteEsatte);
+	        	
+	        	Element spiegazione = document.createElement("spiegazione");
+	        	spiegazione.setTextContent(d.getSpiegazione());
+	        	domanda.appendChild(spiegazione);
+	        }
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(file);
+			transformer.transform(source, result);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 
 }
