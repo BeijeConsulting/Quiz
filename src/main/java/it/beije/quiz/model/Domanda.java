@@ -32,7 +32,6 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 		Libro l = new Libro();
 		l.setTitle(book);
-		l.set
 	}
 
 	public int getId() {
