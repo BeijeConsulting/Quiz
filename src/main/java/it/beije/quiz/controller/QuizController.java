@@ -42,7 +42,7 @@ public class QuizController {
 		if (domande.size() == 0) {
 			
 			List<Libro> libri = Utils.getLibri();
-			String directory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
+			String directory = "C:\\Users\\Padawan12\\git\\Quiz\\domande\\";
 			
 			for(Libro lib : libri) {
 				String dir = directory + lib.getDir();
