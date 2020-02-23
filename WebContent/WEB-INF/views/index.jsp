@@ -13,18 +13,11 @@
 		<c:forEach items="${listaLibri}" var="libro">
 			<input type="checkbox" id="book" name="dirs" value="${libro.idBook}">
 			<label for="book">${libro.title}</label>
+			<br><br>
 		</c:forEach>
 		<input type="submit" value="START QUIZ!">
 
 	</form>
-	<%
-		String select[] = request.getParameterValues("dirs");
-		if (select != null && select.length != 0) {
-			out.println("You have selected: ");
-			for (int i = 0; i < select.length; i++) {
-				out.println(select[i]);
-			}
-		}
-	%>
+	
 </body>
 </html>
