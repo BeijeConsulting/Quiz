@@ -199,7 +199,7 @@ public class Utils {
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile);
+	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile+".xml");
 	        Document document;
 	        Element docElement;
 			int idDomanda = 1;
