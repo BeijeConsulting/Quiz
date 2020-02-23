@@ -13,6 +13,7 @@
 		<c:forEach items="${listaLibri}" var="libro">
 			<input type="checkbox" id="book" name="dirs" value="${libro.idBook}">
 			<label for="book">${libro.title}</label>
+			<br><br>
 		</c:forEach>
 		<input type="submit" value="START QUIZ!">
 

@@ -31,53 +31,51 @@ public class QuizController {
 	private List<Domanda> domande = new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
-	private static List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+
+	private static List<Libro> listaLibriInXML = Utils
+			.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 
 	@RequestMapping(value = "/caricadomande", method = RequestMethod.POST)
-	public String loadDomande(Model model, HttpServletRequest req) {		
-		
-		Enumeration<String> stringa = req.getParameterNames();
-		System.out.println(stringa);
-		System.out.println("qui arrivo");
+	public String loadDomande(Model model, HttpServletRequest req) {
+
 		List<File> globalz = new ArrayList<File>();
-//		
-		for(int i = 0; i < listaLibriInXML.size(); i++) {
-			String pathDir = req.getParameter("dir" + i);
-			globalz.addAll(Utils.selezionaFileDiInteresse(pathDir));
-		}		
-//		
-		for(File file : globalz) {			
+		//
+
+		String select[] = req.getParameterValues("dirs");
+		if (select != null && select.length != 0) {
+			System.out.println("You have selected: ");
+			for (int i = 0; i < select.length; i++) {
+				System.out.println(select[i]);
+				globalz.addAll(Utils.selezionaFileDiInteresse(select[i]));
+			}
+		}
+		for (File file : globalz) {
 			domande.addAll(Utils.readFileDomande(file.getPath()));
 		}
-		tot = domande.size(); 	
-//		
+		tot = domande.size();
+		//
 		return domanda(model, 0);
-		
-	}
 
+	}	
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-
-	@RequestMapping(value="/creaLibro", method=RequestMethod.GET)
+	@RequestMapping(value = "/creaLibro", method = RequestMethod.GET)
 	public String creaLibro(Model model, HttpServletRequest request) {
-		Libro libro=new Libro();
-		
-		String IDlibro=request.getParameter("IDbook");
-		String titolo=request.getParameter("title");
-		int capitolo=Integer.parseInt(request.getParameter("chapter"));
-		String domanda=request.getParameter("question");
-		
+		Libro libro = new Libro();
+
+		String IDlibro = request.getParameter("IDbook");
+		String titolo = request.getParameter("title");
+		int capitolo = Integer.parseInt(request.getParameter("chapter"));
+		String domanda = request.getParameter("question");
+
 		libro.setIdBook(IDlibro);
 		libro.setTitle(titolo);
 		libro.setNcapitoli(capitolo);
-//		libro.setDomanda(null);
-		
-		File file=new File("/Quiz/domande/index.xml");
-	    List<Libro> lista= Utils.caricaLibriDaIndexXML(file);
-	    lista.add(libro);
-	    try {
+		// libro.setDomanda(null);
+
+		File file = new File("/Quiz/domande/index.xml");
+		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
+		lista.add(libro);
+		try {
 			Utils.scriviSuXML(lista, file.getPath());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -87,37 +85,16 @@ public class QuizController {
 		model.addAttribute("Titolo", titolo);
 		model.addAttribute("Capitolo", capitolo);
 		model.addAttribute("Domanda", domanda);
-		
+
 		return "index";
-	
+
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) {
-
-//		if (domande == null) {
-//			domande = Utils.readFileDomande("C:\\temp\\domande_cap1.xml");
-//			tot = domande.size();
-//		}
-		
-//		model.addAttribute("numLibri", listaLibriInXML.size());
-//		for(int i = 0; i < listaLibriInXML.size(); i++) {
-//			model.addAttribute("dirLibro"+i, listaLibriInXML.get(i).getDir());
-//			model.addAttribute("titleLibro"+i, listaLibriInXML.get(i).getTitle());
-//		}
-//		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
-	
-
-// Clark: 
-//  
-//		return "index";
-		
-		return "mainForm";
-		
+		 return "mainForm";
 	}
 
-	
-	
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
@@ -139,7 +116,7 @@ public class QuizController {
 	private String caricaDomanda(Model model, int index) {
 		if (index < tot) {
 			Domanda d = domande.get(index);
-			
+
 			String risposta = d.getRispostaUtente();
 			// System.out.println("risposta : " + risposta);
 			if (risposta == null) {
@@ -161,7 +138,6 @@ public class QuizController {
 	public String domanda(Model model, @PathVariable("index") int index) {
 
 		setTimer(model);
-
 		return caricaDomanda(model, index);
 	}
 
@@ -206,30 +182,28 @@ public class QuizController {
 		return "risultati";
 	}
 
-	
-	/****************BRANCH CLARK*****************/
-	@RequestMapping(value="/salvaDomanda", method=RequestMethod.POST)
+	/**************** BRANCH CLARK *****************/
+	@RequestMapping(value = "/salvaDomanda", method = RequestMethod.POST)
 	public String salvaDomanda(Model model, HttpServletRequest request) {
-		
-		// Prende gli attributi dalla view, per Domanda.
-		
-		String libro= request.getParameter("param_libro");
-		int id=Integer.parseInt( request.getParameter("param_id"));
-		int capitolo= Integer.parseInt(request.getParameter("param_capitolo"));
-		int idDomanda=Integer.parseInt( request.getParameter("param_nDomanda"));
-		String testo= request.getParameter("param_testo");
-		String[] risposte= request.getParameter("param_risposte").split(";");
-		String type= request.getParameter("param_type");
-		String risposteEsatte= request.getParameter("param_risposteEsatte");
-		String spiegazione= request.getParameter("param_spiegazione");
 
-		
-		List<Risposta> listRisposte= new ArrayList<Risposta>();
-		Risposta ris= null;
-		for(int i=0; i<risposte.length;i++) {
-			ris= new Risposta();
+
+		// Prende gli attributi dalla view, per Domanda.
+		String libro = request.getParameter("param_libro");
+		int id = Integer.parseInt(request.getParameter("param_id"));
+		int capitolo = Integer.parseInt(request.getParameter("param_capitolo"));
+		int idDomanda = Integer.parseInt(request.getParameter("param_nDomanda"));
+		String testo = request.getParameter("param_testo");
+		String[] risposte = request.getParameter("param_risposte").split(";");
+		String type = request.getParameter("param_type");
+		String risposteEsatte = request.getParameter("param_risposteEsatte");
+		String spiegazione = request.getParameter("param_spiegazione");
+
+		List<Risposta> listRisposte = new ArrayList<Risposta>();
+		Risposta ris = null;
+		for (int i = 0; i < risposte.length; i++) {
+			ris = new Risposta();
 			ris.setText(risposte[i]);
-			ris.setValue(Character.toString((char)(65+i)));
+			ris.setValue(Character.toString((char) (65 + i)));
 			listRisposte.add(ris);
 		}
 		
@@ -241,6 +215,7 @@ public class QuizController {
 		 l.setTitle(libro);
 		 domanda.setBooks(l);
 				
+
 		String dir;
 		
 //		System.out.println(domanda);
@@ -250,12 +225,13 @@ public class QuizController {
 			
 			if(libro1.getTitle().equalsIgnoreCase(domanda.getBook())) {
 //				System.out.println("ok"+libro1.getTitle());
+
 				domanda.getBooks().setDir(libro1.getDir());
 				domanda.getBooks().setIdBook(libro1.getIdBook());
 				break;
-				
+
 			}
-			
+
 		}
 		dir=domanda.getBooks().getDir();	
 		
@@ -269,13 +245,12 @@ public class QuizController {
 		File fileXML=new File(path);
 
 		Utils.aggiungiDomanda(domanda, fileXML);
-		
-//		Clark: per debug
-//		List <Domanda> listaDomande=Utils.readFileDomande(fileXML.getPath());
-//		for(Domanda d:listaDomande)
-//			System.out.println(d);
-	
-		
+
+		// Clark: per debug
+		// List <Domanda> listaDomande=Utils.readFileDomande(fileXML.getPath());
+		// for(Domanda d:listaDomande)
+		// System.out.println(d);
+
 		return "mainForm";
 	}
 	
@@ -283,6 +258,7 @@ public class QuizController {
 	@RequestMapping(value = "/aggiungiDomanda", method = RequestMethod.POST)
 	public String aggiungiDomanda(Model model) {
 		
+
 		model.addAttribute("listaLibri", listaLibriInXML);
 		model.addAttribute("totDomande", tot);
 		return "aggiungiDomanda";
@@ -292,6 +268,7 @@ public class QuizController {
 	@RequestMapping(value = "/aggiungiLibro", method = RequestMethod.POST)
 	public String aggiungiLibro(Model model,  @PathVariable("index") int index) {
 		
+
 			return "libro";
 		
 	}
@@ -299,11 +276,13 @@ public class QuizController {
 	public String visualizzaDomande(Model model,  @PathVariable("index") int index) {
 		model.addAttribute("listaLibri", listaLibriInXML);
 		model.addAttribute("totDomande", tot);
+
 		return "index";
 	}
 
 	
 	
+
 	/******************************************/
 	/////// REST
 
