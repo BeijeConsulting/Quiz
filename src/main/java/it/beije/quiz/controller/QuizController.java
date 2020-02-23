@@ -58,7 +58,7 @@ public class QuizController {
 
 	}	
 
-	@RequestMapping(value = "/creaLibro", method = RequestMethod.GET)
+	@RequestMapping(value = "/creaLibro", method = RequestMethod.POST)
 	public String creaLibro(Model model, HttpServletRequest request) {
 		Libro libro = new Libro();
 
@@ -72,20 +72,20 @@ public class QuizController {
 		libro.setNcapitoli(capitolo);
 		// libro.setDomanda(null);
 
-		File file = new File("/Quiz/domande/index.xml");
+		File file = new File("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
 		lista.add(libro);
 		try {
 			Utils.scriviSuXML(lista, file.getPath());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("IDLibro", IDlibro);
 		model.addAttribute("Titolo", titolo);
 		model.addAttribute("Capitolo", capitolo);
 		model.addAttribute("Domanda", domanda);
-
+		model.addAttribute("listaLibri", listaLibriInXML);
+		//TODO Creazione directory Del libro appena creato.
 		return "index";
 
 	}
@@ -266,14 +266,14 @@ public class QuizController {
 	}
 
 	@RequestMapping(value = "/aggiungiLibro", method = RequestMethod.POST)
-	public String aggiungiLibro(Model model,  @PathVariable("index") int index) {
+	public String aggiungiLibro(Model model) {
 		
 
 			return "libro";
 		
 	}
 	@RequestMapping(value = "/visualizzaDomande", method = RequestMethod.POST)
-	public String visualizzaDomande(Model model,  @PathVariable("index") int index) {
+	public String visualizzaDomande(Model model) {
 		model.addAttribute("listaLibri", listaLibriInXML);
 		model.addAttribute("totDomande", tot);
 
