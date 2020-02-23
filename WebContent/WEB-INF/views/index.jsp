@@ -8,41 +8,23 @@
 <title>Inizia il tuo Quiz OnLine</title>
 </head>
 <body>
-	<!--  	Questa è la pagina di ingresso al tuo Quiz Online<br>
-	<br>
-	Totale domande caricate : ${ totDomande }<br>
-	Tempo disponibile : ${ totDomande * 2 } minuti<br>
-	<br>
-	
-
-	<form action="./caricaDomande" method="post">
-
-		<input type="checkbox" id="book" name="dir1" value="oca_manual">
-		<label for="book">OCA Oracle Certified Associate Java SE 8 [2014]</label><br>
-		<input type="checkbox" id="book" name="dir2" value="oca_certification_guide_manning">
-		<label for="book"> OCA Java SE 8 Programmer I Certification Guide</label><br>
-		
-			<input type="submit" value="START">		
-	</form>
--->
-	<form action="./caricaDomande" method="post">
+	<form action="./caricadomande" method="post">
 
 		<c:forEach items="${listaLibri}" var="libro">
-
-			<input type="checkbox" id="book" name="dir">
-			<label for="book">${libro.getTitle()}</label>
-			<br>
+			<input type="checkbox" id="book" name="dirs" value="${libro.idBook}">
+			<label for="book">${libro.title}</label>
 		</c:forEach>
-		<input type="submit" value="START">
-	</form>
+		<input type="submit" value="START QUIZ!">
 
-	<c:forEach items="${listaLibri}" var="element">
-		
-			<input type="checkbox" id="book" name="dir">
-			<label for="book">${libro.getTitle()}</label>
-			`${element.title}`
-			
-		
-	</c:forEach>
+	</form>
+	<%
+		String select[] = request.getParameterValues("dirs");
+		if (select != null && select.length != 0) {
+			out.println("You have selected: ");
+			for (int i = 0; i < select.length; i++) {
+				out.println(select[i]);
+			}
+		}
+	%>
 </body>
 </html>

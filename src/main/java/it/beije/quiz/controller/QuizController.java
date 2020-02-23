@@ -31,24 +31,28 @@ public class QuizController {
 	private List<Domanda> domande = new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
-	private List<Libro> listaLibriInXML = new ArrayList<Libro>();
+	private static List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 
-	@RequestMapping(value = "/caricaDomande", method = RequestMethod.POST)
+	@RequestMapping(value = "/caricadomande", method = RequestMethod.POST)
 	public String loadDomande(Model model, HttpServletRequest req) {		
 		
+		Enumeration<String> stringa = req.getParameterNames();
+		System.out.println(stringa);
+		System.out.println("qui arrivo");
 		List<File> globalz = new ArrayList<File>();
-		
+//		
 		for(int i = 0; i < listaLibriInXML.size(); i++) {
 			String pathDir = req.getParameter("dir" + i);
 			globalz.addAll(Utils.selezionaFileDiInteresse(pathDir));
 		}		
-		
+//		
 		for(File file : globalz) {			
 			domande.addAll(Utils.readFileDomande(file.getPath()));
 		}
 		tot = domande.size(); 	
-		
+//		
 		return domanda(model, 0);
+		
 	}
 
 
@@ -102,14 +106,14 @@ public class QuizController {
 //			model.addAttribute("titleLibro"+i, listaLibriInXML.get(i).getTitle());
 //		}
 //		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
-//		model.addAttribute("listaLibri", listaLibriInXML);
-//		model.addAttribute("totDomande", tot);
+		model.addAttribute("listaLibri", listaLibriInXML);
+		model.addAttribute("totDomande", tot);
 
 // Clark: 
 //  
-//		return "index";
+		return "index";
 		
-		return "mainForm";
+//		return "mainForm";
 		
 	}
 
@@ -273,6 +277,7 @@ public class QuizController {
 	
 	@RequestMapping(value = "/seleziona/{index}", method = RequestMethod.POST)
 	public String aggiungiDomanda(Model model,  @PathVariable("index") int index) {
+		model.addAttribute("listaLibri", listaLibriInXML);
 		if(index==0)
 		return "aggiungiDomanda";
 		else if(index == 1)

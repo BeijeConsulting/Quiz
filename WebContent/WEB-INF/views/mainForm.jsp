@@ -9,7 +9,8 @@
 <body>
 	
 	<form action="./seleziona/0" method="POST">
-	<input type="submit"  value="Aggiungi Domanda">
+	<input type="submit"  value="fallo">
+	
 	</form>
 	
 	<form action="./seleziona/1" method="POST">
