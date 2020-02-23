@@ -7,18 +7,17 @@
 <title>Menu</title>
 </head>
 <body>
-	
-	<form action="./seleziona/0" method="POST">
-	<input type="submit"  value="fallo">
+	<form action="./aggiungiDomanda" method="POST">
+	<input type="submit"  value="Aggiungi Domande">
 	
 	</form>
 	
-	<form action="./seleziona/1" method="POST">
+	<form action="./aggiungiLibro" method="POST">
 	<input type="submit" value="Aggiungi Libro">
 	</form>
 	
 	
-	<form action="./seleziona/2" method="POST">
+	<form action="./visualizzaDomande" method="POST">
 	<input type="submit" value="Visualizza le domande">
 	</form>
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,12 +35,15 @@ Form per aggiungere una domanda al quiz
 		<label for="libro">Libro:</label> 
 		
 		<%--Clark:	Da sistemare, forse serve il metodo di lettura sull'index.xml per prender i libri e cambiare i parametri --%>
-		<select id="libro" name="libro" form="formDomande" >
-			<option  value="OCA Java Se 8 Programmer I Certification Guide">OCA Java Se 8 Programmer I Certification Guide</option>
-			<option value="OCA Oracle Certified Associate Java SE 8 [2014]">OCA Oracle Certified Associate Java SE 8 [2014]</option>
-		</select>
-		
+	
 		 <form action="./salvaDomanda" method="POST" id="formDomande">
+
+			<c:forEach items="${listaLibri}" var="libro">
+				<input type="radio" id="book" name="param_libro" value="${libro.title}">
+				<label for="book">${libro.title}</label>
+				<br>
+				<br>
+			</c:forEach>		 
 		 <br><br>
 		 Id domanda :  <input type="text" name="param_id" >
 		 

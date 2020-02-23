@@ -31,7 +31,7 @@ public class QuizController {
 	private List<Domanda> domande = new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
-	private static List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
+	private static List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 
 	@RequestMapping(value = "/caricadomande", method = RequestMethod.POST)
 	public String loadDomande(Model model, HttpServletRequest req) {		
@@ -106,14 +106,13 @@ public class QuizController {
 //			model.addAttribute("titleLibro"+i, listaLibriInXML.get(i).getTitle());
 //		}
 //		listaLibriInXML =  Utils.caricaLibriDaIndexXML("domande/index.xml");
-		model.addAttribute("listaLibri", listaLibriInXML);
-		model.addAttribute("totDomande", tot);
+	
 
 // Clark: 
 //  
-		return "index";
+//		return "index";
 		
-//		return "mainForm";
+		return "mainForm";
 		
 	}
 
@@ -213,6 +212,7 @@ public class QuizController {
 	public String salvaDomanda(Model model, HttpServletRequest request) {
 		
 		// Prende gli attributi dalla view, per Domanda.
+		
 		String libro= request.getParameter("param_libro");
 		int id=Integer.parseInt( request.getParameter("param_id"));
 		int capitolo= Integer.parseInt(request.getParameter("param_capitolo"));
@@ -235,16 +235,21 @@ public class QuizController {
 		
 		
 		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
-		
-		List <Libro> listaLibri=Utils.caricaLibriDaIndexXML("domande/index.xml");
-		
+		//Clark:
+		//Proposta creazione libro
+		 Libro l=new Libro();
+		 l.setTitle(libro);
+		 domanda.setBooks(l);
+				
 		String dir;
-		System.out.println(domanda.getBooks().getTitle());
-		for(Libro libro1:listaLibri) {
+		
+//		System.out.println(domanda);
+//		System.out.println(domanda.getBooks().getTitle());
+		
+		for(Libro libro1: listaLibriInXML) {
 			
 			if(libro1.getTitle().equalsIgnoreCase(domanda.getBook())) {
-				System.out.println(libro1.getTitle());
-				
+//				System.out.println("ok"+libro1.getTitle());
 				domanda.getBooks().setDir(libro1.getDir());
 				domanda.getBooks().setIdBook(libro1.getIdBook());
 				break;
@@ -254,7 +259,7 @@ public class QuizController {
 		}
 		dir=domanda.getBooks().getDir();	
 		
-		System.out.println(dir);
+//		System.out.println(dir);
 		//String directory=domanda.getBooks().getDir();
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
@@ -275,18 +280,27 @@ public class QuizController {
 	}
 	
 	
-	@RequestMapping(value = "/seleziona/{index}", method = RequestMethod.POST)
-	public String aggiungiDomanda(Model model,  @PathVariable("index") int index) {
+	@RequestMapping(value = "/aggiungiDomanda", method = RequestMethod.POST)
+	public String aggiungiDomanda(Model model) {
+		
 		model.addAttribute("listaLibri", listaLibriInXML);
-		if(index==0)
+		model.addAttribute("totDomande", tot);
 		return "aggiungiDomanda";
-		else if(index == 1)
+		
+	}
+
+	@RequestMapping(value = "/aggiungiLibro", method = RequestMethod.POST)
+	public String aggiungiLibro(Model model,  @PathVariable("index") int index) {
+		
 			return "libro";
 		
+	}
+	@RequestMapping(value = "/visualizzaDomande", method = RequestMethod.POST)
+	public String visualizzaDomande(Model model,  @PathVariable("index") int index) {
+		model.addAttribute("listaLibri", listaLibriInXML);
+		model.addAttribute("totDomande", tot);
 		return "index";
 	}
-	
-
 
 	
 	

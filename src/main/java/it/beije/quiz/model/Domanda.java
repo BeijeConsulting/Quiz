@@ -31,23 +31,20 @@ public class Domanda {
 		this.answerType = answerType;
 		this.risposte = risposte;
 		this.spiegazione = spiegazione;
-		Libro l = new Libro();
-		l.setTitle(book);
-		//Clark:
-		/* Proposta creazione libro
-		 * 
-		 *this.books=new Libro();
-		 *
-		 *books.setTitle(book);
-		 *
-		 *
-		 * 
-		 */
+	
+	
 		
 	}
 
 
 	
+
+	public void setBooks(Libro books) {
+		this.books = books;
+	}
+
+
+
 
 	public int getId() {
 		return id;
