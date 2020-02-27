@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,7 @@ public class QuizController {
 	private List<Libro> libri;
 	private int totale;
 	private List<Integer> numL= new ArrayList<Integer>();
+	HashMap<Libro,Boolean> books = new HashMap<Libro,Boolean>();
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -65,6 +67,7 @@ public class QuizController {
 				if(request.getParameter("libro"+(i+1))!=null) {
 					numL.add(i);
 					tot+=libri.get(i).getDomande().size();
+					books.put(libri.get(i), true);
 					}
 			}
 			System.out.println(domande.size());
@@ -88,7 +91,7 @@ public class QuizController {
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
 		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
 
-		model.addAttribute("totDomande", tot);
+		model.addAttribute("totDomande", totale);
 		model.addAttribute("ore", hours);
 		model.addAttribute("minuti", minutes);
 		model.addAttribute("secondi", seconds);
@@ -96,7 +99,11 @@ public class QuizController {
 
 	private String caricaDomanda(Model model, int index) {
 		if (index < totale) {
-			Domanda d = libri.get(0).getDomande().get(index);
+			
+			for(Libro i : books.keySet()) {
+				if(books.get(i)==true) {
+				
+			Domanda d = i.getDomande().get(index);
 			String risposta = d.getRispostaUtente();
 			//System.out.println("risposta : " + risposta);
 			if (risposta == null) {
@@ -107,7 +114,8 @@ public class QuizController {
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
 			model.addAttribute("risposte",d.getRisposte());
-			
+				}
+			}
 			return "domanda";
 		}
 		else {
