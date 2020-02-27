@@ -15,6 +15,10 @@ public class Risposta {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	@Override
+	public String toString() {
+		return "Risposta [value=" + value + ", text=" + text + "]";
+	}
 	public void setText(String text) {
 		this.text = text;
 	}

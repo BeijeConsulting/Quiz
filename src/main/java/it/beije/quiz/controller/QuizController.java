@@ -32,15 +32,16 @@ public class QuizController {
 	private int tot;
 	private LocalTime time = null;
 
-	private static List<Libro> listaLibriInXML = Utils
-			.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
+	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 
 	@RequestMapping(value = "/caricadomande", method = RequestMethod.POST)
 	public String loadDomande(Model model, HttpServletRequest req) {
-
+		
 		List<File> globalz = new ArrayList<File>();
 		//
-
+		domande=new ArrayList<Domanda>();
+		
+		
 		String select[] = req.getParameterValues("dirs");
 		if (select != null && select.length != 0) {
 			System.out.println("You have selected: ");
@@ -70,9 +71,10 @@ public class QuizController {
 		libro.setIdBook(IDlibro);
 		libro.setTitle(titolo);
 		libro.setNcapitoli(capitolo);
+		libro.setDir(IDlibro);
 		// libro.setDomanda(null);
 
-		File file = new File("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
+		File file = new File("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
 		lista.add(libro);
 		try {
@@ -85,6 +87,12 @@ public class QuizController {
 		model.addAttribute("Capitolo", capitolo);
 		model.addAttribute("Domanda", domanda);
 		model.addAttribute("listaLibri", listaLibriInXML);
+		
+		StringBuilder dir= new StringBuilder();
+		dir.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\").append(libro.getDir());
+		File file1=new File(dir.toString());
+		file1.mkdir();
+		
 		//TODO Creazione directory Del libro appena creato.
 		return "index";
 
@@ -127,6 +135,9 @@ public class QuizController {
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
 			model.addAttribute("risposte", d.getRisposte());
+			System.out.println(d.getRisposte());
+			model.addAttribute("tot", domande.size());
+
 
 			return "domanda";
 		} else {
@@ -148,7 +159,7 @@ public class QuizController {
 		StringBuilder builder = new StringBuilder();
 		while (enums.hasMoreElements()) {
 			String name = enums.nextElement();
-			// System.out.println(name + " : " + request.getParameter(name));
+			 System.out.println(name + " : " + request.getParameter(name));
 			if (name.startsWith("rspt_")) {
 				builder.append(request.getParameter(name));
 			}
@@ -258,8 +269,8 @@ public class QuizController {
 	@RequestMapping(value = "/aggiungiDomanda", method = RequestMethod.POST)
 	public String aggiungiDomanda(Model model) {
 		
-
-		model.addAttribute("listaLibri", listaLibriInXML);
+		 
+		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml"));
 		model.addAttribute("totDomande", tot);
 		return "aggiungiDomanda";
 		

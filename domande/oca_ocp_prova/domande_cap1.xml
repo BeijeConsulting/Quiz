@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="ciao" chapter="1" id="1" question="1">
+		<testo>Testo1</testo>
+		<risposte type="checkbox">
+			<risposta value="A">risposta</risposta>
+			<risposta value="B"> risposta1</risposta>
+			<risposta value="C"> risposta2</risposta>
+		</risposte>
+		<risposteEsatte>AB</risposteEsatte>
+		<spiegazione>Spiegazioneeee qua:
+			http://localhost:13865/Quiz/salvaDomanda</spiegazione>
+	</domanda>
+</domande>
