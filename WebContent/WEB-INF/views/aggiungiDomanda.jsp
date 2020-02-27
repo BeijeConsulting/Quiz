@@ -16,21 +16,6 @@
 Form per aggiungere una domanda al quiz
 </h1>
 
-
-
-<%--
-<jsp:useBean id="domanda" class="it.beije.quiz.model.Domanda" scope="session" />
-
-<jsp:setProperty property="libro" name="domanda" />
-<jsp:setProperty property="param_id" name="domanda" />
-<jsp:setProperty property="param_capitolo" name="domanda" />
-<jsp:setProperty property="param_nDomanda" name="domanda" />
-<jsp:setProperty property="param_testo" name="domanda" />
-<jsp:setProperty property="param_nDomanda" name="domanda" />
-<jsp:setProperty property="param_type" name="domanda" />
-<jsp:setProperty property="param_risposteEsatte" name="domanda"/>
- --%>
-
 <h3>Inserisci i seguenti dati:</h3>
 		<label for="libro">Libro:</label> 
 		
@@ -51,25 +36,24 @@ Form per aggiungere una domanda al quiz
 		
 		Numero della domanda: <br>
 		 <input type="text" name="param_nDomanda" style="align:center"><br><br>
-		
-		<table style="width:100%; border:0px">
-			 <div style = "width:100%"> 
-			<div style= "width:50%;float:left">
-			
-			
-			Testo: <br> <textarea name="param_testo"
-						form="formDomande" cols="50" rows="10"></textarea>
+
+			<table style="width: 100%; border: 0px">
+				<div style="width: 100%">
+					<div style="width: 50%; float: left">
+
+
+						Testo: <br>
+						<textarea name="param_testo" form="formDomande" cols="50"
+							rows="10"></textarea>
+					</div>
+					<div style="width: 50%; float: right">
+						<br> <input type="button" onclick="inserisciRisposta()" value="inserisci risposta">
+						<br> <input type="button" onclick="rimuoviRisposta()" value="rimuovi risposta">						
+						<div id="insertBook"></div>
+					</div>
 				</div>
-				<div style="width:50%; float:right">
-				
-				
-				Inserisci le risposte divise da ";": <br>
-					<textarea name="param_risposte" form="formDomande" cols="50" rows="10"></textarea><br>
-			</div>
-			
-			</div>
-		</table>
-		<br>
+			</table>
+			<br>
 		
 			
 			
@@ -95,5 +79,36 @@ Form per aggiungere una domanda al quiz
 
 
 </div>
+
+<script type="text/javascript">
+var i=0;
+function inserisciRisposta(){
+	
+	insert=document.createElement('input');
+	insert.setAttribute("type","text");
+	insert.setAttribute("name","risposta"+i);
+	insert.setAttribute("id","idRisposta"+i);
+
+	document.getElementById("insertBook").appendChild(insert);
+	
+	i++;
+}
+
+function rimuoviRisposta(){
+
+	var x = document.getElementById("insertBook").lastChild;
+	console.log(x);
+	var id= x.getAttribute("id");
+	document.getElementById(id).remove();
+	--i;
+}
+
+
+
+
+
+</script>
+
+
 </body>
 </html>
