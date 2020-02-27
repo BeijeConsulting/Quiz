@@ -71,14 +71,10 @@ public class QuizController {
 			
 			}
 			    
-		tot = domandetot.size();    
+		tot = domandetot.size();  
+		
 		System.out.println(tot);	    
-//			for(int i=0; i<libri.size();i++) {
-//				if(request.getParameter("libro"+(i+1))!=null) {
-//					tot+=libri.get(i).getDomande().size();
-//				}	
-//			}
-				
+
 		totale=tot;
 		
 		model.addAttribute("totDomande", totale);
