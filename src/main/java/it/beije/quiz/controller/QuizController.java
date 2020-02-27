@@ -68,8 +68,9 @@ public class QuizController {
 					}
 			}
 			System.out.println(domande.size());
-		model.addAttribute("totDomande", tot);
-		totale=tot;
+			totale=tot;
+		model.addAttribute("totDomande", totale);
+		
 		tot=0;
 		
 		return "totaleDomande";
@@ -94,21 +95,22 @@ public class QuizController {
 	}
 
 	private String caricaDomanda(Model model, int index) {
-		for(int k = 0; k<numL.size();k++) 
-			if (index < totale) {
-			Domanda d = libri.get(numL.get(k)).getDomande().get(index);
+		if (index < totale) {
+			Domanda d = libri.get(0).getDomande().get(index);
 			String risposta = d.getRispostaUtente();
-			// System.out.println("risposta : " + risposta);
+			//System.out.println("risposta : " + risposta);
 			if (risposta == null) {
 				risposta = "";
 			}
 			model.addAttribute("index", index);
-			model.addAttribute("testoDomanda", Utils.formattaTesto(d.getTesto()));
+			model.addAttribute("testoDomanda",Utils.formattaTesto(d.getTesto()));
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
-			model.addAttribute("risposte", d.getRisposte());
+			model.addAttribute("risposte",d.getRisposte());
+			
 			return "domanda";
-		} else {
+		}
+		else {
 			return "riepilogo";
 		}
 	}
@@ -134,6 +136,7 @@ public class QuizController {
 			}
 		}
 		libri.get(1).getDomande().get(index).setRispostaUtente(builder.toString());
+		
 
 		setTimer(model);
 
