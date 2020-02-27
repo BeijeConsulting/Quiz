@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,12 +32,14 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 
-	private List<Domanda> domande1=new ArrayList<Domanda>();
+	private List<Domanda> domande1= new ArrayList<Domanda>();
+	private List<Domanda> domandetot= new ArrayList<Domanda>();
 	private int tot;
 	private LocalTime time = null;
 	private List<Libro> libri;
 	private int totale;
-	private List<Integer> numL= new ArrayList<Integer>();
+	private List<Boolean> check = new ArrayList<Boolean>();
+	private int k = 0;
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -48,28 +51,38 @@ public class QuizController {
 	
 	@RequestMapping(value = "/totaleDomande", method = RequestMethod.GET)
 	public String init(Model model,HttpSession session,HttpServletResponse response, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
-		ArrayList<ArrayList<Domanda>> domande = new ArrayList<ArrayList<Domanda>>();
-		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml"));
+		
+		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan10\\git\\Quiz\\domande\\index.xml"));
 
-			    for(int i=0;i<libri.size();i++) {
-				File folder = new File("C:\\Users\\Padawan07\\git\\Quiz\\domande\\" + libri.get(i).getDir());
-				System.out.println(folder.getAbsolutePath());
-				for (final File fileEntry : folder.listFiles()) {
-					System.out.println(fileEntry.getName());
-					domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
-				}
-				libri.get(i).setDomande(domande1);
-				domande1=new ArrayList<Domanda>();
-			}
-			for(int i=0; i<=libri.size();i++) {
+		for(int i=0;i<libri.size();i++) {
+			File folder = new File("C:\\Users\\Padawan10\\git\\Quiz\\domande\\" + libri.get(i).getDir());
+			//System.out.println(folder.getAbsolutePath());
+			for (final File fileEntry : folder.listFiles()) {
+				//System.out.println(fileEntry.getName());
+				domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if(request.getParameter("libro"+(i+1))!=null) {
-					numL.add(i);
-					tot+=libri.get(i).getDomande().size();
-					}
+					domandetot.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+				}
 			}
-			System.out.println(domande.size());
-		model.addAttribute("totDomande", tot);
+				
+			libri.get(i).setDomande(domande1);
+				
+			domande1 = new ArrayList<Domanda>();
+			
+			}
+			    
+		tot = domandetot.size();    
+		System.out.println(tot);	    
+//			for(int i=0; i<libri.size();i++) {
+//				if(request.getParameter("libro"+(i+1))!=null) {
+//					tot+=libri.get(i).getDomande().size();
+//				}	
+//			}
+				
 		totale=tot;
+		
+		model.addAttribute("totDomande", totale);
+		
 		tot=0;
 		
 		return "totaleDomande";
@@ -87,30 +100,35 @@ public class QuizController {
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
 		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
 
-		model.addAttribute("totDomande", tot);
+		model.addAttribute("totDomande", totale);
 		model.addAttribute("ore", hours);
 		model.addAttribute("minuti", minutes);
 		model.addAttribute("secondi", seconds);
 	}
 
 	private String caricaDomanda(Model model, int index) {
-		for(int k = 0; k<numL.size();k++) 
-			if (index < totale) {
-			Domanda d = libri.get(numL.get(k)).getDomande().get(index);
-			String risposta = d.getRispostaUtente();
-			// System.out.println("risposta : " + risposta);
-			if (risposta == null) {
-				risposta = "";
+			
+		if (index < totale) {
+		
+				Domanda d = domandetot.get(index);
+				String risposta = d.getRispostaUtente();
+				// System.out.println("risposta : " + risposta);
+				if (risposta == null) {
+					risposta = "";
+				}
+				model.addAttribute("index", index);
+				model.addAttribute("testoDomanda", Utils.formattaTesto(d.getTesto()));
+				model.addAttribute("rispUtente", risposta);
+				model.addAttribute("answerType", d.getAnswerType());
+				model.addAttribute("risposte", d.getRisposte());
+				
+				return "domanda";
+				
+			} else {
+				
+				return "riepilogo";
+				
 			}
-			model.addAttribute("index", index);
-			model.addAttribute("testoDomanda", Utils.formattaTesto(d.getTesto()));
-			model.addAttribute("rispUtente", risposta);
-			model.addAttribute("answerType", d.getAnswerType());
-			model.addAttribute("risposte", d.getRisposte());
-			return "domanda";
-		} else {
-			return "riepilogo";
-		}
 	}
 
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
@@ -133,7 +151,8 @@ public class QuizController {
 				builder.append(request.getParameter(name));
 			}
 		}
-		libri.get(1).getDomande().get(index).setRispostaUtente(builder.toString());
+		
+		domandetot.get(index).setRispostaUtente(builder.toString());
 
 		setTimer(model);
 
