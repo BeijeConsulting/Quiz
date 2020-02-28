@@ -11,6 +11,7 @@ a:hover{color:#333;text-decoration:underline;}
 		/*** Header ***/
 		#header			{width:960px;padding:20px;background:#21aabd;}
 		#header h1	{color:#fff;}
+		#header h4	{color:#fff;}
 			
 		.item-evi		{width:280px;padding:20px;float:left;}
 		/*** Nav ***/	

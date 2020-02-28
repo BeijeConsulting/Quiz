@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file="/WEB-INF/views/style.css"%>
 <meta charset="ISO-8859-1">
 <title>Inserimento nuova domanda</title>
 </head>
@@ -92,4 +93,63 @@
 </form>
 
 </body>
+<script>
+
+function valida() {
+	
+	// Variabili associate ai campi del modulo
+	var bookSelection = document.NewDomanda.bookSelection.value;
+	var chapter = document.NewDomanda.chapter.value;
+	var question= document.NewDomanda.question.value;
+	var chapterString = document.NewDomanda.chapterString.value;
+	var testo = document.NewDomanda.testo.value;
+	var answerType= document.NewDomanda.answerType.value;
+	if ((bookSelection == "") || (bookSelection == "undefined")) {
+		alert("Devi selezionare un opzione");
+		document.NewDomanda.bookSelection.focus();
+		return false;
+	}
+	if ((isNaN(chapter)) || (chapter == "") || (chapter == "undefined")) {
+		alert("Devi inserire il capitolo, attenzione deve essere numerico!");
+		document.NewDomanda.chapter.value; = "";
+		document.NewDomanda.chapter.focus();
+		return false;
+	}
+	
+	//var espr_reg = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+([a-zA-Z0-9]{2,})+$/;
+	if ((isNaN(question)) || (question == "") || (question == "undefined")) {
+		alert("Devi inserire il numero della domanda, attenzione deve essere numerico!");
+		document.NewDomanda.question.value; = "";
+		document.NewDomanda.question.focus();
+		return false;
+	}
+	if ((chapterString == "") || (chapsterString == "undefined") ) {
+		alert("Scegli il file");
+		document.NewDomanda.chapterString.focus();
+		return false;
+	}
+	if ((testo == "") || (testo == "undefined") ) {
+		alert("Inserisci il testo della domanda");
+		document.NewDomanda.testo.focus();
+		return false;
+	}
+	if ((answerType == "") || (answerType == "undefined")) {
+		alert("Devi selezionare il tipo di risposta");
+		document.NewDomanda.answerType.focus();
+		return false;
+	}
+	
+	document.invio.action = "#"; 
+	document.invio.submit();
+	
+}
+	
+</script>
+
+
+
+
+
+
+
 </html>
