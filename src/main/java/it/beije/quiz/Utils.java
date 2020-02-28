@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +22,9 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
-	public static final String PATH_INDEX_BOOKS = "C:\\Users\\Padawan06\\git\\QuizQ\\domande\\index.xml";
+
+	public static final String PATH_INDEX_BOOKS = Libro.LIB_PATH+"index.xml";
+
 	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
@@ -148,5 +154,116 @@ public class Utils {
 		
 		return id;
 	}
+	
+	private static Libro createLibro(Libro l) {	 
+		
+        for(Libro presente : readFileLibri()) {
+        	if(presente.getIdBook().equals(l.getIdBook()) && presente.getNameDir().equals(l.getNameDir())
+        			&& presente.getTitle().equals(l.getTitle())) 
+        		return presente;
+        	if(presente.getIdBook().equals(l.getIdBook()) || presente.getNameDir().equals(l.getNameDir())) 
+        		return null;
+        }
+        //crea una nuova directory
+		File file = new File(Libro.LIB_PATH+l.getNameDir());
+		if(!file.mkdir()) return null;
+		
+		//scrive su index.xml
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        File fileIndex = new File(PATH_INDEX_BOOKS);
+	        Document document = builder.parse(fileIndex);
+	        Element docElement = document.getDocumentElement();
+	        Element elLibro = document.createElement("quiz");
+	        elLibro.setAttribute("id_book", l.getIdBook());
+	        elLibro.setAttribute("title", l.getTitle());
+	        elLibro.setAttribute("dir", l.getNameDir());
+	        docElement.appendChild(elLibro);
+	        
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(fileIndex);
+			transformer.transform(source, result);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	
+		return l;
+	}
+	
+	public static void caricaDomande(Libro l, String nomeFile, Domanda... elDomande) {
+		
+		try {
+			l = createLibro(l);
+			
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        File file = new File(Libro.LIB_PATH+l.getNameDir()+"\\"+nomeFile+".xml");
+	        Document document;
+	        Element docElement;
+			int idDomanda = 1;
+	        if(file.exists()) {
+	        	
+				document = builder.parse(file);
+		        docElement = document.getDocumentElement();
+		        List<Element> dom = Utils.getChildElements(docElement);
+		        idDomanda = Integer.parseInt(dom.get(dom.size()-1).getAttribute("id")) +1;
+		        //ulteriore controllo
+		        for(Element e : dom) {
+		        	if(Integer.parseInt(e.getAttribute("id"))==idDomanda) idDomanda++;
+		        }
+			}else {
+				document = builder.newDocument();
+		        docElement = document.createElement("domande");
+		        document.appendChild(docElement);
+			}
+	        
+	        for(Domanda d : elDomande) {
+	        	Element domanda = document.createElement("domanda");
+	        	domanda.setAttribute("id", idDomanda+"");
+	        	domanda.setAttribute("book", d.getBook());
+	        	domanda.setAttribute("chapter", d.getChapter()+"");
+	        	domanda.setAttribute("question", d.getQuestion()+"");
+	        	docElement.appendChild(domanda);
+	        	
+	        	Element testo = document.createElement("testo");
+	        	testo.setTextContent(d.getTesto());
+	        	domanda.appendChild(testo);
+	        	
+	        	Element risposte = document.createElement("risposte");
+	        	risposte.setAttribute("type", d.getAnswerType());
+	        	for(Risposta r : d.getRisposte()) {
+	        		Element risposta = document.createElement("risposta");
+	        		risposta.setAttribute("value", r.getValue());
+	        		risposta.setTextContent(r.getText());
+	        		risposte.appendChild(risposta);
+	        	}
+	        	domanda.appendChild(risposte);
+	        	
+	        	Element risposteEsatte = document.createElement("risposteEsatte");
+	        	risposteEsatte.setTextContent(d.getRispostaEsatta());
+	        	domanda.appendChild(risposteEsatte);
+	        	
+	        	Element spiegazione = document.createElement("spiegazione");
+	        	spiegazione.setTextContent(d.getSpiegazione());
+	        	domanda.appendChild(spiegazione);
+	        }
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(file);
+			transformer.transform(source, result);
+		}catch(NullPointerException e) {
+			System.out.println("Errore nella creazione della directory");
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	
 
 }

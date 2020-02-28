@@ -11,8 +11,12 @@
 <meta charset="ISO-8859-1">
 <title>Inizia il tuo Quiz OnLine</title>
 </head>
-<body> 
 
+<body>
+
+
+
+<h5> ${newDomandaCreata }</h5> 
 <div id="container">
 	<div id="header"><h1>Questa è la pagina di ingresso al tuo Quiz Online <title>Inizia il tuo Quiz OnLine</title></h1><br></div> <img src="https://www.metodoin.it/new/wp-content/uploads/2013/11/java-logo.jpg"  height="200" width="300">
 	<br>
@@ -20,6 +24,7 @@
 	<p>Tempo disponibile : ${ totDomande * 2 } minuti</p><br></h2></div>
 	<br>
 	
+
 	<div id="content">
 		<div class="articolo">
 		<h2>Seleziona i libri da utilizzare:<br>
@@ -42,5 +47,7 @@
 	
 	<div id="footer"><p>Footer</p></div>
 </div>
+
+
 </body>
 </html>
