@@ -54,7 +54,7 @@ public class QuizController {
 		boolean scelta = false;
 		tot = 0;
 		domande.clear();
-		String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
+		String baseDirectory = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
 		List<Libro> libri = Utils.getLibri();
 		
 		for(int l = 1; l <= libri.size(); l++) {
