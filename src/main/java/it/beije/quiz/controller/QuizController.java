@@ -41,34 +41,21 @@ public class QuizController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		System.out.println("Home Page Requested, locale = " + locale);
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate);
-//
-//		return "home";
-//	}
-
-//	@RequestMapping(value = "/user", method = RequestMethod.POST)
-//	public String user(@Validated User user, Model model) {
-//		System.out.println("User Page Requested");
-//		model.addAttribute("userName", user.getUserName());
-//		return "user";
-//	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model, HttpServletRequest request) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
+
+		String[] checkboxValues=null;
+		List<Libro> libri= Utils.readFileLibri();
+
 		
 		libri = Utils.readFileLibri();
+
 		for(Libro l : libri)
 			System.out.println(l.getIdBook());
 		
+
 		if (request.getParameterValues("bookSelection")!=null) {
 			checkboxValues = request.getParameterValues("bookSelection");
 			
@@ -96,6 +83,7 @@ public class QuizController {
 		domande.size();
 		}
 				
+
 		model.addAttribute("libri", libri);
 		model.addAttribute("totDomande", tot);
 		model.addAttribute("newDomandaCreata","");

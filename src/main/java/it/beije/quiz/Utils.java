@@ -22,7 +22,9 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+
 	public static final String PATH_INDEX_BOOKS = Libro.LIB_PATH+"index.xml";
+
 	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
