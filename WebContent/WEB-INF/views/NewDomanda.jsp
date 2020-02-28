@@ -10,12 +10,26 @@
 <title>Inserimento nuova domanda</title>
 </head>
 
+<script>
+var numeroRisposte=0;
+
+function newTB() {
+
+	var element = document.createElement("input");
+	element.setAttribute("type", "text");
+	element.setAttribute("id", "r"+numeroRisposte++);
+
+	var b =document.getElementById("but");
+	console.log(b);
+	document.body.appendChild(element, b);
+
+}
+</script>
+
 <body>
 
-
-<form action="./${pathController}" method="post">
+<form id="id" action="./${pathController}" method="post">
 	
-
 	<h4>INSERIRE IL LIBRO..</h4>
 		<c:forEach var="scelte" items="${libri}">
 			<input type="radio" value="${scelte.idBook}" name="bookSelection"  ${scelte.checked}>${scelte.title}<br>
@@ -44,15 +58,12 @@
 		
 		
 	<h4>ELENCO RISPOSTE</h4>
-		Quante risposte? <input type="number" name="numeroRisposte" placeholder="Inserire solo numeri.." 
-			<c:if test="${numeroRisposte > 0 }"> value="${numeroRisposte}" disabled="disabled" </c:if>><br><br>	
-			
-	<% int i = 0; %>
-	<c:if test="${numeroRisposte > 0}">
-		<c:forEach begin="0" end="${numeroRisposte-1}">
-				RISPOSTA<%=i+1%>: <input type="text" name="r<%=i++%>"><br>
-		</c:forEach>	
-	</c:if>
+	
+		<input id="but" type="button" value="Nuova risposta" onclick="javascript:newTB();"/><br>
+	
+	
+	
+	
 	
 	<c:if test="${numeroRisposte > 0}">
 		<c:if test="${bookTypeButton==true}">
