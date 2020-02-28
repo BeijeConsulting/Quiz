@@ -2,4 +2,5 @@
 <index>
 	<quiz id_book="oca_manual" title="OCA Oracle Certified Associate Java SE 8 [2014]" dir="oca_manual"/>
 	<quiz id_book="oca_certification_guide_manning" title="OCA Java SE 8 Programmer I Certification Guide" dir="oca_certification_guide_manning"/>
+	<quiz id_book="nostro_libro" title="Libro Dinal" dir="nostro_libro"/>
 </index>
