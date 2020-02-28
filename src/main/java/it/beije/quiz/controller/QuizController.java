@@ -47,7 +47,7 @@ public class QuizController {
 		System.out.println("index Page Requested : " + request.getRequestURI());
 
 		String[] checkboxValues=null;
-		List<Libro> libri= Utils.readFileLibri();
+//		List<Libro> libri= Utils.readFileLibri();
 
 		
 		libri = Utils.readFileLibri();
@@ -143,17 +143,18 @@ public class QuizController {
 			checkboxValues = request.getParameterValues("bookSelection");
 		
 			for(String v : checkboxValues) {
+				System.out.println(v);
 				for(Libro l : libri) {
-					if(l.getIdBook().equals(v)) 
+					if(l.getIdBook().equals(v)) {
 						domande.addAll(l.caricaQuestions());
+						System.out.println(domande.toString());
+					}
 				}
 			}
 			tot = domande.size();
 		}
 		
 		setTimer(model);
-		
-		
 		
 		return caricaDomanda(model, index);
 	}

@@ -17,6 +17,7 @@
 
 
 <h5> ${newDomandaCreata }</h5> 
+
 <div id="container">
 	<div id="header"><h1>Questa è la pagina di ingresso al tuo Quiz Online <title>Inizia il tuo Quiz OnLine</title></h1><br></div> <img src="https://www.metodoin.it/new/wp-content/uploads/2013/11/java-logo.jpg"  height="200" width="300">
 	<br>
@@ -37,7 +38,7 @@
 			
 		<input type="submit" id="button" value="START"><br>
 		</form> 
-		<form action="./NewDomanda" method="get">
+		<form action="./NewDomanda" method="GET">
 			<input type="submit" id="button2" value="INSERISCI NUOVA DOMANDA" width="100px">
 		</form>
 		</h2>
