@@ -32,7 +32,7 @@ public class QuizController {
 	private int tot;
 	private LocalTime time = null;
 
-	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 
 	@RequestMapping(value = "/caricadomande", method = RequestMethod.POST)
 	public String loadDomande(Model model, HttpServletRequest req) {
@@ -74,7 +74,7 @@ public class QuizController {
 		libro.setDir(IDlibro);
 		// libro.setDomanda(null);
 
-		File file = new File("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+		File file = new File("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
 		lista.add(libro);
 		try {
@@ -89,7 +89,7 @@ public class QuizController {
 		model.addAttribute("listaLibri", listaLibriInXML);
 		
 		StringBuilder dir= new StringBuilder();
-		dir.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\").append(libro.getDir());
+		dir.append("C:\\Users\\Gabriele\\git\\Quiz\\domande\\").append(libro.getDir());
 		File file1=new File(dir.toString());
 		file1.mkdir();
 		
@@ -267,7 +267,7 @@ public class QuizController {
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
 		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
-		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
+		String path="C:\\Users\\Gabriele\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
 		
 		File fileXML=new File(path);
 
@@ -286,7 +286,7 @@ public class QuizController {
 	public String aggiungiDomanda(Model model) {
 		
 		 
-		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml"));
+		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml"));
 		model.addAttribute("totDomande", tot);
 		return "aggiungiDomanda";
 		
