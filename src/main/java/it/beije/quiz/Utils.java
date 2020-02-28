@@ -19,7 +19,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import it.beije.cilacap.rubrica.Contatto;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
