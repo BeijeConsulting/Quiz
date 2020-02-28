@@ -9,8 +9,9 @@ public class Libro {
 	private String title;
 	private String dir;
 	private List<Domanda> domande;
+	private boolean valore=false;
 	
-	
+	public boolean setValore(boolean valore) {return valore;}
 	public List<Domanda> getDomande() {
 		return domande;
 	}
@@ -34,6 +35,11 @@ public class Libro {
 	}
 	public void setDir(String dir) {
 		this.dir = dir;
+	}
+	@Override
+	public String toString() {
+		return "Libro [id_book=" + id_book + ", title=" + title + ", dir=" + dir + ", domande=" + domande + ", valore="
+				+ valore + "]";
 	}
 	
 	
