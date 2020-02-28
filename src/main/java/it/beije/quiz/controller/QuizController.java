@@ -204,7 +204,13 @@ public class QuizController {
 		int capitolo = Integer.parseInt(request.getParameter("param_capitolo"));
 		int idDomanda = Integer.parseInt(request.getParameter("param_nDomanda"));
 		String testo = request.getParameter("param_testo");
+		
+		
+		
 		String[] risposte = request.getParameter("param_risposte").split(";");
+		
+		
+		
 		String type = request.getParameter("param_type");
 		String risposteEsatte = request.getParameter("param_risposteEsatte");
 		String spiegazione = request.getParameter("param_spiegazione");

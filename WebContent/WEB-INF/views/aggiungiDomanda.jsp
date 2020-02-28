@@ -47,9 +47,11 @@ Form per aggiungere una domanda al quiz
 							rows="10"></textarea>
 					</div>
 					<div style="width: 50%; float: right">
-						<br> <input type="button" onclick="inserisciRisposta()" value="inserisci risposta">
-						<br> <input type="button" onclick="rimuoviRisposta()" value="rimuovi risposta">						
+						<br> <input type="button" onclick="inserisciRisposta()" value="inserisci risposta" id="aggiungiRisp">
+						<br> <input type="button" onclick="rimuoviRisposta()" value="rimuovi risposta" id="rimuoviRisp">		
+						<br> <input type="button" onclick="bloccaRisposta()" value="blocca risposta">									
 						<div id="insertBook"></div>
+						<div type="hidden" name="n_risposte"  id="nRisp"></div> 
 					</div>
 				</div>
 			</table>
@@ -103,7 +105,18 @@ function rimuoviRisposta(){
 	--i;
 }
 
+function bloccaRisposta(){
+	var btnAgg = document.getElementById("aggiungiRisp");
+	var btnRim = document.getElementById("rimuoviRisp");
 
+	btnAgg.remove();
+	btnRim.remove();
+	
+	var divRisp = document.getElementById("nRisp");
+	divRisp.setAttribute("value",i);
+
+	
+}
 
 
 
