@@ -19,6 +19,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import it.beije.cilacap.rubrica.Contatto;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
@@ -100,14 +101,37 @@ public class Utils {
 		return arrayDomande;
 	}
 
-	public static void writeDomandeXML(String domanda, String pathfile) throws Exception {
+	public static void writeDomandeXML(Domanda domanda, String pathfile) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 
 		Document document = builder.newDocument(); // creazione nuovo documento XML
-		Element docElement = document.createElement("domanda"); // creazione elemento radice 
-		document.appendChild(docElement); // appendo l'elemento radice al documento XML
+		Element domandaradice = document.createElement("domande");
+		document.appendChild(domandaradice); // appendo l'elemento radice al documento XML
+		Element domandaxml = document.createElement("domanda"); // creazione elemento radice 
+		domandaxml.setAttribute("id", domanda.getId());
+		domandaxml.setAttribute("book", domanda.getBook());
+		domandaxml.setAttribute("chapter", domanda.getChapter());
+		domandaxml.setAttribute("question", domanda.getQuestion());
+		domandaradice.appendChild(domandaxml);
+		
+		Element testoxml = document.createElement("testo");
+		testoxml.setTextContent(domanda.getTesto());
+		domandaxml.appendChild(testoxml);
+		
+		Element risposte = document.createElement("risposte");
+		risposte.setAttribute("type", domanda.getAnswerType());
+		domandaxml.appendChild(risposte);
+		
+		for (Risposta r : domanda.getRisposte()) {
+			Element rispostaxml = document.createElement("risposta");
+			rispostaxml.setAttribute("value", r.getValue());
+			rispostaxml.setTextContent(r.getText());
+			risposte.appendChild(rispostaxml);
+		}
+		
 
+		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
