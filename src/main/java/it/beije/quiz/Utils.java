@@ -125,7 +125,7 @@ public class Utils {
 	// Lettura file index.xml e popolamento lista di Libro
 	public static List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
 
-		File fileXml = new File("C:\\Users\\Padawan11\\git\\Quiz\\domande\\index.xml");
+		File fileXml = new File("C:\\Users\\Padawan04\\git\\Quiz\\domande\\index.xml");
 
 		String filePath = new File("").getAbsolutePath();
 		System.out.println("File: " + filePath);

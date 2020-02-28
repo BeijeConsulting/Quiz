@@ -54,7 +54,7 @@ public class QuizController {
 		boolean scelta = false;
 		tot = 0;
 		domande.clear();
-		String baseDirectory = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
+		String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
 		List<Libro> libri = Utils.getLibri();
 		
 		for(int l = 1; l <= libri.size(); l++) {
@@ -164,7 +164,7 @@ public class QuizController {
 		String answerType =  request.getParameter("typeQuestion");
 		
 		List<Risposta> listaRisposte = new ArrayList<Risposta>();
-		int i = 0;
+		int i = 1;
 		while(request.getParameter("risposta" + i) != null) {
 			Risposta r = new Risposta();
 			r.setValue(request.getParameter("valueRisposta" + i));
