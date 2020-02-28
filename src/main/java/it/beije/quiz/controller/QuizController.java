@@ -206,23 +206,33 @@ public class QuizController {
 		String testo = request.getParameter("param_testo");
 		
 		
+		int nRisposte= Integer.parseInt(request.getParameter("n_risposte"));
 		
-		String[] risposte = request.getParameter("param_risposte").split(";");
 		
+		List <String> risposte1= new ArrayList<>();
+		for(int i=0; i<nRisposte;i++) {
+			risposte1.add(request.getParameter("risposta"+i));
+		}
+		
+		List<Risposta> listRisposte = new ArrayList<Risposta>();
+		
+		Risposta ris = null;
+		for (int i = 0; i < risposte1.size(); i++) {
+			
+			ris = new Risposta();
+			ris.setText(risposte1.get(i));
+			ris.setValue(Character.toString((char) (65 + i)));
+			listRisposte.add(ris);
+			
+		}
 		
 		
 		String type = request.getParameter("param_type");
 		String risposteEsatte = request.getParameter("param_risposteEsatte");
 		String spiegazione = request.getParameter("param_spiegazione");
 
-		List<Risposta> listRisposte = new ArrayList<Risposta>();
-		Risposta ris = null;
-		for (int i = 0; i < risposte.length; i++) {
-			ris = new Risposta();
-			ris.setText(risposte[i]);
-			ris.setValue(Character.toString((char) (65 + i)));
-			listRisposte.add(ris);
-		}
+		
+		
 		
 		
 		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);

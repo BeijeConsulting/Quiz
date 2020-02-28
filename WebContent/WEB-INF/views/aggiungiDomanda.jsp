@@ -49,9 +49,8 @@ Form per aggiungere una domanda al quiz
 					<div style="width: 50%; float: right">
 						<br> <input type="button" onclick="inserisciRisposta()" value="inserisci risposta" id="aggiungiRisp">
 						<br> <input type="button" onclick="rimuoviRisposta()" value="rimuovi risposta" id="rimuoviRisp">		
-						<br> <input type="button" onclick="bloccaRisposta()" value="blocca risposta">									
-						<div id="insertBook"></div>
-						<div type="hidden" name="n_risposte"  id="nRisp"></div> 
+						<div id="insertBook"></div> <br>
+						<input type="hidden" name="n_risposte" value="0" id="nRisp">
 					</div>
 				</div>
 			</table>
@@ -71,7 +70,7 @@ Form per aggiungere una domanda al quiz
 		
 		 Spiegazione:<br><textarea cols="50" rows="10" name="param_spiegazione"></textarea><br><br> 
 		
-		 <input type="submit" value="Salva">
+		 <input type="submit" onclick="bloccaRisposta(); compilaCampi()" value="Salva">
 	</form>
 	
 	
@@ -90,6 +89,10 @@ function inserisciRisposta(){
 	insert.setAttribute("type","text");
 	insert.setAttribute("name","risposta"+i);
 	insert.setAttribute("id","idRisposta"+i);
+	var lettere=[];
+	
+	insert.setAttribute("placeholder",String.fromCharCode(65 + i)+' :');
+
 
 	document.getElementById("insertBook").appendChild(insert);
 	
@@ -113,10 +116,19 @@ function bloccaRisposta(){
 	btnRim.remove();
 	
 	var divRisp = document.getElementById("nRisp");
-	divRisp.setAttribute("value",i);
-
+	divRisp.setAttribute("value",""+i);
+	
+	
 	
 }
+
+function controllaCampi(){
+	var argx='/^[0-9]*$/';
+	var capitoli= docuent.getElementById("param_capitolo").value;
+	var res=capitoli.match(argx);
+	window.alert(res);
+}
+
 
 
 
