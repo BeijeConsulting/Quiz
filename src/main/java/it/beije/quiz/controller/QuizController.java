@@ -34,7 +34,7 @@ public class QuizController {
 	private List<Domanda> domande=new ArrayList<>();
 	private int tot ;
 	private LocalTime time = null;
-	List<Libro> libri=new ArrayList<>();
+	static List<Libro> libri=new ArrayList<>();
 	String[] checkboxValues;
 	private int globalNumeroRisposte;
 
@@ -47,7 +47,7 @@ public class QuizController {
 		System.out.println("index Page Requested : " + request.getRequestURI());
 
 		String[] checkboxValues=null;
-		List<Libro> libri= Utils.readFileLibri();
+//		List<Libro> libri= Utils.readFileLibri();
 
 		
 		libri = Utils.readFileLibri();

@@ -38,7 +38,7 @@
 			
 		<input type="submit" id="button" value="START"><br>
 		</form> 
-		<form action="./NewDomanda" method="get">
+		<form action="./NewDomanda" method="GET">
 			<input type="submit" id="button2" value="INSERISCI NUOVA DOMANDA" width="100px">
 		</form>
 		</h2>
