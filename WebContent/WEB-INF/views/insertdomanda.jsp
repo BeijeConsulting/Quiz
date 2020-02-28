@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="it.beije.quiz.Utils" %>
+<%@ page import="it.beije.quiz.model.Libro" %>
+<%@ page import="java.util.List" %>
+ 
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,6 +92,7 @@ function createNewResponse() {
 </head>
 <body>
 
+<% List<Libro> listaLibri = Utils.getLibri(); %>
 
 <div class="divInsertQuestion">
 <h2>INSERIMENTO DOMANDE</h2>
@@ -97,8 +103,12 @@ function createNewResponse() {
 			</tr>
 			<tr>
 				<td>Book:&nbsp;</td><td><select name="bookName" style="border-radius: 6px; padding: 5px; width: 600px; padding: 5px; border: 1px solid #000;">
-										  <option value="OCA Oracle Certified Associate Java SE 8 [2014]">OCA Oracle Certified Associate Java SE 8 [2014]</option>
-										  <option value="OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809">OCA - OCP Practice Tests Exam 1Z0-808 and Exam 1Z0-809</option>
+										 <% for(Libro l : listaLibri){
+											 out.print("<option value=\"" + l.getTitle() + "\">" + l.getTitle() + "</option>"); 
+										 }
+										 %>
+										 
+										  
 										</select></td>
 			</tr>
 			<tr>
