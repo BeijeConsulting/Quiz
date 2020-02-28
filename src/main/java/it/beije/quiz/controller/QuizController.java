@@ -164,7 +164,7 @@ public class QuizController {
 		String answerType =  request.getParameter("typeQuestion");
 		
 		List<Risposta> listaRisposte = new ArrayList<Risposta>();
-		int i = 0;
+		int i = 1;
 		while(request.getParameter("risposta" + i) != null) {
 			Risposta r = new Risposta();
 			r.setValue(request.getParameter("valueRisposta" + i));
@@ -177,9 +177,17 @@ public class QuizController {
 		String spiegazione =  request.getParameter("spiegazione");
 		
 		domanda = new Domanda(id, book, chapter, question, testo, answerType, listaRisposte, rispostaEsatta, spiegazione);
-
+		
+		List<Libro> libri = Utils.getLibri();
+		String dirLibro = "";
+		for(Libro l : libri) {
+			if(l.getTitle().equals(book)) {
+				dirLibro = l.getDir();
+				break;
+			}
+		}
 		// scrivere - modificare xml
-		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan11\\git\\Quiz\\domande\\" + "nostro_libro" + "\\domande_cap" + chapter + ".xml");
+		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan11\\git\\Quiz\\domande\\" + dirLibro + "\\domande_cap" + chapter + ".xml");
 		
 		return "risultatoinserimento";
 	}

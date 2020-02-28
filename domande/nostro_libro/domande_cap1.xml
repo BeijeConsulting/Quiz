@@ -1,1 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domanda/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="Libro Dinal" chapter="1" id="1" question="1">
+		<testo>Che dici</testo>
+		<risposte type="checkbox" />
+	</domanda>
+	<domanda book="Libro Dinal" chapter="1" id="2" question="2">
+		<testo>awdaw</testo>
+		<risposte type="checkbox" />
+	</domanda>
+	<domanda book="Libro Dinal" chapter="1" id="3" question="3">
+		<testo>wadaw</testo>
+		<risposte type="checkbox" />
+	</domanda>
+	<domanda book="Libro Dinal" chapter="1" id="3" question="3">
+		<testo>wadaw</testo>
+		<risposte type="checkbox" />
+	</domanda>
+	<domanda book="Libro Dinal" chapter="1" id="3" question="3">
+		<testo>awdwadaw</testo>
+		<risposte type="checkbox" />
+	</domanda>
+	<domanda book="Libro Dinal" chapter="1" id="3" question="3">
+		<testo>adwd</testo>
+		<risposte type="checkbox">
+			<risposta value="A">awd</risposta>
+			<risposta value="B">Che Dici</risposta>
+		</risposte>
+	</domanda>
+	<domanda book="Libro Dinal" chapter="1" id="4" question="4">
+		<testo>dawda</testo>
+		<risposte type="checkbox">
+			<risposta value="A">adw</risposta>
+			<risposta value="B">awd</risposta>
+		</risposte>
+	</domanda>
+</domande>
