@@ -147,10 +147,41 @@ public class QuizController {
 		return caricaDomanda(model, index);
 	}
 	
-	@RequestMapping(value = "insertdomanda", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertdomanda", method = RequestMethod.GET)
 	public String domanda1(Model model) {
-
 		return "insertdomanda";
+	}
+	
+	@RequestMapping(value = "/addnewdomanda", method = RequestMethod.POST)
+	public String writeNewQuestion(HttpServletRequest request) {
+		// popolare bean Domanda
+		Domanda domanda;
+		String id = request.getParameter("numDomanda");
+		String book = request.getParameter("bookName");
+		String chapter =  request.getParameter("numCapitolo");
+		String question =  request.getParameter("numDomanda");
+		String testo =  request.getParameter("testoDomanda");
+		String answerType =  request.getParameter("typeQuestion");
+		
+		List<Risposta> listaRisposte = new ArrayList<Risposta>();
+		int i = 0;
+		while(request.getParameter("risposta" + i) != null) {
+			Risposta r = new Risposta();
+			r.setValue(request.getParameter("valueRisposta" + i));
+			r.setText(request.getParameter("risposta" + i));
+			listaRisposte.add(r);
+			i++;
+		}
+		
+		String rispostaEsatta =  request.getParameter("risposteEsatte");
+		String spiegazione =  request.getParameter("spiegazione");
+		
+		domanda = new Domanda(id, book, chapter, question, testo, answerType, listaRisposte, rispostaEsatta, spiegazione);
+
+		// scrivere - modificare xml
+		Utils.writeDomandeXML(domanda, "\\domande\\" + book + "\\domande_cap" + chapter + ".xml");
+		
+		return "risultatoinserimento";
 	}
 
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)

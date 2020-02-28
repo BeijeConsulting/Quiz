@@ -96,7 +96,7 @@ function createNewResponse() {
 
 <div class="divInsertQuestion">
 <h2>INSERIMENTO DOMANDE</h2>
-	<form action="CreateDomanda" method="post">
+	<form action="addnewdomanda" method="post">
 		<table >
 			<tr>
 				<td>Numero domanda:&nbsp;</td><td><input class="number" type="number" placeholder="Es: 3" name="numDomanda" min="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Capitolo:&nbsp;<input type="text" placeholder="Es: 3" name="numCapitolo" min="1"/></td>
