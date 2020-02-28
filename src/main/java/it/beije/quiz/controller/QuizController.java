@@ -153,7 +153,7 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/addnewdomanda", method = RequestMethod.POST)
-	public String writeNewQuestion(HttpServletRequest request) {
+	public String writeNewQuestion(HttpServletRequest request) throws Exception {
 		// popolare bean Domanda
 		Domanda domanda;
 		String id = request.getParameter("numDomanda");
@@ -177,9 +177,17 @@ public class QuizController {
 		String spiegazione =  request.getParameter("spiegazione");
 		
 		domanda = new Domanda(id, book, chapter, question, testo, answerType, listaRisposte, rispostaEsatta, spiegazione);
-
+		
+		List<Libro> libri = Utils.getLibri();
+		String dirLibro = "";
+		for(Libro l : libri) {
+			if(l.getTitle().equals(book)) {
+				dirLibro = l.getDir();
+				break;
+			}
+		}
 		// scrivere - modificare xml
-		Utils.writeDomandeXML(domanda, "\\domande\\" + book + "\\domande_cap" + chapter + ".xml");
+		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan11\\git\\Quiz\\domande\\" + dirLibro + "\\domande_cap" + chapter + ".xml");
 		
 		return "risultatoinserimento";
 	}

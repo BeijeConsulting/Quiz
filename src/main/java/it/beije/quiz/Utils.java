@@ -100,19 +100,49 @@ public class Utils {
 		return arrayDomande;
 	}
 
-	public static void writeDomandeXML(String domanda, String pathfile) throws Exception {
+	public static void writeDomandeXML(Domanda domanda, String pathfile) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-
-		Document document = builder.newDocument(); // creazione nuovo documento XML
-		Element docElement = document.createElement("domanda"); // creazione elemento radice 
-		document.appendChild(docElement); // appendo l'elemento radice al documento XML
-
+		File f = new File(pathfile);
+		Document document = null;
+		Element domandaradice = null;
+		
+		if(f.exists()) {
+			document = builder.parse(f);
+			domandaradice = document.getDocumentElement();
+		} else {
+			document = builder.newDocument();  // creazione nuovo documento XML
+			domandaradice = document.createElement("domande");
+		}
+	
+		Element domandaxml = document.createElement("domanda"); // creazione elemento radice 
+		domandaxml.setAttribute("id", domanda.getId());
+		domandaxml.setAttribute("book", domanda.getBook());
+		domandaxml.setAttribute("chapter", domanda.getChapter());
+		domandaxml.setAttribute("question", domanda.getQuestion());
+		
+		Element testoxml = document.createElement("testo");
+		testoxml.setTextContent(domanda.getTesto());
+		domandaxml.appendChild(testoxml);
+		
+		Element risposte = document.createElement("risposte");
+		risposte.setAttribute("type", domanda.getAnswerType());
+		System.out.println("Get Domande:" + domanda.getRisposte());
+		for (Risposta r : domanda.getRisposte()) {
+			Element rispostaxml = document.createElement("risposta");
+			rispostaxml.setAttribute("value", r.getValue());
+			rispostaxml.setTextContent(r.getText());
+			risposte.appendChild(rispostaxml);
+		}
+		
+		domandaxml.appendChild(risposte);
+		domandaradice.appendChild(domandaxml);
+		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource source = new DOMSource(document);
-		StreamResult result = new StreamResult(new File(pathfile));
+		StreamResult result = new StreamResult(pathfile);
 
 		// Output to console for testing
 		// StreamResult result = new StreamResult(System.out);
