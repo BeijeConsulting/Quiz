@@ -14,8 +14,8 @@ public class Libro {
 
 
 
-	public static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
-
+	//public static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+    public static final String LIB_PATH="C:\\Users\\Padawan06\\git\\QuizQ\\domande\\";
 //	public static final String LIB_PATH=new File("").getAbsolutePath()+"\\domande\\";
 
 

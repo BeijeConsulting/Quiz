@@ -87,7 +87,7 @@
 	</c:if>
 	
 	<c:if test="${bookType == true}">
-		<input type="submit" value="INSERISCI LE RISPOSTE">
+		<input type="submit" value="INSERISCI LE RISPOSTE" onclick="valida()">
 	</c:if>
 
 </form>
