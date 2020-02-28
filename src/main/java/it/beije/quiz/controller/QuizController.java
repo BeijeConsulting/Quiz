@@ -147,7 +147,7 @@ public class QuizController {
 		return caricaDomanda(model, index);
 	}
 	
-	@RequestMapping(value = "insertdomanda", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertdomanda", method = RequestMethod.GET)
 	public String domanda1(Model model) {
 
 		return "insertdomanda";
