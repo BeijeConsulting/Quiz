@@ -100,7 +100,7 @@ public class Utils {
 		return arrayDomande;
 	}
 
-	public static void writeDomandeXML(String domanda, String pathfile) throws Exception {
+	public static void writeDomandeXML(Domanda domanda, String pathfile) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 
