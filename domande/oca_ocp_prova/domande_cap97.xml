@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="ciao" chapter="97" id="5" question="97">
+		<testo>testo di prova serio...</testo>
+		<risposte type="radio">
+			<risposta value="A">risp 1</risposta>
+			<risposta value="B">risp2</risposta>
+			<risposta value="C">rispz1</risposta>
+		</risposte>
+		<risposteEsatte>C</risposteEsatte>
+		<spiegazione>spiegazione poco seria.</spiegazione>
+	</domanda>
+</domande>

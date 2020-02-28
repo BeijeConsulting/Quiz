@@ -114,6 +114,7 @@ function compilaForm(){
 }
 
 
+
 function valida(){
 	var capitoli= document.myForm.param_capitolo.value;
 	var id=document.myForm.param_id.value;
@@ -121,7 +122,32 @@ function valida(){
 	var testo= document.myForm.param_testo.value;
 	var spiegazione= document.myForm.param_spiegazione.value;
 	var libro= document.myForm.param_libro.value;
+	
+	var listaRisposte=[];
+	for(;i>0;){
+		console.log(i);
+		var a="idRisposta"+(--i);
+		listaRisposte.push( document.getElementById(a).value);
+		//listaRisposte.push(document.myForm.a.value);
+		console.log(i);
+//	console.log(document.myForm.a.value);
+	}
+	
 
+	while(listaRisposte.length!=0){
+		var risposta=listaRisposte.pop();
+		console.log("dentro for controllo");
+		console.log(risposta);
+		if(risposta=="" || risposta=="undefined" ||risposta==null || risposta.length<=0){
+			console.log("dovrebbe uscire");
+			alert("Tutti i campi delle risposte devono essere inserite!!!");
+			return false;
+		}
+	}
+		
+		
+		
+		
 	if((libro== "") || (libro == "undefined")) {
 		
 		alert("Devi inserire libro");
