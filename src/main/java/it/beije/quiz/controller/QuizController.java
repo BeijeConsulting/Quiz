@@ -33,6 +33,12 @@ public class QuizController {
 	private LocalTime time = null;
 
 	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
+	
+	
+	@RequestMapping(value = "/logo", method = RequestMethod.GET)
+	   public String redirect() {
+	      return "redirect:/pages/logo.png";
+	   }
 
 	@RequestMapping(value = "/caricadomande", method = RequestMethod.POST)
 	public String loadDomande(Model model, HttpServletRequest req) {

@@ -6,7 +6,7 @@
 <style type="text/css">
 @charset "ISO-8859-1";
 
-html,body{height:100%;}
+html,body{height:100%; overflow:hidden; margin:0; padding:0;}
 body{background: #eee;}
 
 /*-----------------------------
@@ -15,10 +15,15 @@ general
 
 input[type=submit] {
     border-radius: 5px;
-    border: 0; 
-    margin: 15px;  
+    border: none;     
     font-family: Tahoma;
-    background: #f4f4f4;
+    background: #4CAF50;
+	color: black;
+	padding: 16px 32px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	    
     /* Old browsers */
     background: -moz-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
     /* FF3.6+ */
@@ -34,6 +39,7 @@ input[type=submit] {
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#ededed', GradientType=0);
     /* IE6-9 */
+    
 }
 
 .animate{
@@ -50,7 +56,7 @@ a:hover{color: #1af3a4;}
 Header
 -------------------------*/
 .header{background: #333}
-.header__logo{color:#fff; float:left;display: block;padding:20px;text-decoration: none;}
+.header__logo{color:#fff; float:left;display: block;padding:21.5pt;text-decoration: none; background-image: url("/Quiz/logo"); background-size: contain;}
 .header__menu{float:right;margin:0; padding:0;}
 .header__menu__item{display: inline-block;}
 .header__menu__item a{color:#fff;display: block;padding:20px;text-decoration: none}
@@ -75,15 +81,7 @@ Cover
 .cover--single{height: 50%}
 .cover--single h1{font-size: 42px;}
 
-/*-----------------------------
-Cards
------------------------------*/
 
-.cards{max-width: 1200px; margin: 40px auto}
-.card{width: 30%; margin:0 1.5%; background: #fff;float:left;}
-.card__image{width:100%; height: auto;}
-.card__copy{padding:5px 20px;}
-.card__copy h3{margin-bottom:0}
 
 /*-----------------------------
 Banner
@@ -173,7 +171,7 @@ Clearfix
 </head>
 <body>
 	<header class="header clearfix">
-		<a href="#" class="header__logo">Logo</a> <a href=""
+		<a href="#" class="header__logo"></a> <a href=""
 			class="header__icon-bar"> <span></span> <span></span> <span></span>
 		</a>
 		<ul class="header__menu">
@@ -199,8 +197,11 @@ Clearfix
 	</section>
 	
 	<footer class="footer">
-		Copyright - 2020 TeamClaRiGa_Design&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<form action="nostriContatti.jsp" method="POST">
-	<input type="submit" value="chi siamo">
+		Copyright - 2020 TeamClaRiGa_Design
+		
+		<form action="nostriContatti.jsp" method="POST" >		
+		<input type="submit" value="chi siamo" style="float:right;">
+		</form>
 	</footer>
 	
 	
