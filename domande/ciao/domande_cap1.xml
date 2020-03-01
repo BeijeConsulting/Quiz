@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="ciao" chapter="1" id="1" question="1"><testo>testo111</testo><risposte type="radio"/><risposteEsatte>A</risposteEsatte><spiegazione>spiegazione1 12 13 14</spiegazione></domanda><domanda book="ciao" chapter="1" id="2" question="123"><testo>testo 123</testo><risposte type="checkbox"/><risposteEsatte>AB</risposteEsatte><spiegazione>risp 12345</spiegazione></domanda><domanda book="ciao" chapter="1" id="12" question="123"><testo>4eestrosateadfd 143</testo><risposte type="checkbox"/><risposteEsatte>AB</risposteEsatte><spiegazione>SDOFDJSAIOJFASDFòLJAJ</spiegazione></domanda><domanda book="ciao" chapter="1" id="51" question="5151"><testo>sssfafasfasfsfsfsafsfs</testo><risposte type="radio"/><risposteEsatte>A</risposteEsatte><spiegazione>fdssdsdsacssfadadscasdws</spiegazione></domanda><domanda book="ciao" chapter="1" id="51" question="5151"><testo>sssfafasfasfsfsfsafsfs</testo><risposte type="radio"/><risposteEsatte>A</risposteEsatte><spiegazione>fdssdsdsacssfadadscasdws</spiegazione></domanda><domanda book="ciao" chapter="1" id="546" question="789"><testo>testfocsdrsdfsadsfadf</testo><risposte type="radio"><risposta value="A">qwereresr</risposta><risposta value="B">dfghnfdfghn</risposta><risposta value="C">qwerfgfdsdgf</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>dxfcghjklfcgvhbjkfcgvhbjklfcgvbhjnk</spiegazione></domanda><domanda book="ciao" chapter="1" id="1997" question="1998"><testo>Testo domanda, da visualizzare</testo><risposte type="radio"><risposta value="A">risposta 1</risposta><risposta value="B">risposta 10</risposta><risposta value="C">risposta 9 </risposta><risposta value="D">risposta 8</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>SPIEGAZIONE CHE DEVE FUNZIONARE PORRRO</spiegazione></domanda><domanda book="ciao" chapter="1" id="1998" question="2000"><testo>What is the result of the following class? (Choose all that apply)&#13;
+			&#13;
+			1: public class _C {&#13;
+			2: 	private static int $;&#13;
+			3: 	public static void main(String[] main) {&#13;
+			4: 		String a_b;&#13;
+			5: 		System.out.print($);&#13;
+			6: 		System.out.print(a_b);&#13;
+			7: } }</testo><risposte type="checkbox"><risposta value="A">Compiler error on line 1</risposta><risposta value="B">Compiler error on line 2</risposta><risposta value="C">Compiler error on line 4</risposta><risposta value="D">Compiler error on line 5</risposta><risposta value="E">Compiler error on line 6</risposta><risposta value="F">0null</risposta><risposta value="G">nullnull</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>Option E is correct because local variables require assignment before referencing&#13;
+them. Option D is incorrect because class and instance variables have default values			and allow referencing. a_b defaults to a null value. Options A, B, and C are incorrect&#13;
+			because identifiers may begin with a letter, underscore, or dollar sign. Options F and&#13;
+			G are incorrect because the code does not compile. If a_b was an instance variable, the&#13;
+			code would compile and output 0null. For more information, see Chapter 1.</spiegazione></domanda><domanda book="ciao" chapter="1" id="2000" question="2000"><testo>TESTO1&#13;
+TESTO2&#13;
+TESTO3&#13;
+TESTO4&#13;
+TESTO ACCAPOBIANGOO&#13;
+TESTO</testo><risposte type="radio"><risposta value="A">AXX</risposta><risposta value="B">DSAX</risposta><risposta value="C">DCADAD</risposta><risposta value="D">DADSC</risposta><risposta value="E">CADSXD</risposta><risposta value="F">CDSFGSDDSDGEGFDGDFSD</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>SPIEGAZIONE&#13;
+SPIEGAZIONE&#13;
+SPIEGA&#13;
+ZIONE</spiegazione></domanda></domande>

@@ -29,10 +29,10 @@ import it.beije.quiz.model.Risposta;
 public class QuizController {
 
 	private List<Domanda> domande = new ArrayList<Domanda>();
-	private int tot;
+	private static int tot;
 	private LocalTime time = null;
 
-	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
+	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 	
 	
 	
@@ -77,7 +77,7 @@ public class QuizController {
 		libro.setDir(IDlibro);
 		// libro.setDomanda(null);
 
-		File file = new File("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
+		File file = new File("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
 		lista.add(libro);
 		try {
@@ -210,7 +210,7 @@ public class QuizController {
 		
 		
 		int nRisposte= Integer.parseInt(request.getParameter("n_risposte"));
-		
+		System.out.println(nRisposte);
 		
 		List <String> risposte1= new ArrayList<>();
 		for(int i=0; i<nRisposte;i++) {
@@ -229,6 +229,7 @@ public class QuizController {
 			
 		}
 		
+		System.out.println(listRisposte);
 		
 		String type = request.getParameter("param_type");
 		String risposteEsatte = request.getParameter("param_risposteEsatte");
@@ -270,7 +271,7 @@ public class QuizController {
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
 		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
-		String path="C:\\Users\\Gabriele\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
+		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
 		
 		File fileXML=new File(path);
 
@@ -289,7 +290,7 @@ public class QuizController {
 	public String aggiungiDomanda(Model model) {
 		
 		 
-		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml"));
+		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml"));
 		model.addAttribute("totDomande", tot);
 		return "aggiungiDomanda";
 		
@@ -304,7 +305,9 @@ public class QuizController {
 	}
 	@RequestMapping(value = "/visualizzaDomande", method = RequestMethod.POST)
 	public String visualizzaDomande(Model model) {
+		
 		model.addAttribute("listaLibri", listaLibriInXML);
+		
 		model.addAttribute("totDomande", tot);
 
 		return "index";

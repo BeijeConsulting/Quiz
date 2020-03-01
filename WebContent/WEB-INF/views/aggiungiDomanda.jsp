@@ -99,13 +99,13 @@
 
 	<script type="text/javascript">
 		var i = 0;
+		var j = i;
 		function inserisciRisposta() {
 
 			insert = document.createElement('input');
 			insert.setAttribute("type", "text");
 			insert.setAttribute("name", "risposta" + i);
 			insert.setAttribute("id", "idRisposta" + i);
-			var lettere = [];
 
 			insert.setAttribute("placeholder", String.fromCharCode(65 + i)
 					+ ' :');
@@ -113,24 +113,27 @@
 			document.getElementById("insertBook").appendChild(insert);
 
 			i++;
+			j=i;
 		}
 
 		function rimuoviRisposta() {
 
 			var x = document.getElementById("insertBook").lastChild;
-			console.log(x);
+			//console.log(x);
 			var id = x.getAttribute("id");
 			document.getElementById(id).remove();
 			--i;
+			j=i;
 		}
 
 		function compilaForm() {
 
 			var divRisp = document.getElementById("nRisp");
-			divRisp.setAttribute("value", "" + i);
+			divRisp.setAttribute("value", "" + j);
 		}
 
 		function valida() {
+			
 			var capitoli = document.myForm.param_capitolo.value;
 			var id = document.myForm.param_id.value;
 			var nDomanda = document.myForm.param_nDomanda.value;
@@ -139,12 +142,13 @@
 			var libro = document.myForm.param_libro.value;
 
 			var listaRisposte = [];
+		
 			for (; i > 0;) {
-				console.log(i);
+				//console.log(i);
 				var a = "idRisposta" + (--i);
 				listaRisposte.push(document.getElementById(a).value);
 				//listaRisposte.push(document.myForm.a.value);
-				console.log(i);
+				//console.log(i);
 				//	console.log(document.myForm.a.value);
 			}
 
@@ -154,7 +158,7 @@
 				console.log(risposta);
 				if (risposta == "" || risposta == "undefined"
 						|| risposta == null || risposta.length <= 0) {
-					console.log("dovrebbe uscire");
+					//console.log("dovrebbe uscire");
 					alert("Tutti i campi delle risposte devono essere inserite!!!");
 					return false;
 				}
@@ -163,13 +167,13 @@
 			if ((libro == "") || (libro == "undefined")) {
 
 				alert("Devi inserire libro");
-				console.log(testo);
+				//console.log(testo);
 				return false;
 			}
 			if ((capitoli == "") || (capitoli == "undefined")
 					|| isNaN(capitoli)) {
 				alert("Devi inserire capitolo");
-				console.log(capitoli);
+				//console.log(capitoli);
 				return false;
 
 			}

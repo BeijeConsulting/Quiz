@@ -28,7 +28,7 @@ public class Utils {
 		File file = null;
 		List<File> filez = new ArrayList<File>();
 		if (dir != null) {
-			String path = "C:\\Users\\Gabriele\\git\\Quiz\\domande\\" + dir;
+			String path = "C:\\Users\\Padawan14\\git\\Quiz\\domande\\" + dir;
 			int i = 1;
 			if (dir.equals("oca_manual")) {
 				file = new File(path + "\\domande_Assessment_Test.xml");
