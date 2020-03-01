@@ -32,7 +32,7 @@ public class QuizController {
 	private static int tot;
 	private LocalTime time = null;
 
-	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+	private   List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 	
 	
 	
@@ -77,7 +77,7 @@ public class QuizController {
 		libro.setDir(IDlibro);
 		// libro.setDomanda(null);
 
-		File file = new File("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+		File file = new File("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml");
 		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
 		lista.add(libro);
 		try {
@@ -271,7 +271,7 @@ public class QuizController {
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
 		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
-		String path="C:\\Users\\Padawan14\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
+		String path="C:\\Users\\Gabriele\\git\\Quiz\\domande\\"+dir+"\\domande_cap"+capitolo+".xml";
 		
 		File fileXML=new File(path);
 
@@ -290,7 +290,7 @@ public class QuizController {
 	public String aggiungiDomanda(Model model) {
 		
 		 
-		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml"));
+		model.addAttribute("listaLibri",Utils.caricaLibriDaIndexXML("C:\\Users\\Gabriele\\git\\Quiz\\domande\\index.xml"));
 		model.addAttribute("totDomande", tot);
 		return "aggiungiDomanda";
 		
