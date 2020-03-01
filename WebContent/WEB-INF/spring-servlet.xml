@@ -27,7 +27,7 @@
 	 <mvc:resources mapping = "/pages/**" location = "/WEB-INF/pages/" />
 	  <mvc:resources mapping = "/pages/**" location = "/WEB-INF/css/" />
 	  <mvc:resources mapping = "/pages/**" location = "/WEB-INF/scripts/" />
-	   <mvc:resources mapping="/domande/**" location="/domande/"/>
+	  <mvc:resources location="/domande/" mapping="/domande/**" />
 	 
 	 <annotation-driven />
 </beans:beans>
