@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="ciao" chapter="7" id="90" question="3">
+		<testo>paiwkdpiawdkoiawjoiawjdawjdjoaijd</testo>
+		<risposte type="radio" />
+		<risposteEsatte>AB</risposteEsatte>
+		<spiegazione>adkwadlalw,dla,wd,awld,</spiegazione>
+	</domanda>
+	<domanda book="ciao" chapter="7" id="42" question="63">
+		<testo>testo prova</testo>
+		<risposte type="checkbox" />
+		<risposteEsatte>AB</risposteEsatte>
+		<spiegazione>spiegazione multilanguage</spiegazione>
+	</domanda>
+</domande>
