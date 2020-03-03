@@ -86,7 +86,7 @@ public class Utils {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
 	        	String id_ = domanda.getAttribute("id");
 		        String book = domanda.getAttribute("book");
-		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
+		        String chapter = domanda.getAttribute("chapter");
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
 		        String testo = contenutoDomanda.get(0).getTextContent();
 		        String id = generateId(chapter, question, book);
@@ -143,7 +143,7 @@ public class Utils {
 		return rispostaEsatta.length() == 0;
 	}
 	
-	public static String generateId(int chapter, int question, String book) {
+	public static String generateId(String chapter, int question, String book) {
 		
 		String id="";
 		

@@ -9,7 +9,7 @@ public class Domanda {
 
 	private String id;
 	private String book;
-	private int chapter;
+	private String chapter;
 	private int question;
 	private String testo;
 	private String answerType;
@@ -18,7 +18,7 @@ public class Domanda {
 	private String rispostaEsatta;
 	private String spiegazione;
 	
-	public Domanda(String id, String book, int chapter, int question, String testo,
+	public Domanda(String id, String book, String chapter, int question, String testo,
 			String answerType, List<Risposta> risposte,
 			String rispostaEsatta, String spiegazione) {
 		this.id = id;
@@ -36,7 +36,7 @@ public class Domanda {
 		return id;
 	}
 	
-	public int getChapter() {
+	public String getChapter() {
 		return chapter;
 	}
 	

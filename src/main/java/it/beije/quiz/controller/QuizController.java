@@ -277,7 +277,7 @@ public class QuizController {
 
 		
 		String book = request.getParameter("book");
-		int chapter = Integer.parseInt(request.getParameter("chapter"));
+		String chapter = request.getParameter("chapter");
 		int question = Integer.parseInt(request.getParameter("question"));
 		String testo = request.getParameter("testo");
 		String answerType = request.getParameter("answerType");

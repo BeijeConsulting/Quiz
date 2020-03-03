@@ -8,11 +8,15 @@ import it.beije.quiz.model.Libro;
 
 public class Cont {
 	
-	private List<Domanda> listaDomande = new ArrayList<>();
+	private static ArrayList<Domanda> listaDomande;
 	
-	public Cont() {
-		Libro l = Utils.readFileLibri().get(0);
-		listaDomande = l.caricaQuestions();
+	public static ArrayList<Domanda> getInstance() {
+		if(listaDomande==null) listaDomande = Utils.readFileLibri().get(0).caricaQuestions();
+		return listaDomande;
+	}
+	
+	public static void close() {
+		listaDomande = null;
 	}
 
 }
