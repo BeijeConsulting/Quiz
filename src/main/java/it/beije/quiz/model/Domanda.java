@@ -2,9 +2,12 @@ package it.beije.quiz.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Domanda {
-	
+	@JsonIgnore
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
+	@JsonIgnore
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
 	private String id;
@@ -14,6 +17,7 @@ public class Domanda {
 	private String testo;
 	private String answerType;
 	private List<Risposta> risposte;
+	@JsonIgnore
 	private String rispostaUtente = "";
 	private String rispostaEsatta;
 	private String spiegazione;
