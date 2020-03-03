@@ -63,11 +63,11 @@ public class Libro {
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-			Pattern pat = Pattern.compile("^.*\\.[xml]$");
-			Matcher m = pat.matcher(listOfFiles[i].getName());
-			if (listOfFiles[i].isFile() && m.matches()) {
+//			Pattern pat = Pattern.compile("^.*\\.[xml]$");
+//			Matcher m = pat.matcher(listOfFiles[i].getName());
+//			if (listOfFiles[i].isFile() && m.matches()) {
 				listaD.addAll(Utils.readFileDomande(listOfFiles[i].getPath()));
-			}
+//			}
 		}
 		
 		
