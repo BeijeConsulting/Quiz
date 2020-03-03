@@ -18,16 +18,19 @@ import it.beije.quiz.model.Libro;
 
 @RestController
 public class ControllerRest {
+
 	
 	//TODO: ds testare
-	@RequestMapping(value="/caricaDomanda/idDomanda", method=RequestMethod.GET)
+	@RequestMapping(value="/caricaDomanda/{idDomanda}", method=RequestMethod.GET)
 	public @ResponseBody Domanda getDomanda(@PathVariable String idDomanda){
 		List <Domanda> listaDomande= new ArrayList<Domanda>();
 		List<File> listaFile= Utils.selezionaFileDiInteresse(Utils.getDirectory(idDomanda));
 		
 		for(File f: listaFile) {
+
 			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
 		}
+
 		
 		for(Domanda d: listaDomande)
 			if(d.getId().equals(idDomanda))
@@ -35,55 +38,69 @@ public class ControllerRest {
 		
 		return null;
 		
+
 	}
 
-	@RequestMapping(value="/caricaDomande/{dirLibro}/{capitolo}", method=RequestMethod.GET)
-	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro,@PathVariable int capitolo){
-		List <Domanda> listaDomande= new ArrayList<Domanda>();
-		List<File> listaFile= Utils.selezionaFileDiInteresse(dirLibro);
+	@RequestMapping(value = "/caricaDomande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
+	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo) {
+		List<Domanda> listaDomande = new ArrayList<Domanda>();
+		List<File> listaFile = Utils.selezionaFileDiInteresse(dirLibro);
 
-		for(File f: listaFile) {
-			List<Domanda> listaD= new ArrayList<Domanda>();
+		for (File f : listaFile) {
+			List<Domanda> listaD = new ArrayList<Domanda>();
 			listaD.addAll(Utils.readFileDomande(f.getPath()));
-			for(Domanda d: listaD) {
-				if(d.getChapter()== capitolo)
+			for (Domanda d : listaD) {
+				if (d.getChapter() == capitolo)
 					listaDomande.add(d);
 
 			}
 		}
 		return listaDomande;
 
-
 	}
-	
+
 	@RequestMapping(value = "/insertdomande/{dir}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomande(@PathVariable String dir, @RequestBody Domanda domanda) {
-	String titolo = domanda.getBook();
-	List<Libro> listaLibriInXML = Utils
-	.caricaLibriDaIndexXML("C:\\Users\\Padawan01\\git\\Quiz\\domande\\index.xml");
+		String titolo = domanda.getBook();
+		List<Libro> listaLibriInXML = Utils
+				.caricaLibriDaIndexXML("C:\\Users\\Padawan01\\git\\Quiz\\domande\\index.xml");
 
-	boolean vero = false;
-	StringBuilder path = new StringBuilder();
+		boolean vero = false;
+		StringBuilder path = new StringBuilder();
 
-	for (Libro l : listaLibriInXML) {
-	if (dir.equals(l.getDir())) {
-	vero = true;
-	break;
+		for (Libro l : listaLibriInXML) {
+			if (dir.equals(l.getDir())) {
+				vero = true;
+				break;
+			}
+		}
+		path.append("C:\\Users\\Padawan01\\git\\Quiz\\domande\\").append(dir);
+		File file = new File(path.toString());
+		if (vero != true) {
+			file.mkdir();
+		}
+		String pathdomanda = path.toString() + "\\" + "domande_cap" + domanda.getChapter() + ".xml";
+		File file1 = new File(pathdomanda);
+		Utils.aggiungiDomanda(domanda, file1);
+		return domanda;
+
 	}
-	}
-	path.append("C:\\Users\\Padawan01\\git\\Quiz\\domande\\").append(dir);
-	File file = new File(path.toString());
-	if (vero != true) {
-	file.mkdir();
-	}
-	String pathdomanda=path.toString()+"//"+"domande_"+domanda.getChapter()+".xml";
-	File file1= new File(pathdomanda);
-	Utils.aggiungiDomanda(domanda, file1);
-	return domanda;
 
+	@RequestMapping(value = "/insertdomande/{dir}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody void insertDomande(@PathVariable String dir, @RequestBody ArrayList<Domanda> domande) {
+		StringBuilder path = new StringBuilder();
+		domande = new ArrayList<Domanda>();
+		path.append("C:\\Users\\Padawan01\\git\\Quiz\\domande\\").append(dir);
+		File file = new File(path.toString());
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		for (Domanda dom : domande) {	
+			String cap = path.toString();
+			file = new File(path.toString() + "\\domande_cap" + dom.getChapter() + ".xml");
+			Utils.aggiungiDomanda(dom, file);
+		}
 
 	}
-	
-
 
 }
