@@ -54,11 +54,15 @@ public class QuizController {
 	public String init(Model model, HttpServletRequest request, HttpSession session)
 			throws ParserConfigurationException, SAXException, IOException {
 
+
 		libri = Utils.popolaLibro(new File(MAIN_PATH + "index.xml"));
+
 		if (!domandetot.isEmpty()) 
 			domandetot.clear();
 		for (int i = 0; i < libri.size(); i++) {
+
 			File folder = new File(MAIN_PATH + libri.get(i).getDir());
+
 			for (final File fileEntry : folder.listFiles()) {
 				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if (request.getParameter("libro" + (i + 1)) != null) {
