@@ -7,10 +7,8 @@ public class Domanda {
 
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
 	public static final String ANSWER_TYPE_RADIO = "radio";
-
 	private int id;
 	private String book;
-	private Libro books;
 	private int chapter;
 	private int question;
 	private String testo;
@@ -39,9 +37,60 @@ public class Domanda {
 
 	
 
-	public void setBooks(Libro books) {
-		this.books = books;
+	public void setId(int id) {
+		this.id = id;
 	}
+
+
+
+
+	public void setBook(String book) {
+		this.book = book;
+	}
+
+
+
+
+	public void setChapter(int chapter) {
+		this.chapter = chapter;
+	}
+
+
+
+
+	public void setQuestion(int question) {
+		this.question = question;
+	}
+
+
+
+
+	public void setTesto(String testo) {
+		this.testo = testo;
+	}
+
+
+
+
+	public void setRisposte(List<Risposta> risposte) {
+		this.risposte = risposte;
+	}
+
+
+
+
+	public void setRispostaEsatta(String rispostaEsatta) {
+		this.rispostaEsatta = rispostaEsatta;
+	}
+
+
+
+
+	public void setSpiegazione(String spiegazione) {
+		this.spiegazione = spiegazione;
+	}
+
+
 
 
 
@@ -50,13 +99,13 @@ public class Domanda {
 		return id;
 	}
 
-	public String getIdBook() {
-
-		StringBuilder sb = new StringBuilder();
-		sb.append(books.getIdBook()).append("|").append(this.getChapter()).append("|").append(this.getQuestion());
-		return sb.toString();
-
-	}
+//	public String getIdBook() {
+//
+//		StringBuilder sb = new StringBuilder();
+//		sb.append(books.getIdBook()).append("|").append(this.getChapter()).append("|").append(this.getQuestion());
+//		return sb.toString();
+//
+//	}
 	
 //	public void setBook() {
 //		
@@ -150,11 +199,6 @@ public class Domanda {
 	
 	
 	
-	
-	
-	//Clark: per prendere la dir del file XML, dove aggiungo la domanda
-	public Libro getBooks() {
-		return books;
-	}
+
 
 }

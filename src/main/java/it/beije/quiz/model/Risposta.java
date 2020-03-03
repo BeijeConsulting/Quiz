@@ -22,4 +22,5 @@ public class Risposta {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
 }
