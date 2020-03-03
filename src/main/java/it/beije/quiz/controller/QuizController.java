@@ -94,7 +94,7 @@ public class QuizController {
 		File file1=new File(dir.toString());
 		file1.mkdir();
 		
-		//TODO Creazione directory Del libro appena creato.
+		
 		return "index";
 
 	}
@@ -240,29 +240,26 @@ public class QuizController {
 		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
 		//Clark:
 		//Proposta creazione libro
-		 Libro l=new Libro();
-		 l.setTitle(libro);
-		 domanda.setBooks(l);
+	
 				
 
-		String dir;
+		String dir=null;
 		
 //		System.out.println(domanda);
 //		System.out.println(domanda.getBooks().getTitle());
 		
 		for(Libro libro1: listaLibriInXML) {
 			
-			if(libro1.getTitle().equalsIgnoreCase(domanda.getBook())) {
+			if(libro1.getTitle().equalsIgnoreCase(libro)) {
 //				System.out.println("ok"+libro1.getTitle());
 
-				domanda.getBooks().setDir(libro1.getDir());
-				domanda.getBooks().setIdBook(libro1.getIdBook());
+			dir=libro1.getDir();
 				break;
 
 			}
 
 		}
-		dir=domanda.getBooks().getDir();	
+		
 		
 //		System.out.println(dir);
 		//String directory=domanda.getBooks().getDir();
