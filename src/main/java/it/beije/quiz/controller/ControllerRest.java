@@ -20,17 +20,20 @@ import it.beije.quiz.model.Libro;
 public class ControllerRest {
 	
 	//TODO: ds testare
-	@RequestMapping(value="/caricaDomande/{dirLibro}", method=RequestMethod.GET)
-	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro){
+	@RequestMapping(value="/caricaDomanda/idDomanda", method=RequestMethod.GET)
+	public @ResponseBody Domanda getDomanda(@PathVariable String idDomanda){
 		List <Domanda> listaDomande= new ArrayList<Domanda>();
-		List<File> listaFile= Utils.selezionaFileDiInteresse(dirLibro);
+		List<File> listaFile= Utils.selezionaFileDiInteresse(Utils.getDirectory(idDomanda));
 		
 		for(File f: listaFile) {
 			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
 		}
 		
+		for(Domanda d: listaDomande)
+			if(d.getId().equals(idDomanda))
+				return d;
 		
-		return listaDomande;
+		return null;
 		
 	}
 

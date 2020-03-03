@@ -22,6 +22,32 @@ import org.w3c.dom.NodeList;
 import it.beije.quiz.model.*;
 
 public class Utils {
+	
+	public static String nuovoId(String dir, int capitolo, int nDomanda  ) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(dir).append("|").append(capitolo).append("|").append(nDomanda);
+		return sb.toString();
+		}
+	
+	
+	public static String getDirectory(String id) {
+		String [] elementi =id.split("|");
+		
+		
+		return elementi[0];
+	}
+	public static int getCapitolo(String id) {
+		String [] elementi =id.split("|");
+		
+		
+		return Integer.parseInt(elementi[1]);
+	}
+	public static int getNDomanda(String id) {
+		String [] elementi =id.split("|");
+		
+		
+		return Integer.parseInt(elementi[2]);
+	}
 
 	public static List<File> selezionaFileDiInteresse(String dir) {
 
@@ -180,13 +206,26 @@ public class Utils {
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
-	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
+		        List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+
+		        String dir=null;
+		        for (Libro l : listaLibriInXML) {
+		        	if (book.equals(l.getTitle())) {
+		        	dir=l.getDir();
+		        	break;
+		        	}
+		        }
+		        
+		        String nuovoId= nuovoId(dir, chapter, question);
+		        
+	        	Domanda d = new Domanda(nuovoId, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	
 	        	arrayDomande.add(d);
 //	        	System.out.println(d);
-			}
+			
 
-		} catch (Exception e) {
+		} 
+	        }catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -255,7 +294,7 @@ public class Utils {
         	Element dom =document.createElement("domanda");
         	domande.appendChild(dom);
         	
-        	dom.setAttribute("id", Integer.toString(d.getId()));
+        	dom.setAttribute("id", d.getId());
         	dom.setAttribute("book",d.getBook());
         	dom.setAttribute("chapter", Integer.toString(d.getChapter()));
         	dom.setAttribute("question", Integer.toString(d.getQuestion()));

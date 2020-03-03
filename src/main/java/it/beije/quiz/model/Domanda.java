@@ -7,7 +7,7 @@ public class Domanda {
 
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
 	public static final String ANSWER_TYPE_RADIO = "radio";
-	private int id;
+	private String id;
 	private String book;
 	private int chapter;
 	private int question;
@@ -18,7 +18,7 @@ public class Domanda {
 	private String rispostaEsatta;
 	private String spiegazione;
 
-	public Domanda(int id, String book, int chapter, int question, String testo, String answerType,
+	public Domanda(String id, String book, int chapter, int question, String testo, String answerType,
 			List<Risposta> risposte, String rispostaEsatta, String spiegazione) {
 		this.id = id;
 		this.book = book;
@@ -33,11 +33,18 @@ public class Domanda {
 	
 		
 	}
+	
 
 
 	
+public Domanda() {
+	
+}
 
-	public void setId(int id) {
+
+
+
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -95,18 +102,18 @@ public class Domanda {
 
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-//	public String getIdBook() {
-//
-//		StringBuilder sb = new StringBuilder();
-//		sb.append(books.getIdBook()).append("|").append(this.getChapter()).append("|").append(this.getQuestion());
-//		return sb.toString();
-//
-//	}
-	
+////	public String getIdBook() {
+////
+////		StringBuilder sb = new StringBuilder();
+////		sb.append(books.getIdBook()).append("|").append(this.getChapter()).append("|").append(this.getQuestion());
+////		return sb.toString();
+////
+////	}
+//	
 //	public void setBook() {
 //		
 //		Libro book = new Libro();

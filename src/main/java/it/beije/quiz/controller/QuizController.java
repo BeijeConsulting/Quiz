@@ -233,36 +233,22 @@ public class QuizController {
 		String risposteEsatte = request.getParameter("param_risposteEsatte");
 		String spiegazione = request.getParameter("param_spiegazione");
 
-		
-		
-		
-		
-		Domanda domanda= new Domanda(id,libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
-		//Clark:
-		//Proposta creazione libro
-	
-				
-
 		String dir=null;
 		
-//		System.out.println(domanda);
-//		System.out.println(domanda.getBooks().getTitle());
+	for(Libro libro1: listaLibriInXML) {
 		
-		for(Libro libro1: listaLibriInXML) {
-			
-			if(libro1.getTitle().equalsIgnoreCase(libro)) {
-//				System.out.println("ok"+libro1.getTitle());
-
-			dir=libro1.getDir();
-				break;
-
-			}
+		if(libro1.getTitle().equalsIgnoreCase(libro)) {
+		dir=libro1.getDir();
+			break;
 
 		}
+
+	}
+	StringBuilder sb = new StringBuilder();
+	sb.append(dir).append("|").append(capitolo).append("|").append(idDomanda);
 		
-		
-//		System.out.println(dir);
-		//String directory=domanda.getBooks().getDir();
+		Domanda domanda= new Domanda(sb.toString(),libro,capitolo,idDomanda,testo,type,listRisposte,risposteEsatte,spiegazione);
+
 		
 		//Clark: al posto di oca_manual ci deve essere directory, per adesso lo metto su oca manual
 		//DISCLAIMER: se vuoi fare il debug cambia il numero del Padawan
@@ -272,10 +258,6 @@ public class QuizController {
 
 		Utils.aggiungiDomanda(domanda, fileXML);
 
-		// Clark: per debug
-		// List <Domanda> listaDomande=Utils.readFileDomande(fileXML.getPath());
-		// for(Domanda d:listaDomande)
-		// System.out.println(d);
 
 		return "mainForm";
 	}
@@ -314,18 +296,18 @@ public class QuizController {
 	/******************************************/
 	/////// REST
 
-	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
-	public void testrest(Model model, HttpServletResponse response) throws IOException {
-		System.out.println("entra??");
-		List<Risposta> risposte = new ArrayList<Risposta>();
-		Risposta r = new Risposta();
-		r.setValue("A");
-		r.setText("risposta prova");
-		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
-
-		response.setContentType("application/json");
-		response.getWriter().append(domanda.toJson());
-	}
+//	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
+//	public void testrest(Model model, HttpServletResponse response) throws IOException {
+//		System.out.println("entra??");
+//		List<Risposta> risposte = new ArrayList<Risposta>();
+//		Risposta r = new Risposta();
+//		r.setValue("A");
+//		r.setText("risposta prova");
+//		risposte.add(r);
+//		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+//
+//		response.setContentType("application/json");
+//		response.getWriter().append(domanda.toJson());
+//	}
 
 }
