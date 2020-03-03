@@ -168,7 +168,7 @@ public static String generateId(String chapter, String question, String book) {
 		
 		List<Libro> libri= readFileLibri();
 		
-		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getIdBook()+chapter+question;
+		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getIdBook()+"-"+chapter+"-"+question;
 
 		
 		return id;

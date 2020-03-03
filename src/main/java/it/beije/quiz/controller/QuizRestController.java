@@ -60,7 +60,7 @@ public class QuizRestController {
 		return domanda;
 	}
 	
-	@RequestMapping(value = "/restbestgetall", method = RequestMethod.GET,
+	@RequestMapping(value = "/getall", method = RequestMethod.GET,
 	consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> getAllDomande() {
 		
@@ -81,7 +81,7 @@ public class QuizRestController {
 		return libri.get(0).getDomande();
 	}
 	
-	@RequestMapping(value = "/restbestgetone/{id}", method = RequestMethod.GET,
+	@RequestMapping(value = "/getone/{id}", method = RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 		public @ResponseBody Domanda getDomanda(@PathVariable String id) {
 		Domanda dOut=new Domanda();	
@@ -89,13 +89,34 @@ public class QuizRestController {
 			{
 				List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 				
-				
-				
 				for (Libro l : libri) {
 					l.setDomande(quizService.getLibriCarichi(l));
 					for (Domanda d : l.getDomande()) {
 						System.out.println(d.getId());
 						if (d.getId().trim().equals(id.trim()))dOut= d;
+					}
+				}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return dOut;	
+	}
+	
+	@RequestMapping(value = "/getchapter/{id}", method = RequestMethod.GET,
+			consumes=MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody List<Domanda> getDomandaFromCapitolo(@PathVariable String id) {
+		List <Domanda> dOut=new ArrayList<Domanda>();	
+		String chapter = id.split("-")[1];
+		try 
+			{
+				List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+				
+				for (Libro l : libri) {
+					l.setDomande(quizService.getLibriCarichi(l));
+					for (Domanda d : l.getDomande()) {
+						System.out.println(d.getId());
+						if(chapter.equals(d.getChapter()))dOut.add(d);
 					}
 				}
 				
