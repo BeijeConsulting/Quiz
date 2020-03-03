@@ -2,7 +2,7 @@
 <domande>
 	<domanda book="Libro Dinal" chapter="1" id="nostro_libro|1|1"
 		question="1">
-		<testo>testo della domanda da inserire</testo>
+		<testo>testo della domanda da inserire222</testo>
 		<risposteEsatte>AC</risposteEsatte>
 		<risposte type="checkbox">
 			<risposta value="A">aaa</risposta>
