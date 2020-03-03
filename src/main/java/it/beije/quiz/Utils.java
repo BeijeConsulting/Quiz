@@ -119,9 +119,10 @@ public class Utils {
 	 			List<Element> contenutoDomanda = null;
 	 			List<Element> elementiRisposta = null;
 	 			Element rispostePossibili = null;
+	 			int i=1;
 	 			for (Element domanda : domande) {
+	 				
 	 				contenutoDomanda = Utils.getChildElements(domanda);
-	 				String id = (domanda.getAttribute("id"));
 	 				String book = domanda.getAttribute("book");
 	 				String chapter = (domanda.getAttribute("chapter"));
 	 				String question = (domanda.getAttribute("question"));
@@ -139,13 +140,15 @@ public class Utils {
 
 	 					risposte.add(r);
 	 				}
-
+	 				System.out.println("qua ci arrivo");
 	 				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 	 				String spiegazione = contenutoDomanda.get(3).getTextContent();
 
-	 				Domanda d = new Domanda(generateId(Integer.parseInt(chapter), Integer.parseInt(question), book), book, chapter, question, testo, answerType, risposte, rispostaEsatta,
+	 				Domanda d = new Domanda(generateId(chapter,question, book), book, chapter, question, testo, answerType, risposte, rispostaEsatta,
 	 						spiegazione);
+	 				
 	 				arrayDomande.add(d);
+	 				System.out.println("qua ci arrivo"+i++);
 
 	 			}
 
@@ -153,12 +156,12 @@ public class Utils {
 	 			e.printStackTrace();
 	 		}
 	        
-	    
+	         System.out.println("return arrivo");
 		return arrayDomande;
 	}
 	
 	
-public static String generateId(int chapter, int question, String book) {
+public static String generateId(String chapter, String question, String book) {
 		
 		String id="";
 		
@@ -216,6 +219,11 @@ public static String generateId(int chapter, int question, String book) {
 
 		return testo;
 	}
+	public static String generateNomeFile(Domanda domanda) {
+		int nCap = Integer.parseInt(domanda.getChapter());
+
+		return "domande_cap"+nCap;
+	}
 	
 public static void caricaDomande(Libro l, String nomeFile, Domanda... elDomande) {
 		
@@ -224,7 +232,7 @@ public static void caricaDomande(Libro l, String nomeFile, Domanda... elDomande)
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        File file = new File(MAIN_PATH+l.getNameDir()+"\\"+nomeFile+".xml");
+	        File file = new File(MAIN_PATH+l.getNameDir()+"\\"+generateNomeFile(elDomande[0])+".xml");
 	        Document document;
 	        Element docElement;
 			int idDomanda = 1;

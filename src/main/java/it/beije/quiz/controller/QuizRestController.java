@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
+import it.beije.quiz.service.QuizService;
 
 @RestController
 public class QuizRestController {
 	
 	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
-	private static List<Libro> LIBRI= new ArrayList<Libro>();
+	private List<Libro> LIBRI;
+	
+	@Autowired(required= false)
+	private QuizService quizService;
+	
 	
 	@RequestMapping(value = "/restbest", method = RequestMethod.POST,
 	consumes=MediaType.APPLICATION_JSON_VALUE)
@@ -51,6 +57,13 @@ public class QuizRestController {
 		}
 		
 		return domanda;
+	}
+	
+	@RequestMapping(value = "/restbestget", method = RequestMethod.GET,
+	consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Domanda> getDomanda() {
+		List<Libro> libriCarichi= quizService.getLibriCarichi();
+		return libriCarichi.get(0).getDomande();
 	}
 	
 }
