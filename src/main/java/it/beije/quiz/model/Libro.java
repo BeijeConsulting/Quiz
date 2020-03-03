@@ -2,9 +2,6 @@ package it.beije.quiz.model;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import it.beije.quiz.Utils;
 
@@ -14,7 +11,7 @@ public class Libro {
 
 
 
-	public static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
+	public static final String LIB_PATH="C:\\Users\\Gabriele\\git\\Quiz\\domande\\";
 
 	
 	private String checked="";

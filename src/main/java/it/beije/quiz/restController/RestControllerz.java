@@ -2,7 +2,6 @@ package it.beije.quiz.restController;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,13 +15,12 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class RestControllerz {
 	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
-	public @ResponseBody ArrayList<Domanda> getDomande() {
+	public @ResponseBody ArrayList<Domanda> getDomande() { //prendo tutte domande, gestito con pattern DSingleton.
 		return Cont.getInstance();
 	}
 	
