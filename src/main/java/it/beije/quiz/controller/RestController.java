@@ -65,6 +65,19 @@ public class RestController {
 		return returnList;
 	}
 	
+	@RequestMapping(value = "/domande/{libro}/{cap}/{question}", method = RequestMethod.GET)
+	public @ResponseBody List<Domanda> getDomandeLibro(@PathVariable String libro, @PathVariable String cap, @PathVariable String question) throws ParserConfigurationException, SAXException, IOException {
+		List<Domanda> domande = getDomandeLibro(libro, cap);		
+		List<Domanda> returnList = new ArrayList<Domanda>();
+		
+		for(Domanda d: domande) {
+			if(d.getQuestion().equals(question)) {
+				returnList.add(d);
+			}
+		}
+		return returnList;
+	}
+	
 	@RequestMapping(value = "/newdomanda", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda newDomanda(@RequestBody Domanda domanda) throws Exception {
