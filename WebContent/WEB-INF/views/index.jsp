@@ -19,10 +19,11 @@
 	
     <input type="checkbox" name="libro2" value="oca_certification_guide_manning">
     <label for="book"> "OCA Java SE 8 Programmer I Certification Guide</label><br><br>
-    
-
-	
 		<input type="submit" value="START">
+	</form>	
+	
+	<form action="new" method="get">
+		<input type="submit" value="CREAZIONE NUOVA DOMANDA">
 	</form>
 </body>
 </html>

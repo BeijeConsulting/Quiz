@@ -36,11 +36,12 @@ import it.beije.quiz.model.Risposta;
 public class QuizController {
 
 	private List<Domanda> domande1 = new ArrayList<Domanda>();
-	private int tot;
 	private int totale = 0;
 	private LocalTime time = null;
+	private static boolean isNew = false;
 	private List<Libro> libri;
 	private ArrayList<Domanda> domandetot = new ArrayList<Domanda>();
+	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET) // index è una parola chiave prende quello che indichi nel
 																// name="prefix" value="/WEB-INF/views/"
@@ -53,11 +54,11 @@ public class QuizController {
 	public String init(Model model, HttpServletRequest request, HttpSession session)
 			throws ParserConfigurationException, SAXException, IOException {
 
-		libri = Utils.popolaLibro(new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\index.xml"));
+		libri = Utils.popolaLibro(new File(MAIN_PATH + "index.xml"));
 		if (!domandetot.isEmpty()) 
 			domandetot.clear();
 		for (int i = 0; i < libri.size(); i++) {
-			File folder = new File("C:\\Users\\Padawan02\\git\\Quiz\\domande\\" + libri.get(i).getDir());
+			File folder = new File(MAIN_PATH + libri.get(i).getDir());
 			for (final File fileEntry : folder.listFiles()) {
 				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if (request.getParameter("libro" + (i + 1)) != null) {
@@ -71,14 +72,15 @@ public class QuizController {
 
 		}
 
-		tot = domandetot.size();
-		totale = tot;
+		totale = domandetot.size();
 		model.addAttribute("totDomande", totale);
 		// domande1.clear();
 
 		return "totaledomande";
 	}
 
+	
+	
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
@@ -171,6 +173,30 @@ public class QuizController {
 		model.addAttribute("body", builder.toString());
 
 		return "risultati";
+	}
+	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String scelta() {
+
+
+		return "scelta";
+	}
+	
+
+	@RequestMapping(value = "/newlibro", method = RequestMethod.GET)
+	public String newLibro() {
+		
+		isNew=true;
+
+		return "newlibro";
+	}
+	
+	@RequestMapping(value = "/newdomanda", method = RequestMethod.GET)
+	public String creaDomanda(Model model) {
+		
+		model.addAttribute("isNew", isNew);
+				
+		return "creadomanda";
 	}
 
 	/////// REST
