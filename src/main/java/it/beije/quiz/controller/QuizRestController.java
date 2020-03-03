@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +22,9 @@ import it.beije.quiz.service.QuizService;
 public class QuizRestController {
 	
 	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
-	private List<Libro> LIBRI;
+	private List<Libro> LIBRI = new ArrayList<Libro>();
 	
-	@Autowired(required= false)
+	@Autowired
 	private QuizService quizService;
 	
 	
@@ -59,11 +60,51 @@ public class QuizRestController {
 		return domanda;
 	}
 	
-	@RequestMapping(value = "/restbestget", method = RequestMethod.GET,
+	@RequestMapping(value = "/restbestgetall", method = RequestMethod.GET,
 	consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Domanda> getDomanda() {
-		List<Libro> libriCarichi= quizService.getLibriCarichi();
-		return libriCarichi.get(0).getDomande();
+	public @ResponseBody List<Domanda> getAllDomande() {
+		
+		List<Libro> libri = new ArrayList<Libro>();
+		
+		try 
+		{
+			libri = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			
+			for (Libro l : libri) {
+				l.setDomande(quizService.getLibriCarichi(l));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+				
+		return libri.get(0).getDomande();
 	}
+	
+	@RequestMapping(value = "/restbestgetone/{id}", method = RequestMethod.GET,
+			consumes=MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody Domanda getDomanda(@PathVariable String id) {
+		Domanda dOut=new Domanda();	
+		try 
+			{
+				List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+				
+				
+				
+				for (Libro l : libri) {
+					l.setDomande(quizService.getLibriCarichi(l));
+					for (Domanda d : l.getDomande()) {
+						System.out.println(d.getId());
+						if (d.getId().trim().equals(id.trim()))dOut= d;
+					}
+				}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return dOut;
+				
+			
+		}
 	
 }

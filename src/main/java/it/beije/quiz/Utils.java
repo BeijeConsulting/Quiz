@@ -153,6 +153,7 @@ public class Utils {
 	 			}
 
 	 		} catch (Exception e) {
+	 			System.out.println("eccezione");
 	 			e.printStackTrace();
 	 		}
 	        
@@ -165,10 +166,10 @@ public static String generateId(String chapter, String question, String book) {
 		
 		String id="";
 		
-		//List<Libro> libri= readFileLibri();
-		List<Libro> libri= new ArrayList<Libro>();
+		List<Libro> libri= readFileLibri();
 		
 		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getIdBook()+chapter+question;
+
 		
 		return id;
 	}

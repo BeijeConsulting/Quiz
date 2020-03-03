@@ -1,6 +1,7 @@
 package it.beije.quiz.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,9 +14,9 @@ import it.beije.quiz.model.Libro;
 public class QuizService {
 	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 	
-	private List<Domanda> domande;
+	private List<Domanda> domande= new ArrayList<>();
 
-	private List<Libro> libriCarichi;
+	private List<Libro> libriCarichi= new ArrayList<>();
 //	
 //    public QuizService(){
 //		try {
@@ -36,29 +37,21 @@ public class QuizService {
 //		}
 //    }
     
-    public List<Libro> getLibriCarichi(){
+    public List<Domanda> getLibriCarichi(Libro l){
 		System.out.println("inizio passaggio");
-		try {
-			System.out.println("inizio caricamento");
-			libriCarichi = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+		try {		
 			
-			for (Libro l : libriCarichi) {
-				File folder = new File(MAIN_PATH + l.getNameDir());
-				System.out.println("caricamento");
-
-				for (File fileEntry : folder.listFiles()) {
-					
-					domande.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
-					System.out.println("caricoooo");
-				}
+			File folder = new File(MAIN_PATH + l.getNameDir());
 				
-				l.setDomande(domande);
+			for (final File fileEntry : folder.listFiles()) {
+				System.out.println("caricoooo");
+				domande.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-    	return libriCarichi;
+    	return domande;
     }
     
     
