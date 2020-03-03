@@ -43,14 +43,9 @@ public class Utils {
 
 		return childElements;
 	}
-<<<<<<< HEAD
-	public static List<Libro> popolaLibro(File file) throws ParserConfigurationException, SAXException, IOException {
-=======
-	
 
 
 	public static List<Libro> caricaLibri(File file) throws ParserConfigurationException, SAXException, IOException {
->>>>>>> refs/remotes/origin/Master_GruppoFox
 		List<Libro> lista = new ArrayList<Libro>();
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
