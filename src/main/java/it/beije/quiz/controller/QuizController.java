@@ -55,13 +55,13 @@ public class QuizController {
 			throws ParserConfigurationException, SAXException, IOException {
 
 
-		libri = Utils.popolaLibro(new File(MAIN_PATH + "index.xml"));
+		libri = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 
 		if (!domandetot.isEmpty()) 
 			domandetot.clear();
 		for (int i = 0; i < libri.size(); i++) {
 
-			File folder = new File(MAIN_PATH + libri.get(i).getDir());
+			File folder = new File(MAIN_PATH + libri.get(i).getNameDir());
 
 			for (final File fileEntry : folder.listFiles()) {
 				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));

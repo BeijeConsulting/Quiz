@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Libro {
 	
-	private String id_book;
+	private String idBook;
 	private String title;
-	private String dir;
+	private String nameDir;
 	private List<Domanda> domande;
 	private boolean valore=false;
 	
@@ -18,11 +18,11 @@ public class Libro {
 	public void setDomande(List<Domanda> domande) {
 		this.domande = domande;
 	}
-	public String getId_book() {
-		return id_book;
+	public String getIdBook() {
+		return idBook;
 	}
-	public void setId_book(String id_book) {
-		this.id_book = id_book;
+	public void setIdBook(String id_book) {
+		this.idBook = id_book;
 	}
 	public String getTitle() {
 		return title;
@@ -30,15 +30,15 @@ public class Libro {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDir() {
-		return dir;
+	public String getNameDir() {
+		return nameDir;
 	}
-	public void setDir(String dir) {
-		this.dir = dir;
+	public void setNameDir(String dir) {
+		this.nameDir = dir;
 	}
 	@Override
 	public String toString() {
-		return "Libro [id_book=" + id_book + ", title=" + title + ", dir=" + dir + ", domande=" + domande + ", valore="
+		return "Libro [id_book=" + idBook + ", title=" + title + ", dir=" + nameDir + ", domande=" + domande + ", valore="
 				+ valore + "]";
 	}
 	

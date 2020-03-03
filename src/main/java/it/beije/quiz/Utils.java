@@ -9,6 +9,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,7 +25,10 @@ import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
 public class Utils {
+	private static final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 
+	public static final String PATH_INDEX_BOOKS = MAIN_PATH +"index.xml";
+	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 
@@ -39,7 +46,7 @@ public class Utils {
 	
 
 
-	public static List<Libro> popolaLibro(File file) throws ParserConfigurationException, SAXException, IOException {
+	public static List<Libro> caricaLibri(File file) throws ParserConfigurationException, SAXException, IOException {
 		List<Libro> lista = new ArrayList<Libro>();
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -55,9 +62,9 @@ public class Utils {
 		for(int i=0;i<elementi.size();i++)
 		{
 			Libro libro = new Libro();
-				libro.setId_book(elementi.get(i).getAttribute("id_book"));
+				libro.setIdBook(elementi.get(i).getAttribute("id_book"));
 				libro.setTitle(elementi.get(i).getAttribute("title"));
-				libro.setDir(elementi.get(i).getAttribute("dir"));
+				libro.setNameDir(elementi.get(i).getAttribute("dir"));
 			
 				lista.add(libro);
 		}
@@ -66,6 +73,30 @@ public class Utils {
 		
 	}
 
+	public static List<Libro> readFileLibri() {
+		List<Libro> elencoLibri = new ArrayList<>();
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+
+	        Document document = builder.parse(new File(PATH_INDEX_BOOKS));
+	        Element element = document.getDocumentElement();	        
+
+	        List<Element> elementLibri = Utils.getChildElements(element);
+	        for(Element e : elementLibri) {
+	        	Libro l = new Libro();
+	        	l.setIdBook(e.getAttribute("id_book"));
+	        	l.setTitle(e.getAttribute("title"));
+	        	l.setNameDir(e.getAttribute("dir"));
+	        	elencoLibri.add(l);
+	        }
+	     
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return elencoLibri;
+	}
+	
 	
 	public static List<Domanda> readFileDomande(String pathFile) {
 
@@ -124,6 +155,58 @@ public class Utils {
 	        
 	    
 		return arrayDomande;
+	}
+	
+	
+public static String generateId(int chapter, int question, String book) {
+		
+		String id="";
+		
+		//List<Libro> libri= readFileLibri();
+		List<Libro> libri= new ArrayList<Libro>();
+		
+		for (Libro l : libri) if (book.contentEquals(l.getTitle())) id=l.getIdBook()+chapter+question;
+		
+		return id;
+	}
+	
+	private static Libro createLibro(Libro l) {	 
+		
+        for(Libro presente : readFileLibri()) {
+        	if(presente.getIdBook().equals(l.getIdBook()) && presente.getNameDir().equals(l.getNameDir())
+        			&& presente.getTitle().equals(l.getTitle())) 
+        		return presente;
+        	if(presente.getIdBook().equals(l.getIdBook()) || presente.getNameDir().equals(l.getNameDir())) 
+        		return null;
+        }
+        //crea una nuova directory
+		File file = new File(MAIN_PATH+l.getNameDir());
+		if(!file.mkdir()) return null;
+		
+		//scrive su index.xml
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        File fileIndex = new File(PATH_INDEX_BOOKS);
+	        Document document = builder.parse(fileIndex);
+	        Element docElement = document.getDocumentElement();
+	        Element elLibro = document.createElement("quiz");
+	        elLibro.setAttribute("id_book", l.getIdBook());
+	        elLibro.setAttribute("title", l.getTitle());
+	        elLibro.setAttribute("dir", l.getNameDir());
+	        docElement.appendChild(elLibro);
+	        
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(fileIndex);
+			transformer.transform(source, result);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	
+		return l;
 	}
 
 	public static String formattaTesto(String testo) {
