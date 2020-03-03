@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="it.beije.quiz.Utils" %>
+<%@ page import="it.beije.quiz.model.Libro" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,26 +77,24 @@ body {
 }
 </style>
 <body>
-
+	<div style="padding: 10px;">
 	Questa è la pagina di ingresso al tuo Quiz Online
 	<br>
 	<br> Seleziona da quale libro prendere le domande:
 	<br>
-
+	<br>
 	<form action="./confermaselezione" method="POST">
-		<label class="container"> <input type="checkbox" name="libro1"
-			value="oca_manual">OCA Oracle Certified Associate Java SE 8
-			[2014] <span class="checkmark"> </span>
-		</label> 
-		<label class="container"> <input type="checkbox"
-			name="libro2" value="oca_certification_guide_manning">OCA
-			Java SE 8 Programmer I Certification Guide <span class="checkmark">
-		</span>
-		</label>
+		<%
+		List<Libro> libri = Utils.getLibri();
+		int i = 1;
+		for(Libro l : libri) {
+			out.println("<label class=\"container\"><input type=\"checkbox\" name=\"libro" + i +
+					"\" value=\"" + l.getDir() + "\">" + l.getTitle() + "<span class=\"checkmark\"></span></label>");
+			i++;
+		}
+		%>
 		
-		<label class="container"> <input type="checkbox" name="libro3"
-			value="nostro_libro">Libro Dinal<span class="checkmark"> </span>
-		</label>
+		
 		
 		 Totale domande caricate : ${ totDomande }<br> Tempo disponibile
 		: ${ totDomande * 2 } minuti<br> <br>
@@ -101,6 +102,7 @@ body {
 
 		<button type="submit" class="btn btn-info">CONFERMA</button>
 	</form>
+	</div>
 
 </body>
 </html>
