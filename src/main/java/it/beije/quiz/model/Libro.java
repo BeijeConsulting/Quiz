@@ -20,9 +20,6 @@ public class Libro {
 		return title;
 	}
 	
-	public int getNcapitoli() {
-		return nCapitoli;
-	}
 
 	public List<Domanda> getDomanda() {
 		return domanda;
