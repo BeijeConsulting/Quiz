@@ -194,7 +194,7 @@ public class Utils {
 		return l;
 	}
 	
-	public static void createDomande(Libro l, String nomeFile, Domanda... elDomande) {
+	public static void caricaDomande(Libro l, String nomeFile, Domanda... elDomande) {
 		
 		try {
 			l = createLibro(l);

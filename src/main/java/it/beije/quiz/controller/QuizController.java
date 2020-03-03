@@ -320,7 +320,7 @@ public class QuizController {
 		Domanda domanda = new Domanda(null,libro.getTitle() ,chapter,question,testo,answerType,risposte,rispostaEsatta,spiegazione);
 		System.out.println(domanda.toString());
 		
-		Utils.createDomande(libro,nomeFile,domanda);
+		Utils.caricaDomande(libro,nomeFile,domanda);
 		
 		model.addAttribute("newDomandaCreata","Nuova domanda inserita correttamente");
 		

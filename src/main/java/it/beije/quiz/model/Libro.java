@@ -3,20 +3,25 @@ package it.beije.quiz.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import it.beije.quiz.Utils;
 
 public class Libro {
-	@JsonIgnore
-	public static final String LIB_PATH="C:\\Users\\Gabriele\\git\\Quiz\\domande\\";
-	@JsonIgnore
+	
+
+
+
+
+	public static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
+
+	
 	private String checked="";
 
 	private String idBook;
 	private String title;
 	private String nameDir;
-	@JsonIgnore
-	private String pathLibro = LIB_PATH + nameDir;
 	 
 	public String getTitle() {
 		return title;
@@ -49,11 +54,11 @@ public class Libro {
 		this.checked = checked;
 	}
 	
-	public List<Domanda> caricaQuestions() {
+	public ArrayList<Domanda> caricaQuestions() {
 		System.out.println("entroooo");
-		List<Domanda> listaD = new ArrayList<Domanda>();
-		File folder = new File(pathLibro);
-		System.out.println(pathLibro);
+		ArrayList<Domanda> listaD = new ArrayList<Domanda>();
+		File folder = new File(LIB_PATH+nameDir);
+		System.out.println(LIB_PATH+nameDir);
 		
 		File[] listOfFiles = folder.listFiles();
 
