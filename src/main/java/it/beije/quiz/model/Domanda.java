@@ -18,6 +18,8 @@ public class Domanda {
 	private String rispostaEsatta;
 	private String spiegazione;
 	
+	public Domanda() {}
+	
 	public Domanda(String id, String book, String chapter, int question, String testo,
 			String answerType, List<Risposta> risposte,
 			String rispostaEsatta, String spiegazione) {

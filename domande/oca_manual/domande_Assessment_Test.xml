@@ -1,6 +1,5 @@
-<?xml version="1.0" ?>
-<domande>
-	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="1">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande>
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="1" question="1">
 		<testo>
 			What is the result of the following class? (Choose all that apply)
 			
@@ -31,7 +30,7 @@
 			code would compile and output 0null. For more information, see Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="2">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="2" question="2">
 		<testo>
 			What is the result of the following code?
 			
@@ -61,7 +60,7 @@
 			Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="3">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="3" question="3">
 		<testo>
 			What is the output of the following code? (Choose all that apply)
 			
@@ -100,7 +99,7 @@
 			options A, B, and G can be eliminated. For more information, see Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="4">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="4" question="4">
 		<testo>
 			What is the output of the following program?
 			
@@ -163,7 +162,7 @@
 			For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="5">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="5" question="5">
 		<testo>
 			What is the output of the following code snippet?
 			
@@ -194,7 +193,7 @@
 			information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="6">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="6" question="6">
 		<testo>
 			What is the result of the following program?
 			
@@ -224,7 +223,7 @@
 			and the output on line 9 is 15. For more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="7">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="7" question="7">
 		<testo>
 			What is the result of the following code?
 			
@@ -254,7 +253,7 @@
 			more information, see Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="8">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="8" question="8">
 		<testo>
 			What is the output of the following code?
 			
@@ -295,7 +294,7 @@
 			and option A is the correct answer.
 		</spiegazione>
 	</domanda>
-	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="9">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="9" question="9">
 		<testo>
 			Which of the following statements are true? (Choose all that apply)
 		</testo>
@@ -315,7 +314,7 @@
 			practice. For more information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="10">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="10" question="10">
 		<testo>
 			Which are true of the following code? (Choose all that apply)
 			
@@ -351,7 +350,7 @@
 			have to. For more information, see Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="11">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="11" question="11">
 		<testo>
 			What is the output of the following program?
 			
@@ -361,7 +360,7 @@
 			4: 		OUTER: for(int i=0; i&lt;3; )
 			5: 			INNER: do {
 			6: 				i++; x++;
-			7: 				if(x > 10) break INNER;
+			7: 				if(x &gt; 10) break INNER;
 			8: 				x += 4;
 			9: 				j++;
 			10: 		} while(j &lt;= 2);
@@ -394,7 +393,7 @@
 				For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="12">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="12" question="12">
 		<testo>
 			What is the result of the following program?
 			
@@ -427,14 +426,14 @@
 			more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="13">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="13" question="13">
 		<testo>
 			What is the output of the following program?
 			
 			1: public class BearOrShark {
 			2: 	public static void main(String[] args) {
 			3: 		int luck = 10;
-			4: 		if((luck>10 ? luck++: --luck)&lt;10) {
+			4: 		if((luck&gt;10 ? luck++: --luck)&lt;10) {
 			5: 			System.out.print("Bear");
 			6: 		} if(luck&lt;10) System.out.print("Shark");
 			7: } }
@@ -458,7 +457,7 @@
 			is option C. For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="14">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="14" question="14">
 		<testo>
 			Assuming we have a valid, non-null HenHouse object whose value is initialized by the
 			blank line shown here, which of the following are possible outputs of this application?(Choose all that apply)
@@ -494,7 +493,7 @@
 			under multiple circumstances. For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="15">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="15" question="15">
 		<testo>
 			Which of the following statements can be inserted in the blank line so that the code will
 			compile successfully? (Choose all that apply)
@@ -530,7 +529,7 @@
 			Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="16">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="16" question="16">
 		<testo>
 		What individual changes, if any, would allow the following code to compile? (Choose all that apply)
 		
@@ -558,7 +557,7 @@
 			correct since the changes are taken together. For more information, see Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="17">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="17" question="17">
 		<testo>
 			Which of the following lines can be inserted at line 11 to print true? (Choose all that apply)
 			
@@ -570,12 +569,12 @@
 			15: }
 		</testo>
 		<risposte type="checkbox">
-			<risposta value="A">System.out.println(test(i -> i == 5));</risposta>
-			<risposta value="B">System.out.println(test(i -> {i == 5;}));</risposta>
-			<risposta value="C">System.out.println(test((i) -> i == 5));</risposta>
-			<risposta value="D">System.out.println(test((int i) -> i == 5);</risposta>
-			<risposta value="E">System.out.println(test((int i) -> {return i == 5;}));</risposta>
-			<risposta value="F">System.out.println(test((i) -> {return i == 5;}));</risposta>
+			<risposta value="A">System.out.println(test(i -&gt; i == 5));</risposta>
+			<risposta value="B">System.out.println(test(i -&gt; {i == 5;}));</risposta>
+			<risposta value="C">System.out.println(test((i) -&gt; i == 5));</risposta>
+			<risposta value="D">System.out.println(test((int i) -&gt; i == 5);</risposta>
+			<risposta value="E">System.out.println(test((int i) -&gt; {return i == 5;}));</risposta>
+			<risposta value="F">System.out.println(test((i) -&gt; {return i == 5;}));</risposta>
 		</risposte>
 		<risposteEsatte>A, C, F</risposteEsatte>
 		<spiegazione> 
@@ -589,7 +588,7 @@
 			to Integer, they would be correct. For more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="18">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="18" question="18">
 		<testo>
 			Which of the following print out a date representing April 1, 2015? (Choose all that apply)
 		</testo>
@@ -609,7 +608,7 @@
 			For more information, see Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="19">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="19" question="19">
 		<testo>
 			Bytecode is in a file with which extension?
 		</testo>
@@ -628,7 +627,7 @@
 			Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="20">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="20" question="20">
 		<testo>
 			Which of the following are checked exceptions? (Choose all that apply)
 		</testo>
@@ -648,4 +647,19 @@
 			or declared. For more information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-</domande>
+<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" id="21" question="3"><testo>
+			What is the output of the following code? (Choose all that apply)
+			
+			1: interface HasTail { int getTailLength(); }
+			2: abstract class Puma implements HasTail {
+			3: 	protected int getTailLength() {return 4;}
+			4: }
+			5: public class Cougar extends Puma {
+			6: 	public static void main(String[] args) {
+			7: 		Puma puma = new Puma();
+			8: 		System.out.println(puma.getTailLength());
+			9: 	}
+			10:
+			11: public int getTailLength(int length) {return 2;}
+			12:}
+		</testo><risposte type="checkbox"><risposta value="A">2</risposta><risposta value="B">4</risposta><risposta value="C">The code will not compile because of line 3.</risposta><risposta value="D">The code will not compile because of line 5.</risposta><risposta value="E">The code will not compile because of line 7.</risposta><risposta value="F">The code will not compile because of line 11.</risposta><risposta value="G">The output cannot be determined from the code provided.</risposta></risposte><risposteEsatte>C, D, E</risposteEsatte><spiegazione>PORCA TROIA</spiegazione></domanda></domande>

@@ -1,5 +1,6 @@
 package it.beije.quiz.restController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +13,10 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class RestControllerz {
@@ -35,12 +40,14 @@ public class RestControllerz {
 	}
 	
 	@RequestMapping(value = "/new/", method = RequestMethod.POST)
-	public @ResponseBody Domanda setDomanda(@RequestBody Domanda domanda, HttpServletResponse response) {
+	public @ResponseBody Domanda setDomanda(@RequestBody Domanda domanda, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
+		//domanda = new ObjectMapper().readValue(domanda.toJSON(), Domanda.class);
 		List<Libro> listL = Utils.readFileLibri();
 		for(Libro l : listL)
 			if(domanda.getBook().equals(l.getTitle())) {
-				Utils.caricaDomande(l, ( isNumber(domanda.getChapter())?"domande_cap_"+domanda.getChapter()+".xml" :
-					"domande_"+domanda.getChapter()+".xml" ), domanda);
+				String fileName = isNumber(domanda.getChapter()) ? ("domande_cap_"+domanda.getChapter()) : ("domande_"+domanda.getChapter());
+				Utils.caricaDomande(l, fileName, domanda);
+				Cont.close();
 				return domanda;
 			}
 		response.setStatus(204);
