@@ -9,20 +9,16 @@ import java.util.regex.Pattern;
 import it.beije.quiz.Utils;
 
 public class Libro {
-<<<<<<< HEAD
 	public static final String LIB_PATH="C:\\Users\\Gabriele\\git\\Quiz\\domande\\";
-=======
 	
 
 
 
 
-	public static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
 
 	
 	private String checked="";
 
->>>>>>> refs/remotes/origin/BaleDinCapoFox
 	private String idBook;
 	private String title;
 	private String nameDir;
