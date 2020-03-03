@@ -77,6 +77,10 @@ public class Domanda {
 		return answerType;
 	}
 	
+	public void editXML(Domanda domanda) {
+		// TODO Auto-generated method stub************************************************************************************
+		
+	}
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

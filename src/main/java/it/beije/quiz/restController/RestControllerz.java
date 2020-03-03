@@ -23,8 +23,18 @@ public class RestControllerz {
 	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Domanda> getDomande() {
-
 		return Cont.getInstance();
+	}
+	
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	public @ResponseBody Domanda getDomandaId(@PathVariable String id, HttpServletResponse response) {
+		ArrayList<Domanda> lista = Cont.getInstance();
+		for(Domanda d : lista) {
+			if(id.equals(d.getId())) 
+				return d;
+		}
+		response.setStatus(204);
+		return null;
 	}
 	
 	@RequestMapping(value = "/get/{chapter}/{question}", method = RequestMethod.GET)
@@ -49,6 +59,17 @@ public class RestControllerz {
 				Cont.close();
 				return domanda;
 			}
+		response.setStatus(204);
+		return null;
+	}
+	
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.PUT)
+	public @ResponseBody Domanda editDomanda(@PathVariable String id, @RequestBody Domanda domanda, HttpServletResponse response) {
+		ArrayList<Domanda> lista = Cont.getInstance();
+		for(Domanda d : lista) {
+			if(id.equals(d.getId())) 
+				d.editXML(domanda);
+		}
 		response.setStatus(204);
 		return null;
 	}
