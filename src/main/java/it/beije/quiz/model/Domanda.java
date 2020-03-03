@@ -32,6 +32,10 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
+	public Domanda() {
+		
+	}
+	
 	public String getId() {
 		return id;
 	}

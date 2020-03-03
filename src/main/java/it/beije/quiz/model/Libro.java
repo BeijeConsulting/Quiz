@@ -1,5 +1,6 @@
 package it.beije.quiz.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class Libro {
 		return "Libro [id_book=" + idBook + ", title=" + title + ", dir=" + nameDir + ", domande=" + domande + ", valore="
 				+ valore + "]";
 	}
+	
 	
 	
 }
