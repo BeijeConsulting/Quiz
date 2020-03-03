@@ -51,30 +51,27 @@ public class QuizController {
 
 	@RequestMapping(value="/confermaselezione", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
-		boolean scelta = false;
 		tot = 0;
 		domande.clear();
 		String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
 		List<Libro> libri = Utils.getLibri();
-		
+		System.out.println(libri.size());
 		for(int l = 1; l <= libri.size(); l++) {
 			String directory = "";
 			System.out.println(request.getParameter("libro" + l));
 			if (request.getParameter("libro" + l) != null) {
-			    scelta = true;
-				directory = request.getParameter("libro" + l);
+			    directory = request.getParameter("libro" + l);
 				System.out.println(directory);
 			} else {
 				continue;
 			}
 			
 
-			System.out.println(l);
 
 //			for(Libro lib : libri) {
 				if(libri.get(l-1).getDir().equals(directory)) {
 					String dir = baseDirectory + libri.get(l-1).getDir();
-					System.out.println(dir);
+					//System.out.println(dir);
 					File f = new File(dir);
 					for(File file : f.listFiles()) {
 						if(!file.isDirectory()) {
@@ -82,7 +79,7 @@ public class QuizController {
 						}
 					}
 					libri.get(l-1).setLista(domande);
-					tot += libri.get(l-1).getLista().size();
+					tot = domande.size(); //libri.get(l-1).getLista().size();
 					//domande.clear();
 				}
 //			}
@@ -187,7 +184,7 @@ public class QuizController {
 			}
 		}
 		// scrivere - modificare xml
-		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan11\\git\\Quiz\\domande\\" + dirLibro + "\\domande_cap" + chapter + ".xml");
+		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + dirLibro + "\\domande_cap" + chapter + ".xml");
 		
 		return "risultatoinserimento";
 	}

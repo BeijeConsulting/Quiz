@@ -12,7 +12,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.eclipse.jdt.internal.compiler.apt.util.EclipseFileManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -135,7 +134,13 @@ public class Utils {
 			risposte.appendChild(rispostaxml);
 		}
 		
+		Element rispOk = document.createElement("risposteEsatte");
+		rispOk.setTextContent(domanda.getRispostaEsatta());
+		
+		domandaxml.appendChild(rispOk);
+		
 		domandaxml.appendChild(risposte);
+		
 		domandaradice.appendChild(domandaxml);
 		
 		// write the content into xml file

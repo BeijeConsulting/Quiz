@@ -84,11 +84,18 @@ body {
 		<label class="container"> <input type="checkbox" name="libro1"
 			value="oca_manual">OCA Oracle Certified Associate Java SE 8
 			[2014] <span class="checkmark"> </span>
-		</label> <label class="container"> <input type="checkbox"
+		</label> 
+		<label class="container"> <input type="checkbox"
 			name="libro2" value="oca_certification_guide_manning">OCA
 			Java SE 8 Programmer I Certification Guide <span class="checkmark">
 		</span>
-		</label> Totale domande caricate : ${ totDomande }<br> Tempo disponibile
+		</label>
+		
+		<label class="container"> <input type="checkbox" name="libro3"
+			value="nostro_libro">Libro Dinal<span class="checkmark"> </span>
+		</label>
+		
+		 Totale domande caricate : ${ totDomande }<br> Tempo disponibile
 		: ${ totDomande * 2 } minuti<br> <br>
 
 
