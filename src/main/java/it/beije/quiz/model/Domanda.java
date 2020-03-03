@@ -18,6 +18,10 @@ public class Domanda {
 	private String rispostaEsatta;
 	private String spiegazione;
 	
+	public Domanda() {
+		
+	}
+	
 	public Domanda(String id, String book, String chapter, String question, String testo,
 			String answerType, List<Risposta> risposte,
 			String rispostaEsatta, String spiegazione) {
@@ -32,6 +36,44 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
+	
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setBook(String book) {
+		this.book = book;
+	}
+
+	public void setChapter(String chapter) {
+		this.chapter = chapter;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public void setTesto(String testo) {
+		this.testo = testo;
+	}
+
+	public void setAnswerType(String answerType) {
+		this.answerType = answerType;
+	}
+
+	public void setRisposte(List<Risposta> risposte) {
+		this.risposte = risposte;
+	}
+
+	public void setRispostaEsatta(String rispostaEsatta) {
+		this.rispostaEsatta = rispostaEsatta;
+	}
+
+	public void setSpiegazione(String spiegazione) {
+		this.spiegazione = spiegazione;
+	}
+
 	public String getId() {
 		return id;
 	}

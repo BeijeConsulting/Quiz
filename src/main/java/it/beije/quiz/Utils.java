@@ -106,6 +106,8 @@ public class Utils {
 		Document document = null;
 		Element domandaradice = null;
 		
+		System.out.println("Get book: " +  domanda.getBook());
+		
 		if(f.exists()) {
 			document = builder.parse(f);
 			domandaradice = document.getDocumentElement();
@@ -137,18 +139,25 @@ public class Utils {
 		Element rispOk = document.createElement("risposteEsatte");
 		rispOk.setTextContent(domanda.getRispostaEsatta());
 		
+		domandaxml.appendChild(risposte);
 		domandaxml.appendChild(rispOk);
 		
-		domandaxml.appendChild(risposte);
-		
 		domandaradice.appendChild(domandaxml);
+		
+		if(!f.exists()){
+			document.appendChild(domandaradice);
+		}
 		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource source = new DOMSource(document);
-		StreamResult result = new StreamResult(pathfile);
-
+		StreamResult result = null;
+		if(f.exists()) {
+			result = new StreamResult(pathfile);
+		} else {
+			result = new StreamResult(new File(pathfile));
+		}
 		// Output to console for testing
 		// StreamResult result = new StreamResult(System.out);
 
