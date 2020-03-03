@@ -1,1 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="cavallodue" chapter="1" id="cavallo|1|1" question="3"><testo>ciao cavallo</testo><risposte type="radio"><risposta value="A"/><risposta value="B"/><risposta value="c"/></risposte><risposteEsatte/><spiegazione>hai vinto 10 euroo</spiegazione></domanda></domande>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="cavallodue" chapter="1" id="cavallo|1|1"
+		question="3">
+		<testo>ciao cavallo</testo>
+		<risposte type="radio">
+			<risposta value="A" />
+			<risposta value="B" />
+			<risposta value="c" />
+		</risposte>
+		<risposteEsatte />
+		<spiegazione>hai vinto 10 euroo</spiegazione>
+	</domanda>
+</domande>

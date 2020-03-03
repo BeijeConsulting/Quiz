@@ -31,19 +31,19 @@ public class Utils {
 	
 	
 	public static String getDirectory(String id) {
-		String [] elementi =id.split("|");
+		String [] elementi =id.split("([|])");
 		
 		
 		return elementi[0];
 	}
 	public static int getCapitolo(String id) {
-		String [] elementi =id.split("|");
+		String [] elementi =id.split("([|])");
 		
 		
 		return Integer.parseInt(elementi[1]);
 	}
 	public static int getNDomanda(String id) {
-		String [] elementi =id.split("|");
+		String [] elementi =id.split("([|])");
 		
 		
 		return Integer.parseInt(elementi[2]);
@@ -184,7 +184,7 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
+		        String id = (domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
@@ -270,11 +270,11 @@ public class Utils {
 	
 	
 	/****************BRANCH CLARK*****************/
-	
-	
-	//Scrittura (append) della domanda nel file xml gia esistente
+
+	/*********************Scrittura (append) della domanda nel file xml gia esistente*****************************************/
 	public static void aggiungiDomanda(Domanda domanda, File fileXML) {
-		List<Domanda> listDomande= readFileDomande(fileXML.getPath());
+		List<Domanda> listDomande=new ArrayList<Domanda>();
+		 listDomande=readFileDomande(fileXML.getPath());
 		listDomande.add(domanda);
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

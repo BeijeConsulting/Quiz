@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<index>
-	<quiz dir="oca_manual" id_book="oca_manual"
-		title="OCA Oracle Certified Associate Java SE 8 [2014]" />
-	<quiz dir="oca_certification_guide_manning"
-		id_book="oca_certification_guide_manning"
-		title="OCA Java SE 8 Programmer I Certification Guide" />
-	<quiz dir="" id_book="oca_ocp"
-		title="OCA _ OCP Java SE 8 Programmer Practice Tests" />
-	<quiz dir="ciao" id_book="ciao" title="ciao" />
-</index>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><index><quiz dir="oca_manual" id_book="oca_manual" title="OCA Oracle Certified Associate Java SE 8 [2014]"/><quiz dir="oca_certification_guide_manning" id_book="oca_certification_guide_manning" title="OCA Java SE 8 Programmer I Certification Guide"/><quiz dir="" id_book="oca_ocp" title="OCA _ OCP Java SE 8 Programmer Practice Tests"/><quiz dir="ciao" id_book="ciao" title="ciao"/><quiz dir="antonio" id_book="antonio" title="anto"/></index>
