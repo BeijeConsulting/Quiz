@@ -10,25 +10,12 @@ import it.beije.quiz.Utils;
 
 public class Libro {
 	
-<<<<<<< HEAD
-	private String checked="";
 
 
-//	public static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
-//	public static final String LIB_PATH=new File("").getAbsolutePath()+"\\domande\\";
 
 
-=======
->>>>>>> refs/remotes/origin/BranchDelBosco
-//	public static final String LIB_PATH="C:\\Users\\Padawan06\\git\\QuizQ\\domande\\";
 	public static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
-<<<<<<< HEAD
-//	public static final String LIB_PATH=new File("").getAbsolutePath()+"\\domande\\";
-=======
-//	public static final String LIB_PATH="C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
->>>>>>> refs/remotes/origin/BranchDelBosco
 
-//	public static final String LIB_PATH=new File("").getAbsolutePath()+"\\domande\\";
 	
 	private String checked="";
 
