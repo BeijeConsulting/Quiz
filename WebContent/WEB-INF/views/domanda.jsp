@@ -48,11 +48,11 @@ var timer = setInterval(myTimer, 1000);
 
 </script>
 
-DOMANDA ${ index + 1 } di ${ totDomande }<br>
+DOMANDA ${ index + 1 } di ${ totDomande } <br>
 <br>
 ${testoDomanda}
 
-<form action = "/quiz/domanda" method = "post">
+<form action = "/quiz/domanda" method = "POST">
   <input type="hidden" name="index" value="${ index }">
   <c:forEach var="scelte" items="${ risposte }">
     <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : scelte.value }' value = "${ scelte.value }"
@@ -65,6 +65,6 @@ ${testoDomanda}
 
 <c:if test="${index > 0 }"><a href="/quiz/domanda/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<c:if test="${index < totale-1}"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
+<c:if test="${index < totDomande - 1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
 </body>
 </html>

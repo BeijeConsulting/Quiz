@@ -2,10 +2,12 @@ package it.beije.quiz.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,17 +35,34 @@ import it.beije.quiz.model.Risposta;
 @SessionScope
 public class QuizController {
 
+<<<<<<< HEAD
 	private List<Domanda> domande1= new ArrayList<Domanda>();
 	private List<Domanda> domandetot= new ArrayList<Domanda>();
 	private int tot;
+=======
+	private List<Domanda> domande1 = new ArrayList<Domanda>();
+	private int totale = 0;
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 	private LocalTime time = null;
+	private static boolean isNew = false;
 	private List<Libro> libri;
+<<<<<<< HEAD
 	private int totale;
+=======
+	private ArrayList<Domanda> domandetot = new ArrayList<Domanda>();
+	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 
+<<<<<<< HEAD
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpServletRequest request,HttpSession session) {
 		System.out.println("index Page Requested : " + request.getRequestURI());
+=======
+	@RequestMapping(value = "/", method = RequestMethod.GET) // index è una parola chiave prende quello che indichi nel
+																// name="prefix" value="/WEB-INF/views/"
+	public String index(HttpServletRequest request, Model model) {
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 
 		return "index";
 	}
@@ -81,13 +102,53 @@ public class QuizController {
 		return "totaleDomande";
 	}
 
+	@RequestMapping(value = "/totaledomande", method = RequestMethod.GET)
+	public String init(Model model, HttpServletRequest request, HttpSession session)
+			throws ParserConfigurationException, SAXException, IOException {
+
+
+		libri = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+
+		if (!domandetot.isEmpty()) 
+			domandetot.clear();
+		for (int i = 0; i < libri.size(); i++) {
+
+			File folder = new File(MAIN_PATH + libri.get(i).getNameDir());
+
+			for (final File fileEntry : folder.listFiles()) {
+				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+				if (request.getParameter("libro" + (i + 1)) != null) {
+					domandetot.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+					
+				}
+
+			}
+
+			libri.get(i).setDomande(domandetot);
+
+		}
+
+		totale = domandetot.size();
+		model.addAttribute("totDomande", totale);
+		// domande1.clear();
+
+		return "totaledomande";
+	}
+
+	
+	
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
+<<<<<<< HEAD
 		int totale = domande1.size();
+=======
+
+		int tot = domandetot.size();
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 		int secondi = 2 * 60 * totale;
 		long hours = (secondi - diff.getSeconds()) / 3600;
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
@@ -100,6 +161,7 @@ public class QuizController {
 	}
 
 	private String caricaDomanda(Model model, int index) {
+<<<<<<< HEAD
 			
 		if (index < totale) {
 		
@@ -123,7 +185,34 @@ public class QuizController {
 				
 				return "riepilogo";
 				
+=======
+
+		if (index < totale) {
+
+			Domanda d = domandetot.get(index);
+			String risposta = d.getRispostaUtente();
+			// System.out.println("risposta : " + risposta);
+			if (risposta == null) {
+				risposta = "";
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 			}
+<<<<<<< HEAD
+=======
+			// System.out.println(i.getDomande().get(index));
+			model.addAttribute("index", index);
+			model.addAttribute("testoDomanda", Utils.formattaTesto(d.getTesto()));
+			model.addAttribute("rispUtente", risposta);
+			model.addAttribute("answerType", d.getAnswerType());
+			model.addAttribute("risposte", d.getRisposte());
+			// portare a false il valore di libro
+
+			return "domanda";
+		} else {
+
+			return "riepilogo";
+		}
+
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 	}
 
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
@@ -146,7 +235,10 @@ public class QuizController {
 				builder.append(request.getParameter(name));
 			}
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 		domandetot.get(index).setRispostaUtente(builder.toString());
 
 		setTimer(model);
@@ -175,6 +267,30 @@ public class QuizController {
 
 		return "risultati";
 	}
+	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String scelta() {
+
+
+		return "scelta";
+	}
+	
+
+	@RequestMapping(value = "/newlibro", method = RequestMethod.GET)
+	public String newLibro() {
+		
+		isNew=true;
+
+		return "newlibro";
+	}
+	
+	@RequestMapping(value = "/newdomanda", method = RequestMethod.GET)
+	public String creaDomanda(Model model) {
+		
+		model.addAttribute("isNew", isNew);
+				
+		return "creadomanda";
+	}
 
 	/////// REST
 
@@ -186,7 +302,12 @@ public class QuizController {
 		r.setValue("A");
 		r.setText("risposta prova");
 		risposte.add(r);
+<<<<<<< HEAD
 		Domanda domanda = new Domanda("1", "book", "2", "3", "questa è una prova", "checkbox", risposte, "A", "nessuna");
+=======
+		Domanda domanda = new Domanda("1", "book", "2", " 3", "questa è una prova", "checkbox", risposte, "A",
+				"nessuna");
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 
 		response.setContentType("application/json");
 		response.getWriter().append(domanda.toJson());

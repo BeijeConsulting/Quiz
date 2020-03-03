@@ -32,6 +32,13 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
+<<<<<<< HEAD
+=======
+	public Domanda() {
+		
+	}
+	
+>>>>>>> refs/remotes/origin/Master_GruppoFox
 	public String getId() {
 		return id;
 	}
