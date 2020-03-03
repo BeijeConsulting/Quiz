@@ -7,8 +7,6 @@ public class Libro {
 	private String idBook;
 	private String dir;
 	private String title;
-	private int nCapitoli;
-	private List<Domanda> domanda;
 	
 	
 
@@ -20,13 +18,7 @@ public class Libro {
 		return title;
 	}
 	
-	public int getNcapitoli() {
-		return nCapitoli;
-	}
 
-	public List<Domanda> getDomanda() {
-		return domanda;
-	}
 
 	public String getIdBook() {
 		return idBook;
@@ -43,13 +35,7 @@ public class Libro {
 		this.title = title;
 	}
 	
-	public void setNcapitoli(int nCapitoli) {
-		this.nCapitoli=nCapitoli;
-	}
 
-	public void setDomanda(List<Domanda> domanda) {
-		this.domanda = domanda;
-	}
 
 	@Override
 	public String toString() {

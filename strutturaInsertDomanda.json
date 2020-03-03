@@ -1,0 +1,24 @@
+{
+   "id":1,
+   "book":"OCA Oracle Certified Associate Java SE 8 [2014]",
+   "chapter":2,
+   "question":1,
+   "testo":" testo prova",
+   "answerType":"checkbox",
+   "risposte":[
+      {
+         "value":"A",
+         "testo":"txt1"
+      },
+      {
+         "value":"B",
+         "testo":"txt2"
+      },
+      {
+         "value":"C",
+         "testo":"txt3"
+      }
+   ],
+   "risposte esatte":"A,D",
+   "spiegazione":"Spiegazione prova"
+}

@@ -61,19 +61,18 @@ public class QuizController {
 		return domanda(model, 0);
 
 	}	
-
+	
+	
 	@RequestMapping(value = "/creaLibro", method = RequestMethod.POST)
 	public String creaLibro(Model model, HttpServletRequest request) {
 		Libro libro = new Libro();
 
 		String IDlibro = request.getParameter("IDbook");
 		String titolo = request.getParameter("title");
-		int capitolo = Integer.parseInt(request.getParameter("chapter"));
-		String domanda = request.getParameter("question");
+	
 
 		libro.setIdBook(IDlibro);
 		libro.setTitle(titolo);
-		libro.setNcapitoli(capitolo);
 		libro.setDir(IDlibro);
 		// libro.setDomanda(null);
 
@@ -87,8 +86,7 @@ public class QuizController {
 		}
 		model.addAttribute("IDLibro", IDlibro);
 		model.addAttribute("Titolo", titolo);
-		model.addAttribute("Capitolo", capitolo);
-		model.addAttribute("Domanda", domanda);
+
 		model.addAttribute("listaLibri", listaLibriInXML);
 		
 		StringBuilder dir= new StringBuilder();

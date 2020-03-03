@@ -1,15 +1,20 @@
 <?xml version="1.0" ?>
 <domande>
-	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="1">
+	<domanda id="1"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="1">
 		<testo>
-			What is the result of the following class? (Choose all that apply)
-			
+			What is the result of the following class? (Choose all that
+			apply)
+
 			1: public class _C {
-			2: 	private static int $;
-			3: 	public static void main(String[] main) {
-			4: 		String a_b;
-			5: 		System.out.print($);
-			6: 		System.out.print(a_b);
+			2: private static int $;
+			3: public static void
+			main(String[] main) {
+			4: String a_b;
+			5: System.out.print($);
+			6:
+			System.out.print(a_b);
 			7: } }
 		</testo>
 		<risposte type="checkbox">
@@ -22,102 +27,150 @@
 			<risposta value="G">nullnull</risposta>
 		</risposte>
 		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
-			Option E is correct because local variables require assignment before referencing
-			them. Option D is incorrect because class and instance variables have default values
-			and allow referencing. a_b defaults to a null value. Options A, B, and C are incorrect
-			because identifiers may begin with a letter, underscore, or dollar sign. Options F and
-			G are incorrect because the code does not compile. If a_b was an instance variable, the
-			code would compile and output 0null. For more information, see Chapter 1.
+		<spiegazione>
+			Option E is correct because local variables require assignment before
+			referencing
+			them. Option D is incorrect because class and instance
+			variables have default values
+			and allow referencing. a_b defaults to a
+			null value. Options A, B, and C are incorrect
+			because identifiers may
+			begin with a letter, underscore, or dollar sign. Options F and
+			G are
+			incorrect because the code does not compile. If a_b was an instance
+			variable, the
+			code would compile and output 0null. For more
+			information, see Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="2">
+	<domanda id="2"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="2">
 		<testo>
 			What is the result of the following code?
-			
+
 			String s1 = "Java";
 			String s2 = "Java";
-			StringBuilder sb1 = new StringBuilder();
+			StringBuilder sb1 = new
+			StringBuilder();
 			sb1.append("Ja").append("va");
-			System.out.println(s1 == s2);
+			System.out.println(s1
+			== s2);
 			System.out.println(s1.equals(s2));
 			System.out.println(sb1.toString() == s1);
 			System.out.println(sb1.toString().equals(s1));
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">true is printed out exactly once</risposta>
-			<risposta value="B">true is printed out exactly twice.</risposta>
-			<risposta value="C">true is printed out exactly three times.</risposta>
-			<risposta value="D">true is printed out exactly four times.</risposta>
+			<risposta value="B">true is printed out exactly twice.
+			</risposta>
+			<risposta value="C">true is printed out exactly three times.
+			</risposta>
+			<risposta value="D">true is printed out exactly four times.
+			</risposta>
 			<risposta value="E">The code does not compile.</risposta>
 		</risposte>
 		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
-			String literals are used from the string pool. This means that s1 and s2 refer to the
-			same object and are equal. Therefore, the first two print statements print true. The
-			third print statement prints false because toString() uses a method to compute the
-			value and it is not from the string pool. The final print statement again prints true
-			because equals() looks at the values of String objects. For more information, see
+		<spiegazione>
+			String literals are used from the string pool. This means that s1 and s2
+			refer to the
+			same object and are equal. Therefore, the first two print
+			statements print true. The
+			third print statement prints false because
+			toString() uses a method to compute the
+			value and it is not from the
+			string pool. The final print statement again prints true
+			because
+			equals() looks at the values of String objects. For more information,
+			see
 			Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="3">
+	<domanda id="3"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="3">
 		<testo>
-			What is the output of the following code? (Choose all that apply)
-			
+			What is the output of the following code? (Choose all that
+			apply)
+
 			1: interface HasTail { int getTailLength(); }
-			2: abstract class Puma implements HasTail {
-			3: 	protected int getTailLength() {return 4;}
+			2: abstract class Puma
+			implements HasTail {
+			3: protected int getTailLength() {return 4;}
 			4: }
 			5: public class Cougar extends Puma {
-			6: 	public static void main(String[] args) {
-			7: 		Puma puma = new Puma();
-			8: 		System.out.println(puma.getTailLength());
-			9: 	}
+			6: public static void
+			main(String[] args) {
+			7: Puma puma = new Puma();
+			8:
+			System.out.println(puma.getTailLength());
+			9: }
 			10:
-			11: public int getTailLength(int length) {return 2;}
+			11: public int
+			getTailLength(int length) {return 2;}
 			12:}
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">2</risposta>
 			<risposta value="B">4</risposta>
-			<risposta value="C">The code will not compile because of line 3.</risposta>
-			<risposta value="D">The code will not compile because of line 5.</risposta>
-			<risposta value="E">The code will not compile because of line 7.</risposta>
-			<risposta value="F">The code will not compile because of line 11.</risposta>
-			<risposta value="G">The output cannot be determined from the code provided.</risposta>
+			<risposta value="C">The code will not compile because of line 3.
+			</risposta>
+			<risposta value="D">The code will not compile because of line 5.
+			</risposta>
+			<risposta value="E">The code will not compile because of line 7.
+			</risposta>
+			<risposta value="F">The code will not compile because of line
+				11.</risposta>
+			<risposta value="G">The output cannot be determined from the
+				code provided.</risposta>
 		</risposte>
 		<risposteEsatte>C, D, E</risposteEsatte>
-		<spiegazione> 
+		<spiegazione>
 			First, the method getTailLength() in the interface HasTail is assumed to be
-			public, since it is part of an interface. The implementation of the method on line 3 is
-			therefore an invalid override, as protected is a more restrictive access modifier than
-			public, so option C is correct. Next, the class Cougar implements an overloaded version of getTailLength(), but since the declaration in the parent class Puma is invalid,
-			it needs to implement a public version of the method. Since it does not, the declaration
-			of Puma is invalid, so option D is correct. Option E is incorrect, since Puma is marked
-			abstract and cannot be instantiated. The overloaded method on line 11 is declared
-			correctly, so option F is not correct. Finally, as the code has multiple compiler errors,
-			options A, B, and G can be eliminated. For more information, see Chapter 5.
+			public, since it is part of an interface. The implementation of the
+			method on line 3 is
+			therefore an invalid override, as protected is a
+			more restrictive access modifier than
+			public, so option C is correct.
+			Next, the class Cougar implements an overloaded version of
+			getTailLength(), but since the declaration in the parent class Puma
+			is invalid,
+			it needs to implement a public version of the method.
+			Since it does not, the declaration
+			of Puma is invalid, so option D is
+			correct. Option E is incorrect, since Puma is marked
+			abstract and
+			cannot be instantiated. The overloaded method on line 11 is declared
+			correctly, so option F is not correct. Finally, as the code has
+			multiple compiler errors,
+			options A, B, and G can be eliminated. For
+			more information, see Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="4">
+	<domanda id="4"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="4">
 		<testo>
 			What is the output of the following program?
-			
+
 			1: public class FeedingSchedule {
-			2: 	public static void main(String[] args) {
-			3: 		boolean keepGoing = true;
-			4: 		int count = 0;
-			5: 		int x = 3;
-			6: 		while(count++ &lt; 3) {
-			7: 			 y = (1 + 2 * count) % 3;
-			8: 			switch(y) {
-			9: 				default:
-			10: 			case 0: x -= 1; break;
-			11: 			case 1: x += 5;
-			12: 		}
-			13: 	}
-			14: System.out.println(x);
+			2: public static void main(String[]
+			args) {
+			3: boolean keepGoing = true;
+			4: int count = 0;
+			5: int x = 3;
+			6:
+			while(count++ &lt; 3) {
+			7: y = (1 + 2 * count) % 3;
+			8: switch(y) {
+			9:
+			default:
+			10: case 0: x -= 1; break;
+			11: case 1: x += 5;
+			12: }
+			13: }
+			14:
+			System.out.println(x);
 			15: } }
 		</testo>
 		<risposte type="checkbox">
@@ -126,55 +179,67 @@
 			<risposta value="C">6</risposta>
 			<risposta value="D">7</risposta>
 			<risposta value="E">13</risposta>
-			<risposta value="F">The code will not compile because of line 7.</risposta>
+			<risposta value="F">The code will not compile because of line 7.
+			</risposta>
 		</risposte>
 		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
-			The code compiles and runs without issue; therefore, option F is incorrect. This type
-			of problem is best examined one loop iteration at a time:
-				■ The loop continues as count loop expression evaluates to 0 &lt; 3, which is true,
-				with y taking a new value of 1. The value of y is set to:
-				y = (1 + 2 * 1) % 3
-				 = (1 + 2) % 3
-				 = 3 % 3
-				 = 0
-				■ The first case block is called and the value of x is then set to:
-				x = 3 - 1 = 2
-				■ The loop continues as count loop expression evaluates to 1 &lt; 3, which is true,
-				with y taking a new value of 2. The value of y is set to:
-				y = (1 + 2 * 2) % 3
-				 = (1 + 4) % 3
-				 = 4 % 3
-				 = 2
-				xl Introduction
-				fl ast.indd 1½ 4/2014 Page xl
-				■ The default block is called and the value of x is set to:
-				x = 2 - 1 = 1
-				■ The loop continues as the count loop expression evaluates to 2 &lt; 3, which is true,
-				with y taking a new value of 3. The value of y is set to:
-				y = (1 + 2 * 3) % 3
-				 = (1 + 6) % 3
-				 = 7 % 3
-				 = 1
-				■ The second case block is called and the value of x is then set to:
-				x = 1 + 5 = 6
-				■ The loop ends as the count loop expression evaluates to 3 &lt; 3, with y also taking a
-				new value of 4. The most recent value of x, 6, is output, so the answer is option C.
+		<spiegazione>
+			The code compiles and runs without issue; therefore, option F is
+			incorrect. This type
+			of problem is best examined one loop iteration at
+			a time:
+			■ The loop continues as count loop expression evaluates to 0 &lt; 3,
+			which is true,
+			with y taking a new value of 1. The value of y is set to:
+			y = (1 + 2 * 1) % 3
+			= (1 + 2) % 3
+			= 3 % 3
+			= 0
+			■ The first case block is called and the value of x is then set to:
+			x = 3 - 1 = 2
+			■ The loop continues as count loop expression evaluates to 1 &lt; 3,
+			which is true,
+			with y taking a new value of 2. The value of y is set to:
+			y = (1 + 2 * 2) % 3
+			= (1 + 4) % 3
+			= 4 % 3
+			= 2
+			xl Introduction
+			fl ast.indd 1½ 4/2014 Page xl
+			■ The default block is called and the value of x is set to:
+			x = 2 - 1 = 1
+			■ The loop continues as the count loop expression evaluates to 2 &lt;
+			3, which is true,
+			with y taking a new value of 3. The value of y is set to:
+			y = (1 + 2 * 3) % 3
+			= (1 + 6) % 3
+			= 7 % 3
+			= 1
+			■ The second case block is called and the value of x is then set to:
+			x = 1 + 5 = 6
+			■ The loop ends as the count loop expression evaluates to 3 &lt; 3,
+			with y also taking a
+			new value of 4. The most recent value of x, 6, is output, so the answer
+			is option C.
 			For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="5">
+	<domanda id="5"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="5">
 		<testo>
 			What is the output of the following code snippet?
-			
+
 			13: System.out.print("a");
 			14: try {
-			15: 	System.out.print("b");
-			16: 	throw new IllegalArgumentException();
+			15: System.out.print("b");
+			16: throw
+			new IllegalArgumentException();
 			17: } catch (RuntimeException e) {
-			18: 	System.out.print("c");
+			18:
+			System.out.print("c");
 			19: } finally {
-			20: 	System.out.print("d");
+			20: System.out.print("d");
 			21: }
 			22: System.out.print("e");
 		</testo>
@@ -187,26 +252,34 @@
 			<risposta value="F">An uncaught exception is thrown.</risposta>
 		</risposte>
 		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
-			The code starts running and prints a and b on lines 13 and 15. Line 16 throws an
-			exception, which is caught on line 17. After line 18 prints c, the finally block is run
-			and d is printed. Then the try statement ends and e is printed on line 22. For more
+		<spiegazione>
+			The code starts running and prints a and b on lines 13 and 15. Line 16
+			throws an
+			exception, which is caught on line 17. After line 18 prints
+			c, the finally block is run
+			and d is printed. Then the try statement
+			ends and e is printed on line 22. For more
 			information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="6">
+	<domanda id="6"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="6">
 		<testo>
 			What is the result of the following program?
-			
+
 			1: public class MathFunctions {
-			2: 	public static void addToInt(int x, int amountToAdd) {
-			3: 		x = x + amountToAdd;
-			4: 	}
-			5: 	public static void main(String[] args) {
-			6: 		int a = 15;
-			7: 		int b = 10;
-			8: 		MathFunctions.addToInt(a, b);
-			9: 		System.out.println(a); } }
+			2: public static void addToInt(int x,
+			int amountToAdd) {
+			3: x = x + amountToAdd;
+			4: }
+			5: public static void
+			main(String[] args) {
+			6: int a = 15;
+			7: int b = 10;
+			8:
+			MathFunctions.addToInt(a, b);
+			9: System.out.println(a); } }
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">10</risposta>
@@ -217,17 +290,23 @@
 			<risposta value="F">None of the above.</risposta>
 		</risposte>
 		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
-			The code compiles successfully, so options D and E are incorrect. The value of a
-			cannot be changed by the addToInt method, no matter what the method does, because
-			only a copy of the variable is passed into the parameter x. Therefore, a does not change
-			and the output on line 9 is 15. For more information, see Chapter 4.
+		<spiegazione>
+			The code compiles successfully, so options D and E are incorrect. The
+			value of a
+			cannot be changed by the addToInt method, no matter what
+			the method does, because
+			only a copy of the variable is passed into
+			the parameter x. Therefore, a does not change
+			and the output on line 9
+			is 15. For more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="7">
+	<domanda id="7"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="7">
 		<testo>
 			What is the result of the following code?
-			
+
 			int[] array = {6,9,8};
 			List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
 			list.add(array[0]);
@@ -239,38 +318,56 @@
 		<risposte type="checkbox">
 			<risposta value="A">[8]</risposta>
 			<risposta value="B">[9]</risposta>
-			<risposta value="C">Something like [Ljava.lang.String;@160bc7c0</risposta>
+			<risposta value="C">Something like [Ljava.lang.String;@160bc7c0
+			</risposta>
 			<risposta value="D">An exception is thrown.</risposta>
 			<risposta value="E">The code does not compile.</risposta>
 		</risposte>
 		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
-			The array is allowed to use an anonymous initializer because it is in the same line as
-			the declaration. The ArrayList uses the diamond operator allowed since Java 7. This
-			specifies the type matches the one on the left without having to re-type it. After adding
-			the two elements, list contains [6, 8]. We then replace the element at index 1 with 9,
-			resulting in [6, 9]. Finally, we remove the element at index 0, leaving [9]. Option C
-			is incorrect because arrays output something like that rather than an ArrayList. For
-			more information, see Chapter 3.
+		<spiegazione>
+			The array is allowed to use an anonymous initializer because it is in
+			the same line as
+			the declaration. The ArrayList uses the diamond
+			operator allowed since Java 7. This
+			specifies the type matches the one
+			on the left without having to re-type it. After adding
+			the two
+			elements, list contains [6, 8]. We then replace the element at index
+			1 with 9,
+			resulting in [6, 9]. Finally, we remove the element at index
+			0, leaving [9]. Option C
+			is incorrect because arrays output something
+			like that rather than an ArrayList. For
+			more information, see Chapter
+			3.
 		</spiegazione>
 	</domanda>
-	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="8">
+	<domanda id="8"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="8">
 		<testo>
 			What is the output of the following code?
-			
+
 			1: public class Deer {
-			2: 	public Deer() { System.out.print("Deer"); }
-			3: 	public Deer(int age) { System.out.print("DeerAge"); }
-			4: 	private boolean hasHorns() { return false; }
-			5: 	public static void main(String[] args) {
-			6: 		Deer deer = new Reindeer(5);
-			7: 		System.out.println(","+deer.hasHorns());
-			8: 	}
+			2: public Deer() { System.out.print("Deer"); }
+			3:
+			public Deer(int age) { System.out.print("DeerAge"); }
+			4: private
+			boolean hasHorns() { return false; }
+			5: public static void
+			main(String[] args) {
+			6: Deer deer = new Reindeer(5);
+			7:
+			System.out.println(","+deer.hasHorns());
+			8: }
 			9: }
-			10: class Reindeer extends Deer {
-			11: 	public Reindeer(int age) { System.out.print("Reindeer"); }
-			12: 	public boolean hasHorns() { return true; }
-			13: } 
+			10: class Reindeer
+			extends Deer {
+			11: public Reindeer(int age) {
+			System.out.print("Reindeer"); }
+			12: public boolean hasHorns() { return
+			true; }
+			13: }
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">DeerReindeer,false</risposta>
@@ -279,93 +376,140 @@
 			<risposta value="D">ReindeerDeer,true</risposta>
 			<risposta value="E">DeerAgeReindeer,false</risposta>
 			<risposta value="F">DeerAgeReindeer,true</risposta>
-			<risposta value="G">The code will not compile because of line 7</risposta>
-			<risposta value="H">The code will not compile because of line 12.</risposta>
+			<risposta value="G">The code will not compile because of line 7
+			</risposta>
+			<risposta value="H">The code will not compile because of line
+				12.</risposta>
 		</risposte>
 		<risposteEsatte>A</risposteEsatte>
-		<spiegazione> 
-			The code compiles and runs without issue, so options G and H are incorrect. First,
-			the Reindeer object is instantiated using the constructor that takes an int value. Since
-			there is no explicit call to the parent constructor, the default no-argument super()
-			is inserted as the first line of the constructor. The output is then Deer, followed by
-			Reindeer in the child constructor, so only options A and B can be correct. Next,
-			the method hasHorns() looks like an overridden method, but it is actually a hidden
-			method since it is declared private in the parent class. Because the hidden method is
-			referenced in the parent class, the parent version is used, so the code outputs false,
+		<spiegazione>
+			The code compiles and runs without issue, so options G and H are
+			incorrect. First,
+			the Reindeer object is instantiated using the
+			constructor that takes an int value. Since
+			there is no explicit call
+			to the parent constructor, the default no-argument super()
+			is inserted
+			as the first line of the constructor. The output is then Deer,
+			followed by
+			Reindeer in the child constructor, so only options A and B
+			can be correct. Next,
+			the method hasHorns() looks like an overridden
+			method, but it is actually a hidden
+			method since it is declared
+			private in the parent class. Because the hidden method is
+			referenced
+			in the parent class, the parent version is used, so the code outputs
+			false,
 			and option A is the correct answer.
 		</spiegazione>
 	</domanda>
-	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="9">
+	<domanda id="9"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="9">
 		<testo>
-			Which of the following statements are true? (Choose all that apply)
+			Which of the following statements are true? (Choose all that
+			apply)
 		</testo>
 		<risposte type="checkbox">
-			<risposta value="A">Checked exceptions are intended to be thrown by the JVM (and not the programmer).</risposta>
-			<risposta value="B">Checked exceptions are required to be caught or declared.</risposta>
-			<risposta value="C">Errors are intended to be thrown by the JVM (and not the programmer).</risposta>
-			<risposta value="D">Errors are required to be caught or declared.</risposta>
-			<risposta value="E">Runtime exceptions are intended to be thrown by the JVM (and not the programmer).</risposta>
-			<risposta value="F">Runtime exceptions are required to be caught or declared.</risposta>
+			<risposta value="A">Checked exceptions are intended to be thrown
+				by the JVM (and not the programmer).</risposta>
+			<risposta value="B">Checked exceptions are required to be caught
+				or declared.</risposta>
+			<risposta value="C">Errors are intended to be thrown by the JVM
+				(and not the programmer).</risposta>
+			<risposta value="D">Errors are required to be caught or
+				declared.</risposta>
+			<risposta value="E">Runtime exceptions are intended to be thrown
+				by the JVM (and not the programmer).</risposta>
+			<risposta value="F">Runtime exceptions are required to be caught
+				or declared.</risposta>
 		</risposte>
 		<risposteEsatte>B, C</risposteEsatte>
-		<spiegazione> 
-			Only checked exceptions are required to be handled (caught) or declared. Runtime exceptions are commonly thrown by both the JVM and programmer code.
-			Checked exceptions are usually thrown by programmer code. Errors are intended to be 
-			thrown by the JVM. While a programmer could throw one, this would be a horrible
+		<spiegazione>
+			Only checked exceptions are required to be handled (caught) or declared.
+			Runtime exceptions are commonly thrown by both the JVM and programmer
+			code.
+			Checked exceptions are usually thrown by programmer code. Errors
+			are intended to be
+			thrown by the JVM. While a programmer could throw one, this would be a
+			horrible
 			practice. For more information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="10">
+	<domanda id="10"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="10">
 		<testo>
 			Which are true of the following code? (Choose all that apply)
-			
+
 			1: import java.util.*;
 			2: public class Grasshopper {
-			3: public Grasshopper(String n) {
-			4: 	name = n;
+			3: public
+			Grasshopper(String n) {
+			4: name = n;
 			5: }
-			6: public static void main(String[] args) {
-			7: 	Grasshopper one = new Grasshopper("g1");
-			8: 	Grasshopper two = new Grasshopper("g2");
-			9: 	one = two;
+			6: public static void
+			main(String[] args) {
+			7: Grasshopper one = new Grasshopper("g1");
+			8:
+			Grasshopper two = new Grasshopper("g2");
+			9: one = two;
 			10: two = null;
 			11: one = null;
 			12:}
 			13: private String name; }
 		</testo>
 		<risposte type="checkbox">
-			<risposta value="A">Immediately after line 9, no grasshopper objects are eligible for garbage collection.</risposta>
-			<risposta value="B">Immediately after line 10, no grasshopper objects are eligible for garbage collection.</risposta>
-			<risposta value="C">Immediately after line 9, only one grasshopper object is eligible for garbage collection.</risposta>
-			<risposta value="D">Immediately after line 10, only one grasshopper object is eligible for garbage collection.</risposta>
-			<risposta value="E">Immediately after line 11, only one grasshopper object is eligible for garbage collection.</risposta>
+			<risposta value="A">Immediately after line 9, no grasshopper
+				objects are eligible for garbage collection.</risposta>
+			<risposta value="B">Immediately after line 10, no grasshopper
+				objects are eligible for garbage collection.</risposta>
+			<risposta value="C">Immediately after line 9, only one
+				grasshopper object is eligible for garbage collection.</risposta>
+			<risposta value="D">Immediately after line 10, only one
+				grasshopper object is eligible for garbage collection.</risposta>
+			<risposta value="E">Immediately after line 11, only one
+				grasshopper object is eligible for garbage collection.</risposta>
 			<risposta value="F">The code compiles.</risposta>
 			<risposta value="G">The code does not compile.</risposta>
 		</risposte>
 		<risposteEsatte>C, D, F</risposteEsatte>
-		<spiegazione> 
+		<spiegazione>
 			Immediately after line 9, only Grasshopper g1 is eligible for garbage collection
-			since both one and two point to Grasshopper g2. Immediately after line 10, we still
-			only have Grasshopper g1 eligible for garbage collection. Reference one points to g1
-			and reference two is null. Immediately after line 11, both Grasshopper objects are eligible for garbage collection since both one and two point to null. The code does compile. Although it is traditional to declare instance variables early in the class, you don’t
-			have to. For more information, see Chapter 1.
+			since both one and two point to Grasshopper g2. Immediately after
+			line 10, we still
+			only have Grasshopper g1 eligible for garbage
+			collection. Reference one points to g1
+			and reference two is null.
+			Immediately after line 11, both Grasshopper objects are eligible for
+			garbage collection since both one and two point to null. The code
+			does compile. Although it is traditional to declare instance
+			variables early in the class, you don’t
+			have to. For more information,
+			see Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="11">
+	<domanda id="11"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="11">
 		<testo>
 			What is the output of the following program?
-			
+
 			1: public class FeedingSchedule {
-			2: 	public static void main(String[] args) {
-			3: 		int x = 5, j = 0;
-			4: 		OUTER: for(int i=0; i&lt;3; )
-			5: 			INNER: do {
-			6: 				i++; x++;
-			7: 				if(x > 10) break INNER;
-			8: 				x += 4;
-			9: 				j++;
-			10: 		} while(j &lt;= 2);
-			11: 	System.out.println(x);
+			2: public static void main(String[]
+			args) {
+			3: int x = 5, j = 0;
+			4: OUTER: for(int i=0; i&lt;3; )
+			5: INNER:
+			do {
+			6: i++; x++;
+			7: if(x > 10) break INNER;
+			8: x += 4;
+			9: j++;
+			10: }
+			while(j &lt;= 2);
+			11: System.out.println(x);
 			12: } }
 		</testo>
 		<risposte type="checkbox">
@@ -373,43 +517,60 @@
 			<risposta value="B">12</risposta>
 			<risposta value="C">13</risposta>
 			<risposta value="D">17</risposta>
-			<risposta value="E">The code will not compile because of line 4.</risposta>
-			<risposta value="F">The code will not compile because of line 6.</risposta>
+			<risposta value="E">The code will not compile because of line 4.
+			</risposta>
+			<risposta value="F">The code will not compile because of line 6.
+			</risposta>
 		</risposte>
 		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
-			The code compiles and runs without issue; therefore, options E and F are incorrect.
-			This type of problem is best examined one loop iteration at a time:
-				■ On the first iteration of the outer loop i is 0, so the loop continues.
-				■ On the first iteration of the inner loop, i is updated to 1 and x to 6. The if-then
-				statement branch is not executed, and x is increased to 10 and j to 1.
-				■ On the second iteration of the inner loop (since j = 1 and 1 &lt;= 2), i is updated
-				to 2 and x to 11. At this point, the if-then branch will evaluate to true for the
-				remainder of the program run, which causes the flow to break out of the inner
-				loop each time it is reached.
-				■ On the second iteration of the outer loop (since i = 2), i is updated to 3 and x to
-				12. As before, the inner loop is broken since x is still greater than 10.
-				■ On the third iteration of the outer loop, the outer loop is broken, as i is already
-				not less than 3. The most recent value of x, 12, is output, so the answer is option B.
-				For more information, see Chapter 2.
+		<spiegazione>
+			The code compiles and runs without issue; therefore, options E and F are
+			incorrect.
+			This type of problem is best examined one loop iteration at
+			a time:
+			■ On the first iteration of the outer loop i is 0, so the loop
+			continues.
+			■ On the first iteration of the inner loop, i is updated to 1 and x to
+			6. The if-then
+			statement branch is not executed, and x is increased to 10 and j to 1.
+			■ On the second iteration of the inner loop (since j = 1 and 1 &lt;=
+			2), i is updated
+			to 2 and x to 11. At this point, the if-then branch will evaluate to
+			true for the
+			remainder of the program run, which causes the flow to break out of the inner
+			loop each time it is reached.
+			■ On the second iteration of the outer loop (since i = 2), i is
+			updated to 3 and x to
+			12. As before, the inner loop is broken since x is still greater than
+			10.
+			■ On the third iteration of the outer loop, the outer loop is broken,
+			as i is already
+			not less than 3. The most recent value of x, 12, is output, so the
+			answer is option B.
+			For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="12">
+	<domanda id="12"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="12">
 		<testo>
 			What is the result of the following program?
-			
+
 			1: public class Egret {
-			2: 	private String color;
-			3: 	public Egret() {
-			4: 		this("white");
-			5: 	}
-			6: 	public Egret(String color) {
-			7: 		color = color;
-			8: 	}
-			9: 	public static void main(String[] args) {
-			10: 	Egret e = new Egret();
-			11: 	System.out.println("Color:" + e.color);
-			12: 	}
+			2: private String color;
+			3: public Egret() {
+			4:
+			this("white");
+			5: }
+			6: public Egret(String color) {
+			7: color = color;
+			8:
+			}
+			9: public static void main(String[] args) {
+			10: Egret e = new
+			Egret();
+			11: System.out.println("Color:" + e.color);
+			12: }
 			13: }
 		</testo>
 		<risposte type="checkbox">
@@ -421,92 +582,145 @@
 			<risposta value="F">Compiler error on line 11.</risposta>
 		</risposte>
 		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
-			Line 10 calls the constructor on lines 3–5. That constructor calls the other constructor. However, the constructor on lines 6–8 assigns the method parameter to itself,
-			which leaves the color instance variable on line 2 set to its default value of null. For
-			more information, see Chapter 4.
+		<spiegazione>
+			Line 10 calls the constructor on lines 3–5. That constructor calls the
+			other constructor. However, the constructor on lines 6–8 assigns the
+			method parameter to itself,
+			which leaves the color instance variable
+			on line 2 set to its default value of null. For
+			more information, see
+			Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="13">
+	<domanda id="13"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="13">
 		<testo>
 			What is the output of the following program?
-			
+
 			1: public class BearOrShark {
-			2: 	public static void main(String[] args) {
-			3: 		int luck = 10;
-			4: 		if((luck>10 ? luck++: --luck)&lt;10) {
-			5: 			System.out.print("Bear");
-			6: 		} if(luck&lt;10) System.out.print("Shark");
+			2: public static void main(String[] args)
+			{
+			3: int luck = 10;
+			4: if((luck>10 ? luck++: --luck)&lt;10) {
+			5:
+			System.out.print("Bear");
+			6: } if(luck&lt;10)
+			System.out.print("Shark");
 			7: } }
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">Bear</risposta>
 			<risposta value="B">Shark</risposta>
 			<risposta value="C">BearShark</risposta>
-			<risposta value="D">The code will not compile because of line 4.</risposta>
-			<risposta value="E">The code will not compile because of line 6.</risposta>
-			<risposta value="F">The code compiles without issue but does not produce any output.</risposta>
+			<risposta value="D">The code will not compile because of line 4.
+			</risposta>
+			<risposta value="E">The code will not compile because of line 6.
+			</risposta>
+			<risposta value="F">The code compiles without issue but does not
+				produce any output.</risposta>
 		</risposte>
 		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
-			The code compiles and runs without issue, so options D and E are correct. Remember that only one of the right-hand ternary expressions will be evaluated at runtime.
-			Since luck is not less than 10, the second expression, --luck, will be evaluated, and
-			since the pre-increment operator was used, the value returned will be 9, which is less
-			than 10. So the first if-then statement will be visited and Bear will be output. Notice
-			there is no else statement on line 6. Since luck is still less than 10, the second if-then
-			statement will also be reached and Shark will be output; therefore, the correct answer
+		<spiegazione>
+			The code compiles and runs without issue, so options D and E are
+			correct. Remember that only one of the right-hand ternary expressions
+			will be evaluated at runtime.
+			Since luck is not less than 10, the
+			second expression, --luck, will be evaluated, and
+			since the
+			pre-increment operator was used, the value returned will be 9, which
+			is less
+			than 10. So the first if-then statement will be visited and
+			Bear will be output. Notice
+			there is no else statement on line 6.
+			Since luck is still less than 10, the second if-then
+			statement will
+			also be reached and Shark will be output; therefore, the correct
+			answer
 			is option C. For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="14">
+	<domanda id="14"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="14">
 		<testo>
-			Assuming we have a valid, non-null HenHouse object whose value is initialized by the
-			blank line shown here, which of the following are possible outputs of this application?(Choose all that apply)
-			
+			Assuming we have a valid, non-null HenHouse object whose value
+			is initialized by the
+			blank line shown here, which of the following
+			are possible outputs of this application?(Choose all that apply)
+
 			1: class Chicken {}
-			2: interface HenHouse { public java.util.List&lt;Chicken&gt; getChickens(); }
-			3: public class ChickenSong {
-			4: 	public static void main(String[] args) {
-			5: 		HenHouse house = ______________
-			6: 		Chicken chicken = house.getChickens().get(0);
-			7: 		for(int i=0; i&lt;house.getChickens().size();
-			8: 			chicken = house.getChickens().get(i++)) {
-			9: 			System.out.println("Cluck");
-			10: } } }
+			2: interface HenHouse { public
+			java.util.List&lt;Chicken&gt; getChickens(); }
+			3: public class
+			ChickenSong {
+			4: public static void main(String[] args) {
+			5: HenHouse
+			house = ______________
+			6: Chicken chicken =
+			house.getChickens().get(0);
+			7: for(int i=0;
+			i&lt;house.getChickens().size();
+			8: chicken =
+			house.getChickens().get(i++)) {
+			9: System.out.println("Cluck");
+			10: } }
+			}
 		</testo>
 		<risposte type="checkbox">
-			<risposta value="A">The code will not compile because of line 6.</risposta>
-			<risposta value="B">The code will not compile because of lines 7–8.</risposta>
-			<risposta value="C">The application will compile but not produce any output.</risposta>
-			<risposta value="D">The application will output Cluck exactly once</risposta>
-			<risposta value="E">The application will output Cluck more than once.</risposta>
-			<risposta value="F">The application will compile but produce an exception at runtime.</risposta>
+			<risposta value="A">The code will not compile because of line 6.
+			</risposta>
+			<risposta value="B">The code will not compile because of lines
+				7–8.</risposta>
+			<risposta value="C">The application will compile but not produce
+				any output.</risposta>
+			<risposta value="D">The application will output Cluck exactly
+				once</risposta>
+			<risposta value="E">The application will output Cluck more than
+				once.</risposta>
+			<risposta value="F">The application will compile but produce an
+				exception at runtime.</risposta>
 		</risposte>
 		<risposteEsatte>D, E, F</risposteEsatte>
-		<spiegazione> 
-			The code compiles without issue, so options A and B are incorrect. If house
-			.getChickens() returns an array of one element, the code will output Cluck once, so
-			option D is correct. If house.getChickens() returns an array of multiple elements, the
-			code will output Cluck once for each element in the array, so option E is correct. Alternatively, if house.getChickens() returns an array of zero elements, then the code will 
-			throw an IndexOutOfBoundsException on the call to house.getChickens().get(0);
-			therefore, option C is not possible and option F is correct. The code will also throw an
-			exception if the array returned by house.getChickens() is null, so option F is possible
-			under multiple circumstances. For more information, see Chapter 2.
+		<spiegazione>
+			The code compiles without issue, so options A and B are incorrect. If
+			house
+			.getChickens() returns an array of one element, the code will
+			output Cluck once, so
+			option D is correct. If house.getChickens()
+			returns an array of multiple elements, the
+			code will output Cluck once
+			for each element in the array, so option E is correct. Alternatively,
+			if house.getChickens() returns an array of zero elements, then the
+			code will
+			throw an IndexOutOfBoundsException on the call to
+			house.getChickens().get(0);
+			therefore, option C is not possible and
+			option F is correct. The code will also throw an
+			exception if the
+			array returned by house.getChickens() is null, so option F is
+			possible
+			under multiple circumstances. For more information, see
+			Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="15">
+	<domanda id="15"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="15">
 		<testo>
-			Which of the following statements can be inserted in the blank line so that the code will
-			compile successfully? (Choose all that apply)
-			
+			Which of the following statements can be inserted in the blank
+			line so that the code will
+			compile successfully? (Choose all that
+			apply)
+
 			public interface CanSwim {}
 			public class Amphibian implements CanSwim {}
 			class Tadpole extends Amphibian {}
 			public class FindAllTadPole {
-			 public static void main(String[] args) {
-				List&lt;Tadpole&gt; tadpoles = new ArrayList&lt;Tadpole&gt;();
-				for(Amphibian amphibian : tadpoles) {
-					___________ tadpole = amphibian;
+			public static void main(String[] args) {
+			List&lt;Tadpole&gt; tadpoles = new ArrayList&lt;Tadpole&gt;();
+			for(Amphibian amphibian : tadpoles) {
+			___________ tadpole = amphibian;
 			} } }
 		</testo>
 		<risposte type="checkbox">
@@ -517,99 +731,163 @@
 			<risposta value="E">Object</risposta>
 		</risposte>
 		<risposteEsatte>A, C, E</risposteEsatte>
-		<spiegazione> 
-			The for-each loop automatically casts each Tadpole object to an Amphibian
-			reference, which does not require an explicit cast because Tadpole is a subclass of
-			Amphibian. From there, any parent class or interface that Amphibian inherits from is
-			permitted without an explicit cast. This includes CanSwim, the interface Amphibian
-			implements, and Object, which all classes extend from, so options A and E are correct.
-			Option C is also correct since the reference is being cast to the same type, so no explicit
-			cast is required. Option B is incorrect, since Long is not a parent of Amphibian. Option
-			D is incorrect as well, although an explicit cast to Tadpole on the right-hand side of the
-			expression would be required to allow the code to compile. For more information, see
+		<spiegazione>
+			The for-each loop automatically casts each Tadpole object to an
+			Amphibian
+			reference, which does not require an explicit cast because
+			Tadpole is a subclass of
+			Amphibian. From there, any parent class or
+			interface that Amphibian inherits from is
+			permitted without an
+			explicit cast. This includes CanSwim, the interface Amphibian
+			implements, and Object, which all classes extend from, so options A
+			and E are correct.
+			Option C is also correct since the reference is
+			being cast to the same type, so no explicit
+			cast is required. Option B
+			is incorrect, since Long is not a parent of Amphibian. Option
+			D is
+			incorrect as well, although an explicit cast to Tadpole on the
+			right-hand side of the
+			expression would be required to allow the code
+			to compile. For more information, see
 			Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="16">
+	<domanda id="16"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="16">
 		<testo>
-		What individual changes, if any, would allow the following code to compile? (Choose all that apply)
-		
-		1: public interface Animal { public default String getName() { return null; } }
-		2: interface Mammal { public default String getName() { return null; } }
-		3: abstract class Otter implements Mammal, Animal {}
+			What individual changes, if any, would allow the following code to
+			compile? (Choose all that apply)
+
+			1: public interface Animal { public default String getName() { return
+			null; } }
+			2: interface Mammal { public default String getName() { return null; }
+			}
+			3: abstract class Otter implements Mammal, Animal {}
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">The code compiles without issue</risposta>
-			<risposta value="B">Remove the default method modifier and method implementation on line 1.</risposta>
-			<risposta value="C">Remove the default method modifier and method implementation on line 2.</risposta>
-			<risposta value="D">Remove the default method modifier and method implementation on lines 1 and 2.</risposta>
-			<risposta value="E">Change the return value on line 1 from null to "Animal".</risposta>
-			<risposta value="F">Override the getName() method with an abstract method in the Otter class.</risposta>
-			<risposta value="G">Override the getName() method with a concrete method in the Otter class.</risposta>
+			<risposta value="B">Remove the default method modifier and
+				method implementation on line 1.</risposta>
+			<risposta value="C">Remove the default method modifier and
+				method implementation on line 2.</risposta>
+			<risposta value="D">Remove the default method modifier and
+				method implementation on lines 1 and 2.</risposta>
+			<risposta value="E">Change the return value on line 1 from null
+				to "Animal".</risposta>
+			<risposta value="F">Override the getName() method with an
+				abstract method in the Otter class.</risposta>
+			<risposta value="G">Override the getName() method with a
+				concrete method in the Otter class.</risposta>
 		</risposte>
 		<risposteEsatte>D, F, G</risposteEsatte>
-		<spiegazione> 
-			The code does not compile, since a class cannot inherit two interfaces that
-			both define default methods with the same signature, unless the class implementing
-			the interfaces overrides it with an abstract or concrete method. Therefore, option A is
-			incorrect and options F and G are correct. The alternate approach is to make the
-			getName() method abstract in the interfaces, because an interface may inherit two
-			abstract methods with the same signature. The change must be made to both interfaces, though, so options B and C are incorrect if taken individually, and option D is
-			correct since the changes are taken together. For more information, see Chapter 5.
+		<spiegazione>
+			The code does not compile, since a class cannot inherit two interfaces
+			that
+			both define default methods with the same signature, unless the
+			class implementing
+			the interfaces overrides it with an abstract or
+			concrete method. Therefore, option A is
+			incorrect and options F and G
+			are correct. The alternate approach is to make the
+			getName() method
+			abstract in the interfaces, because an interface may inherit two
+			abstract methods with the same signature. The change must be made to
+			both interfaces, though, so options B and C are incorrect if taken
+			individually, and option D is
+			correct since the changes are taken
+			together. For more information, see Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="17">
+	<domanda id="17"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="17">
 		<testo>
-			Which of the following lines can be inserted at line 11 to print true? (Choose all that apply)
-			
+			Which of the following lines can be inserted at line 11 to
+			print true? (Choose all that apply)
+
 			10: public static void main(String[] args) {
 			11: // INSERT CODE HERE
 			12: }
 			13: private static boolean test(Predicate&lt;Integer&gt; p) {
-			14: return p.test(5);
+			14:
+			return p.test(5);
 			15: }
 		</testo>
 		<risposte type="checkbox">
-			<risposta value="A">System.out.println(test(i -> i == 5));</risposta>
-			<risposta value="B">System.out.println(test(i -> {i == 5;}));</risposta>
-			<risposta value="C">System.out.println(test((i) -> i == 5));</risposta>
-			<risposta value="D">System.out.println(test((int i) -> i == 5);</risposta>
-			<risposta value="E">System.out.println(test((int i) -> {return i == 5;}));</risposta>
-			<risposta value="F">System.out.println(test((i) -> {return i == 5;}));</risposta>
+			<risposta value="A">System.out.println(test(i -> i == 5));
+			</risposta>
+			<risposta value="B">System.out.println(test(i -> {i == 5;}));
+			</risposta>
+			<risposta value="C">System.out.println(test((i) -> i == 5));
+			</risposta>
+			<risposta value="D">System.out.println(test((int i) -> i == 5);
+			</risposta>
+			<risposta value="E">System.out.println(test((int i) -> {return i
+				== 5;}));</risposta>
+			<risposta value="F">System.out.println(test((i) -> {return i ==
+				5;}));</risposta>
 		</risposte>
 		<risposteEsatte>A, C, F</risposteEsatte>
-		<spiegazione> 
+		<spiegazione>
 			The only functional programming interface you need to memorize for the
-			exam is Predicate. It takes a single parameter and returns a boolean. Lambda expressions with one parameter are allowed to omit the parentheses around the parameter
-			list, making options A and C correct. The return statement is optional when a single
-			statement is in the body, making option F correct. Option B is incorrect because a
-			return statement must be used if braces are included around the body. Options D and
-			E are incorrect because the type is Integer in the predicate and int in the lambda.
-			Autoboxing works for collections not inferring predicates. If these two were changed
-			to Integer, they would be correct. For more information, see Chapter 4.
+			exam is Predicate. It takes a single parameter and returns a boolean.
+			Lambda expressions with one parameter are allowed to omit the
+			parentheses around the parameter
+			list, making options A and C correct.
+			The return statement is optional when a single
+			statement is in the
+			body, making option F correct. Option B is incorrect because a
+			return
+			statement must be used if braces are included around the body.
+			Options D and
+			E are incorrect because the type is Integer in the
+			predicate and int in the lambda.
+			Autoboxing works for collections not
+			inferring predicates. If these two were changed
+			to Integer, they would
+			be correct. For more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="18">
+	<domanda id="18"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="18">
 		<testo>
-			Which of the following print out a date representing April 1, 2015? (Choose all that apply)
+			Which of the following print out a date representing April 1,
+			2015? (Choose all that apply)
 		</testo>
 		<risposte type="checkbox">
-			<risposta value="A">System.out.println(LocalDate.of(2015, Calendar.APRIL, 1));</risposta>
-			<risposta value="B">System.out.println(LocalDate.of(2015, Month.APRIL, 1));</risposta>
-			<risposta value="C">System.out.println(LocalDate.of(2015, 3, 1));</risposta>
-			<risposta value="D">System.out.println(LocalDate.of(2015, 4, 1));</risposta>
-			<risposta value="E">System.out.println(new LocalDate(2015, 3, 1));</risposta>
-			<risposta value="F">System.out.println(new LocalDate(2015, 4, 1));</risposta>
+			<risposta value="A">System.out.println(LocalDate.of(2015,
+				Calendar.APRIL, 1));</risposta>
+			<risposta value="B">System.out.println(LocalDate.of(2015,
+				Month.APRIL, 1));</risposta>
+			<risposta value="C">System.out.println(LocalDate.of(2015, 3,
+				1));</risposta>
+			<risposta value="D">System.out.println(LocalDate.of(2015, 4,
+				1));</risposta>
+			<risposta value="E">System.out.println(new LocalDate(2015, 3,
+				1));</risposta>
+			<risposta value="F">System.out.println(new LocalDate(2015, 4,
+				1));</risposta>
 		</risposte>
 		<risposteEsatte> B, D</risposteEsatte>
-		<spiegazione> 
-			The new date APIs added in Java 8 use static methods rather than a constructor
-			to create a new date, making options E and F incorrect. The months are indexed starting with 1 in these APIs, making options A and C incorrect. Option A uses the old
-			Calendar constants which are indexed from 0. Therefore, options B and D are correct.
-			For more information, see Chapter 3.
+		<spiegazione>
+			The new date APIs added in Java 8 use static methods rather than a
+			constructor
+			to create a new date, making options E and F incorrect.
+			The months are indexed starting with 1 in these APIs, making options
+			A and C incorrect. Option A uses the old
+			Calendar constants which are
+			indexed from 0. Therefore, options B and D are correct.
+			For more
+			information, see Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="19">
+	<domanda id="19"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="19">
 		<testo>
 			Bytecode is in a file with which extension?
 		</testo>
@@ -622,15 +900,20 @@
 			<risposta value="F">.java</risposta>
 		</risposte>
 		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
-			Files with the .java extension contain the Java source code and are compiled to
-			files with the .class extension that contain the bytecode. For more information, see
+		<spiegazione>
+			Files with the .java extension contain the Java source code and are
+			compiled to
+			files with the .class extension that contain the bytecode.
+			For more information, see
 			Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="20">
+	<domanda id="20"
+		book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="Assessment_Test" question="20">
 		<testo>
-			Which of the following are checked exceptions? (Choose all that apply)
+			Which of the following are checked exceptions? (Choose all that
+			apply)
 		</testo>
 		<risposte type="checkbox">
 			<risposta value="A">Exception</risposta>
@@ -641,11 +924,15 @@
 			<risposta value="F">StackOverflowError</risposta>
 		</risposte>
 		<risposteEsatte>A, C</risposteEsatte>
-		<spiegazione> 
-			Option A is the exception base class, which is a checked exception. Options B,
-			D, and E extend RuntimeException directly or indirectly and therefore are unchecked
-			exceptions. Option F is a throwable and not an exception, and so should not be caught
-			or declared. For more information, see Chapter 6.
+		<spiegazione>
+			Option A is the exception base class, which is a checked exception. Options
+			B,
+			D, and E extend RuntimeException directly or indirectly and
+			therefore are unchecked
+			exceptions. Option F is a throwable and not an
+			exception, and so should not be caught
+			or declared. For more
+			information, see Chapter 6.
 		</spiegazione>
 	</domanda>
 </domande>
