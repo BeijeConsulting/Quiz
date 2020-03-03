@@ -59,15 +59,14 @@ public class ControllerRest {
 
 	}
 
-	@RequestMapping(value = "/insertdomande/{dir}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Domanda insertDomande(@PathVariable String dir, @RequestBody Domanda domanda) {
-		String titolo = domanda.getBook();
+	@RequestMapping(value = "/insertdomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
 		List<Libro> listaLibriInXML = Utils
 				.caricaLibriDaIndexXML("C:\\Users\\Padawan01\\git\\Quiz\\domande\\index.xml");
 
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
-
+        String dir=Utils.getDirectory(domanda.getId());
 		for (Libro l : listaLibriInXML) {
 			if (dir.equals(l.getDir())) {
 				vero = true;
@@ -86,21 +85,22 @@ public class ControllerRest {
 
 	}
 
+	
 	@RequestMapping(value = "/insertdomande/{dir}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void insertDomande(@PathVariable String dir, @RequestBody ArrayList<Domanda> domande) {
-		StringBuilder path = new StringBuilder();
-		domande = new ArrayList<Domanda>();
-		path.append("C:\\Users\\Padawan01\\git\\Quiz\\domande\\").append(dir);
-		File file = new File(path.toString());
-		if (!file.exists()) {
-			file.mkdir();
-		}
+	public @ResponseBody void insertDomande(@RequestBody ArrayList<Domanda> domande) {
+	
+		
 		for (Domanda dom : domande) {	
-			String cap = path.toString();
+			StringBuilder path = new StringBuilder();
+			String dir =Utils.getDirectory(dom.getId());
+			path.append("C:\\Users\\Padawan01\\git\\Quiz\\domande\\").append(dir);
+			File file = new File(path.toString());
+			if (!file.exists()) {
+				file.mkdir();
+			}
 			file = new File(path.toString() + "\\domande_cap" + dom.getChapter() + ".xml");
 			Utils.aggiungiDomanda(dom, file);
 		}
-
 	}
 
 }
