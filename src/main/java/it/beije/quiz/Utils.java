@@ -142,6 +142,14 @@ public class Utils {
 		domandaxml.appendChild(risposte);
 		domandaxml.appendChild(rispOk);
 		
+		Element spiegazione = document.createElement("spiegazione");
+		spiegazione.setTextContent(domanda.getSpiegazione());
+		domandaxml.appendChild(spiegazione);
+		
+//		Element rispUser = document.createElement("risposteUtente");
+//		rispUser.setTextContent(domanda.getRispostaUtente());
+//		domandaxml.appendChild(rispUser);
+		
 		domandaradice.appendChild(domandaxml);
 		
 		if(!f.exists()){
