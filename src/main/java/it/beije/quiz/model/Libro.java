@@ -7,7 +7,7 @@ import java.util.List;
 import it.beije.quiz.Utils;
 
 public class Libro {
-	private static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
+	public static final String LIB_PATH="C:\\Users\\Gabriele\\git\\Quiz\\domande\\";
 	private String idBook;
 	private String title;
 	private String nameDir;

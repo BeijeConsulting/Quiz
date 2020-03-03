@@ -18,7 +18,7 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
-	public static final String PATH_INDEX_BOOKS = null;
+	public static final String PATH_INDEX_BOOKS = Libro.LIB_PATH+"index.xml";
 	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
@@ -40,7 +40,7 @@ public class Utils {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
 
-	        Document document = builder.parse(new File(Libro.PATH_INDEX_BOOKS));
+	        Document document = builder.parse(new File(PATH_INDEX_BOOKS));
 	        Element element = document.getDocumentElement();	        
 
 	        List<Element> elementLibri = Utils.getChildElements(element);
