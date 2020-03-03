@@ -41,7 +41,6 @@ public class RestControllerz {
 	
 	@RequestMapping(value = "/new/", method = RequestMethod.POST)
 	public @ResponseBody Domanda setDomanda(@RequestBody Domanda domanda, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
-		//domanda = new ObjectMapper().readValue(domanda.toJSON(), Domanda.class);
 		List<Libro> listL = Utils.readFileLibri();
 		for(Libro l : listL)
 			if(domanda.getBook().equals(l.getTitle())) {
