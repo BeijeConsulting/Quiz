@@ -65,6 +65,6 @@ ${testoDomanda}
 
 <c:if test="${index > 0 }"><a href="/quiz/domanda/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<c:if test="${index < totale-1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
+<c:if test="${index < totale-1}"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
 </body>
 </html>

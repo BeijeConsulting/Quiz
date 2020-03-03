@@ -6,7 +6,6 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +37,6 @@ public class QuizController {
 	private LocalTime time = null;
 	private List<Libro> libri;
 	private int totale;
-	private List<Boolean> check = new ArrayList<Boolean>();
-	private int k = 0;
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -59,17 +56,17 @@ public class QuizController {
 			//System.out.println(folder.getAbsolutePath());
 			for (final File fileEntry : folder.listFiles()) {
 				//System.out.println(fileEntry.getName());
-				domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+				//domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if(request.getParameter("libro"+(i+1))!=null) {
 					domandetot.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				}
 			}
 				
-			libri.get(i).setDomande(domande1);
+			libri.get(i).setDomande(domandetot);
 				
 			domande1 = new ArrayList<Domanda>();
 			
-			}
+		}
 			    
 		tot = domandetot.size();  
 		
@@ -90,8 +87,8 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
-		int tot = domande1.size();
-		int secondi = 2 * 60 * tot;
+		int totale = domande1.size();
+		int secondi = 2 * 60 * totale;
 		long hours = (secondi - diff.getSeconds()) / 3600;
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
 		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
@@ -121,6 +118,8 @@ public class QuizController {
 				return "domanda";
 				
 			} else {
+				
+				index = 0;
 				
 				return "riepilogo";
 				
@@ -159,7 +158,7 @@ public class QuizController {
 	public String risultati(Model model) {
 		// ELABORAZIONE RISPOSTE
 		StringBuilder builder = new StringBuilder();
-		for (Domanda d : domande1) {
+		for (Domanda d : domandetot) {
 			boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
 
 			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
