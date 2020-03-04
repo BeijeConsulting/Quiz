@@ -14,7 +14,7 @@ import it.beije.quiz.model.Libro;
 @Service
 public class QuizService {
 	
-	private static final String baseDirectory = "C:\\Users\\Padawan14\\git\\Quiz\\domande\\";
+	private static final String baseDirectory = "C:\\Users\\Padawan07\\git\\Quiz\\domande\\";
 	private static List<Libro> listaLibriInXML = null;
 
 	

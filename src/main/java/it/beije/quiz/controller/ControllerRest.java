@@ -116,7 +116,6 @@ public class ControllerRest {
 
 	}
 
-
 	@RequestMapping(value = "/aggionadomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda aggiornaDomanda(@RequestBody Domanda dom) {
 		StringBuilder path = new StringBuilder();
@@ -191,37 +190,42 @@ public class ControllerRest {
 
 	}
 
-
-	
-	@RequestMapping(value = "/deleteDomanda/{dirLibro}/{capitolo}/{nDomanda}", method = RequestMethod.DELETE)
-	public @ResponseBody boolean  deleteDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda, HttpServletResponse response) {
+	@RequestMapping(value = "/deleteDomanda", method = RequestMethod.DELETE)
+	public @ResponseBody boolean  deleteDomanda( HttpServletResponse response, @RequestParam(name="idDomanda",required = true) String idDomanda) {
+		
+		String dirLibro=Utils.getDirectory(idDomanda);
+		int capitolo=Utils.getCapitolo(idDomanda);
+		int nDomanda=Utils.getNDomanda(idDomanda);
 		Domanda d= getDomande(dirLibro,capitolo,nDomanda).get(0);
 		if(d==null) {
 			response.setStatus(204);
 			return false;
 		}
 		else {
-			StringBuilder path = new StringBuilder("C:\\Users\\Padawan07\\git\\Quiz\\domande\\"+dirLibro+"\\domande_cap"+ capitolo +".xml");
+			StringBuilder path = new StringBuilder(quizService.getBaseDirectory()+dirLibro+"\\domande_cap"+ capitolo +".xml");
 	        String pathdomanda= path.toString();
 			File file2=new File(pathdomanda);
 			Utils.eliminaDomanda(d,file2);
 			return true;
 			
 		}
-		
-	}
 	
-	@RequestMapping(value = "/deleteDomande", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande,HttpServletResponse response) {
-		for(Domanda d: domande) {
-			int nDomanda= d.getQuestion();
-			String dirLibro=Utils.getDirectory(d.getId());
-			int capitolo=d.getChapter();
-			deleteDomanda(dirLibro,capitolo,nDomanda,response);
-		}
-		
 	}
-	}
+
+	
+//	@RequestMapping(value = "/deleteDomande", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande, HttpServletResponse response){
+//		
+//		for(Domanda d: domande) {
+//			int nDomanda= d.getQuestion();
+//			String dirLibro=Utils.getDirectory(d.getId());
+//			int capitolo=d.getChapter();
+//			deleteDomanda(dirLibro,capitolo,nDomanda,response);
+//			}
+//		}
+	
+}
+
 
 	
 	
