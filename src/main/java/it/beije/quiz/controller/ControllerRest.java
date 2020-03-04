@@ -6,78 +6,93 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
+import it.beije.quiz.service.QuizService;
 
 @RestController
 public class ControllerRest {
 
 
+	@Autowired
+	private QuizService quizService;
+
+	private List<File> listaFile = null;
 	
-	@RequestMapping(value="/caricaDomanda/{dirLibro}/{capitolo}/{nDomanda}", method=RequestMethod.GET)
-	public @ResponseBody Domanda getDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda ){
-		List <Domanda> listaDomande= new ArrayList<Domanda>();
-		List<File> listaFile= Utils.selezionaFileDiInteresse(dirLibro);
+//	
+//	@RequestMapping(value="/caricaDomanda/{dirLibro}/{capitolo}/{nDomanda}", method=RequestMethod.GET)
+//	public @ResponseBody Domanda getDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda ){
+//		List <Domanda> listaDomande= new ArrayList<Domanda>();
+//		List<File> listaFile= Utils.selezionaFileDiInteresse(dirLibro);
+//
+//		for(File f: listaFile) {
+//
+//
+//			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
+//		}
+//
+//		String idDomanda = dirLibro + "|" + capitolo + "|" + nDomanda;
+//		for (Domanda d : listaDomande)
+//			if (d.getId().equals(idDomanda))
+//				return d;
+//
+//		return null;
+//
+//
+//	}
+	
 
-		for(File f: listaFile) {
+	@RequestMapping(value = "/domande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
+	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo,@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
+		List<Domanda> listaDomande = quizService.getDomande();
+		List<Domanda> domande= new ArrayList<Domanda>();
 
-
-			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
+		if(nDomanda==null) {
+			for(Domanda d:listaDomande)
+				if(d.getChapter()==capitolo && Utils.getDirectory(d.getId()).equals(dirLibro))
+					domande.add(d);
 		}
+		else {
+			String idDomanda = dirLibro + "|" + capitolo + "|" + nDomanda;
 
-		String idDomanda = dirLibro + "|" + capitolo + "|" + nDomanda;
-		for (Domanda d : listaDomande)
-			if (d.getId().equals(idDomanda))
-				return d;
-
-		return null;
-
-
-	}
-
-	@RequestMapping(value = "/caricaDomande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
-	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo) {
-		List<Domanda> listaDomande = new ArrayList<Domanda>();
-		List<File> listaFile = Utils.selezionaFileDiInteresse(dirLibro);
-
-		for (File f : listaFile) {
-			List<Domanda> listaD = new ArrayList<Domanda>();
-			listaD.addAll(Utils.readFileDomande(f.getPath()));
-			for (Domanda d : listaD) {
-				if (d.getChapter() == capitolo)
-					listaDomande.add(d);
-
-			}
+			for(Domanda d : listaDomande)
+				if(d.getId().equals(idDomanda)) {
+					domande.add(d);
+					break;
+				}
+			
 		}
-		return listaDomande;
+		
+		return domande;
+		
 
 	}
 
 	@RequestMapping(value = "/insertDomanda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
-		List<Libro> listaLibriInXML = Utils
-				.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-
+	
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
 		String dir=Utils.getDirectory(domanda.getId());
 
-		for (Libro l : listaLibriInXML) {
+		for (Libro l : quizService.getListaLibri()) {
 			if (dir.equals(l.getDir())) {
 				vero = true;
 				break;
 			}
 		}
-		path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\").append(dir);
+		path.append(quizService.getBaseDirectory()).append(dir);
 		File file = new File(path.toString());
 		if (vero != true) {
 			file.mkdir();
@@ -85,9 +100,9 @@ public class ControllerRest {
 			l.setDir(dir);
 			l.setIdBook(dir);
 			l.setTitle(domanda.getBook());
-			listaLibriInXML.add(l);
+			quizService.getListaLibri().add(l);
 			try {
-				Utils.scriviSuXML(listaLibriInXML, "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
+				Utils.scriviSuXML(quizService.getListaLibri(), "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -105,7 +120,7 @@ public class ControllerRest {
 	@RequestMapping(value = "/aggionadomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda aggiornaDomanda(@RequestBody Domanda dom) {
 		StringBuilder path = new StringBuilder();
-		path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\")
+		path.append(quizService.getBaseDirectory())
 				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
 		List<Domanda> lettura = Utils.readFileDomande(path.toString());
 		for (Domanda doma : lettura) {
@@ -180,7 +195,7 @@ public class ControllerRest {
 	
 	@RequestMapping(value = "/deleteDomanda/{dirLibro}/{capitolo}/{nDomanda}", method = RequestMethod.DELETE)
 	public @ResponseBody boolean  deleteDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda, HttpServletResponse response) {
-		Domanda d= getDomanda(dirLibro,capitolo,nDomanda);
+		Domanda d= getDomande(dirLibro,capitolo,nDomanda).get(0);
 		if(d==null) {
 			response.setStatus(204);
 			return false;
