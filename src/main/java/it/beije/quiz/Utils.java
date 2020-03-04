@@ -41,6 +41,7 @@ public class Utils {
 	}
 
 	public static List<Domanda> readFileDomande(String pathFile, String dir) {
+		System.out.println("readFileDomande...");
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 
 		try {
@@ -67,7 +68,7 @@ public class Utils {
 				String question = domanda.getAttribute("question");
 				String testo = contenutoDomanda.get(0).getTextContent();
 				String id = dir + "|" + chapter + "|" + question;
-				System.out.println("ID: " + id);
+				//System.out.println("ID: " + id);
 
 				// caricare le risposte possibili
 				rispostePossibili = contenutoDomanda.get(1);
