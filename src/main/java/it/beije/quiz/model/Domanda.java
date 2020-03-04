@@ -32,6 +32,13 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
+	public Domanda(String book, String chapter, String question, List<Risposta> risposte) {
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.risposte = risposte;
+	}
+	
 	public Domanda() {
 		
 	}

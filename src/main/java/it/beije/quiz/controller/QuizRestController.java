@@ -16,37 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
+import it.beije.quiz.model.Risposta;
 import it.beije.quiz.service.QuizService;
 
 @RestController
 public class QuizRestController {
-	
+
 	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 	private List<Libro> LIBRI = new ArrayList<Libro>();
-	
+
 	@Autowired
 	private QuizService quizService;
-	
-	
-	@RequestMapping(value = "/restbest", method = RequestMethod.POST,
-	consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Domanda newDomanda(@RequestBody Domanda domanda) {
+
+
+	@RequestMapping(value = "/insertdomanda", method = RequestMethod.POST,
+			consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Domanda insertDomanda(@RequestBody Domanda domanda) {
 		boolean isNew=false;
+		List <Domanda> dOut=new ArrayList<Domanda>();
 		System.out.println("Inizio");
 		try {
 			LIBRI = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		for (Libro l : LIBRI) {
 			if(l.getIdBook().equals(domanda.getBook())){
-				Utils.caricaDomande(l, l.getIdBook() , domanda);
+				dOut.add(domanda);
+				Utils.caricaDomande(l, dOut);
 				isNew=false;
 			}else 
 				isNew=true;
 		}
-		
+
 		if(isNew){
 			System.out.println("Inizio new libro");
 			Libro libro = new Libro();
@@ -54,78 +57,150 @@ public class QuizRestController {
 			libro.setNameDir(domanda.getBook());
 			libro.setTitle(domanda.getBook());
 			Utils.createLibro(libro);
-			Utils.caricaDomande(libro, libro.getIdBook() , domanda);
+			Utils.caricaDomande(libro, dOut);
 		}
-		
+
 		return domanda;
 	}
-	
+
 	@RequestMapping(value = "/getall", method = RequestMethod.GET,
-	consumes=MediaType.APPLICATION_JSON_VALUE)
+			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> getAllDomande() {
-		
+
 		List<Libro> libri = new ArrayList<Libro>();
-		
+
 		try 
 		{
 			libri = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
-			
+
 			for (Libro l : libri) {
 				l.setDomande(quizService.getLibriCarichi(l));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-				
+
+
 		return libri.get(0).getDomande();
 	}
-	
+
 	@RequestMapping(value = "/getone/{id}", method = RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody Domanda getDomanda(@PathVariable String id) {
+	public @ResponseBody Domanda getDomanda(@PathVariable String id) {
 		Domanda dOut=new Domanda();	
 		try 
-			{
-				List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
-				
-				for (Libro l : libri) {
-					l.setDomande(quizService.getLibriCarichi(l));
-					for (Domanda d : l.getDomande()) {
-						System.out.println(d.getId());
-						if (d.getId().trim().equals(id.trim()))dOut= d;
-					}
+		{
+			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+
+			for (Libro l : libri) {
+				l.setDomande(quizService.getLibriCarichi(l));
+				for (Domanda d : l.getDomande()) {
+					if (d.getId().trim().equals(id.trim()))dOut= d;
 				}
-				
-			} catch (Exception e) {
-				// TODO: handle exception
 			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return dOut;	
 	}
-	
+
 	@RequestMapping(value = "/getchapter/{id}", method = RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody List<Domanda> getDomandaFromCapitolo(@PathVariable String id) {
-		List <Domanda> dOut=new ArrayList<Domanda>();	
+	public @ResponseBody List<Domanda> getDomandaFromCapitolo(@PathVariable String id) {
+		List <Domanda> dOut=new ArrayList<Domanda>();
+		dOut.clear();
 		String chapter = id.split("-")[1];
+		String idBook = id.split("-")[0];
 		try 
-			{
-				List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
-				
-				for (Libro l : libri) {
+		{
+			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+
+			for (Libro l : libri) {
+				if(l.getIdBook().equals(idBook))
+					l.setDomande(quizService.getLibriCarichi(l));
+				for (Domanda d : l.getDomande()) {
+					if(chapter.equals(d.getChapter()))dOut.add(d);
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return dOut;
+	}
+
+	@RequestMapping(value = "/updatedomanda/{id}", method = RequestMethod.PUT,
+			consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Domanda updateDomanda(@RequestBody Domanda domanda, @PathVariable String id) {
+
+		List <Domanda> dUpdate=new ArrayList<Domanda>();
+
+		try 
+		{
+			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			boolean foundIt = false;
+
+			for (Libro l : libri) {
+				l.setDomande(quizService.getLibriCarichi(l));
+				for (Domanda d : l.getDomande()) {
+					if (d.getId().trim().equals(id.trim())) {
+						dUpdate.add(domanda);
+						foundIt=true;
+					}else {dUpdate.add(d);}
+				}
+
+				if (foundIt)
+					Utils.caricaDomande(l, dUpdate);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return domanda;
+
+	}
+
+	@RequestMapping(value = "/deletequestion/{id}", method = RequestMethod.DELETE,
+			consumes=MediaType.APPLICATION_JSON_VALUE)
+
+	public @ResponseBody Domanda deleteDomanda(@PathVariable String id) {
+		List <Domanda> dOut=new ArrayList<Domanda>();
+		Domanda dNew = new Domanda();
+
+		String id_book = id.split("-")[0];
+
+		try
+		{
+			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			boolean deleted = false;
+
+
+			for (Libro l : libri) {
+				if(l.getIdBook().equals(id_book)) {
 					l.setDomande(quizService.getLibriCarichi(l));
 					for (Domanda d : l.getDomande()) {
-						System.out.println(d.getId());
-						if(chapter.equals(d.getChapter()))dOut.add(d);
+
+						if(d.getId().trim().equals(id.trim())) {
+							dNew = new Domanda(l.getIdBook(),d.getChapter(),d.getQuestion(), new ArrayList<Risposta>());
+							dOut.add(dNew);
+							deleted=true;
+
+						} else { dOut.add(d);}
+						
 					}
+
+					if (deleted)
+						Utils.caricaDomande(l, dOut);
 				}
-				
-			} catch (Exception e) {
-				// TODO: handle exception
 			}
-		return dOut;
-				
-			
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-	
+		return dNew;
+	}
 }
+
+

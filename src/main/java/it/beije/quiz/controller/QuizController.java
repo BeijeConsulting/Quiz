@@ -44,7 +44,7 @@ public class QuizController {
 	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET) // index è una parola chiave prende quello che indichi nel
-																// name="prefix" value="/WEB-INF/views/"
+	// name="prefix" value="/WEB-INF/views/"
 	public String index(HttpServletRequest request, Model model) {
 
 		return "index";
@@ -67,7 +67,7 @@ public class QuizController {
 				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if (request.getParameter("libro" + (i + 1)) != null) {
 					domandetot.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
-					
+
 				}
 
 			}
@@ -83,8 +83,8 @@ public class QuizController {
 		return "totaledomande";
 	}
 
-	
-	
+
+
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
@@ -178,28 +178,28 @@ public class QuizController {
 
 		return "risultati";
 	}
-	
+
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String scelta() {
 
 
 		return "scelta";
 	}
-	
+
 
 	@RequestMapping(value = "/newlibro", method = RequestMethod.GET)
 	public String newLibro() {
-		
+
 		isNew=true;
 
 		return "newlibro";
 	}
-	
+
 	@RequestMapping(value = "/newdomanda", method = RequestMethod.GET)
 	public String creaDomanda(Model model) {
-		
+
 		model.addAttribute("isNew", isNew);
-				
+
 		return "creadomanda";
 	}
 
