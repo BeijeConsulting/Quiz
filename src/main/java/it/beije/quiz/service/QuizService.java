@@ -4,15 +4,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 
 @Service
 public class QuizService {
 	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+	
+	@Autowired
+	private Utils utils;
 
 	private List<Libro> libriCarichi= new ArrayList<>();
 	//	
@@ -44,7 +47,7 @@ public class QuizService {
 
 			for (final File fileEntry : folder.listFiles()) {
 				System.out.println("caricoooo");
-				domande.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+				domande.addAll(utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

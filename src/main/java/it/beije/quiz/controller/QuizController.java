@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.omg.CORBA.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -26,15 +27,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 import org.xml.sax.SAXException;
 
-import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
+import it.beije.quiz.service.QuizService;
+import it.beije.quiz.service.Utils;
 
 @Controller
 @SessionScope
 public class QuizController {
 
+	@Autowired
+	private Utils utils;
+	
 	private List<Domanda> domande1 = new ArrayList<Domanda>();
 	private int totale = 0;
 	private LocalTime time = null;
@@ -55,7 +60,7 @@ public class QuizController {
 			throws ParserConfigurationException, SAXException, IOException {
 
 
-		libri = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+		libri = utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 
 		if (!domandetot.isEmpty()) 
 			domandetot.clear();
@@ -66,7 +71,7 @@ public class QuizController {
 			for (final File fileEntry : folder.listFiles()) {
 				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if (request.getParameter("libro" + (i + 1)) != null) {
-					domandetot.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+					domandetot.addAll(utils.readFileDomande(folder + "\\" + fileEntry.getName()));
 
 				}
 
@@ -115,7 +120,7 @@ public class QuizController {
 			}
 			// System.out.println(i.getDomande().get(index));
 			model.addAttribute("index", index);
-			model.addAttribute("testoDomanda", Utils.formattaTesto(d.getTesto()));
+			model.addAttribute("testoDomanda", utils.formattaTesto(d.getTesto()));
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
 			model.addAttribute("risposte", d.getRisposte());
@@ -161,7 +166,7 @@ public class QuizController {
 		// ELABORAZIONE RISPOSTE
 		StringBuilder builder = new StringBuilder();
 		for (Domanda d : domandetot) {
-			boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
+			boolean corretta = utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
 
 			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
 			if (corretta) {

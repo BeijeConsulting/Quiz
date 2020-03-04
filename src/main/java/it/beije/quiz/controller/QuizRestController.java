@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import it.beije.quiz.Utils;
+
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 import it.beije.quiz.service.QuizService;
+import it.beije.quiz.service.Utils;
 
 @RestController
 public class QuizRestController {
@@ -27,6 +28,9 @@ public class QuizRestController {
 
 	@Autowired
 	private QuizService quizService;
+	
+	@Autowired
+	private Utils utils;
 
 
 	@RequestMapping(value = "/insertdomanda", method = RequestMethod.POST,
@@ -36,7 +40,7 @@ public class QuizRestController {
 		List <Domanda> dOut=new ArrayList<Domanda>();
 		System.out.println("Inizio");
 		try {
-			LIBRI = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			LIBRI = utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -44,7 +48,7 @@ public class QuizRestController {
 		for (Libro l : LIBRI) {
 			if(l.getIdBook().equals(domanda.getBook())){
 				dOut.add(domanda);
-				Utils.caricaDomande(l, dOut);
+				utils.caricaDomande(l, dOut);
 				isNew=false;
 			}else 
 				isNew=true;
@@ -56,8 +60,8 @@ public class QuizRestController {
 			libro.setIdBook(domanda.getBook());
 			libro.setNameDir(domanda.getBook());
 			libro.setTitle(domanda.getBook());
-			Utils.createLibro(libro);
-			Utils.caricaDomande(libro, dOut);
+			utils.createLibro(libro);
+			utils.caricaDomande(libro, dOut);
 		}
 
 		return domanda;
@@ -71,7 +75,7 @@ public class QuizRestController {
 
 		try 
 		{
-			libri = Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			libri = utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 
 			for (Libro l : libri) {
 				l.setDomande(quizService.getLibriCarichi(l));
@@ -90,7 +94,7 @@ public class QuizRestController {
 		Domanda dOut=new Domanda();	
 		try 
 		{
-			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			List<Libro> libri= utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 
 			for (Libro l : libri) {
 				l.setDomande(quizService.getLibriCarichi(l));
@@ -114,7 +118,7 @@ public class QuizRestController {
 		String idBook = id.split("-")[0];
 		try 
 		{
-			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			List<Libro> libri= utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 
 			for (Libro l : libri) {
 				if(l.getIdBook().equals(idBook))
@@ -138,7 +142,7 @@ public class QuizRestController {
 
 		try 
 		{
-			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			List<Libro> libri= utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 			boolean foundIt = false;
 			forLibri:
 				for (Libro l : libri) {
@@ -151,7 +155,7 @@ public class QuizRestController {
 					}
 
 					if (foundIt) {
-						Utils.ricaricaDomande(l, dUpdate);
+						utils.ricaricaDomande(l, dUpdate);
 						break forLibri;
 					}
 				}
@@ -171,7 +175,7 @@ public class QuizRestController {
 		Domanda dom = null;
 		try 
 		{
-			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+			List<Libro> libri= utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 			System.out.println("libri list size: "+libri.size());
 			boolean foundIt = false;
 
@@ -189,7 +193,7 @@ public class QuizRestController {
 						}
 						
 						if (foundIt) {
-							Utils.ricaricaDomande(l, dUpdate);
+							utils.ricaricaDomande(l, dUpdate);
 							break forLibri;
 						}
 					}

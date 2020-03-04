@@ -1,4 +1,4 @@
-package it.beije.quiz;
+package it.beije.quiz.service;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +14,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,12 +25,13 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 
+@Service
 public class Utils {
-	private static final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 
-	public static final String PATH_INDEX_BOOKS = MAIN_PATH +"index.xml";
+	public final String PATH_INDEX_BOOKS = MAIN_PATH +"index.xml";
 
-	public static List<Element> getChildElements(Element element) {
+	public List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 
 		NodeList nodeList = element.getChildNodes();
@@ -46,7 +48,7 @@ public class Utils {
 
 
 
-	public static List<Libro> caricaLibri(File file) throws ParserConfigurationException, SAXException, IOException {
+	public List<Libro> caricaLibri(File file) throws ParserConfigurationException, SAXException, IOException {
 		List<Libro> lista = new ArrayList<Libro>();
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -73,7 +75,7 @@ public class Utils {
 
 	}
 
-	public static List<Libro> readFileLibri() {
+	public List<Libro> readFileLibri() {
 		List<Libro> elencoLibri = new ArrayList<>();
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -82,7 +84,7 @@ public class Utils {
 			Document document = builder.parse(new File(PATH_INDEX_BOOKS));
 			Element element = document.getDocumentElement();	        
 
-			List<Element> elementLibri = Utils.getChildElements(element);
+			List<Element> elementLibri = getChildElements(element);
 			for(Element e : elementLibri) {
 				Libro l = new Libro();
 				l.setIdBook(e.getAttribute("id_book"));
@@ -98,7 +100,7 @@ public class Utils {
 	}
 
 
-	public static List<Domanda> readFileDomande(String pathFile) {
+	public List<Domanda> readFileDomande(String pathFile) {
 
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 
@@ -113,7 +115,7 @@ public class Utils {
 			Document document = builder.parse(new File(pathFile));
 			Element element = document.getDocumentElement();
 			//	 	        System.out.println(element.getTagName());
-			List<Element> domande = Utils.getChildElements(element);
+			List<Element> domande = getChildElements(element);
 			//	 	        System.out.println(domande);
 
 			List<Element> contenutoDomanda = null;
@@ -121,7 +123,7 @@ public class Utils {
 			Element rispostePossibili = null;
 			for (Element domanda : domande) {
 
-				contenutoDomanda = Utils.getChildElements(domanda);
+				contenutoDomanda = getChildElements(domanda);
 				String book = domanda.getAttribute("book");
 				String chapter = (domanda.getAttribute("chapter"));
 				String question = (domanda.getAttribute("question"));
@@ -130,7 +132,7 @@ public class Utils {
 				// caricare le risposte possibili
 				rispostePossibili = contenutoDomanda.get(1);
 				String answerType = rispostePossibili.getAttribute("type");
-				elementiRisposta = Utils.getChildElements(rispostePossibili);
+				elementiRisposta = getChildElements(rispostePossibili);
 				List<Risposta> risposte = new ArrayList<Risposta>();
 				for (Element risposta : elementiRisposta) {
 					Risposta r = new Risposta();
@@ -159,7 +161,7 @@ public class Utils {
 	}
 
 
-	public static String generateId(String chapter, String question, String book) {
+	public String generateId(String chapter, String question, String book) {
 
 		String id="";
 
@@ -171,7 +173,7 @@ public class Utils {
 		return id;
 	}
 
-	public static Libro createLibro(Libro l) {	 
+	public Libro createLibro(Libro l) {	 
 
 		for(Libro presente : readFileLibri()) {
 			if(presente.getIdBook().equals(l.getIdBook()) && presente.getNameDir().equals(l.getNameDir())
@@ -210,20 +212,20 @@ public class Utils {
 		return l;
 	}
 
-	public static String formattaTesto(String testo) {
+	public String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
 		}
 
 		return testo;
 	}
-	public static String generateNomeFile(Domanda domanda) {
+	public String generateNomeFile(Domanda domanda) {
 		int nCap = Integer.parseInt(domanda.getChapter());
 
 		return "domande_cap"+nCap;
 	}
 
-	public static void caricaDomande(Libro l, List<Domanda> elDomande) {
+	public void caricaDomande(Libro l, List<Domanda> elDomande) {
 
 		try {
 			l = createLibro(l);
@@ -239,7 +241,7 @@ public class Utils {
 
 				document = builder.parse(file);
 				docElement = document.getDocumentElement();
-				List<Element> dom = Utils.getChildElements(docElement);
+				List<Element> dom = getChildElements(docElement);
 				idDomanda = Integer.parseInt(dom.get(dom.size()-1).getAttribute("id")) +1;
 				//ulteriore controllo
 				for(Element e : dom) {
@@ -294,7 +296,7 @@ public class Utils {
 		}	
 	}
 	
-	public static void ricaricaDomande(Libro l, List<Domanda> elDomande) {
+	public void ricaricaDomande(Libro l, List<Domanda> elDomande) {
 
 		try {
 			l = createLibro(l);
@@ -355,7 +357,7 @@ public class Utils {
 		}	
 	}
 
-	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+	public boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',')
