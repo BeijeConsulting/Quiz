@@ -30,12 +30,13 @@ public class ControllerRest {
 
 		for(File f: listaFile) {
 
+
 			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
 		}
 
-		String idDomanda=dirLibro+"|"+capitolo+"|"+nDomanda;
-		for(Domanda d: listaDomande)
-			if(d.getId().equals(idDomanda))
+		String idDomanda = dirLibro + "|" + capitolo + "|" + nDomanda;
+		for (Domanda d : listaDomande)
+			if (d.getId().equals(idDomanda))
 				return d;
 
 		return null;
@@ -69,6 +70,7 @@ public class ControllerRest {
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
 		String dir=Utils.getDirectory(domanda.getId());
+
 		for (Libro l : listaLibriInXML) {
 			if (dir.equals(l.getDir())) {
 				vero = true;
@@ -85,7 +87,7 @@ public class ControllerRest {
 			l.setTitle(domanda.getBook());
 			listaLibriInXML.add(l);
 			try {
-				Utils.scriviSuXML(listaLibriInXML,"C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+				Utils.scriviSuXML(listaLibriInXML, "C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -100,13 +102,32 @@ public class ControllerRest {
 	}
 
 
+	@RequestMapping(value = "/aggionadomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Domanda aggiornaDomanda(@RequestBody Domanda dom) {
+		StringBuilder path = new StringBuilder();
+		path.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\")
+				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
+		List<Domanda> lettura = Utils.readFileDomande(path.toString());
+		for (Domanda doma : lettura) {
+			if (doma.getId().equals(dom.getId())) {
+				Utils.eliminaDomanda(doma, new File(path.toString()));
+				Utils.aggiungiDomanda(doma, new File(path.toString()));
+				return dom;
+			}
+			
+		}
+		return null;
+
+		
+
+	}
+
 	@RequestMapping(value = "/insertListaDomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Domanda> insertDomande(@RequestBody List <Domanda> domande) {
+	public @ResponseBody List<Domanda> insertDomande(@RequestBody List<Domanda> domande) {
 
-
-		for (Domanda dom : domande) {	
+		for (Domanda dom : domande) {
 			StringBuilder path = new StringBuilder();
-			String dir =Utils.getDirectory(dom.getId());
+			String dir = Utils.getDirectory(dom.getId());
 			path.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\").append(dir);
 			File file = new File(path.toString());
 			if (!file.exists()) {
@@ -115,11 +136,11 @@ public class ControllerRest {
 				l.setDir(dir);
 				l.setIdBook(dir);
 				l.setTitle(dom.getBook());
-				List <Libro> lista= Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+				List<Libro> lista = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 				lista.add(l);
 				try {
 
-					Utils.scriviSuXML(lista,"C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+					Utils.scriviSuXML(lista, "C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -145,11 +166,11 @@ public class ControllerRest {
 
 		}
 
-		if(listaDomandeAggiornate==null) {
+		if(listaDomandeAggiornate==null) 
 			response.setStatus(204);
 
 			return listaDomandeAggiornate;		
-		}
+		
 
 
 	}
