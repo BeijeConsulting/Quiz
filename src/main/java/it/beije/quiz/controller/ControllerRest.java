@@ -22,7 +22,7 @@ import it.beije.quiz.model.Libro;
 public class ControllerRest {
 
 
-	//TODO: ds testare
+	
 	@RequestMapping(value="/caricaDomanda/{dirLibro}/{capitolo}/{nDomanda}", method=RequestMethod.GET)
 	public @ResponseBody Domanda getDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda ){
 		List <Domanda> listaDomande= new ArrayList<Domanda>();
@@ -65,7 +65,7 @@ public class ControllerRest {
 	@RequestMapping(value = "/insertDomanda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
 		List<Libro> listaLibriInXML = Utils
-				.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+				.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
@@ -77,7 +77,7 @@ public class ControllerRest {
 				break;
 			}
 		}
-		path.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\").append(dir);
+		path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\").append(dir);
 		File file = new File(path.toString());
 		if (vero != true) {
 			file.mkdir();
@@ -87,7 +87,7 @@ public class ControllerRest {
 			l.setTitle(domanda.getBook());
 			listaLibriInXML.add(l);
 			try {
-				Utils.scriviSuXML(listaLibriInXML, "C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+				Utils.scriviSuXML(listaLibriInXML, "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -105,13 +105,13 @@ public class ControllerRest {
 	@RequestMapping(value = "/aggionadomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda aggiornaDomanda(@RequestBody Domanda dom) {
 		StringBuilder path = new StringBuilder();
-		path.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\")
+		path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\")
 				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
 		List<Domanda> lettura = Utils.readFileDomande(path.toString());
 		for (Domanda doma : lettura) {
 			if (doma.getId().equals(dom.getId())) {
 				Utils.eliminaDomanda(doma, new File(path.toString()));
-				Utils.aggiungiDomanda(doma, new File(path.toString()));
+				Utils.aggiungiDomanda(dom, new File(path.toString()));
 				return dom;
 			}
 			
@@ -128,7 +128,7 @@ public class ControllerRest {
 		for (Domanda dom : domande) {
 			StringBuilder path = new StringBuilder();
 			String dir = Utils.getDirectory(dom.getId());
-			path.append("C:\\Users\\Padawan14\\git\\Quiz\\domande\\").append(dir);
+			path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\").append(dir);
 			File file = new File(path.toString());
 			if (!file.exists()) {
 				file.mkdir();
@@ -136,11 +136,11 @@ public class ControllerRest {
 				l.setDir(dir);
 				l.setIdBook(dir);
 				l.setTitle(dom.getBook());
-				List<Libro> lista = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+				List<Libro> lista = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 				lista.add(l);
 				try {
 
-					Utils.scriviSuXML(lista, "C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+					Utils.scriviSuXML(lista, "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -178,7 +178,7 @@ public class ControllerRest {
 
 
 	
-	@RequestMapping(value = "/deleteDomanda/{dirLibro}/{capitolo}/{nDomanda}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/deleteDomanda/{dirLibro}/{capitolo}/{nDomanda}", method = RequestMethod.DELETE)
 	public @ResponseBody boolean  deleteDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda, HttpServletResponse response) {
 		Domanda d= getDomanda(dirLibro,capitolo,nDomanda);
 		if(d==null) {
@@ -196,15 +196,18 @@ public class ControllerRest {
 		
 	}
 	
-	@RequestMapping(value = "/deleteDomande/{dirLibro}/{capitolo}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande, @PathVariable String dirLibro, @PathVariable int capitolo,HttpServletResponse response) {
+	@RequestMapping(value = "/deleteDomande", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande,HttpServletResponse response) {
 		for(Domanda d: domande) {
 			int nDomanda= d.getQuestion();
+			String dirLibro=Utils.getDirectory(d.getId());
+			int capitolo=d.getChapter();
 			deleteDomanda(dirLibro,capitolo,nDomanda,response);
 		}
 		
 	}
 	}
+
 	
 	
 	

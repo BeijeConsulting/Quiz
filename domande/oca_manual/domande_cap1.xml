@@ -1,38 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1" question="1"><testo>
-			Which of the following are valid Java identifiers? (Choose all
-			that apply)
-		</testo><risposte type="checkbox"><risposta value="">A$B</risposta><risposta value="">_helloWorld</risposta><risposta value="">true</risposta><risposta value="">java.lang</risposta><risposta value="">Public</risposta><risposta value="">1980_s</risposta></risposte><risposteEsatte>A, B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1" question="1"><testo>
-			Which of the following are valid Java identifiers? (Choose all
-			that apply)
-		</testo><risposte type="checkbox"><risposta value="">A$B</risposta><risposta value="">_helloWorld</risposta><risposta value="">true</risposta><risposta value="">java.lang</risposta><risposta value="">Public</risposta><risposta value="">1980_s</risposta></risposte><risposteEsatte>A, B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="2" question="2"><testo>
-			What is the output of the following program?
-			1: public class
-			WaterBottle {
-			2: private String brand;
-			3: private boolean empty;
-			4:
-			public static void main(String[] args) {
-			5: WaterBottle wb = new
-			WaterBottle();
-			6: System.out.print("Empty = " + wb.empty);
-			7:
-			System.out.print(", Brand = " + wb.brand);
-			8: } }
-		</testo><risposte type="checkbox"><risposta value="">Line 6 generates a compiler error. </risposta><risposta value="">Line 7 generates a compiler error.</risposta><risposta value="">There is no output.</risposta><risposta value="">Empty = false, Brand = null</risposta><risposta value="">Empty = false, Brand = </risposta><risposta value="">Empty = null, Brand = null</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="2" question="2"><testo>
-			What is the output of the following program?
-			1: public class
-			WaterBottle {
-			2: private String brand;
-			3: private boolean empty;
-			4:
-			public static void main(String[] args) {
-			5: WaterBottle wb = new
-			WaterBottle();
-			6: System.out.print("Empty = " + wb.empty);
-			7:
-			System.out.print(", Brand = " + wb.brand);
-			8: } }
-		</testo><risposte type="checkbox"><risposta value="">Line 6 generates a compiler error. </risposta><risposta value="">Line 7 generates a compiler error.</risposta><risposta value="">There is no output.</risposta><risposta value="">Empty = false, Brand = null</risposta><risposta value="">Empty = false, Brand = </risposta><risposta value="">Empty = null, Brand = null</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="3" question="3"><testo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|3" question="3"><testo>
 			Which of the following are true? (Choose all that apply)
 			4:
 			short numPets = 5;
@@ -41,7 +7,7 @@
 			7: numPets.length();
 			8: numGrains.length();
 			9: name.length();
-		</testo><risposte type="checkbox"><risposta value="">Line 4 generates a compiler error.</risposta><risposta value="">Line 5 generates a compiler error.</risposta><risposta value="">Line 6 generates a compiler error</risposta><risposta value="">Line 7 generates a compiler error</risposta><risposta value="">Line 8 generates a compiler error.</risposta><risposta value="">Line 9 generates a compiler error.</risposta><risposta value="">The code compiles as is</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="3" question="3"><testo>
+		</testo><risposte type="checkbox"><risposta value="">Line 4 generates a compiler error.</risposta><risposta value="">Line 5 generates a compiler error.</risposta><risposta value="">Line 6 generates a compiler error</risposta><risposta value="">Line 7 generates a compiler error</risposta><risposta value="">Line 8 generates a compiler error.</risposta><risposta value="">Line 9 generates a compiler error.</risposta><risposta value="">The code compiles as is</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|3" question="3"><testo>
 			Which of the following are true? (Choose all that apply)
 			4:
 			short numPets = 5;
@@ -50,7 +16,7 @@
 			7: numPets.length();
 			8: numGrains.length();
 			9: name.length();
-		</testo><risposte type="checkbox"><risposta value="">Line 4 generates a compiler error.</risposta><risposta value="">Line 5 generates a compiler error.</risposta><risposta value="">Line 6 generates a compiler error</risposta><risposta value="">Line 7 generates a compiler error</risposta><risposta value="">Line 8 generates a compiler error.</risposta><risposta value="">Line 9 generates a compiler error.</risposta><risposta value="">The code compiles as is</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="4" question="4"><testo>
+		</testo><risposte type="checkbox"><risposta value="">Line 4 generates a compiler error.</risposta><risposta value="">Line 5 generates a compiler error.</risposta><risposta value="">Line 6 generates a compiler error</risposta><risposta value="">Line 7 generates a compiler error</risposta><risposta value="">Line 8 generates a compiler error.</risposta><risposta value="">Line 9 generates a compiler error.</risposta><risposta value="">The code compiles as is</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|4" question="4"><testo>
 			Given the following class, which of the following is true?
 			(Choose all that apply)
 
@@ -70,7 +36,7 @@
 				line 4, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
 				line 6, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
 				line 9, the code will compile.</risposta><risposta value="">None of the above changes will make the code
-				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="4" question="4"><testo>
+				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|4" question="4"><testo>
 			Given the following class, which of the following is true?
 			(Choose all that apply)
 
@@ -90,7 +56,7 @@
 				line 4, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
 				line 6, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
 				line 9, the code will compile.</risposta><risposta value="">None of the above changes will make the code
-				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="5" question="5"><testo>
+				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|5" question="5"><testo>
 			Given the following classes, which of the following can
 			independently replace INSERT
 			IMPORTS HERE to make the code compile?
@@ -107,7 +73,7 @@
 			public class AquariumVisitor {
 			public void admire(Jelly jelly) { } }
 		</testo><risposte type="checkbox"><risposta value="">import aquarium.*;</risposta><risposta value="">import aquarium.*.Jelly;</risposta><risposta value="">import aquarium.jellies.Jelly;</risposta><risposta value="">import aquarium.jellies.*;</risposta><risposta value="">import aquarium.jellies.Jelly.*;</risposta><risposta value="">None of these can make the code compile.
-			</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="5" question="5"><testo>
+			</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|5" question="5"><testo>
 			Given the following classes, which of the following can
 			independently replace INSERT
 			IMPORTS HERE to make the code compile?
@@ -124,7 +90,7 @@
 			public class AquariumVisitor {
 			public void admire(Jelly jelly) { } }
 		</testo><risposte type="checkbox"><risposta value="">import aquarium.*;</risposta><risposta value="">import aquarium.*.Jelly;</risposta><risposta value="">import aquarium.jellies.Jelly;</risposta><risposta value="">import aquarium.jellies.*;</risposta><risposta value="">import aquarium.jellies.Jelly.*;</risposta><risposta value="">None of these can make the code compile.
-			</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="6" question="6"><testo>
+			</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|6" question="6"><testo>
 			Given the following classes, what is the maximum number of
 			imports that can be removed
 			and have the code still compile?
@@ -140,7 +106,7 @@
 			public class Tank {
 			public void print(Water water) {
 			System.out.println(water); } }
-		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">1</risposta><risposta value="">2</risposta><risposta value="">3</risposta><risposta value="">4</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="6" question="6"><testo>
+		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">1</risposta><risposta value="">2</risposta><risposta value="">3</risposta><risposta value="">4</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|6" question="6"><testo>
 			Given the following classes, what is the maximum number of
 			imports that can be removed
 			and have the code still compile?
@@ -156,7 +122,7 @@
 			public class Tank {
 			public void print(Water water) {
 			System.out.println(water); } }
-		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">1</risposta><risposta value="">2</risposta><risposta value="">3</risposta><risposta value="">4</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="7" question="7"><testo>
+		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">1</risposta><risposta value="">2</risposta><risposta value="">3</risposta><risposta value="">4</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|7" question="7"><testo>
 			Given the following classes, which of the following snippets
 			can be inserted in place of
 			INSERT IMPORTS HERE and have the code
@@ -186,7 +152,7 @@
 			</risposta><risposta value="">import aquarium.Water;
 				import aquarium.jellies.Water;
 			</risposta><risposta value="">None of these imports can make the code
-				compile</risposta></risposte><risposteEsatte>A, B, C</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="7" question="7"><testo>
+				compile</risposta></risposte><risposteEsatte>A, B, C</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|7" question="7"><testo>
 			Given the following classes, which of the following snippets
 			can be inserted in place of
 			INSERT IMPORTS HERE and have the code
@@ -216,7 +182,7 @@
 			</risposta><risposta value="">import aquarium.Water;
 				import aquarium.jellies.Water;
 			</risposta><risposta value="">None of these imports can make the code
-				compile</risposta></risposte><risposteEsatte>A, B, C</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="8" question="8"><testo>
+				compile</risposta></risposte><risposteEsatte>A, B, C</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|8" question="8"><testo>
 			Given the following class, which of the following calls print
 			out Blue Jay? (Choose all that
 			apply)
@@ -228,7 +194,7 @@
 		</testo><risposte type="checkbox"><risposta value="">java BirdDisplay Sparrow Blue Jay</risposta><risposta value="">java BirdDisplay Sparrow "Blue Jay"
 			</risposta><risposta value="">java BirdDisplay Blue Jay Sparrow</risposta><risposta value="">java BirdDisplay "Blue Jay" Sparrow
 			</risposta><risposta value="">java BirdDisplay.class Sparrow "Blue Jay"
-			</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="8" question="8"><testo>
+			</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|8" question="8"><testo>
 			Given the following class, which of the following calls print
 			out Blue Jay? (Choose all that
 			apply)
@@ -240,19 +206,19 @@
 		</testo><risposte type="checkbox"><risposta value="">java BirdDisplay Sparrow Blue Jay</risposta><risposta value="">java BirdDisplay Sparrow "Blue Jay"
 			</risposta><risposta value="">java BirdDisplay Blue Jay Sparrow</risposta><risposta value="">java BirdDisplay "Blue Jay" Sparrow
 			</risposta><risposta value="">java BirdDisplay.class Sparrow "Blue Jay"
-			</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="9" question="9"><testo>
+			</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|9" question="9"><testo>
 			Which of the following legally fill in the blank so you can run
 			the main() method from the
 			command line? (Choose all that apply)
 
 			public static void main(______________)
-		</testo><risposte type="checkbox"><risposta value="">String[] _names</risposta><risposta value="">String[] 123</risposta><risposta value="">String abc[]</risposta><risposta value="">String _Names[]</risposta><risposta value="">String... $n</risposta><risposta value="">String names</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="9" question="9"><testo>
+		</testo><risposte type="checkbox"><risposta value="">String[] _names</risposta><risposta value="">String[] 123</risposta><risposta value="">String abc[]</risposta><risposta value="">String _Names[]</risposta><risposta value="">String... $n</risposta><risposta value="">String names</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|9" question="9"><testo>
 			Which of the following legally fill in the blank so you can run
 			the main() method from the
 			command line? (Choose all that apply)
 
 			public static void main(______________)
-		</testo><risposte type="checkbox"><risposta value="">String[] _names</risposta><risposta value="">String[] 123</risposta><risposta value="">String abc[]</risposta><risposta value="">String _Names[]</risposta><risposta value="">String... $n</risposta><risposta value="">String names</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="10" question="10"><testo>
+		</testo><risposte type="checkbox"><risposta value="">String[] _names</risposta><risposta value="">String[] 123</risposta><risposta value="">String abc[]</risposta><risposta value="">String _Names[]</risposta><risposta value="">String... $n</risposta><risposta value="">String names</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|10" question="10"><testo>
 			Which of the following are legal entry point methods that can
 			be run from the command
 			line? (Choose all that apply)
@@ -260,7 +226,7 @@
 			</risposta><risposta value="">public static final main(String[] args)
 			</risposta><risposta value="">public void main(String[] args) </risposta><risposta value="">public static void test(String[] args)
 			</risposta><risposta value="">public static void main(String[] args)
-			</risposta><risposta value="">public static main(String[] args) </risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="10" question="10"><testo>
+			</risposta><risposta value="">public static main(String[] args) </risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|10" question="10"><testo>
 			Which of the following are legal entry point methods that can
 			be run from the command
 			line? (Choose all that apply)
@@ -268,7 +234,7 @@
 			</risposta><risposta value="">public static final main(String[] args)
 			</risposta><risposta value="">public void main(String[] args) </risposta><risposta value="">public static void test(String[] args)
 			</risposta><risposta value="">public static void main(String[] args)
-			</risposta><risposta value="">public static main(String[] args) </risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="11" question="11"><testo>
+			</risposta><risposta value="">public static main(String[] args) </risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|11" question="11"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">An instance variable of type double defaults
 				to null.</risposta><risposta value="">An instance variable of type int defaults to
@@ -276,7 +242,7 @@
 				to null.</risposta><risposta value="">An instance variable of type double defaults
 				to 0.0.</risposta><risposta value="">An instance variable of type int defaults to
 				0.0.</risposta><risposta value="">An instance variable of type String defaults
-				to 0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="11" question="11"><testo>
+				to 0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|11" question="11"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">An instance variable of type double defaults
 				to null.</risposta><risposta value="">An instance variable of type int defaults to
@@ -284,7 +250,7 @@
 				to null.</risposta><risposta value="">An instance variable of type double defaults
 				to 0.0.</risposta><risposta value="">An instance variable of type int defaults to
 				0.0.</risposta><risposta value="">An instance variable of type String defaults
-				to 0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="12" question="12"><testo>
+				to 0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|12" question="12"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">A local variable of type boolean defaults to
 				null.</risposta><risposta value="">A local variable of type float defaults to 0.
@@ -292,7 +258,7 @@
 				null.</risposta><risposta value="">A local variable of type boolean defaults to
 				false.</risposta><risposta value="">A local variable of type boolean defaults to
 				true.</risposta><risposta value="">A local variable of type float defaults to
-				0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>G</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="12" question="12"><testo>
+				0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>G</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|12" question="12"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">A local variable of type boolean defaults to
 				null.</risposta><risposta value="">A local variable of type float defaults to 0.
@@ -300,7 +266,7 @@
 				null.</risposta><risposta value="">A local variable of type boolean defaults to
 				false.</risposta><risposta value="">A local variable of type boolean defaults to
 				true.</risposta><risposta value="">A local variable of type float defaults to
-				0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>G</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="13" question="13"><testo>
+				0.0.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>G</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|13" question="13"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">An instance variable of type boolean defaults
 				to false</risposta><risposta value="">An instance variable of type boolean defaults
@@ -308,7 +274,7 @@
 				to null</risposta><risposta value="">An instance variable of type int defaults to
 				0</risposta><risposta value="">An instance variable of type int defaults to
 				0.0</risposta><risposta value="">An instance variable of type int defaults to
-				null.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="13" question="13"><testo>
+				null.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|13" question="13"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">An instance variable of type boolean defaults
 				to false</risposta><risposta value="">An instance variable of type boolean defaults
@@ -316,7 +282,7 @@
 				to null</risposta><risposta value="">An instance variable of type int defaults to
 				0</risposta><risposta value="">An instance variable of type int defaults to
 				0.0</risposta><risposta value="">An instance variable of type int defaults to
-				null.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="14" question="14"><testo>
+				null.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|14" question="14"><testo>
 			Given the following class in the file
 			/my/directory/named/A/Bird.java:
 
@@ -325,7 +291,7 @@
 
 			Which of the following replaces INSERT CODE HERE if we compile from
 			/my/directory?(Choose all that apply)
-		</testo><risposte type="checkbox"><risposta value="">package my.directory.named.a;</risposta><risposta value="">package my.directory.named.A;</risposta><risposta value="">package named.a;</risposta><risposta value="">package named.A;</risposta><risposta value="">package a;</risposta><risposta value="">package A;</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="14" question="14"><testo>
+		</testo><risposte type="checkbox"><risposta value="">package my.directory.named.a;</risposta><risposta value="">package my.directory.named.A;</risposta><risposta value="">package named.a;</risposta><risposta value="">package named.A;</risposta><risposta value="">package a;</risposta><risposta value="">package A;</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|14" question="14"><testo>
 			Given the following class in the file
 			/my/directory/named/A/Bird.java:
 
@@ -334,13 +300,13 @@
 
 			Which of the following replaces INSERT CODE HERE if we compile from
 			/my/directory?(Choose all that apply)
-		</testo><risposte type="checkbox"><risposta value="">package my.directory.named.a;</risposta><risposta value="">package my.directory.named.A;</risposta><risposta value="">package named.a;</risposta><risposta value="">package named.A;</risposta><risposta value="">package a;</risposta><risposta value="">package A;</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="15" question="15"><testo>
+		</testo><risposte type="checkbox"><risposta value="">package my.directory.named.a;</risposta><risposta value="">package my.directory.named.A;</risposta><risposta value="">package named.a;</risposta><risposta value="">package named.A;</risposta><risposta value="">package a;</risposta><risposta value="">package A;</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|15" question="15"><testo>
 			Which of the following lines of code compile? (Choose all that
 			apply)
-		</testo><risposte type="checkbox"><risposta value="">int i1 = 1_234;</risposta><risposta value="">double d1 = 1_234_.0;</risposta><risposta value="">double d2 = 1_234._0;</risposta><risposta value="">double d3 = 1_234.0_;</risposta><risposta value="">double d4 = 1_234.0;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="15" question="15"><testo>
+		</testo><risposte type="checkbox"><risposta value="">int i1 = 1_234;</risposta><risposta value="">double d1 = 1_234_.0;</risposta><risposta value="">double d2 = 1_234._0;</risposta><risposta value="">double d3 = 1_234.0_;</risposta><risposta value="">double d4 = 1_234.0;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|15" question="15"><testo>
 			Which of the following lines of code compile? (Choose all that
 			apply)
-		</testo><risposte type="checkbox"><risposta value="">int i1 = 1_234;</risposta><risposta value="">double d1 = 1_234_.0;</risposta><risposta value="">double d2 = 1_234._0;</risposta><risposta value="">double d3 = 1_234.0_;</risposta><risposta value="">double d4 = 1_234.0;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="16" question="16"><testo>
+		</testo><risposte type="checkbox"><risposta value="">int i1 = 1_234;</risposta><risposta value="">double d1 = 1_234_.0;</risposta><risposta value="">double d2 = 1_234._0;</risposta><risposta value="">double d3 = 1_234.0_;</risposta><risposta value="">double d4 = 1_234.0;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|16" question="16"><testo>
 			Given the following class, which of the following lines of code
 			can replace INSERT CODE
 			HERE to make the code compile? (Choose all
@@ -351,7 +317,7 @@
 			INSERT CODE HERE
 			System.out.println(amount);
 			} }
-		</testo><risposte type="checkbox"><risposta value="">int amount = 9L;</risposta><risposta value="">int amount = 0b101;</risposta><risposta value="">int amount = 0xE;</risposta><risposta value="">double amount = 0xE;</risposta><risposta value="">double amount = 1_2_.0_0;</risposta><risposta value="">int amount = 1_2_;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>B, C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="16" question="16"><testo>
+		</testo><risposte type="checkbox"><risposta value="">int amount = 9L;</risposta><risposta value="">int amount = 0b101;</risposta><risposta value="">int amount = 0xE;</risposta><risposta value="">double amount = 0xE;</risposta><risposta value="">double amount = 1_2_.0_0;</risposta><risposta value="">int amount = 1_2_;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>B, C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|16" question="16"><testo>
 			Given the following class, which of the following lines of code
 			can replace INSERT CODE
 			HERE to make the code compile? (Choose all
@@ -362,21 +328,21 @@
 			INSERT CODE HERE
 			System.out.println(amount);
 			} }
-		</testo><risposte type="checkbox"><risposta value="">int amount = 9L;</risposta><risposta value="">int amount = 0b101;</risposta><risposta value="">int amount = 0xE;</risposta><risposta value="">double amount = 0xE;</risposta><risposta value="">double amount = 1_2_.0_0;</risposta><risposta value="">int amount = 1_2_;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>B, C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="17" question="17"><testo>
+		</testo><risposte type="checkbox"><risposta value="">int amount = 9L;</risposta><risposta value="">int amount = 0b101;</risposta><risposta value="">int amount = 0xE;</risposta><risposta value="">double amount = 0xE;</risposta><risposta value="">double amount = 1_2_.0_0;</risposta><risposta value="">int amount = 1_2_;</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>B, C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|17" question="17"><testo>
 			Which of the following are true? (Choose all that apply)
 
 			public class Bunny {
 			public static void main(String[] args) {
 			Bunny bun = new Bunny();
 			} }
-		</testo><risposte type="checkbox"><risposta value="">Bunny is a class</risposta><risposta value="">bun is a class</risposta><risposta value="">main is a class.</risposta><risposta value="">Bunny is a reference to an object</risposta><risposta value="">bun is a reference to an object.</risposta><risposta value="">main is a reference to an object.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="17" question="17"><testo>
+		</testo><risposte type="checkbox"><risposta value="">Bunny is a class</risposta><risposta value="">bun is a class</risposta><risposta value="">main is a class.</risposta><risposta value="">Bunny is a reference to an object</risposta><risposta value="">bun is a reference to an object.</risposta><risposta value="">main is a reference to an object.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|17" question="17"><testo>
 			Which of the following are true? (Choose all that apply)
 
 			public class Bunny {
 			public static void main(String[] args) {
 			Bunny bun = new Bunny();
 			} }
-		</testo><risposte type="checkbox"><risposta value="">Bunny is a class</risposta><risposta value="">bun is a class</risposta><risposta value="">main is a class.</risposta><risposta value="">Bunny is a reference to an object</risposta><risposta value="">bun is a reference to an object.</risposta><risposta value="">main is a reference to an object.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="18" question="18"><testo>
+		</testo><risposte type="checkbox"><risposta value="">Bunny is a class</risposta><risposta value="">bun is a class</risposta><risposta value="">main is a class.</risposta><risposta value="">Bunny is a reference to an object</risposta><risposta value="">bun is a reference to an object.</risposta><risposta value="">main is a reference to an object.</risposta><risposta value="">None of the above.</risposta></risposte><risposteEsatte>A, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|18" question="18"><testo>
 			Which represent the order in which the following statements can
 			be assembled into a program that will compile successfully? (Choose
 			all that apply)
@@ -384,7 +350,7 @@
 			A: class Rabbit {}
 			B: import java.util.*;
 			C: package animals;
-		</testo><risposte type="checkbox"><risposta value="">A, B, C</risposta><risposta value="">B, C, A</risposta><risposta value="">C, B, A</risposta><risposta value="">B, A</risposta><risposta value="">C, A</risposta><risposta value="">A, C</risposta><risposta value="">A, B</risposta></risposte><risposteEsatte>C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="18" question="18"><testo>
+		</testo><risposte type="checkbox"><risposta value="">A, B, C</risposta><risposta value="">B, C, A</risposta><risposta value="">C, B, A</risposta><risposta value="">B, A</risposta><risposta value="">C, A</risposta><risposta value="">A, C</risposta><risposta value="">A, B</risposta></risposte><risposteEsatte>C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|18" question="18"><testo>
 			Which represent the order in which the following statements can
 			be assembled into a program that will compile successfully? (Choose
 			all that apply)
@@ -392,7 +358,7 @@
 			A: class Rabbit {}
 			B: import java.util.*;
 			C: package animals;
-		</testo><risposte type="checkbox"><risposta value="">A, B, C</risposta><risposta value="">B, C, A</risposta><risposta value="">C, B, A</risposta><risposta value="">B, A</risposta><risposta value="">C, A</risposta><risposta value="">A, C</risposta><risposta value="">A, B</risposta></risposte><risposteEsatte>C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="19" question="19"><testo>
+		</testo><risposte type="checkbox"><risposta value="">A, B, C</risposta><risposta value="">B, C, A</risposta><risposta value="">C, B, A</risposta><risposta value="">B, A</risposta><risposta value="">C, A</risposta><risposta value="">A, C</risposta><risposta value="">A, B</risposta></risposte><risposteEsatte>C, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|19" question="19"><testo>
 			Suppose we have a class named Rabbit. Which of the following
 			statements are true?
 			(Choose all that apply)
@@ -425,7 +391,7 @@
 				eligible for garbage collection immediately following line 11.
 			</risposta><risposta value="">The Rabbit object from line 4 is first
 				eligible for garbage collection immediately following line 12.
-			</risposta></risposte><risposteEsatte>B, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="19" question="19"><testo>
+			</risposta></risposte><risposteEsatte>B, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|19" question="19"><testo>
 			Suppose we have a class named Rabbit. Which of the following
 			statements are true?
 			(Choose all that apply)
@@ -458,7 +424,7 @@
 				eligible for garbage collection immediately following line 11.
 			</risposta><risposta value="">The Rabbit object from line 4 is first
 				eligible for garbage collection immediately following line 12.
-			</risposta></risposte><risposteEsatte>B, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="20" question="20"><testo>
+			</risposta></risposte><risposteEsatte>B, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|20" question="20"><testo>
 			What is true about the following code? (Choose all that apply)
 
 			public class Bear {
@@ -477,7 +443,7 @@
 			</risposta><risposta value="">Garbage collection is guaranteed to run.
 			</risposta><risposta value="">Garbage collection might or might not run.
 			</risposta><risposta value="">Garbage collection is guaranteed not to run.
-			</risposta><risposta value="">The code does not compile.</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="20" question="20"><testo>
+			</risposta><risposta value="">The code does not compile.</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|20" question="20"><testo>
 			What is true about the following code? (Choose all that apply)
 
 			public class Bear {
@@ -496,7 +462,7 @@
 			</risposta><risposta value="">Garbage collection is guaranteed to run.
 			</risposta><risposta value="">Garbage collection might or might not run.
 			</risposta><risposta value="">Garbage collection is guaranteed not to run.
-			</risposta><risposta value="">The code does not compile.</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="21" question="21"><testo>
+			</risposta><risposta value="">The code does not compile.</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|21" question="21"><testo>
 			What does the following code output?
 
 			1: public class Salmon {
@@ -510,7 +476,7 @@
 			Salmon();
 			8: System.out.println(s.count);
 			9: } }
-		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">4</risposta><risposta value="">Compilation fails on line 3.</risposta><risposta value="">Compilation fails on line 4.</risposta><risposta value="">Compilation fails on line 7.</risposta><risposta value="">Compilation fails on line 8.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="21" question="21"><testo>
+		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">4</risposta><risposta value="">Compilation fails on line 3.</risposta><risposta value="">Compilation fails on line 4.</risposta><risposta value="">Compilation fails on line 7.</risposta><risposta value="">Compilation fails on line 8.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|21" question="21"><testo>
 			What does the following code output?
 
 			1: public class Salmon {
@@ -524,21 +490,21 @@
 			Salmon();
 			8: System.out.println(s.count);
 			9: } }
-		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">4</risposta><risposta value="">Compilation fails on line 3.</risposta><risposta value="">Compilation fails on line 4.</risposta><risposta value="">Compilation fails on line 7.</risposta><risposta value="">Compilation fails on line 8.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="22" question="22"><testo>
+		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">4</risposta><risposta value="">Compilation fails on line 3.</risposta><risposta value="">Compilation fails on line 4.</risposta><risposta value="">Compilation fails on line 7.</risposta><risposta value="">Compilation fails on line 8.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|22" question="22"><testo>
 			Which of the following are true statements? (Choose all that
 			apply)
 		</testo><risposte type="checkbox"><risposta value="">Java allows operator overloading.</risposta><risposta value="">Java code compiled on Windows can run on
 				Linux.</risposta><risposta value="">Java has pointers to specific locations in
 				memory.</risposta><risposta value="">Java is a procedural language.</risposta><risposta value="">Java is an object-oriented language.
 			</risposta><risposta value="">Java is a functional programming language.
-			</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="22" question="22"><testo>
+			</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|22" question="22"><testo>
 			Which of the following are true statements? (Choose all that
 			apply)
 		</testo><risposte type="checkbox"><risposta value="">Java allows operator overloading.</risposta><risposta value="">Java code compiled on Windows can run on
 				Linux.</risposta><risposta value="">Java has pointers to specific locations in
 				memory.</risposta><risposta value="">Java is a procedural language.</risposta><risposta value="">Java is an object-oriented language.
 			</risposta><risposta value="">Java is a functional programming language.
-			</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="23" question="23"><testo>
+			</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|23" question="23"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">javac compiles a .class file into a .java
 				file.</risposta><risposta value="">javac compiles a .java file into a .bytecode
@@ -546,7 +512,7 @@
 				file.</risposta><risposta value="">Java takes the name of the class as a
 				parameter.</risposta><risposta value="">Java takes the name of the .bytecode file as
 				a parameter.</risposta><risposta value="">Java takes the name of the .class file as a
-				parameter. </risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="23" question="23"><testo>
+				parameter. </risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|23" question="23"><testo>
 			Which of the following are true? (Choose all that apply)
 		</testo><risposte type="checkbox"><risposta value="">javac compiles a .class file into a .java
 				file.</risposta><risposta value="">javac compiles a .java file into a .bytecode
@@ -554,16 +520,16 @@
 				file.</risposta><risposta value="">Java takes the name of the class as a
 				parameter.</risposta><risposta value="">Java takes the name of the .bytecode file as
 				a parameter.</risposta><risposta value="">Java takes the name of the .class file as a
-				parameter. </risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="" chapter="1" id="1" question="1"><testo>PROVA1</testo><risposte type="radio"><risposta value="">PROVA1</risposta></risposte><risposteEsatte>a</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="" chapter="1" id="1" question="1"><testo>PROVA1</testo><risposte type="radio"><risposta value="">PROVA1</risposta></risposte><risposteEsatte>a</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1" question="1"><testo>1</testo><risposte type="radio"><risposta value="">1</risposta></risposte><risposteEsatte>1</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1231" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
+				parameter. </risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="" chapter="1" id="null|1|1" question="1"><testo>PROVA1</testo><risposte type="radio"><risposta value="">PROVA1</risposta></risposte><risposteEsatte>a</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="" chapter="1" id="null|1|1" question="1"><testo>PROVA1</testo><risposte type="radio"><risposta value="">PROVA1</risposta></risposte><risposteEsatte>a</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
-fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1231" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
+fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
-fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1231" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
+fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
-fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1231" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
+fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
-fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1231" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
+fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
-fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="1231" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
+fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
 fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda></domande>

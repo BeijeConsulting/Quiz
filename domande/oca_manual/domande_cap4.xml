@@ -1,67 +1,6 @@
-<?xml version="1.0" ?>
-<domande>
-	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="1">
-		<testo>
-			Which of the following can fill in the blank in this code to make it compile? (Choose all that apply)
-			
-			public class Ant {
-			 _____ void method() { }
-			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">default</risposta>
-			<risposta value="B">final</risposta>
-			<risposta value="C">private</risposta>
-			<risposta value="D">Public</risposta>
-			<risposta value="E">String</risposta>
-			<risposta value="F">zzz:</risposta>
-		</risposte>
-		<risposteEsatte>B, C</risposteEsatte>
-		<spiegazione> 
-			void is a return type. Only the access modifier or optional specifiers are allowed
-			before the return type. Option C is correct, creating a method with private access.
-			Option B is correct, creating a method with default access and the optional specifier
-			final. Since default access does not require a modifier, we get to jump right to final. 
-			Option A is incorrect because default access omits the access modifier rather than specifying default. Option D is incorrect because Java is case sensitive. It would have been
-			correct if public were the choice. Option E is incorrect because the method already has
-			a void return type. Option F is incorrect because labels are not allowed for methods.
-		</spiegazione>
-	</domanda>
-	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="2">
-		<testo>
-			Which of the following compile? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">final static void method4() { }</risposta>
-			<risposta value="B">public final int void method() { }</risposta>
-			<risposta value="C">private void int method() { }</risposta>
-			<risposta value="D">static final void method3() { }</risposta>
-			<risposta value="E">void final method() {}</risposta>
-			<risposta value="F">void public method() { }</risposta>
-		</risposte>
-		<risposteEsatte>A, D</risposteEsatte>
-		<spiegazione> 
-			Options A and D are correct because the optional specifiers are allowed in any
-			order. Options B and C are incorrect because they each have two return types. Options
-			E and F are incorrect because the return type is before the optional specifier and access
-			modifier, respectively
-		</spiegazione>
-	</domanda>
-	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="3">
-		<testo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|3" question="3"><testo>
 			Which of the following methods compile? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">public void methodA() { return;}</risposta>
-			<risposta value="B">public void methodB() { return null;}</risposta>
-			<risposta value="C">public void methodD() {}</risposta>
-			<risposta value="D">public int methodD() { return 9;}</risposta>
-			<risposta value="E">public int methodE() { return 9.0;}</risposta>
-			<risposta value="F">public int methodF() { return;}</risposta>
-			<risposta value="G">public int methodG() { return null;}</risposta>
-		</risposte>
-		<risposteEsatte>A, C, D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">public void methodA() { return;}</risposta><risposta value="B">public void methodB() { return null;}</risposta><risposta value="C">public void methodD() {}</risposta><risposta value="D">public int methodD() { return 9;}</risposta><risposta value="E">public int methodE() { return 9.0;}</risposta><risposta value="F">public int methodF() { return;}</risposta><risposta value="G">public int methodG() { return null;}</risposta></risposte><risposteEsatte>A, C, D</risposteEsatte><spiegazione> 
 			Options A and C are correct because a void method is allowed to have a
 			return statement as long as it doesn’t try to return a value. Options B and G do not
 			compile because null requires a reference object as the return type. void is not a reference object since it is a marker for no return type. int is not a reference object since it
@@ -69,70 +8,30 @@
 			compile because it tries to return a double when the return type is int. Since a double
 			cannot be assigned to an int, it cannot be returned as one either. Option F does not
 			compile because no value is actually returned.
-		</spiegazione>
-	</domanda>
-	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="4">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|4" question="4"><testo>
 			Which of the following compile? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">public void moreA(int... nums) {}</risposta>
-			<risposta value="B">public void moreB(String values, int... nums) {}</risposta>
-			<risposta value="C">public void moreC(int... nums, String values) {}</risposta>
-			<risposta value="D">public void moreD(String... values, int... nums) {}</risposta>
-			<risposta value="E">public void moreE(String[] values, ...int nums) {}</risposta>
-			<risposta value="F">public void moreF(String... values, int[] nums) {}</risposta>
-			<risposta value="G">public void moreG(String[] values, int[] nums) {}</risposta>
-		</risposte>
-		<risposteEsatte>A, B, G</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">public void moreA(int... nums) {}</risposta><risposta value="B">public void moreB(String values, int... nums) {}</risposta><risposta value="C">public void moreC(int... nums, String values) {}</risposta><risposta value="D">public void moreD(String... values, int... nums) {}</risposta><risposta value="E">public void moreE(String[] values, ...int nums) {}</risposta><risposta value="F">public void moreF(String... values, int[] nums) {}</risposta><risposta value="G">public void moreG(String[] values, int[] nums) {}</risposta></risposte><risposteEsatte>A, B, G</risposteEsatte><spiegazione> 
 			Options A and B are correct because the single vararg parameter is the last
 			parameter declared. Option G is correct because it doesn’t use any vararg parameters
 			at all. Options C and F are incorrect because the vararg parameter is not last. Option
 			D is incorrect because two vararg parameters are not allowed in the same method.
 			Option E is incorrect because the ... for a vararg must be after the type, not before it.
-		</spiegazione>
-	</domanda>
-	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="5">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|5" question="5"><testo>
 			Given the following method, which of the method calls return 2? (Choose all that apply)
 			
 			public int howMany(boolean b, boolean... b2) {
 				return b2.length;
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">howMany();</risposta>
-			<risposta value="B">howMany(true);</risposta>
-			<risposta value="C">howMany(true, true);</risposta>
-			<risposta value="D">howMany(true, true, true);</risposta>
-			<risposta value="E">howMany(true, {true});</risposta>
-			<risposta value="F">howMany(true, {true, true});</risposta>
-			<risposta value="G">howMany(true, new boolean[2]);</risposta>
-		</risposte>
-		<risposteEsatte>D, G</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">howMany();</risposta><risposta value="B">howMany(true);</risposta><risposta value="C">howMany(true, true);</risposta><risposta value="D">howMany(true, true, true);</risposta><risposta value="E">howMany(true, {true});</risposta><risposta value="F">howMany(true, {true, true});</risposta><risposta value="G">howMany(true, new boolean[2]);</risposta></risposte><risposteEsatte>D, G</risposteEsatte><spiegazione> 
 			Option D passes the initial parameter plus two more to turn into a vararg array
 			of size 2. Option G passes the initial parameter plus an array of size 2. Option A does
 			not compile because it does not pass the initial parameter. Options E and F do not
 			compile because they do not declare an array properly. It should be new boolean[]
 			{true}. Option B creates a vararg array of size 0 and option C creates a vararg array of
 			size 1.
-		</spiegazione>
-	</domanda>
-	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="6">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|6" question="6"><testo>
 			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Package private access is more lenient than protected access</risposta>
-			<risposta value="B">A public class that has private fields and package private methods is not visible to classes outside the package</risposta>
-			<risposta value="C">You can use access modifiers so only some of the classes in a package see a particular package private class.</risposta>
-			<risposta value="D">You can use access modifiers to allow read access to all methods, but not any instance variables.</risposta>
-			<risposta value="E">You can use access modifiers to restrict read access to all classes that begin with the word Test.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">Package private access is more lenient than protected access</risposta><risposta value="B">A public class that has private fields and package private methods is not visible to classes outside the package</risposta><risposta value="C">You can use access modifiers so only some of the classes in a package see a particular package private class.</risposta><risposta value="D">You can use access modifiers to allow read access to all methods, but not any instance variables.</risposta><risposta value="E">You can use access modifiers to restrict read access to all classes that begin with the word Test.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione> 
 			Option D is correct. This is the common implementation for encapsulation by setting all fields to be private and all methods to be public. Option A is incorrect because
 			protected access allows everything that package private access allows and additionally
 			allows subclasses access. Option B is incorrect because the class is public. This means
@@ -140,10 +39,7 @@
 			read any of the fields. It is essentially a useless class. Option C is incorrect because
 			package private access applies to the whole package. Option E is incorrect because Java
 			has no such capability.
-		</spiegazione>
-	</domanda>
-	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="7">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|7" question="7"><testo>
 			Given the following my.school.ClassRoom and my.city.School class definitions, which line numbers in main() generate a compiler error? (Choose all that apply)
 			
 			1: package my.school;
@@ -166,64 +62,26 @@
 			7: 		System.out.println(room.roomNumber);
 			8: 		System.out.println(room.floor);
 			9: 		System.out.println(room.teacherName); } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">None, the code compiles fine.</risposta>
-			<risposta value="B">Line 5</risposta>
-			<risposta value="C">Line 6</risposta>
-			<risposta value="D">Line 7</risposta>
-			<risposta value="E">Line 8</risposta>
-			<risposta value="F">Line 9</risposta>
-		</risposte>
-		<risposteEsatte>B, C, D, F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">None, the code compiles fine.</risposta><risposta value="B">Line 5</risposta><risposta value="C">Line 6</risposta><risposta value="D">Line 7</risposta><risposta value="E">Line 8</risposta><risposta value="F">Line 9</risposta></risposte><risposteEsatte>B, C, D, F</risposteEsatte><spiegazione> 
 			The two classes are in different packages, which means private access and
 			default (package private) access will not compile. Additionally, protected access will
 			not compile since School does not inherit from Classroom. Therefore, only line 8 will
 			compile because it uses public access.
-		</spiegazione>
-	</domanda>
-	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="8">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|8" question="8"><testo>
 			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Encapsulation uses package private instance variables.</risposta>
-			<risposta value="B">Encapsulation uses private instance variables.</risposta>
-			<risposta value="C">Encapsulation allows setters.</risposta>
-			<risposta value="D">Immutability uses package private instance variables.</risposta>
-			<risposta value="E">Immutability uses private instance variables.</risposta>
-			<risposta value="F">Immutability allows setters.</risposta>
-		</risposte>
-		<risposteEsatte>B, C, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">Encapsulation uses package private instance variables.</risposta><risposta value="B">Encapsulation uses private instance variables.</risposta><risposta value="C">Encapsulation allows setters.</risposta><risposta value="D">Immutability uses package private instance variables.</risposta><risposta value="E">Immutability uses private instance variables.</risposta><risposta value="F">Immutability allows setters.</risposta></risposte><risposteEsatte>B, C, E</risposteEsatte><spiegazione> 
 			Encapsulation requires using methods to get and set instance variables so
 			other classes are not directly using them. Instance variables must be private for this
 			to work. Immutability takes this a step further, allowing only getters, so the instance
 			variables do not change state.
-		</spiegazione>
-	</domanda>
-	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="9">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|9" question="9"><testo>
 			Which are methods using JavaBeans naming conventions for accessors and mutators? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">public boolean getCanSwim() { return canSwim;}</risposta>
-			<risposta value="B">public boolean canSwim() { return numberWings;}</risposta>
-			<risposta value="C">public int getNumWings() { return numberWings;}</risposta>
-			<risposta value="D">public int numWings() { return numberWings;}</risposta>
-			<risposta value="E">public void setCanSwim(boolean b) { canSwim = b;}</risposta>
-		</risposte>
-		<risposteEsatte>C, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">public boolean getCanSwim() { return canSwim;}</risposta><risposta value="B">public boolean canSwim() { return numberWings;}</risposta><risposta value="C">public int getNumWings() { return numberWings;}</risposta><risposta value="D">public int numWings() { return numberWings;}</risposta><risposta value="E">public void setCanSwim(boolean b) { canSwim = b;}</risposta></risposte><risposteEsatte>C, E</risposteEsatte><spiegazione> 
 			Option A is incorrect because the property is of type boolean and getters must
 			begin with is for booleans. Options B and D are incorrect because they don’t follow
 			the naming convention of beginning with get/is/set. Options C and E follow normal
 			getter and setter conventions.
-		</spiegazione>
-	</domanda>
-	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="10">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|10" question="10"><testo>
 			What is the output of the following code?
 			
 			1: package rope;
@@ -246,24 +104,11 @@
 			7: 		System.out.println(LENGTH);
 			8: 	}
 			9: }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">swing swing 5</risposta>
-			<risposta value="B">swing swing 10</risposta>
-			<risposta value="C">Compiler error on line 2 of Chimp.</risposta>
-			<risposta value="D">Compiler error on line 5 of Chimp.</risposta>
-			<risposta value="E">Compiler error on line 6 of Chimp.</risposta>
-			<risposta value="F">Compiler error on line 7 of Chimp.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">swing swing 5</risposta><risposta value="B">swing swing 10</risposta><risposta value="C">Compiler error on line 2 of Chimp.</risposta><risposta value="D">Compiler error on line 5 of Chimp.</risposta><risposta value="E">Compiler error on line 6 of Chimp.</risposta><risposta value="F">Compiler error on line 7 of Chimp.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			Rope runs line 3, setting LENGTH to 5, then immediately after runs the static initializer, which sets it to 10. Line 5 calls the static method normally and prints swing.
 			Line 6 also calls the static method. Java allows calling a static method through an
 			instance variable. Line 7 uses the static import on line 2 to reference LENGTH.
-		</spiegazione>
-	</domanda>
-	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="11">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|11" question="11"><testo>
 			Which are true of the following code? (Choose all that apply)
 			
 			1: public class Rope {
@@ -284,27 +129,14 @@
 			16: 	rope2.play();
 			17: }
 			18:}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">The code compiles as is.</risposta>
-			<risposta value="B">There is exactly one compiler error in the code.</risposta>
-			<risposta value="C">There are exactly two compiler errors in the code.</risposta>
-			<risposta value="D">If the lines with compiler errors are removed, the output is climb climb.</risposta>
-			<risposta value="E">If the lines with compiler errors are removed, the output is swing swing.</risposta>
-			<risposta value="F">If the lines with compile errors are removed, the code throws a NullPointerException.</risposta>
-		</risposte>
-		<risposteEsatte>B, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">The code compiles as is.</risposta><risposta value="B">There is exactly one compiler error in the code.</risposta><risposta value="C">There are exactly two compiler errors in the code.</risposta><risposta value="D">If the lines with compiler errors are removed, the output is climb climb.</risposta><risposta value="E">If the lines with compiler errors are removed, the output is swing swing.</risposta><risposta value="F">If the lines with compile errors are removed, the code throws a NullPointerException.</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione> 
 			Line 10 does not compile because static methods are not allowed to call instance
 			methods. Even though we are calling play() as if it were an instance method and an
 			instance exists, Java knows play() is really a static method and treats it as such. If line
 			10 is removed, the code works. It does not throw a NullPointerException on line 16
 			because play() is a static method. Java looks at the type of the reference for rope2 and
 			translates the call to Rope.play().
-		</spiegazione>
-	</domanda>
-	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="12">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|12" question="12"><testo>
 			What is the output of the following code?
 			
 			import rope.*;
@@ -325,25 +157,12 @@
 			public class Rope {
 			 public static int length = 0;
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">02</risposta>
-			<risposta value="B">08</risposta>
-			<risposta value="C">2</risposta>
-			<risposta value="D">8</risposta>
-			<risposta value="E">The code does not compile.</risposta>
-			<risposta value="F">An exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">02</risposta><risposta value="B">08</risposta><risposta value="C">2</risposta><risposta value="D">8</risposta><risposta value="E">The code does not compile.</risposta><risposta value="F">An exception is thrown.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione> 
 			There are two details to notice in this code. First, note that RopeSwing has an
 			instance initializer and not a static initializer. Since RopeSwing is never constructed,
 			the instance initializer does not run. The other detail is that length is static. Changes
 			from one object update this common static variable.
-		</spiegazione>
-	</domanda>
-	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="13">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|13" question="13"><testo>
 			How many compiler errors are in the following code?
 
 			1: public class RopeSwing {
@@ -363,27 +182,14 @@
 			15: 	bench = "bench";
 			16: }
 			17:}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">0</risposta>
-			<risposta value="B">1</risposta>
-			<risposta value="C">2</risposta>
-			<risposta value="D">3</risposta>
-			<risposta value="E">4</risposta>
-			<risposta value="F">5</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">0</risposta><risposta value="B">1</risposta><risposta value="C">2</risposta><risposta value="D">3</risposta><risposta value="E">4</risposta><risposta value="F">5</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
 			static final variables must be set exactly once, and it must be in the declaration
 			line or in a static initialization block. Line 4 doesn’t compile because bench is not set
 			in either of these locations. Line 15 doesn’t compile because final variables are not
 			allowed to be set after that point. Line 11 doesn’t compile because name is set twice:
 			once in the declaration and again in the static block. Line 12 doesn’t compile because
 			rightRope is set twice as well. Both are in static initialization blocks.
-		</spiegazione>
-	</domanda>
-	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="14">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|14" question="14"><testo>
 			Which of the following can replace line 2 to make this code compile? (Choose all that apply)
 			
 			1: import java.util.*;
@@ -393,27 +199,14 @@
 			5: 		sort(list);
 			6: 	}
 			7: }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">import static java.util.Collections;</risposta>
-			<risposta value="B">import static java.util.Collections.*;</risposta>
-			<risposta value="C">import static java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta>
-			<risposta value="D">static import java.util.Collections;</risposta>
-			<risposta value="E">static import java.util.Collections.*;</risposta>
-			<risposta value="F">static import java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">import static java.util.Collections;</risposta><risposta value="B">import static java.util.Collections.*;</risposta><risposta value="C">import static java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta><risposta value="D">static import java.util.Collections;</risposta><risposta value="E">static import java.util.Collections.*;</risposta><risposta value="F">static import java.util.Collections.sort(ArrayList&lt;String&gt;);</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			The two valid ways to do this are import static java.util.Collections.*; and
 			import static java.util.Collections.sort;. Option A is incorrect because you
 			can only do a static import on static members. Classes such as Collections require
 			a regular import. Option C is nonsense as method parameters have no business in
 			an import. Options D, E, and F try to trick you into reversing the syntax of import
 			static.
-		</spiegazione>
-	</domanda>
-	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="15">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|15" question="15"><testo>
 			What is the result of the following statements?
 			
 			1: public class Test {
@@ -437,25 +230,12 @@
 			19: 	t.print(6.789);
 			20: }
 			21:}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">bytefloatObject</risposta>
-			<risposta value="B">intfloatObject</risposta>
-			<risposta value="C">byteObjectfloat</risposta>
-			<risposta value="D">intObjectfloat</risposta>
-			<risposta value="E">intObjectObject</risposta>
-			<risposta value="F">byteObjectObject</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">bytefloatObject</risposta><risposta value="B">intfloatObject</risposta><risposta value="C">byteObjectfloat</risposta><risposta value="D">intObjectfloat</risposta><risposta value="E">intObjectObject</risposta><risposta value="F">byteObjectObject</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
 			The argument on line 17 is a short. It can be promoted to an int, so print() on
 			line 5 is invoked. The argument on line 18 is a boolean. It can be autoboxed to a boolean, so print() on line 11 is invoked. The argument on line 19 is a double. It can
 			be autoboxed to a double, so print() on line 11 is invoked. Therefore, the output is
 			intObjectObject and the correct answer is option E. 
-		</spiegazione>
-	</domanda>
-	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="16">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|16" question="16"><testo>
 			What is the result of the following program?
 			
 			1: public class Squares {
@@ -469,23 +249,11 @@
 			9: 		long result = square(value);
 			10: 	System.out.println(value);
 			11: } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">-1</risposta>
-			<risposta value="B">9</risposta>
-			<risposta value="C">81</risposta>
-			<risposta value="D">Compiler error on line 9.</risposta>
-			<risposta value="E">Compiler error on a different line.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">-1</risposta><risposta value="B">9</risposta><risposta value="C">81</risposta><risposta value="D">Compiler error on line 9.</risposta><risposta value="E">Compiler error on a different line.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			Since Java is pass-by-value and the variable on line 8 never gets reassigned, it stays
 			as 9. In the method square, x starts as 9. y becomes 81 and then x gets set to –1. Line 9
 			does set result to 81. However, we are printing out value and that is still 9. 
-		</spiegazione>
-	</domanda>
-	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="17">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|17" question="17"><testo>
 			Which of the following are output by the following code? (Choose all that apply)
 			
 			public class StringBuilders {
@@ -503,38 +271,13 @@
 				System.out.println("s3 = " + s3);
 			 }
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">s1 = a</risposta>
-			<risposta value="B">s1 = s1</risposta>
-			<risposta value="C">s2 = s2</risposta>
-			<risposta value="D">s2 = s2b</risposta>
-			<risposta value="E">s3 = a</risposta>
-			<risposta value="F">s3 = null</risposta>
-			<risposta value="G">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>B, D, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">s1 = a</risposta><risposta value="B">s1 = s1</risposta><risposta value="C">s2 = s2</risposta><risposta value="D">s2 = s2b</risposta><risposta value="E">s3 = a</risposta><risposta value="F">s3 = null</risposta><risposta value="G">The code does not compile.</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione> 
 			Since Java is pass-by-reference, assigning a new object to a does not change the
 			caller. Calling append() does affect the caller because both the method parameter and 
 			caller have a reference to the same object. Finally, returning a value does pass the reference to the caller for assignment to s3.
-		</spiegazione>
-	</domanda>
-	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="18">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|18" question="18"><testo>
 			Which of the following are true? (Choose 2)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">this() can be called from anywhere in a constructor.</risposta>
-			<risposta value="B">this() can be called from any instance method in the class.</risposta>
-			<risposta value="C">this.variableName can be called from any instance method in the class.</risposta>
-			<risposta value="D">this.variableName can be called from any static method in the class.</risposta>
-			<risposta value="E">You must include a default constructor in the code if the compiler does not include one.</risposta>
-			<risposta value="F">You can call the default constructor written by the compiler using this()</risposta>
-			<risposta value="G">You can access a private constructor with the main() method.</risposta>
-		</risposte>
-		<risposteEsatte>C, G</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">this() can be called from anywhere in a constructor.</risposta><risposta value="B">this() can be called from any instance method in the class.</risposta><risposta value="C">this.variableName can be called from any instance method in the class.</risposta><risposta value="D">this.variableName can be called from any static method in the class.</risposta><risposta value="E">You must include a default constructor in the code if the compiler does not include one.</risposta><risposta value="F">You can call the default constructor written by the compiler using this()</risposta><risposta value="G">You can access a private constructor with the main() method.</risposta></risposte><risposteEsatte>C, G</risposteEsatte><spiegazione> 
 			Since the main() method is in the same class, it can call private methods in the
 			class. this() may only be called as the first line of a constructor. this.variableName
 			can be called from any instance method to refer to an instance variable. It cannot be
@@ -542,32 +285,15 @@
 			F is tricky. The default constructor is only written by the compiler if no user-defined
 			constructors were provided. this() can only be called from a constructor in the same
 			class. Since there can be no user-defined constructors in the class if a default constructor was created, it is impossible for option F to be true. 
-		</spiegazione>
-	</domanda>
-	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="19">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|19" question="19"><testo>
 			Which of these classes compile and use a default constructor? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">public class Bird { }</risposta>
-			<risposta value="B">public class Bird { public bird() {} }</risposta>
-			<risposta value="C">public class Bird { public bird(String name) {} }</risposta>
-			<risposta value="D">public class Bird { public Bird() {} }</risposta>
-			<risposta value="E">public class Bird { Bird(String name) {} }</risposta>
-			<risposta value="F">public class Bird { private Bird(int age) {} }</risposta>
-			<risposta value="G">public class Bird { void Bird() { }</risposta>
-		</risposte>
-		<risposteEsatte>A, G</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">public class Bird { }</risposta><risposta value="B">public class Bird { public bird() {} }</risposta><risposta value="C">public class Bird { public bird(String name) {} }</risposta><risposta value="D">public class Bird { public Bird() {} }</risposta><risposta value="E">public class Bird { Bird(String name) {} }</risposta><risposta value="F">public class Bird { private Bird(int age) {} }</risposta><risposta value="G">public class Bird { void Bird() { }</risposta></risposte><risposteEsatte>A, G</risposteEsatte><spiegazione> 
 			Options B and C don’t compile because the constructor name must match the
 			classname. Since Java is case sensitive, these don’t match. Options D, E, and F all compile and provide one user-defined constructor. 
 			Since a constructor is coded, a default constructor isn’t supplied. 
 			Option G defines a method, but not a constructor. Option A does not define a constructor, either. 
 			Since no constructor is coded, a default constructor is provided for options A and G.
-		</spiegazione>
-	</domanda>
-	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="20">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|20" question="20"><testo>
 			Which code can be inserted to have the code print 2?
 			
 			public class BirdSeed {
@@ -586,25 +312,12 @@
 				BirdSeed seed = new BirdSeed();
 				System.out.println(seed.numberBags);
 			 } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Replace line 1 with BirdSeed(2);</risposta>
-			<risposta value="B">Replace line 2 with BirdSeed(2);</risposta>
-			<risposta value="C">Replace line 1 with new BirdSeed(2);</risposta>
-			<risposta value="D">Replace line 2 with new BirdSeed(2);</risposta>
-			<risposta value="E">Replace line 1 with this(2);</risposta>
-			<risposta value="F">Replace line 2 with this(2);</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">Replace line 1 with BirdSeed(2);</risposta><risposta value="B">Replace line 2 with BirdSeed(2);</risposta><risposta value="C">Replace line 1 with new BirdSeed(2);</risposta><risposta value="D">Replace line 2 with new BirdSeed(2);</risposta><risposta value="E">Replace line 1 with this(2);</risposta><risposta value="F">Replace line 2 with this(2);</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
 			Options A and B will not compile because constructors cannot be called without
 			new. Options C and D will compile but will create a new object rather than setting the
 			fields in this one. Option F will not compile because this() must be the first line of a
 			constructor. Option E is correct.
-		</spiegazione>
-	</domanda>
-	<domanda id="21" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="21">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|21" question="21"><testo>
 			Which of the following complete the constructor so that this code prints out 50? (Choose all that apply)
 			
 			public class Cheetah {
@@ -616,27 +329,14 @@
 				System.out.println(new Cheetah(50).numSpots);
 			 }
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">numSpots = numSpots;</risposta>
-			<risposta value="B">numSpots = this.numSpots;</risposta>
-			<risposta value="C">this.numSpots = numSpots;</risposta>
-			<risposta value="D">numSpots = super.numSpots;</risposta>
-			<risposta value="E">super.numSpots = numSpots;</risposta>
-			<risposta value="F">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">numSpots = numSpots;</risposta><risposta value="B">numSpots = this.numSpots;</risposta><risposta value="C">this.numSpots = numSpots;</risposta><risposta value="D">numSpots = super.numSpots;</risposta><risposta value="E">super.numSpots = numSpots;</risposta><risposta value="F">None of the above.</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione> 
 			Within the constructor numSpots refers to the constructor parameter. The instance
 			variable is hidden because they have the same name. this.numSpots tells Java to use
 			the instance variable. In the main() method, numSpots refers to the instance variable.
 			Option A sets the constructor parameter to itself, leaving the instance variable as 0.
 			Option B sets the constructor parameter to the value of the instance variable, making
 			them both 0. Option C is correct, setting the instance variable to the value of the constructor parameter. Options D and E do not compile.
-		</spiegazione>
-	</domanda>
-	<domanda id="22" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="22">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|22" question="22"><testo>
 			What is the result of the following?
 
 			1: public class Order {
@@ -655,18 +355,7 @@
 			7: 		System.out.print(Order.result + " ");
 			8: 	}
 			9: }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">curur</risposta>
-			<risposta value="B">ucrcr</risposta>
-			<risposta value="C">u ucrcr</risposta>
-			<risposta value="D">u u curcur</risposta>
-			<risposta value="E">u u ucrcr</risposta>
-			<risposta value="F">ur ur urc</risposta>
-			<risposta value="G">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">curur</risposta><risposta value="B">ucrcr</risposta><risposta value="C">u ucrcr</risposta><risposta value="D">u u curcur</risposta><risposta value="E">u u ucrcr</risposta><risposta value="F">ur ur urc</risposta><risposta value="G">The code does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
 			On line 3 of OrderDriver, we refer to Order for the first time. At this point the statics in Order get initialized. In this case, the statics are the static declaration of result
 			and the static initializer. result is u at this point. On line 4, result is the same
 			because the static initialization is only run once. On line 5, we create a new Order,
@@ -675,10 +364,7 @@
 			is ucrcr. Notice how the static is on a different line than the initialization code in
 			lines 4–5 of Order. The exam may try to trick you by formatting the code like this to
 			confuse you.
-		</spiegazione>
-	</domanda>
-	<domanda id="23" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="23">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|23" question="23"><testo>
 			What is the result of the following?
 			
 			1: public class Order {
@@ -696,27 +382,13 @@
 			13: 	order = new Order();
 			14: 	System.out.println(order.value);
 			15: } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">tacb</risposta>
-			<risposta value="B">tacf</risposta>
-			<risposta value="C">tacbf</risposta>
-			<risposta value="D">tacfb</risposta>
-			<risposta value="E">tacftacb</risposta>
-			<risposta value="F">The code does not compile</risposta>
-			<risposta value="G">An exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>A</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">tacb</risposta><risposta value="B">tacf</risposta><risposta value="C">tacbf</risposta><risposta value="D">tacfb</risposta><risposta value="E">tacftacb</risposta><risposta value="F">The code does not compile</risposta><risposta value="G">An exception is thrown.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione> 
 			Line 4 instantiates an Order. Java runs the declarations and instance initializers first
 			in the order they appear. This sets value to tacf. Line 5 creates another Order and
 			initializes value to tacb. The object on line 5 is stored in the same variable line 4 used.
 			This makes the object created on line 4 unreachable. When value is printed, it is the
 			instance variable in the object created on line 5.
-		</spiegazione>
-	</domanda>
-	<domanda id="24" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="24">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|24" question="24"><testo>
 			Which of the following will compile when inserted in the following code? (Choose all that apply)
 			
 			public class Order3 {
@@ -730,26 +402,13 @@
 				// CODE SNIPPET 2
 			 }
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">value1 = "d"; instead of // CODE SNIPPET 1</risposta>
-			<risposta value="B">value2 = "e"; instead of // CODE SNIPPET 1</risposta>
-			<risposta value="C">value3 = "f"; instead of // CODE SNIPPET 1</risposta>
-			<risposta value="D">value1 = "g"; instead of // CODE SNIPPET 2</risposta>
-			<risposta value="E">value2 = "h"; instead of // CODE SNIPPET 2</risposta>
-			<risposta value="F">value3 = "i"; instead of // CODE SNIPPET 2</risposta>
-		</risposte>
-		<risposteEsatte>B, C, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">value1 = "d"; instead of // CODE SNIPPET 1</risposta><risposta value="B">value2 = "e"; instead of // CODE SNIPPET 1</risposta><risposta value="C">value3 = "f"; instead of // CODE SNIPPET 1</risposta><risposta value="D">value1 = "g"; instead of // CODE SNIPPET 2</risposta><risposta value="E">value2 = "h"; instead of // CODE SNIPPET 2</risposta><risposta value="F">value3 = "i"; instead of // CODE SNIPPET 2</risposta></risposte><risposteEsatte>B, C, E</risposteEsatte><spiegazione> 
 			value1 is a final instance variable. It can only be set once: in the variable declaration, an instance initializer, or a constructor. Option A does not compile because
 			the final variable was already set in the declaration. value2 is a static variable. Both
 			instance and static initializers are able to access static variables, making options B
 			and E correct. value3 is an instance variable. Options D and F do not compile because
 			a static initializer does not have access to instance variables.
-		</spiegazione>
-	</domanda>
-	<domanda id="25" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="25">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|25" question="25"><testo>
 			Which of the following are true about the following code? (Choose all that apply)
 			
 			public class Create {
@@ -773,25 +432,11 @@
 				new Create(1000L);
 			 }
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">The code prints out 2 4.</risposta>
-			<risposta value="B">The code prints out 3 4.</risposta>
-			<risposta value="C">The code prints out 4 2.</risposta>
-			<risposta value="D">The code prints out 4 4.</risposta>
-			<risposta value="E">The code prints 3 4 if you remove the constructor Create(int num).</risposta>
-			<risposta value="F">The code prints 4 4 if you remove the constructor Create(int num).</risposta>
-			<risposta value="G">The code prints 5 4 if you remove the constructor Create(int num).</risposta>
-		</risposte>
-		<risposteEsatte>A, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">The code prints out 2 4.</risposta><risposta value="B">The code prints out 3 4.</risposta><risposta value="C">The code prints out 4 2.</risposta><risposta value="D">The code prints out 4 4.</risposta><risposta value="E">The code prints 3 4 if you remove the constructor Create(int num).</risposta><risposta value="F">The code prints 4 4 if you remove the constructor Create(int num).</risposta><risposta value="G">The code prints 5 4 if you remove the constructor Create(int num).</risposta></risposte><risposteEsatte>A, E</risposteEsatte><spiegazione> 
 			The 100 parameter is an int and so calls the matching int constructor. When
 			this constructor is removed, Java looks for the next most specific constructor. Java prefers autoboxing to varargs, and so chooses the Integer constructor. The 100L parameter is a long. Since it can’t be converted into a smaller type, it is autoboxed into a Long
 			and then the constructor for Object is called. 
-		</spiegazione>
-	</domanda>
-	<domanda id="26" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="26">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|26" question="26"><testo>
 			What is the result of the following class?
 			
 			1: import java.util.function.*;
@@ -801,31 +446,18 @@
 			5: 	public static void main(String[] args) {
 			6: 		Panda p1 = new Panda();
 			7: 		p1.age = 1;
-			8: 		check(p1, p -> p.age &lt; 5);
+			8: 		check(p1, p -&gt; p.age &lt; 5);
 			9: 	}
 			10: private static void check(Panda panda, Predicate&lt;Panda&gt; pred) {
 			11: 	String result = pred.test(panda) ? "match" : "not match";
 			12: 	System.out.print(result);
 			13: } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">match</risposta>
-			<risposta value="B">not match</risposta>
-			<risposta value="C">Compiler error on line 8.</risposta>
-			<risposta value="D">Compiler error on line 10.</risposta>
-			<risposta value="E">Compiler error on line 11.</risposta>
-			<risposta value="F">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>A</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">match</risposta><risposta value="B">not match</risposta><risposta value="C">Compiler error on line 8.</risposta><risposta value="D">Compiler error on line 10.</risposta><risposta value="E">Compiler error on line 11.</risposta><risposta value="F">A runtime exception is thrown.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione> 
 			This code is correct. Line 8 creates a lambda expression that checks if the age is less
 			than 5. Since there is only one parameter and it does not specify a type, the parentheses
 			around the type parameter are optional. Line 10 uses the Predicate interface, which
 			declares a test() method.
-		</spiegazione>
-	</domanda>
-	<domanda id="27" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="27">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|27" question="27"><testo>
 			What is the result of the following code?
 			
 			1: interface Climb {
@@ -834,7 +466,7 @@
 			4:
 			5: public class Climber {
 			6: 	public static void main(String[] args) {
-			7: 	check((h, l) -> h.append(l).isEmpty(), 5);
+			7: 	check((h, l) -&gt; h.append(l).isEmpty(), 5);
 			8: }
 			9: private static void check(Climb climb, int height) {
 			10: if (climb.isTooHigh(height, 10))
@@ -843,47 +475,21 @@
 			13: 	System.out.println("ok");
 			14: }
 			15:}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">ok</risposta>
-			<risposta value="B">too high</risposta>
-			<risposta value="C">Compiler error on line 7.</risposta>
-			<risposta value="D">Compiler error on line 10.</risposta>
-			<risposta value="E">Compiler error on a different line.</risposta>
-			<risposta value="F">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">ok</risposta><risposta value="B">too high</risposta><risposta value="C">Compiler error on line 7.</risposta><risposta value="D">Compiler error on line 10.</risposta><risposta value="E">Compiler error on a different line.</risposta><risposta value="F">A runtime exception is thrown.</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione> 
 			The interface takes two int parameters. The code on line 7 attempts to use them as
 			if one is a StringBuilder. It is tricky to use types in a lambda when they are implicitly
 			specified. Remember to check the interface for the real type.
-		</spiegazione>
-	</domanda>
-	<domanda id="28" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="28">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|28" question="28"><testo>
 			Which of the following lambda expressions can fill in the blank? (Choose all that apply)
 			
 			List&lt;String&gt; list = new ArrayList&lt;&gt;();
 			list.removeIf(___________________);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">s -> s.isEmpty()</risposta>
-			<risposta value="B">s -> {s.isEmpty()}</risposta>
-			<risposta value="C">s -> {s.isEmpty();}</risposta>
-			<risposta value="D">s -> {return s.isEmpty();}</risposta>
-			<risposta value="E">String s -> s.isEmpty()</risposta>
-			<risposta value="F">(String s) -> s.isEmpty()</risposta>
-		</risposte>
-		<risposteEsatte>A, D, F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">s -&gt; s.isEmpty()</risposta><risposta value="B">s -&gt; {s.isEmpty()}</risposta><risposta value="C">s -&gt; {s.isEmpty();}</risposta><risposta value="D">s -&gt; {return s.isEmpty();}</risposta><risposta value="E">String s -&gt; s.isEmpty()</risposta><risposta value="F">(String s) -&gt; s.isEmpty()</risposta></risposte><risposteEsatte>A, D, F</risposteEsatte><spiegazione> 
 			removeIf() expects a Predicate, which takes a parameter list of one parameter using the specified type. Options B and C are incorrect because they do not use the
 			return keyword. It is required inside braces for lambda bodies. Option E is incorrect
 			because it is missing the parentheses around the parameter list. This is only optional
 			for a single parameter with an inferred type.
-		</spiegazione>
-	</domanda>
-	<domanda id="29" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" question="29">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|29" question="29"><testo>
 			Which lambda can replace the MySecret class to return the same value? (Choose all that apply)
 			
 			interface Secret {
@@ -894,20 +500,29 @@
 				return "Poof";
 			 }
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">caller((e) -> "Poof");</risposta>
-			<risposta value="B">caller((e) -> {"Poof"});</risposta>
-			<risposta value="C">caller((e) -> { String e = ""; "Poof" });</risposta>
-			<risposta value="D">caller((e) -> { String e = ""; return "Poof"; });</risposta>
-			<risposta value="E">caller((e) -> { String e = ""; return "Poof" });</risposta>
-			<risposta value="F">caller((e) -> { String f = ""; return "Poof"; }); </risposta>
-		</risposte>
-		<risposteEsatte>A, F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">caller((e) -&gt; "Poof");</risposta><risposta value="B">caller((e) -&gt; {"Poof"});</risposta><risposta value="C">caller((e) -&gt; { String e = ""; "Poof" });</risposta><risposta value="D">caller((e) -&gt; { String e = ""; return "Poof"; });</risposta><risposta value="E">caller((e) -&gt; { String e = ""; return "Poof" });</risposta><risposta value="F">caller((e) -&gt; { String f = ""; return "Poof"; }); </risposta></risposte><risposteEsatte>A, F</risposteEsatte><spiegazione> 
 			Option B is incorrect because it does not use the return keyword. Options C, D,
 			and E are incorrect because the variable e is already in use from the lambda and cannot be redefined. Additionally, option C is missing the return keyword and option E is
 			missing the semicolon.
-		</spiegazione>
-	</domanda>
-</domande>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|1" question="1"><testo>
+			 MODIFICATO PER PROVA METODO Which of the following can fill in the blank in this code to make it compile? (Choose all that apply)
+			
+			public class Ant {
+			 _____ void method() { }
+			}
+		</testo><risposte type="checkbox"><risposta value="A">default</risposta><risposta value="B">final</risposta><risposta value="C">private</risposta><risposta value="D">Public</risposta><risposta value="E">String</risposta><risposta value="F">zzz:</risposta></risposte><risposteEsatte>B, C</risposteEsatte><spiegazione> 
+			 MODIFICATO PER PROVA METODO. void is a return type. Only the access modifier or optional specifiers are allowed
+			before the return type. Option C is correct, creating a method with private access.
+			Option B is correct, creating a method with default access and the optional specifier
+			final. Since default access does not require a modifier, we get to jump right to final. 
+			Option A is incorrect because default access omits the access modifier rather than specifying default. Option D is incorrect because Java is case sensitive. It would have been
+			correct if public were the choice. Option E is incorrect because the method already has
+			a void return type. Option F is incorrect because labels are not allowed for methods.
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="4" id="oca_manual|4|2" question="2"><testo>
+			Which of the following compile? (Choose all that apply)
+		</testo><risposte type="checkbox"><risposta value="A">final static void method4() { }</risposta><risposta value="B">public final int void method() { }</risposta><risposta value="C">private void int method() { }</risposta><risposta value="D">static final void method3() { }</risposta><risposta value="E">void final method() {}</risposta><risposta value="F">void public method() { }</risposta></risposte><risposteEsatte>A, D</risposteEsatte><spiegazione> 
+			 MODIFICATO PER PROVA METODO.Options A and D are correct because the optional specifiers are allowed in any
+			order. Options B and C are incorrect because they each have two return types. Options
+			E and F are incorrect because the return type is before the optional specifier and access
+			modifier, respectively
+		</spiegazione></domanda></domande>

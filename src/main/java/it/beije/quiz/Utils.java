@@ -52,7 +52,7 @@ public class Utils {
 		File file = null;
 		List<File> filez = new ArrayList<File>();
 		if (dir != null) {
-			String path = "C:\\Users\\Padawan14\\git\\Quiz\\domande\\" + dir;
+			String path = "C:\\Users\\Padawan07\\git\\Quiz\\domande\\" + dir;
 			int i = 1;
 			if (dir.equals("oca_manual")) {
 				file = new File(path + "\\domande_Assessment_Test.xml");
@@ -205,7 +205,7 @@ public class Utils {
 				String spiegazione = contenutoDomanda.get(3).getTextContent();
 
 				List<Libro> listaLibriInXML = Utils
-						.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+						.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 
 				String dir = null;
 				for (Libro l : listaLibriInXML) {
