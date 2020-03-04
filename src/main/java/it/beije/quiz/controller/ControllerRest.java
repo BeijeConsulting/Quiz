@@ -149,6 +149,14 @@ public class ControllerRest {
 		
 	}
 	
+	@RequestMapping(value = "/deleteDomande/{dirLibro}/{capitolo}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande, @PathVariable String dirLibro, @PathVariable int capitolo,HttpServletResponse response) {
+		for(Domanda d: domande) {
+			int nDomanda= d.getQuestion();
+			deleteDomanda(dirLibro,capitolo,nDomanda,response);
+		}
+		
+	}
 	}
 	
 	
