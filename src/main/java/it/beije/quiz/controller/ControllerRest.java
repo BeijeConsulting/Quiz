@@ -151,6 +151,7 @@ public class ControllerRest {
 		}
 		return domande;
 	}
+
 	@RequestMapping(value = "/updateListaDomande", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List <Domanda> domande, HttpServletResponse response) {
 		List <Domanda> listaDomandeAggiornate = new ArrayList<Domanda>();
@@ -174,4 +175,37 @@ public class ControllerRest {
 
 
 	}
-}
+
+
+	
+	@RequestMapping(value = "/deleteDomanda/{dirLibro}/{capitolo}/{nDomanda}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean  deleteDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda, HttpServletResponse response) {
+		Domanda d= getDomanda(dirLibro,capitolo,nDomanda);
+		if(d==null) {
+			response.setStatus(204);
+			return false;
+		}
+		else {
+			StringBuilder path = new StringBuilder("C:\\Users\\Padawan07\\git\\Quiz\\domande\\"+dirLibro+"\\domande_cap"+ capitolo +".xml");
+	        String pathdomanda= path.toString();
+			File file2=new File(pathdomanda);
+			Utils.eliminaDomanda(d,file2);
+			return true;
+			
+		}
+		
+	}
+	
+	@RequestMapping(value = "/deleteDomande/{dirLibro}/{capitolo}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande, @PathVariable String dirLibro, @PathVariable int capitolo,HttpServletResponse response) {
+		for(Domanda d: domande) {
+			int nDomanda= d.getQuestion();
+			deleteDomanda(dirLibro,capitolo,nDomanda,response);
+		}
+		
+	}
+	}
+	
+	
+	
+
