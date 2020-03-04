@@ -140,19 +140,21 @@ public class QuizRestController {
 		{
 			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
 			boolean foundIt = false;
+			forLibri:
+				for (Libro l : libri) {
+					l.setDomande(quizService.getLibriCarichi(l));
+					for (Domanda d : l.getDomande()) {
+						if (d.getId().trim().equals(id.trim())) {
+							dUpdate.add(domanda);
+							foundIt=true;
+						}else if(d.getChapter().equals(id.split("-")[1])) {dUpdate.add(d);}
+					}
 
-			for (Libro l : libri) {
-				l.setDomande(quizService.getLibriCarichi(l));
-				for (Domanda d : l.getDomande()) {
-					if (d.getId().trim().equals(id.trim())) {
-						dUpdate.add(domanda);
-						foundIt=true;
-					}else {dUpdate.add(d);}
+					if (foundIt) {
+						Utils.ricaricaDomande(l, dUpdate);
+						break forLibri;
+					}
 				}
-
-				if (foundIt)
-					Utils.caricaDomande(l, dUpdate);
-			}
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -161,45 +163,42 @@ public class QuizRestController {
 
 	}
 
-	@RequestMapping(value = "/deletequestion/{id}", method = RequestMethod.DELETE,
+	@RequestMapping(value = "/deletedomanda/{id}", method = RequestMethod.DELETE,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
-
 	public @ResponseBody Domanda deleteDomanda(@PathVariable String id) {
-		List <Domanda> dOut=new ArrayList<Domanda>();
-		Domanda dNew = new Domanda();
 
-		String id_book = id.split("-")[0];
-
-		try
+		List <Domanda> dUpdate=new ArrayList<Domanda>();
+		Domanda dom = null;
+		try 
 		{
 			List<Libro> libri= Utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
-			boolean deleted = false;
+			System.out.println("libri list size: "+libri.size());
+			boolean foundIt = false;
 
+			forLibri:
+				for (Libro l : libri) {
+					if(l.getIdBook().equals(id.split("-")[0])) {
+						l.setDomande(quizService.getLibriCarichi(l));
 
-			for (Libro l : libri) {
-				if(l.getIdBook().equals(id_book)) {
-					l.setDomande(quizService.getLibriCarichi(l));
-					for (Domanda d : l.getDomande()) {
-
-						if(d.getId().trim().equals(id.trim())) {
-							dNew = new Domanda(l.getIdBook(),d.getChapter(),d.getQuestion(), new ArrayList<Risposta>());
-							dOut.add(dNew);
-							deleted=true;
-
-						} else { dOut.add(d);}
+						for (Domanda d : l.getDomande()) {
+							if (d.getId().equals(id.trim())) {
+								dom = new Domanda(l.getTitle(),d.getChapter(),d.getQuestion(), new ArrayList<Risposta>());
+								dUpdate.add(dom);
+								foundIt=true;
+							}else if(d.getChapter().equals(id.split("-")[1])) {dUpdate.add(d);}
+						}
 						
+						if (foundIt) {
+							Utils.ricaricaDomande(l, dUpdate);
+							break forLibri;
+						}
 					}
-
-					if (deleted)
-						Utils.caricaDomande(l, dOut);
 				}
-			}
-
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return dNew;
+		return dom;
 	}
 }
 

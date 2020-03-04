@@ -1,7 +1,4 @@
-<?xml version="1.0" ?>
-<domande>
-	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="1">
-		<testo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="1" question="1"><testo>
 			What is output by the following code? (Choose all that apply)
 			
 			1: public class Fish {
@@ -12,27 +9,13 @@
 			6: 		System.out.println(anotherFish + " " + fishType);
 			7: 		System.out.println(numFish + " " + 1);
 			8: } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">4 1</risposta>
-			<risposta value="B">41</risposta>
-			<risposta value="C">5</risposta>
-			<risposta value="D">5 tuna</risposta>
-			<risposta value="E">5tuna</risposta>
-			<risposta value="F">51tuna</risposta>
-			<risposta value="G">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>G</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">4 1</risposta><risposta value="B">41</risposta><risposta value="C">5</risposta><risposta value="D">5 tuna</risposta><risposta value="E">5tuna</risposta><risposta value="F">51tuna</risposta><risposta value="G">The code does not compile.</risposta></risposte><risposteEsatte>G</risposteEsatte><spiegazione> 
 			Line 5 does not compile. This question is checking to see if you are paying attention
 			to the types. numFish is an int and 1 is an int. Therefore, we use numeric addition and
 			get 5. The problem is that we can’t store an int in a String variable. Supposing line 5
 			said String anotherFish = numFish + 1 + "";. In that case, the answer would be
 			options A and D. The variable defined on line 5 would be the string "5", and both output statements would use concatenation.
-		</spiegazione>
-	</domanda>
-	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="2">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="2" question="2"><testo>
 			Which of the following are output by this code? (Choose all that apply)
 			
 			3: String s = "Hello";
@@ -42,72 +25,32 @@
 			7: if (t.equals(s)) System.out.println("three");
 			8: if ("Hello" == s) System.out.println("four");
 			9: if ("Hello" == t) System.out.println("five");
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">one</risposta>
-			<risposta value="B">two</risposta>
-			<risposta value="C">three</risposta>
-			<risposta value="D">four</risposta>
-			<risposta value="E">five</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>A, C, D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">one</risposta><risposta value="B">two</risposta><risposta value="C">three</risposta><risposta value="D">four</risposta><risposta value="E">five</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>A, C, D</risposteEsatte><spiegazione> 
 			The code compiles fine. Line 3 points to the String in the string pool. Line 4
 			calls the String constructor explicitly and is therefore a different object than s. Lines 5
 			and 7 check for object equality, which is true, and so print one and three. Line 6 uses
 			object reference equality, which is not true since we have different objects. Line 7 also
 			compares references but is true since both references point to the object from the string
 			pool. Finally, line 8 compares one object from the string pool with one that was explicitly constructed and returns false.
-		</spiegazione>
-	</domanda>
-	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="3">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="3" question="3"><testo>
 			Which are true statements? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">An immutable object can be modified.</risposta>
-			<risposta value="B">An immutable object cannot be modified.</risposta>
-			<risposta value="C">An immutable object can be garbage collected.</risposta>
-			<risposta value="D">An immutable object cannot be garbage collected.</risposta>
-			<risposta value="E">String is immutable.</risposta>
-			<risposta value="F">StringBuffer is immutable.</risposta>
-			<risposta value="F">StringBuilder is immutable.</risposta>
-		</risposte>
-		<risposteEsatte>B, C, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">An immutable object can be modified.</risposta><risposta value="B">An immutable object cannot be modified.</risposta><risposta value="C">An immutable object can be garbage collected.</risposta><risposta value="D">An immutable object cannot be garbage collected.</risposta><risposta value="E">String is immutable.</risposta><risposta value="F">StringBuffer is immutable.</risposta><risposta value="F">StringBuilder is immutable.</risposta></risposte><risposteEsatte>B, C, E</risposteEsatte><spiegazione> 
 			Immutable means the state of an object cannot change once it is created.
 			Immutable objects can be garbage collected just like mutable objects.
 			String is immutable. StringBuilder can be mutated with methods like append(). Although 
 			StringBuffer isn’t on the exam, you should know about it anyway in case older questions haven’t been removed.
-		</spiegazione>
-	</domanda>
-	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="4">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="4" question="4"><testo>
 			What is the result of the following code?
 			
 			7: StringBuilder sb = new StringBuilder();
 			8: sb.append("aaa").insert(1, "bb").insert(4, "ccc");
 			9: System.out.println(sb);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">abbaaccc</risposta>
-			<risposta value="B">abbaccca</risposta>
-			<risposta value="C">bbaaaccc</risposta>
-			<risposta value="D">bbaaccca</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">abbaaccc</risposta><risposta value="B">abbaccca</risposta><risposta value="C">bbaaaccc</risposta><risposta value="D">bbaaccca</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			This example uses method chaining. After the call to append(), sb contains "aaa".
 			That result is passed to the first insert() call, which inserts at index 1. At this point
 			sb contains abbbaa. That result is passed to the final insert(), which inserts at index
 			4, resulting in abbaccca.
-		</spiegazione>
-	</domanda>
-	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="5">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="5" question="5"><testo>
 			What is the result of the following code?
 			
 			2: String s1 = "java";
@@ -116,24 +59,11 @@
 			5:	System.out.print("1");
 			6: if (s1.equals(s2))
 			7: 	System.out.print("2");
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">1</risposta>
-			<risposta value="B">2</risposta>
-			<risposta value="C">12</risposta>
-			<risposta value="D">No output is printed.</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">1</risposta><risposta value="B">2</risposta><risposta value="C">12</risposta><risposta value="D">No output is printed.</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>F</risposteEsatte><spiegazione> 
 			The question is trying to distract you into paying attention to logical equality versus
 			object reference equality. It is hoping you will miss the fact that line 4 does not compile. 
 			Java does not allow you to compare String and StringBuilder using ==.
-		</spiegazione>
-	</domanda>
-	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="6">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="6" question="6"><testo>
 			What is the result of the following code?
 			
 			public class Lion {
@@ -147,78 +77,25 @@
 				new Lion().roar(roar1, roar2);
 			 System.out.println(roar1 + " " + roar2);
 			} }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">roar roar</risposta>
-			<risposta value="B">roar roar!!!</risposta>
-			<risposta value="C">roar!!! roar</risposta>
-			<risposta value="D">roar!!! roar!!!</risposta>
-			<risposta value="E">An exception is thrown</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">roar roar</risposta><risposta value="B">roar roar!!!</risposta><risposta value="C">roar!!! roar</risposta><risposta value="D">roar!!! roar!!!</risposta><risposta value="E">An exception is thrown</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			TA String is immutable. Calling concat() returns a new String but does not change
 			the original. A StringBuilder is mutable. Calling append() adds characters to the
 			existing character sequence along with returning a reference to the same object. 
-		</spiegazione>
-	</domanda>
-	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="7">
-		<testo>
-			Which are the results of the following code? (Choose all that apply)
-			
-			String letters = "abcdef";
-			System.out.println(letters.length());
-			System.out.println(letters.charAt(3));
-			System.out.println(letters.charAt(6));
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">5</risposta>
-			<risposta value="B">6</risposta>
-			<risposta value="C">c</risposta>
-			<risposta value="D">d</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile</risposta>
-		</risposte>
-		<risposteEsatte>B, D, E</risposteEsatte>
-		<spiegazione> 
-			length() is simply a count of the number of characters in a String. In this
-			case, there are six characters. charAt() returns the character at that index. Remember
-			that indexes are zero based, which means that index 3 corresponds to d and index 6
-			corresponds to 1 past the end of the array. A StringIndexOutOfBoundsException is
-			thrown for the last line.
-		</spiegazione>
-	</domanda>
-	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="8">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="7" question="7"><testo/><risposte type=""/><risposteEsatte/><spiegazione/></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="8" question="8"><testo>
 			Which are the results of the following code? (Choose all that apply)
 			
 			String numbers = "012345678";
 			System.out.println(numbers.substring(1, 3));
 			System.out.println(numbers.substring(7, 7));
 			System.out.println(numbers.substring(7));
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">12</risposta>
-			<risposta value="B">123</risposta>
-			<risposta value="C">7</risposta>
-			<risposta value="D">78</risposta>
-			<risposta value="E">A blank line.</risposta>
-			<risposta value="F">An exception is thrown.</risposta>
-			<risposta value="G">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>A, D, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">12</risposta><risposta value="B">123</risposta><risposta value="C">7</risposta><risposta value="D">78</risposta><risposta value="E">A blank line.</risposta><risposta value="F">An exception is thrown.</risposta><risposta value="G">The code does not compile.</risposta></risposte><risposteEsatte>A, D, E</risposteEsatte><spiegazione> 
 			substring() has two forms. The first takes the index to start with and the
 			index to stop immediately before. The second takes just the index to start with and
 			goes to the end of the String. Remember that indexes are zero based. The first call
 			starts at index 1 and ends with index 2 since it needs to stop before index 3. The second call starts at index 7 and ends in the same place, resulting in an empty String.
 			This prints out a blank line. The final call starts at index 7 and goes to the end of the
 			String.
-		</spiegazione>
-	</domanda>
-	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="9">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="9" question="9"><testo>
 			What is the result of the following code?
 			
 			3: String s = "purr";
@@ -227,27 +104,14 @@
 			6: s.substring(1, 3);
 			7: s += " two";
 			8: System.out.println(s.length());
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">2</risposta>
-			<risposta value="B">4</risposta>
-			<risposta value="C">8</risposta>
-			<risposta value="D">10</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">2</risposta><risposta value="B">4</risposta><risposta value="C">8</risposta><risposta value="D">10</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione> 
 			This question is trying to see if you know that String objects are immutable. Line
 			4 returns "PURR" but the result is ignored and not stored in s. Line 5 returns "purr"
 			since there is no whitespace present but the result is again ignored. Line 6 returns "ur"
 			because it starts with index 1 and ends before index 3 using zero-based indexes. The
 			result is ignored again. Finally, on line 6 something happens. We concatenate four new
 			characters to s and now have a String of length 8.
-		</spiegazione>
-	</domanda>
-	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="10">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="10" question="10"><testo>
 			What is the result of the following code? (Choose all that apply)
 			
 			13: String a = "";
@@ -256,28 +120,14 @@
 			16: a += false;
 			17: if ( a == "2cfalse") System.out.println("==");
 			18: if ( a.equals("2cfalse")) System.out.println("equals");
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Compile error on line 14.</risposta>
-			<risposta value="B">Compile error on line 15.</risposta>
-			<risposta value="C">Compile error on line 16.</risposta>
-			<risposta value="D">Compile error on another line.</risposta>
-			<risposta value="E">==</risposta>
-			<risposta value="F">equals</risposta>
-			<risposta value="G">An exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">Compile error on line 14.</risposta><risposta value="B">Compile error on line 15.</risposta><risposta value="C">Compile error on line 16.</risposta><risposta value="D">Compile error on another line.</risposta><risposta value="E">==</risposta><risposta value="F">equals</risposta><risposta value="G">An exception is thrown.</risposta></risposte><risposteEsatte>F</risposteEsatte><spiegazione> 
 			a += 2 expands to a = a + 2. A String concatenated with any other type gives
 			a String. Lines 14, 15, and 16 all append to a, giving a result of "2cfalse". The if
 			statement on line 18 returns false because the values of the two String objects are the
 			same using object equality. The if statement on line 17 returns false because the two
 			String objects are not the same in memory. One comes directly from the string pool
 			and the other comes from building using String operations.
-		</spiegazione>
-	</domanda>
-	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="11">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="11" question="11"><testo>
 			What is the result of the following code?
 			
 			4: int total = 0;
@@ -286,201 +136,83 @@
 			7: total += letters.substring(6, 6).length();
 			8: total += letters.substring(6, 5).length();
 			9: System.out.println(total);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">1</risposta>
-			<risposta value="B">2</risposta>
-			<risposta value="C">3</risposta>
-			<risposta value="D">7</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">1</risposta><risposta value="B">2</risposta><risposta value="C">3</risposta><risposta value="D">7</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
 			Line 6 adds 1 to total because substring() includes the starting index but not
 			the ending index. Line 7 adds 0 to total. Line 8 is a problem: Java does not allow the
 			indexes to be specified in reverse order and the code throws a StringIndexOutOfBoundsException.
-		</spiegazione>
-	</domanda>
-	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="12">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="12" question="12"><testo>
 			What is the result of the following code? (Choose all that apply)
 			
 			StringBuilder numbers = new StringBuilder("0123456789");
 			numbers.delete(2, 8);
 			numbers.append("-").insert(2, "+");
 			System.out.println(numbers);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">01+89–</risposta>
-			<risposta value="B">012+9–</risposta>
-			<risposta value="C">012+–9</risposta>
-			<risposta value="D">0123456789</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>A</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">01+89–</risposta><risposta value="B">012+9–</risposta><risposta value="C">012+–9</risposta><risposta value="D">0123456789</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione> 
 			First, we delete the characters at index 2 until the character one before index 8. At
 			this point, 0189 is in numbers. The following line uses method chaining. It appends a
 			dash to the end of the characters sequence, resulting in 0189–, and then inserts a plus
 			sign at index 2, resulting in 01+89–.
-		</spiegazione>
-	</domanda>
-	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="13">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="13" question="13"><testo>
 			What is the result of the following code?
 			
 			StringBuilder b = "rumble";
 			b.append(4).deleteCharAt(3).delete(3, b.length() - 1);
 			System.out.println(b);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">rum</risposta>
-			<risposta value="B">rum4</risposta>
-			<risposta value="C">rumb4</risposta>
-			<risposta value="D">rumble4</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">rum</risposta><risposta value="B">rum4</risposta><risposta value="C">rumb4</risposta><risposta value="D">rumble4</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>F</risposteEsatte><spiegazione> 
 			This is a trick question. The first line does not compile because you cannot
 			assign a String to a StringBuilder. If that line were StringBuilder b = new
 			StringBuilder("rumble"), the code would compile and print rum4. Watch out for this
 			sort of trick on the exam. You could easily spend a minute working out the character
 			positions for no reason at all.
-		</spiegazione>
-	</domanda>
-	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="14">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="14" question="14"><testo>
 			Which of the following can replace line 4 to print "avaJ"? (Choose all that apply)
 			
 			3: StringBuilder puzzle = new StringBuilder("Java");
 			4: // INSERT CODE HERE
 			5: System.out.println(puzzle);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">puzzle.reverse();</risposta>
-			<risposta value="B">puzzle.append("vaJ$").substring(0, 4);</risposta>
-			<risposta value="C">puzzle.append("vaJ$").delete(0, 3).deleteCharAt(puzzle.length() - 1);</risposta>
-			<risposta value="D">puzzle.append("vaJ$").delete(0, 3).deleteCharAt(puzzle.length());</risposta>
-			<risposta value="E">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>A, C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">puzzle.reverse();</risposta><risposta value="B">puzzle.append("vaJ$").substring(0, 4);</risposta><risposta value="C">puzzle.append("vaJ$").delete(0, 3).deleteCharAt(puzzle.length() - 1);</risposta><risposta value="D">puzzle.append("vaJ$").delete(0, 3).deleteCharAt(puzzle.length());</risposta><risposta value="E">None of the above.</risposta></risposte><risposteEsatte>A, C</risposteEsatte><spiegazione> 
 			The reverse() method is the easiest way of reversing the characters in a StringBuilder; therefore, option A is correct. Option B is a nice distraction—it does in fact
 			return "avaJ". However, substring() returns a String, which is not stored anywhere.
 			Option C uses method chaining. First it creates the value "JavavaJ$". Then it removes
 			the first three characters, resulting in "avaJ$". Finally, it removes the last character,
 			resulting in "avaJ". Option D throws an exception because you cannot delete the character after the last index. Remember that deleteCharAt() uses indexes that are zero
 			based and length() counts starting with 1.
-		</spiegazione>
-	</domanda>
-	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="15">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="15" question="15"><testo>
 			Which of these array declarations is not legal? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">int[][] scores = new int[5][];</risposta>
-			<risposta value="B">Object[][][] cubbies = new Object[3][0][5];</risposta>
-			<risposta value="C">String beans[] = new beans[6];</risposta>
-			<risposta value="D">java.util.Date[] dates[] = new java.util.Date[2][];</risposta>
-			<risposta value="E">int[][] types = new int[];</risposta>
-			<risposta value="F">int[][] java = new int[][];</risposta>
-		</risposte>
-		<risposteEsatte>C, E, F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">int[][] scores = new int[5][];</risposta><risposta value="B">Object[][][] cubbies = new Object[3][0][5];</risposta><risposta value="C">String beans[] = new beans[6];</risposta><risposta value="D">java.util.Date[] dates[] = new java.util.Date[2][];</risposta><risposta value="E">int[][] types = new int[];</risposta><risposta value="F">int[][] java = new int[][];</risposta></risposte><risposteEsatte>C, E, F</risposteEsatte><spiegazione> 
 			Option C uses the variable name as if it were a type, which is clearly illegal.
 			Options E and F don’t specify any size. Although it is legal to leave out the size for later
 			dimensions of a multidimensional array, the first one is required. Option A declares a
 			legal 2D array. Option B declares a legal 3D array. Option D declares a legal 2D array.
 			Remember that it is normal to see on the exam types you might not have learned. You
 			aren’t expected to know anything about them
-		</spiegazione>
-	</domanda>
-	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="16">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="16" question="16"><testo>
 			Which of these compile when replacing line 8? (Choose all that apply)
 			
 			7: char[]c = new char[2];
 			8: // INSERT CODE HERE
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">int length = c.capacity;</risposta>
-			<risposta value="B">int length = c.capacity();</risposta>
-			<risposta value="C">int length = c.length;</risposta>
-			<risposta value="D">int length = c.length();</risposta>
-			<risposta value="E">int length = c.size;</risposta>
-			<risposta value="F">int length = c.size();</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">int length = c.capacity;</risposta><risposta value="B">int length = c.capacity();</risposta><risposta value="C">int length = c.length;</risposta><risposta value="D">int length = c.length();</risposta><risposta value="E">int length = c.size;</risposta><risposta value="F">int length = c.size();</risposta><risposta value="G">None of the above.</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione> 
 			Arrays define a property called length. It is not a method, so parentheses are not allowed.
-		</spiegazione>
-	</domanda>
-	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="17">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="17" question="17"><testo>
 			Which of these compile when replacing line 8? (Choose all that apply)
 			
 			7: ArrayList l = new ArrayList();
 			8: // INSERT CODE HERE
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">int length = l.capacity;</risposta>
-			<risposta value="B">int length = l.capacity();</risposta>
-			<risposta value="C">int length = l.length;</risposta>
-			<risposta value="D">int length = l.length();</risposta>
-			<risposta value="E">int length = l.size;</risposta>
-			<risposta value="F">int length = l.size();</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">int length = l.capacity;</risposta><risposta value="B">int length = l.capacity();</risposta><risposta value="C">int length = l.length;</risposta><risposta value="D">int length = l.length();</risposta><risposta value="E">int length = l.size;</risposta><risposta value="F">int length = l.size();</risposta><risposta value="G">None of the above.</risposta></risposte><risposteEsatte>F</risposteEsatte><spiegazione> 
 			The ArrayList class defines a method called size().		
-		</spiegazione>
-	</domanda>
-	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="18">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="18" question="18"><testo>
 			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">An array has a fixed size.</risposta>
-			<risposta value="B">An ArrayList has a fixed size.</risposta>
-			<risposta value="C">An array allows multiple dimensions.</risposta>
-			<risposta value="D">An array is ordered.</risposta>
-			<risposta value="E">An ArrayList is ordered.</risposta>
-			<risposta value="F">An array is immutable.</risposta>
-			<risposta value="G">An arrayList is immutable.</risposta>
-		</risposte>
-		<risposteEsatte>A, C, D, E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">An array has a fixed size.</risposta><risposta value="B">An ArrayList has a fixed size.</risposta><risposta value="C">An array allows multiple dimensions.</risposta><risposta value="D">An array is ordered.</risposta><risposta value="E">An ArrayList is ordered.</risposta><risposta value="F">An array is immutable.</risposta><risposta value="G">An arrayList is immutable.</risposta></risposte><risposteEsatte>A, C, D, E</risposteEsatte><spiegazione> 
 			An array is not able to change size and can have multiple dimensions. Both
 			an array and ArrayList are ordered and have indexes. Neither is immutable. The elements can change in value.	
-		</spiegazione>
-	</domanda>
-	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="19">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="19" question="19"><testo>
 			Which of the following are true? (Choose all that apply
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Two arrays with the same content are equal</risposta>
-			<risposta value="B">Two ArrayLists with the same content are equal</risposta>
-			<risposta value="C">If you call remove(0) using an empty ArrayList object, it will compile successfully.</risposta>
-			<risposta value="D">If you call remove(0) using an empty ArrayList object, it will run successfully.</risposta>
-			<risposta value="E">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>B, C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">Two arrays with the same content are equal</risposta><risposta value="B">Two ArrayLists with the same content are equal</risposta><risposta value="C">If you call remove(0) using an empty ArrayList object, it will compile successfully.</risposta><risposta value="D">If you call remove(0) using an empty ArrayList object, it will run successfully.</risposta><risposta value="E">None of the above.</risposta></risposte><risposteEsatte>B, C</risposteEsatte><spiegazione> 
 			An array does not override equals() and so uses object equality. ArrayList does
 			override equals() and defines it as the same elements in the same order. The compiler
 			does not know when an index is out of bounds and thus can’t give you a compiler
 			error. The code will throw an exception at runtime, though.
-		</spiegazione>
-	</domanda>
-	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="20">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="20" question="20"><testo>
 			What is the result of the following statements?
 			
 			6: List&lt;String&gt; list = new ArrayList&lt;String&gt;();
@@ -488,22 +220,10 @@
 			8: list.add("two");
 			9: list.add(7);
 			10:for(String s : list) System.out.print(s);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">onetwo</risposta>
-			<risposta value="B">onetwo7</risposta>
-			<risposta value="C">onetwo followed by an exception</risposta>
-			<risposta value="D">Compiler error on line 9.</risposta>
-			<risposta value="E">Compiler error on line 10.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">onetwo</risposta><risposta value="B">onetwo7</risposta><risposta value="C">onetwo followed by an exception</risposta><risposta value="D">Compiler error on line 9.</risposta><risposta value="E">Compiler error on line 10.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione> 
 			The code does not compile because list is instantiated using generics. Only String
 			objects can be added to list and 7 is an int.
-		</spiegazione>
-	</domanda>
-	<domanda id="21" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="21">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="21" question="21"><testo>
 			What is the result of the following statements?
 			
 			3: ArrayList&lt;Integer&gt; values = new ArrayList&lt;&gt;();
@@ -512,94 +232,42 @@
 			6: values.set(1, 6);
 			7: values.remove(0);
 			8: for (Integer v : values) System.out.print(v);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">4</risposta>
-			<risposta value="B">5</risposta>
-			<risposta value="C">6</risposta>
-			<risposta value="D">46</risposta>
-			<risposta value="E">45</risposta>
-			<risposta value="F">An exception is thrown.</risposta>
-			<risposta value="G">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">4</risposta><risposta value="B">5</risposta><risposta value="C">6</risposta><risposta value="D">46</risposta><risposta value="E">45</risposta><risposta value="F">An exception is thrown.</risposta><risposta value="G">The code does not compile.</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione> 
 			After line 4, values has one element (4). After line 5, values has two elements (4,5). 
 			After line 6, values has two elements (4, 6) because set() does a replace. After line
 			7, values has only one element (6).
-		</spiegazione>
-	</domanda>
-	<domanda id="22" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="22">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="22" question="22"><testo>
 			What is the result of the following?
 			
 			int[] random = { 6, -4, 12, 0, -10 };
 			int x = 12;
 			int y = Arrays.binarySearch(random, x);
 			System.out.println(y);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">2</risposta>
-			<risposta value="B">4</risposta>
-			<risposta value="C">6</risposta>
-			<risposta value="D">The result is undefined.</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">2</risposta><risposta value="B">4</risposta><risposta value="C">6</risposta><risposta value="D">The result is undefined.</risposta><risposta value="E">An exception is thrown.</risposta><risposta value="F">The code does not compile.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione> 
 			The code compiles and runs fine. However, an array must be sorted for binarySearch() to return a meaningful result.
-		</spiegazione>
-	</domanda>
-	<domanda id="23" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="23">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="23" question="23"><testo>
 			What is the result of the following?
 			
 			4: List&lt;Integer&gt; list = Arrays.asList(10, 4, -1, 5);
 			5: Collections.sort(list);
 			6: Integer array[] = list.toArray(new Integer[4]);
 			7: System.out.println(array[0]);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">-1</risposta>
-			<risposta value="B">10</risposta>
-			<risposta value="C">Compiler error on line 4.</risposta>
-			<risposta value="D">Compiler error on line 5.</risposta>
-			<risposta value="E">Compiler error on line 6.</risposta>
-			<risposta value="F">An exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>A</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">-1</risposta><risposta value="B">10</risposta><risposta value="C">Compiler error on line 4.</risposta><risposta value="D">Compiler error on line 5.</risposta><risposta value="E">Compiler error on line 6.</risposta><risposta value="F">An exception is thrown.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione> 
 			Line 4 creates a fixed size array of size 4. Line 5 sorts it. Line 6 converts it back to
 			an array. The brackets aren’t in the traditional place, but they are still legal. Line 7
 			prints the first element, which is now –1.		
-		</spiegazione>
-	</domanda>
-	<domanda id="24" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="24">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="24" question="24"><testo>
 			What is the result of the following?
 			
 			6: String [] names = {"Tom", "Dick", "Harry"};
 			7: List&lt;String&gt; list = names.asList();
 			8: list.set(0, "Sue");
 			9: System.out.println(names[0]);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Sue</risposta>
-			<risposta value="B">Tom</risposta>
-			<risposta value="C">Compiler error on line 7.</risposta>
-			<risposta value="D">Compiler error on line 8.</risposta>
-			<risposta value="E">An exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>C</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">Sue</risposta><risposta value="B">Tom</risposta><risposta value="C">Compiler error on line 7.</risposta><risposta value="D">Compiler error on line 8.</risposta><risposta value="E">An exception is thrown.</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione> 
 			Converting from an array to an ArrayList uses Arrays.asList(names). There is
 			no asList() method on an array instance. If this code were corrected to compile, the
 			answer would be option A		
-		</spiegazione>
-	</domanda>
-	<domanda id="25" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="25">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="25" question="25"><testo>
 			What is the result of the following?
 			
 			List&lt;String&gt; hex = Arrays.asList("30", "8", "3A", "FF");
@@ -608,26 +276,13 @@
 			int y = Collections.binarySearch(hex, "3A");
 			int z = Collections.binarySearch(hex, "4F");
 			System.out.println(x + " " + y + " " + z);		
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">0 1 –2</risposta>
-			<risposta value="B">0 1 –3</risposta>
-			<risposta value="C">2 1 –2</risposta>
-			<risposta value="D">2 1 –3</risposta>
-			<risposta value="E">None of the above.</risposta>
-			<risposta value="F">The code doesn’t compile.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">0 1 –2</risposta><risposta value="B">0 1 –3</risposta><risposta value="C">2 1 –2</risposta><risposta value="D">2 1 –3</risposta><risposta value="E">None of the above.</risposta><risposta value="F">The code doesn’t compile.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione> 
 			After sorting, hex contains [30, 3A, 8, FF]. Remember that numbers sort before
 			letters and strings sort alphabetically. This makes 30 come before 8. A binary search
 			correctly finds 8 at index 2 and 3A at index 1. It cannot find 4F but notices it should
 			be at index 2. The rule when an item isn’t found is to negate that index and subtract 1.
 			Therefore, we get –2–1, which is –3.		
-		</spiegazione>
-	</domanda>
-	<domanda id="26" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="26">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="26" question="26"><testo>
 			Which of the following are true statements about the following code? (Choose all that apply)
 			
 			4: List&lt;Integer&gt; ages = new ArrayList&lt;&gt;();
@@ -636,24 +291,12 @@
 			7: ages.add(7);
 			8: ages.add(null);
 			9: for (int age : ages) System.out.print(age);
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">The code compiles.</risposta>
-			<risposta value="B">The code throws a runtime exception.</risposta>
-			<risposta value="C">Exactly one of the add statements uses autoboxing.</risposta>
-			<risposta value="D">Exactly two of the add statements use autoboxing.</risposta>
-			<risposta value="E">Exactly three of the add statements use autoboxing.</risposta>
-		</risposte>
-		<risposteEsatte>A, B, D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">The code compiles.</risposta><risposta value="B">The code throws a runtime exception.</risposta><risposta value="C">Exactly one of the add statements uses autoboxing.</risposta><risposta value="D">Exactly two of the add statements use autoboxing.</risposta><risposta value="E">Exactly three of the add statements use autoboxing.</risposta></risposte><risposteEsatte>A, B, D</risposteEsatte><spiegazione> 
 			Lines 5 and 7 use autoboxing to convert an int to an Integer. Line 6 does
 			not because valueOf() returns an Integer. Line 8 does not because null is not an int.
 			The code does not compile. However, when the for loop tries to unbox null into an
 			int, it fails and throws a NullPointerException.		
-		</spiegazione>
-	</domanda>
-	<domanda id="27" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="27">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="27" question="27"><testo>
 			What is the result of the following?
 			
 			List&lt;String&gt; one = new ArrayList&lt;String&gt;();
@@ -666,23 +309,11 @@
 			 System.out.println("B");
 			else
 			 System.out.println("C");
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">A</risposta>
-			<risposta value="B">B</risposta>
-			<risposta value="C">C</risposta>
-			<risposta value="D">An exception is thrown.</risposta>
-			<risposta value="E">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">A</risposta><risposta value="B">B</risposta><risposta value="C">C</risposta><risposta value="D">An exception is thrown.</risposta><risposta value="E">The code does not compile.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			The first if statement is false because the variables do not point to the same object.
 			The second if statement is true because ArrayList implements equality to mean the
 			same elements in the same order.		
-		</spiegazione>
-	</domanda>
-	<domanda id="28" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="28">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="28" question="28"><testo>
 			Which of the following can be inserted into the blank to create a date of June 21, 2014? (Choose all that apply)
 			
 			import java.time.*;
@@ -692,25 +323,12 @@
 				LocalDate date = ____________________________
 				}
 			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">new LocalDate(2014, 5, 21);</risposta>
-			<risposta value="B">new LocalDate(2014, 6, 21);</risposta>
-			<risposta value="C">LocalDate.of(2014, 5, 21);</risposta>
-			<risposta value="D">LocalDate.of(2014, 6, 21);</risposta>
-			<risposta value="E">LocalDate.of(2014, Calendar.JUNE, 21);</risposta>
-			<risposta value="F">LocalDate.of(2014, Month.JUNE, 21);</risposta>
-		</risposte>
-		<risposteEsatte>D, F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">new LocalDate(2014, 5, 21);</risposta><risposta value="B">new LocalDate(2014, 6, 21);</risposta><risposta value="C">LocalDate.of(2014, 5, 21);</risposta><risposta value="D">LocalDate.of(2014, 6, 21);</risposta><risposta value="E">LocalDate.of(2014, Calendar.JUNE, 21);</risposta><risposta value="F">LocalDate.of(2014, Month.JUNE, 21);</risposta></risposte><risposteEsatte>D, F</risposteEsatte><spiegazione> 
 			Options A and B are incorrect because LocalDate does not have a public constructor. Option C is incorrect because months start counting with 1 rather than 0.
 			Option E is incorrect because it uses the old pre–Java 8 way of counting months, again
 			beginning with 0. Options D and F are both correct ways of specifying the desired
 			date.		
-		</spiegazione>
-	</domanda>
-	<domanda id="29" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="29">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="29" question="29"><testo>
 			What is the output of the following code?
 			
 			LocalDate date = LocalDate.parse("2018-04-30", DateTimeFormatter.ISO_LOCAL_
@@ -719,44 +337,19 @@
 			date.plusHours(3);
 			System.out.println(date.getYear() + " " + date.getMonth() + " "
 			+ date.getDayOfMonth());
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">2018 APRIL 2</risposta>
-			<risposta value="B">2018 APRIL 30</risposta>
-			<risposta value="C">2018 MAY 2</risposta>
-			<risposta value="D">The code does not compile.</risposta>
-			<risposta value="E">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">2018 APRIL 2</risposta><risposta value="B">2018 APRIL 30</risposta><risposta value="C">2018 MAY 2</risposta><risposta value="D">The code does not compile.</risposta><risposta value="E">A runtime exception is thrown.</risposta></risposte><risposteEsatte>D</risposteEsatte><spiegazione> 
 			A LocalDate does not have a time element. Therefore, it has no method to add
 			hours and the code does not compile.		
-		</spiegazione>
-	</domanda>
-	<domanda id="30" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="30">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="30" question="30"><testo>
 			What is the output of the following code?
 			
 			LocalDate date = LocalDate.of(2018, Month.APRIL, 40);
 			System.out.println(date.getYear() + " " + date.getMonth() + " "
 			+ date.getDayOfMonth());
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">2018 APRIL 4</risposta>
-			<risposta value="B">2018 APRIL 30</risposta>
-			<risposta value="C">2018 MAY 10</risposta>
-			<risposta value="D">Another date.</risposta>
-			<risposta value="E">The code does not compile.</risposta>
-			<risposta value="F">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>F</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">2018 APRIL 4</risposta><risposta value="B">2018 APRIL 30</risposta><risposta value="C">2018 MAY 10</risposta><risposta value="D">Another date.</risposta><risposta value="E">The code does not compile.</risposta><risposta value="F">A runtime exception is thrown.</risposta></risposte><risposteEsatte>F</risposteEsatte><spiegazione> 
 			Java throws an exception if invalid date values are passed. There is no 40th day in
 			April—or any other month for that matter.		
-		</spiegazione>
-	</domanda>
-	<domanda id="31" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="31">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="31" question="31"><testo>
 			What is the output of the following code?
 			
 			LocalDate date = LocalDate.of(2018, Month.APRIL, 30);
@@ -764,23 +357,9 @@
 			date.plusYears(3);
 			System.out.println(date.getYear() + " " + date.getMonth() + " "
 			+ date.getDayOfMonth());
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">2018 APRIL 2</risposta>
-			<risposta value="B">2018 APRIL 30</risposta>
-			<risposta value="C">2018 MAY 2</risposta>
-			<risposta value="D">2021 APRIL 2</risposta>
-			<risposta value="E">2021 APRIL 30</risposta>
-			<risposta value="F">2021 MAY 2</risposta>
-			<risposta value="G">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">2018 APRIL 2</risposta><risposta value="B">2018 APRIL 30</risposta><risposta value="C">2018 MAY 2</risposta><risposta value="D">2021 APRIL 2</risposta><risposta value="E">2021 APRIL 30</risposta><risposta value="F">2021 MAY 2</risposta><risposta value="G">A runtime exception is thrown.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			 The date starts out as April 30, 2018. Since dates are immutable and the plus methods have their return values ignored, the result is unchanged. Therefore, option B is correct.	
-		</spiegazione>
-	</domanda>
-	<domanda id="32" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="32">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="32" question="32"><testo>
 			What is the output of the following code?
 			
 			LocalDateTime d = LocalDateTime.of(2015, 5, 10, 11, 22, 33);
@@ -788,23 +367,9 @@
 			d = d.minus(p);
 			DateTimeFormatter f = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
 			System.out.println(d.format(f));
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">3/7/14 11:22 AM</risposta>
-			<risposta value="B">5/10/15 11:22 AM</risposta>
-			<risposta value="C">3/7/14</risposta>
-			<risposta value="D">5/10/15</risposta>
-			<risposta value="E">11:22 AM</risposta>
-			<risposta value="F">The code does not compile.</risposta>
-			<risposta value="G">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">3/7/14 11:22 AM</risposta><risposta value="B">5/10/15 11:22 AM</risposta><risposta value="C">3/7/14</risposta><risposta value="D">5/10/15</risposta><risposta value="E">11:22 AM</risposta><risposta value="F">The code does not compile.</risposta><risposta value="G">A runtime exception is thrown.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
 			Even though d has both date and time, the formatter only outputs time.		
-		</spiegazione>
-	</domanda>
-	<domanda id="33" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" question="33">
-		<testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="33" question="33"><testo>
 			What is the output of the following code?
 			
 			LocalDateTime d = LocalDateTime.of(2015, 5, 10, 11, 22, 33);
@@ -813,19 +378,7 @@
 			DateTimeFormatter f = DateTimeFormatter.ofLocalizedDateTime(FormatStyle
 			.SHORT);
 			System.out.println(f.format(d));
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">5/9/13 11:22 AM</risposta>
-			<risposta value="B">5/10/13 11:22 AM</risposta>
-			<risposta value="C">5/9/14</risposta>
-			<risposta value="D">5/10/14</risposta>
-			<risposta value="E">The code does not compile.</risposta>
-			<risposta value="F">A runtime exception is thrown.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
-		<spiegazione> 
+		</testo><risposte type="checkbox"><risposta value="A">5/9/13 11:22 AM</risposta><risposta value="B">5/10/13 11:22 AM</risposta><risposta value="C">5/9/14</risposta><risposta value="D">5/10/14</risposta><risposta value="E">The code does not compile.</risposta><risposta value="F">A runtime exception is thrown.</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione> 
 			Period does not allow chaining. Only the last Period method called counts, so only
 			the two years are subtracted.
-		</spiegazione>
-	</domanda>
-</domande>
+		</spiegazione></domanda></domande>

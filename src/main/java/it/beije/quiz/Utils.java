@@ -119,7 +119,6 @@ public class Utils {
 			List<Element> contenutoDomanda = null;
 			List<Element> elementiRisposta = null;
 			Element rispostePossibili = null;
-			int i=1;
 			for (Element domanda : domande) {
 
 				contenutoDomanda = Utils.getChildElements(domanda);
@@ -140,7 +139,6 @@ public class Utils {
 
 					risposte.add(r);
 				}
-				System.out.println("qua ci arrivo");
 				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 				String spiegazione = contenutoDomanda.get(3).getTextContent();
 
@@ -148,7 +146,6 @@ public class Utils {
 						spiegazione);
 
 				arrayDomande.add(d);
-				System.out.println("qua ci arrivo"+i++);
 
 			}
 
@@ -237,6 +234,7 @@ public class Utils {
 			Document document;
 			Element docElement;
 			int idDomanda = 1;
+			
 			if(file.exists()) {
 
 				document = builder.parse(file);
@@ -282,6 +280,67 @@ public class Utils {
 				Element spiegazione = document.createElement("spiegazione");
 				spiegazione.setTextContent(d.getSpiegazione());
 				domanda.appendChild(spiegazione);
+			}
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(file);
+			transformer.transform(source, result);
+		}catch(NullPointerException e) {
+			System.out.println("Errore nella creazione della directory");
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public static void ricaricaDomande(Libro l, List<Domanda> elDomande) {
+
+		try {
+			l = createLibro(l);
+
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			File file = new File(MAIN_PATH+l.getNameDir()+"\\"+generateNomeFile(elDomande.get(0))+".xml");
+			Document document;
+			Element docElement;
+			int idDomanda = 1;
+			
+			document = builder.newDocument();
+			docElement = document.createElement("domande");
+			document.appendChild(docElement);
+			
+
+			for(Domanda d : elDomande) {
+				Element domanda = document.createElement("domanda");
+				domanda.setAttribute("id", idDomanda+"");
+				domanda.setAttribute("book", d.getBook());
+				domanda.setAttribute("chapter", d.getChapter()+"");
+				domanda.setAttribute("question", d.getQuestion()+"");
+				docElement.appendChild(domanda);
+
+				Element testo = document.createElement("testo");
+				testo.setTextContent(d.getTesto());
+				domanda.appendChild(testo);
+
+				Element risposte = document.createElement("risposte");
+				risposte.setAttribute("type", d.getAnswerType());
+				for(Risposta r : d.getRisposte()) {
+					Element risposta = document.createElement("risposta");
+					risposta.setAttribute("value", r.getValue());
+					risposta.setTextContent(r.getText());
+					risposte.appendChild(risposta);
+				}
+				domanda.appendChild(risposte);
+
+				Element risposteEsatte = document.createElement("risposteEsatte");
+				risposteEsatte.setTextContent(d.getRispostaEsatta());
+				domanda.appendChild(risposteEsatte);
+
+				Element spiegazione = document.createElement("spiegazione");
+				spiegazione.setTextContent(d.getSpiegazione());
+				domanda.appendChild(spiegazione);
+				idDomanda++;
 			}
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

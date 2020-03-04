@@ -73,7 +73,6 @@ public class QuizController {
 			}
 
 			libri.get(i).setDomande(domandetot);
-
 		}
 
 		totale = domandetot.size();
