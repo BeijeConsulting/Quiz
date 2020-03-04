@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<domande>
-	<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|1"
-		question="1">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande>
+	<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|1" question="1">
 		<testo>testo della domanda da inserire</testo>
 		<risposte type="checkbox">
 			<risposta value="A">aaa</risposta>
@@ -11,8 +9,7 @@
 		<risposteEsatte>AC</risposteEsatte>
 		<spiegazione>spiegazione</spiegazione>
 	</domanda>
-	<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|1"
-		question="1">
+	<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|1" question="1">
 		<testo>testo della domanda da inserire</testo>
 		<risposte type="checkbox">
 			<risposta value="A">aaa</risposta>
@@ -22,4 +19,4 @@
 		<risposteEsatte>AC</risposteEsatte>
 		<spiegazione>spiegazione</spiegazione>
 	</domanda>
-</domande>
+<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|3" question="1"><testo>testo della domanda da inserire</testo><risposte type="checkbox"><risposta value="A">aaa</risposta><risposta value="B">bbb</risposta><risposta value="C">ccc</risposta></risposte><risposteEsatte>AC</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda></domande>
