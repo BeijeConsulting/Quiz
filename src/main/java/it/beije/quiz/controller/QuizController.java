@@ -2,12 +2,10 @@ package it.beije.quiz.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,16 +27,14 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 import it.beije.quiz.model.Risposta;
 import it.beije.quiz.service.QuizService;
-import it.beije.quiz.service.Utils;
 
 @Controller
 @SessionScope
 public class QuizController {
 
 	@Autowired
-	private Utils utils;
+	private QuizService quizService;
 	
-	private List<Domanda> domande1 = new ArrayList<Domanda>();
 	private int totale = 0;
 	private LocalTime time = null;
 	private static boolean isNew = false;
@@ -60,7 +54,7 @@ public class QuizController {
 			throws ParserConfigurationException, SAXException, IOException {
 
 
-		libri = utils.caricaLibri(new File(MAIN_PATH + "index.xml"));
+		libri = quizService.caricaLibri(new File(MAIN_PATH + "index.xml"));
 
 		if (!domandetot.isEmpty()) 
 			domandetot.clear();
@@ -69,9 +63,9 @@ public class QuizController {
 			File folder = new File(MAIN_PATH + libri.get(i).getNameDir());
 
 			for (final File fileEntry : folder.listFiles()) {
-				// domande1.addAll(Utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+				// domande1.addAll(quizService.readFileDomande(folder + "\\" + fileEntry.getName()));
 				if (request.getParameter("libro" + (i + 1)) != null) {
-					domandetot.addAll(utils.readFileDomande(folder + "\\" + fileEntry.getName()));
+					domandetot.addAll(quizService.readFileDomande(folder + "\\" + fileEntry.getName()));
 
 				}
 
@@ -87,8 +81,6 @@ public class QuizController {
 		return "totaledomande";
 	}
 
-
-
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
@@ -96,7 +88,6 @@ public class QuizController {
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
 
-		int tot = domandetot.size();
 		int secondi = 2 * 60 * totale;
 		long hours = (secondi - diff.getSeconds()) / 3600;
 		long minutes = (secondi - diff.getSeconds()) / 60 - hours * 60;
@@ -120,7 +111,7 @@ public class QuizController {
 			}
 			// System.out.println(i.getDomande().get(index));
 			model.addAttribute("index", index);
-			model.addAttribute("testoDomanda", utils.formattaTesto(d.getTesto()));
+			model.addAttribute("testoDomanda", quizService.formattaTesto(d.getTesto()));
 			model.addAttribute("rispUtente", risposta);
 			model.addAttribute("answerType", d.getAnswerType());
 			model.addAttribute("risposte", d.getRisposte());
@@ -166,7 +157,7 @@ public class QuizController {
 		// ELABORAZIONE RISPOSTE
 		StringBuilder builder = new StringBuilder();
 		for (Domanda d : domandetot) {
-			boolean corretta = utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
+			boolean corretta = quizService.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
 
 			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
 			if (corretta) {
@@ -189,7 +180,6 @@ public class QuizController {
 
 		return "scelta";
 	}
-
 
 	@RequestMapping(value = "/newlibro", method = RequestMethod.GET)
 	public String newLibro() {

@@ -78,6 +78,7 @@ public class Domanda {
 	public String getRispostaUtente() {
 		return rispostaUtente;
 	}
+	
 	public void setRispostaUtente(String rispostaUtente) {
 		this.rispostaUtente = rispostaUtente;
 	}
@@ -85,7 +86,6 @@ public class Domanda {
 	public String getAnswerType() {
 		return answerType;
 	}
-	
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
