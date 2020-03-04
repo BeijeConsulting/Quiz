@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -94,10 +96,24 @@ public class RestController {
 		}
 	}
 	
+	@RequestMapping(value = "/delete/{libro}/{cap}/{question}", method = RequestMethod.DELETE)
+	public @ResponseBody Domanda updateDomanda(@PathVariable String libro, @PathVariable String cap, @PathVariable String question) throws ParserConfigurationException, SAXException, IOException, TransformerException {
+		Domanda domanda = new Domanda();
+		if(getDomandeLibro(libro, cap, question).size() != 0) {
+			domanda = getDomandeLibro(libro, cap, question).get(0);
+			Utils.deleteElement(domanda, baseDirectory + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getId().split("([|])")[1] + ".xml");
+		}
+		return domanda;
+	}
+	
 	
 	private String getChapter(String id) {
 		String[] array = id.split("([|])");
 		return array[0] + "\\domande_cap" + array[1] + ".xml";
 	}
 	
+	// %7c
+	private String formatId(String id) {
+		return id.replace("|", "%7c");
+	}
 }

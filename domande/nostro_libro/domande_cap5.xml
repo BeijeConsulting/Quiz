@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="Libro Dinal" chapter="5" id="nostro_libro|5|2" question="2"><testo>testo della domanda da inserire</testo><risposte type="checkbox"><risposta value="A">aaa</risposta><risposta value="B">bbb</risposta><risposta value="C">ccc</risposta></risposte><risposteEsatte>AC</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="Libro Dinal" chapter="5" id="nostro_libro|5|2" question="2"><testo>testo della domanda da inserire</testo><risposte type="checkbox"><risposta value="A">aaa</risposta><risposta value="B">bbb</risposta><risposta value="C">ccc</risposta></risposte><risposteEsatte>AC</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda></domande>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="Libro Dinal" chapter="5" id="nostro_libro|5|2"
+		question="2">
+		<testo>testo della domanda da inserire</testo>
+		<risposte type="checkbox">
+			<risposta value="A">aaa</risposta>
+			<risposta value="B">bbb</risposta>
+			<risposta value="C">ccc</risposta>
+		</risposte>
+		<risposteEsatte>AC</risposteEsatte>
+		<spiegazione>spiegazione</spiegazione>
+	</domanda>
+	<domanda book="Libro Dinal" chapter="5" id="nostro_libro|5|2"
+		question="2">
+		<testo>testo della domanda da inserire</testo>
+		<risposte type="checkbox">
+			<risposta value="A">aaa</risposta>
+			<risposta value="B">bbb</risposta>
+			<risposta value="C">ccc</risposta>
+		</risposte>
+		<risposteEsatte>AC</risposteEsatte>
+		<spiegazione>spiegazione</spiegazione>
+	</domanda>
+</domande>

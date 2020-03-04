@@ -8,6 +8,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -51,16 +53,16 @@ public class Utils {
 			File f = new File(pathFile);
 			Document document = builder.parse(f);
 			Element element = document.getDocumentElement();
-//	        System.out.println(element.getTagName());
+			//	        System.out.println(element.getTagName());
 			List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
+			//	        System.out.println(domande);
 
 			List<Element> contenutoDomanda = null;
 			List<Element> elementiRisposta = null;
 			Element rispostePossibili = null;
 			for (Element domanda : domande) {
 				contenutoDomanda = Utils.getChildElements(domanda);
-				
+
 				String book = domanda.getAttribute("book");
 				String chapter = domanda.getAttribute("chapter");
 				String question = domanda.getAttribute("question");
@@ -89,7 +91,7 @@ public class Utils {
 						spiegazione);
 				arrayDomande.add(d);
 
-//	        	System.out.println(d);
+				//	        	System.out.println(d);
 			}
 
 		} catch (Exception e) {
@@ -105,9 +107,9 @@ public class Utils {
 		File f = new File(pathfile);
 		Document document = null;
 		Element domandaradice = null;
-		
+
 		System.out.println("Get book: " +  domanda.getBook());
-		
+
 		if(f.exists()) {
 			document = builder.parse(f);
 			domandaradice = document.getDocumentElement();
@@ -115,17 +117,17 @@ public class Utils {
 			document = builder.newDocument();  // creazione nuovo documento XML
 			domandaradice = document.createElement("domande");
 		}
-	
+
 		Element domandaxml = document.createElement("domanda"); // creazione elemento radice 
 		domandaxml.setAttribute("id", domanda.getId());
 		domandaxml.setAttribute("book", domanda.getBook());
 		domandaxml.setAttribute("chapter", domanda.getChapter());
 		domandaxml.setAttribute("question", domanda.getQuestion());
-		
+
 		Element testoxml = document.createElement("testo");
 		testoxml.setTextContent(domanda.getTesto());
 		domandaxml.appendChild(testoxml);
-		
+
 		Element risposte = document.createElement("risposte");
 		risposte.setAttribute("type", domanda.getAnswerType());
 		System.out.println("Get Domande:" + domanda.getRisposte());
@@ -135,27 +137,27 @@ public class Utils {
 			rispostaxml.setTextContent(r.getText());
 			risposte.appendChild(rispostaxml);
 		}
-		
+
 		Element rispOk = document.createElement("risposteEsatte");
 		rispOk.setTextContent(domanda.getRispostaEsatta());
-		
+
 		domandaxml.appendChild(risposte);
 		domandaxml.appendChild(rispOk);
-		
+
 		Element spiegazione = document.createElement("spiegazione");
 		spiegazione.setTextContent(domanda.getSpiegazione());
 		domandaxml.appendChild(spiegazione);
-		
-//		Element rispUser = document.createElement("risposteUtente");
-//		rispUser.setTextContent(domanda.getRispostaUtente());
-//		domandaxml.appendChild(rispUser);
-		
+
+		//		Element rispUser = document.createElement("risposteUtente");
+		//		rispUser.setTextContent(domanda.getRispostaUtente());
+		//		domandaxml.appendChild(rispUser);
+
 		domandaradice.appendChild(domandaxml);
-		
+
 		if(!f.exists()){
 			document.appendChild(domandaradice);
 		}
-		
+
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
@@ -189,6 +191,7 @@ public class Utils {
 
 		Document document = builder.parse(fileXml);
 		Element element = document.getDocumentElement();
+		System.out.println("TAG: " + element.getTagName());
 
 		NodeList nodeLibri = element.getElementsByTagName("quiz");
 
@@ -200,9 +203,59 @@ public class Utils {
 			lib.setId_book((String) libro.getAttribute("id_book"));
 			libri.add(lib);
 		}
-//        System.out.println("libri : " + libri.size());
+		//        System.out.println("libri : " + libri.size());
 
 		return libri;
+	}
+
+	// delete Element XML
+	public static void deleteElement(Domanda domanda, String pathfile) throws ParserConfigurationException, SAXException, IOException, TransformerException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		File f = new File(pathfile);
+		
+		Document document;
+		document = builder.parse(f);
+		
+		System.out.println(pathfile);
+
+//		Element docElement;
+//		docElement = document.getElementById(domanda.getId());
+//		document.removeChild(docElement);
+		
+//		NodeList nodes = document.getChildNodes();
+//		System.out.println(nodes.getLength());
+//		for (int i = 0; i < nodes.getLength(); i++) {
+//            Node nNode = nodes.item(i);
+//            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+//                Element eElement = (Element) nNode;
+//                if(eElement.getElementsByTagName("domande")..equals(domanda.getId())) {
+//                    nNode.removeChild(nNode);
+//                    System.out.println("elimina");
+//                }
+//            }
+//        }
+		
+		
+		NodeList nodes = document.getElementsByTagName("domanda");
+		System.out.println(nodes.getLength()); // 1
+		
+        for(int i=0;i<nodes.getLength();i++) {
+        	Node nNode = nodes.item(i);
+        	Element docEl = (Element) nNode;
+        	System.out.println(docEl.getTagName());
+        	System.out.println(docEl.getAttribute("id"));
+        	if(docEl.getAttribute("id").equals(domanda.getId())) {
+        		//nNode.removeChild(docEl);
+//        		document.removeChild(docEl);
+        		nNode.removeChild(docEl.getElementsByTagName("domanda").item(0));
+        		System.out.println("ELIMINATO");
+        	}
+        }
+		// Output to console for testing
+		// StreamResult result = new StreamResult(System.out);
+
+		System.out.println("Domanda eliminata!");
 	}
 
 	public static String formattaTesto(String testo) {
