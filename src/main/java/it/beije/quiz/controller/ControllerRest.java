@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -128,5 +130,26 @@ public class ControllerRest {
 		}
 		return domande;
 	}
-
-}
+	
+	@RequestMapping(value = "/deleteDomanda/{dirLibro}/{capitolo}/{nDomanda}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean  deleteDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda, HttpServletResponse response) {
+		Domanda d= getDomanda(dirLibro,capitolo,nDomanda);
+		if(d==null) {
+			response.setStatus(204);
+			return false;
+		}
+		else {
+			StringBuilder path = new StringBuilder("C:\\Users\\Padawan07\\git\\Quiz\\domande\\"+dirLibro+"\\domande_cap"+ capitolo +".xml");
+	        String pathdomanda= path.toString();
+			File file2=new File(pathdomanda);
+			Utils.eliminaDomanda(d,file2);
+			return true;
+			
+		}
+		
+	}
+	
+	}
+	
+	
+	
