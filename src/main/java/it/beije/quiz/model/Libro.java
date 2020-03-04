@@ -14,7 +14,7 @@ public class Libro {
 
 
 
-	public static final String LIB_PATH="C:\\Users\\Padawan09\\git\\Quiz\\domande\\";
+	public static final String LIB_PATH="C:\\Users\\Padawan03\\git\\Quiz\\domande\\";
 
 	
 	private String checked="";

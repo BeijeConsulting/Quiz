@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
 
 import it.beije.quiz.Cont;
 import it.beije.quiz.Utils;
@@ -13,6 +14,7 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
 
 import org.springframework.web.bind.annotation.*;
+import org.xml.sax.SAXException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -63,12 +65,24 @@ public class RestControllerz {
 		return null;
 	}
 	
-	@RequestMapping(value = "/get/{id}", method = RequestMethod.PUT)
-	public @ResponseBody Domanda editDomanda(@PathVariable String id, @RequestBody Domanda domanda, HttpServletResponse response) {
+//	@RequestMapping(value = "/get/{id}", method = RequestMethod.PUT)
+//	public @ResponseBody Domanda editDomanda(@PathVariable String id, @RequestBody Domanda domanda, HttpServletResponse response) {
+//		ArrayList<Domanda> lista = Cont.getInstance();
+//		for(Domanda d : lista) {
+//			if(id.equals(d.getId())) 
+//				d.editXML(domanda);
+//		}
+//		response.setStatus(204);
+//		return null;
+//	}
+	
+
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody Domanda deliteDomanda(@PathVariable String id,HttpServletResponse response) throws ParserConfigurationException, SAXException, IOException {
 		ArrayList<Domanda> lista = Cont.getInstance();
 		for(Domanda d : lista) {
 			if(id.equals(d.getId())) 
-				d.editXML(domanda);
+				Utils.deleteDomanda(id);
 		}
 		response.setStatus(204);
 		return null;

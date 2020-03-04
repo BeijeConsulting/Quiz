@@ -1,11 +1,14 @@
 package it.beije.quiz;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -15,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Libro;
@@ -264,6 +268,17 @@ public class Utils {
 		}	
 	}
 	
+	public static void deleteDomanda(String id) throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        File file = new File("C:\\Users\\Padawan03\\git\\Quiz\\domande\\oca_manual\\domande_Assessment_Test.xml");
+        Document document;
+        Element docElement;
+        document = builder.parse(file);
+		docElement = document.getElementById(id);
+		document.removeChild(docElement);
+	}
+	   
 	
 
 }
