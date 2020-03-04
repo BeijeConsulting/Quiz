@@ -22,30 +22,28 @@ import org.w3c.dom.NodeList;
 import it.beije.quiz.model.*;
 
 public class Utils {
-	
-	public static String nuovoId(String dir, int capitolo, int nDomanda  ) {
+
+	public static String nuovoId(String dir, int capitolo, int nDomanda) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(dir).append("|").append(capitolo).append("|").append(nDomanda);
 		return sb.toString();
-		}
-	
-	
+	}
+
 	public static String getDirectory(String id) {
-		String [] elementi =id.split("([|])");
-		
-		
+		String[] elementi = id.split("([|])");
+
 		return elementi[0];
 	}
+
 	public static int getCapitolo(String id) {
-		String [] elementi =id.split("([|])");
-		
-		
+		String[] elementi = id.split("([|])");
+
 		return Integer.parseInt(elementi[1]);
 	}
+
 	public static int getNDomanda(String id) {
-		String [] elementi =id.split("([|])");
-		
-		
+		String[] elementi = id.split("([|])");
+
 		return Integer.parseInt(elementi[2]);
 	}
 
@@ -135,20 +133,20 @@ public class Utils {
 	public static void scriviSuXML(List<Libro> libro, String pathfile) throws Exception {
 //STRING
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
+		DocumentBuilder builder = factory.newDocumentBuilder();
 
-        Document document = builder.newDocument();
-        Element docElement = document.createElement("index");
-        document.appendChild(docElement);
-        
-        for (Libro l : libro) {
-        	Element quiz = document.createElement("quiz");
-        quiz.setAttribute("id_book", l.getIdBook());
-        quiz.setAttribute("title", l.getTitle());
-        quiz.setAttribute("dir", l.getDir());
+		Document document = builder.newDocument();
+		Element docElement = document.createElement("index");
+		document.appendChild(docElement);
 
-        	docElement.appendChild(quiz);
-        }
+		for (Libro l : libro) {
+			Element quiz = document.createElement("quiz");
+			quiz.setAttribute("id_book", l.getIdBook());
+			quiz.setAttribute("title", l.getTitle());
+			quiz.setAttribute("dir", l.getDir());
+
+			docElement.appendChild(quiz);
+		}
 
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -157,7 +155,7 @@ public class Utils {
 		StreamResult result = new StreamResult(new File(pathfile));
 
 		// Output to console for testing
-		//StreamResult result = new StreamResult(System.out);
+		// StreamResult result = new StreamResult(System.out);
 
 		transformer.transform(source, result);
 
@@ -173,59 +171,60 @@ public class Utils {
 
 			// Load the input XML document, parse it and return an instance of the
 			// Document class.
-			
+
 			Document document = builder.parse(new File(pathFile));
 			Element element = document.getDocumentElement();
 //	        System.out.println(element.getTagName());
 			List<Element> domande = Utils.getChildElements(element);
 //	        System.out.println(domande);	        	        
-	        List<Element> contenutoDomanda = null;
-	        List<Element> elementiRisposta = null;
-	        Element rispostePossibili = null;
-	        for (Element domanda : domande) {
-	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        String id = (domanda.getAttribute("id"));
-		        String book = domanda.getAttribute("book");
-		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-		        int question = Integer.parseInt(domanda.getAttribute("question"));
-		        String testo = contenutoDomanda.get(0).getTextContent();
-		        
-		        //caricare le risposte possibili
-		        rispostePossibili = contenutoDomanda.get(1);
-		        String answerType = rispostePossibili.getAttribute("type");
-		        elementiRisposta = Utils.getChildElements(rispostePossibili);
-		        List<Risposta> risposte = new ArrayList<Risposta>();
-		        for (Element risposta : elementiRisposta) {
-		        	Risposta r = new Risposta();
-		        	r.setValue(risposta.getAttribute("value"));
-		        	r.setText(risposta.getTextContent());
-		        	
-		        	risposte.add(r);
-		        }
-		        
-		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = contenutoDomanda.get(3).getTextContent();
-		        
-		        List<Libro> listaLibriInXML = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+			List<Element> contenutoDomanda = null;
+			List<Element> elementiRisposta = null;
+			Element rispostePossibili = null;
+			for (Element domanda : domande) {
+				contenutoDomanda = Utils.getChildElements(domanda);
+				String id = (domanda.getAttribute("id"));
+				String book = domanda.getAttribute("book");
+				int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
+				int question = Integer.parseInt(domanda.getAttribute("question"));
+				String testo = contenutoDomanda.get(0).getTextContent();
 
-		        String dir=null;
-		        for (Libro l : listaLibriInXML) {
-		        	if (book.equals(l.getTitle())) {
-		        	dir=l.getDir();
-		        	break;
-		        	}
-		        }
-		        
-		        String nuovoId= nuovoId(dir, chapter, question);
-		        
-	        	Domanda d = new Domanda(nuovoId, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
-	        	
-	        	arrayDomande.add(d);
+				// caricare le risposte possibili
+				rispostePossibili = contenutoDomanda.get(1);
+				String answerType = rispostePossibili.getAttribute("type");
+				elementiRisposta = Utils.getChildElements(rispostePossibili);
+				List<Risposta> risposte = new ArrayList<Risposta>();
+				for (Element risposta : elementiRisposta) {
+					Risposta r = new Risposta();
+					r.setValue(risposta.getAttribute("value"));
+					r.setText(risposta.getTextContent());
+
+					risposte.add(r);
+				}
+
+				String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
+				String spiegazione = contenutoDomanda.get(3).getTextContent();
+
+				List<Libro> listaLibriInXML = Utils
+						.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+
+				String dir = null;
+				for (Libro l : listaLibriInXML) {
+					if (book.equals(l.getTitle())) {
+						dir = l.getDir();
+						break;
+					}
+				}
+
+				String nuovoId = nuovoId(dir, chapter, question);
+
+				Domanda d = new Domanda(nuovoId, book, chapter, question, testo, answerType, risposte, rispostaEsatta,
+						spiegazione);
+
+				arrayDomande.add(d);
 //	        	System.out.println(d);
-			
 
-		} 
-	        }catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -255,90 +254,74 @@ public class Utils {
 
 		return rispostaEsatta.length() == 0;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/****************BRANCH CLARK*****************/
 
-	/*********************Scrittura (append) della domanda nel file xml gia esistente*****************************************/
+	/**************** BRANCH CLARK *****************/
+
+	/*********************
+	 * Scrittura (append) della domanda nel file xml gia esistente
+	 *****************************************/
 	public static void aggiungiDomanda(Domanda domanda, File fileXML) {
-		List<Domanda> listDomande=new ArrayList<Domanda>();
-		 listDomande=readFileDomande(fileXML.getPath());
+		List<Domanda> listDomande = new ArrayList<Domanda>();
+		listDomande = readFileDomande(fileXML.getPath());
 		listDomande.add(domanda);
-		
+
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder=null;
-        try {
-        	builder = factory.newDocumentBuilder();
+		DocumentBuilder builder = null;
+		try {
+			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
-		} 
-		
-        Document document = builder.newDocument();
-        Element domande = document.createElement("domande");
-        document.appendChild(domande);
-        
-        for (Domanda d: listDomande) {
-        	
-        	Element dom =document.createElement("domanda");
-        	domande.appendChild(dom);
-        	
-        	dom.setAttribute("id", d.getId());
-        	dom.setAttribute("book",d.getBook());
-        	dom.setAttribute("chapter", Integer.toString(d.getChapter()));
-        	dom.setAttribute("question", Integer.toString(d.getQuestion()));
-        	
-        	Element testo=document.createElement("testo");
-        	testo.setTextContent(d.getTesto());
-        	dom.appendChild(testo);
-        	
-        	Element risposte = document.createElement("risposte");        	
-        	risposte.setAttribute("type",d.getAnswerType());
-        	dom.appendChild(risposte);
-        	
-        	List <Risposta> listRisposta = d.getRisposte();
-        	Element risposta=null;
-        	for(Risposta r: listRisposta) {
-        		risposta=document.createElement("risposta");
-        		risposta.setAttribute("value", r.getValue());
-        		risposta.setTextContent(r.getText());
-        		risposte.appendChild(risposta);
-        	}
-        	
-        
-        	
-        	Element risposteEsatte=document.createElement("risposteEsatte");
-        	risposteEsatte.setTextContent(d.getRispostaEsatta());
-        	dom.appendChild(risposteEsatte);
-        	
-        	Element spiegazione= document.createElement("spiegazione");
-        	spiegazione.setTextContent(d.getSpiegazione());
-        	dom.appendChild(spiegazione);     	
-        	
-        }
-        
-        
-        
-        
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer =null;
+		}
+
+		Document document = builder.newDocument();
+		Element domande = document.createElement("domande");
+		document.appendChild(domande);
+
+		for (Domanda d : listDomande) {
+
+			Element dom = document.createElement("domanda");
+			domande.appendChild(dom);
+
+			dom.setAttribute("id", d.getId());
+			dom.setAttribute("book", d.getBook());
+			dom.setAttribute("chapter", Integer.toString(d.getChapter()));
+			dom.setAttribute("question", Integer.toString(d.getQuestion()));
+
+			Element testo = document.createElement("testo");
+			testo.setTextContent(d.getTesto());
+			dom.appendChild(testo);
+
+			Element risposte = document.createElement("risposte");
+			risposte.setAttribute("type", d.getAnswerType());
+			dom.appendChild(risposte);
+
+			List<Risposta> listRisposta = d.getRisposte();
+			Element risposta = null;
+			for (Risposta r : listRisposta) {
+				risposta = document.createElement("risposta");
+				risposta.setAttribute("value", r.getValue());
+				risposta.setTextContent(r.getText());
+				risposte.appendChild(risposta);
+			}
+
+			Element risposteEsatte = document.createElement("risposteEsatte");
+			risposteEsatte.setTextContent(d.getRispostaEsatta());
+			dom.appendChild(risposteEsatte);
+
+			Element spiegazione = document.createElement("spiegazione");
+			spiegazione.setTextContent(d.getSpiegazione());
+			dom.appendChild(spiegazione);
+
+		}
+
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = null;
 		try {
-		 transformer = transformerFactory.newTransformer();
+			transformer = transformerFactory.newTransformer();
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();
 		}
-		
+
 		DOMSource source = new DOMSource(document);
 		StreamResult result = new StreamResult(fileXML);
 		try {
@@ -347,23 +330,85 @@ public class Utils {
 			e.printStackTrace();
 		}
 		System.out.println("File saved!");
-   
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/******************************************/
 
+	}
+
+	public static void eliminaDomanda(Domanda domanda, File fileXML) {
+		List<Domanda> listDomande = new ArrayList<Domanda>();
+		listDomande = readFileDomande(fileXML.getPath());
+		List<Domanda> prova = new ArrayList<Domanda>();
+
+		for (Domanda dom : listDomande) {
+			if (!dom.getId().equals(domanda.getId())) {
+				prova.add(dom);
+			}
+		}
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = null;
+		try {
+			builder = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+
+		Document document = builder.newDocument();
+		Element domande = document.createElement("domande");
+		document.appendChild(domande);
+
+		for (Domanda d : prova) {
+
+			Element dom = document.createElement("domanda");
+			domande.appendChild(dom);
+
+			dom.setAttribute("id", d.getId());
+			dom.setAttribute("book", d.getBook());
+			dom.setAttribute("chapter", Integer.toString(d.getChapter()));
+			dom.setAttribute("question", Integer.toString(d.getQuestion()));
+
+			Element testo = document.createElement("testo");
+			testo.setTextContent(d.getTesto());
+			dom.appendChild(testo);
+
+			Element risposte = document.createElement("risposte");
+			risposte.setAttribute("type", d.getAnswerType());
+			dom.appendChild(risposte);
+
+			List<Risposta> listRisposta = d.getRisposte();
+			Element risposta = null;
+			for (Risposta r : listRisposta) {
+				risposta = document.createElement("risposta");
+				risposta.setAttribute("value", r.getValue());
+				risposta.setTextContent(r.getText());
+				risposte.appendChild(risposta);
+			}
+
+			Element risposteEsatte = document.createElement("risposteEsatte");
+			risposteEsatte.setTextContent(d.getRispostaEsatta());
+			dom.appendChild(risposteEsatte);
+
+			Element spiegazione = document.createElement("spiegazione");
+			spiegazione.setTextContent(d.getSpiegazione());
+			dom.appendChild(spiegazione);
+
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = null;
+			try {
+				transformer = transformerFactory.newTransformer();
+			} catch (TransformerConfigurationException e) {
+				e.printStackTrace();
+			}
+
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(fileXML);
+			try {
+				transformer.transform(source, result);
+			} catch (TransformerException e) {
+				e.printStackTrace();
+			}
+			System.out.println("File saved!");
+
+		}
+	}
 }
+
+/******************************************/
