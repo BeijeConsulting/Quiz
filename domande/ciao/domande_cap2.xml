@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="ciao" chapter="2" id="ciao|2|4" question="2">
+		<testo>testo123</testo>
+		<risposte type="radio" />
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>spiegazione1 12 13 14</spiegazione>
+	</domanda>
+</domande>

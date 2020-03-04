@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,13 +21,13 @@ import it.beije.quiz.model.Libro;
 @RestController
 public class ControllerRest {
 
-	
+
 	//TODO: ds testare
 	@RequestMapping(value="/caricaDomanda/{dirLibro}/{capitolo}/{nDomanda}", method=RequestMethod.GET)
 	public @ResponseBody Domanda getDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda ){
 		List <Domanda> listaDomande= new ArrayList<Domanda>();
 		List<File> listaFile= Utils.selezionaFileDiInteresse(dirLibro);
-		
+
 		for(File f: listaFile) {
 
 			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
@@ -35,9 +37,9 @@ public class ControllerRest {
 		for(Domanda d: listaDomande)
 			if(d.getId().equals(idDomanda))
 				return d;
-		
+
 		return null;
-		
+
 
 	}
 
@@ -66,7 +68,7 @@ public class ControllerRest {
 
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
-        String dir=Utils.getDirectory(domanda.getId());
+		String dir=Utils.getDirectory(domanda.getId());
 		for (Libro l : listaLibriInXML) {
 			if (dir.equals(l.getDir())) {
 				vero = true;
@@ -97,11 +99,11 @@ public class ControllerRest {
 
 	}
 
-	
+
 	@RequestMapping(value = "/insertListaDomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> insertDomande(@RequestBody List <Domanda> domande) {
-	
-		
+
+
 		for (Domanda dom : domande) {	
 			StringBuilder path = new StringBuilder();
 			String dir =Utils.getDirectory(dom.getId());
@@ -116,7 +118,7 @@ public class ControllerRest {
 				List <Libro> lista= Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 				lista.add(l);
 				try {
-					
+
 					Utils.scriviSuXML(lista,"C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -128,5 +130,27 @@ public class ControllerRest {
 		}
 		return domande;
 	}
+	@RequestMapping(value = "/updateListaDomande", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List <Domanda> domande, HttpServletResponse response) {
+		List <Domanda> listaDomandeAggiornate = new ArrayList<Domanda>();
+		Domanda d=null;
+		for(Domanda domanda: domande) {
+			d=aggiornaDomanda(domanda);
+			if (d!=null)
+				listaDomandeAggiornate.add(domanda);
+			else {
+				response.setStatus(204);
+				break;
+			}
 
+		}
+
+		if(listaDomandeAggiornate==null) {
+			response.setStatus(204);
+
+			return listaDomandeAggiornate;		
+		}
+
+
+	}
 }
