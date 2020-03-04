@@ -13,7 +13,7 @@ import it.beije.quiz.model.Domanda;
 @Service
 public class QuizService {
 
-	public static final String baseDirectory = "C:\\Users\\Beije\\git\\Quiz\\domande\\";
+	public static final String baseDirectory = "C:\\Users\\Padawan04\\git\\Quiz\\domande\\";
 	
 	public QuizService() {
 		System.out.println("Creo istanza di QuizService");
