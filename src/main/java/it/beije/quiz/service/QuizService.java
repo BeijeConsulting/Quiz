@@ -59,6 +59,7 @@ public class QuizService {
 	}
 	
 	public Domanda insertDomanda(Domanda domanda){
+		caricaDomande();
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
 		String dir=Utils.getDirectory(domanda.getId());

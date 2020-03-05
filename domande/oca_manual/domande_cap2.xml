@@ -889,4 +889,74 @@
 			option A is the correct answer.
 		</spiegazione>
 	</domanda>
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="2" id="oca_manual|2|36" question="36">
+		<testo>
+			What is the output of the following code?
+
+			1: public class
+			ArithmeticSample {
+			2: public static void main(String[]
+			args)prova prova
+			prova prova prova {
+			3: int x = 5 * 4 % 3;
+			4: System.out.println(x);
+			5:
+			}}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">2</risposta>
+			<risposta value="B">3</risposta>
+			<risposta value="C">5</risposta>
+			<risposta value="D">6</risposta>
+			<risposta value="E">The code will not compile because of line 3.
+			</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>
+			The * PROVA PROVA PROVA PROVAand % have the same operator
+			precedence, so the expression is
+			evaluated
+			from left-to-right. The
+			result of 5 * 4 is 20, and 20 % 3 is
+			2 (20 divided by 3 is 18, the
+			remainder is 2). The output is 2 and
+			option A is the correct answer.
+		</spiegazione>
+	</domanda>
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
+		chapter="2" id="oca_manual|2|36" question="36">
+		<testo>
+			What is the output of the following code?
+
+			1: public class
+			ArithmeticSample {
+			2: public static void main(String[]
+			args)prova prova
+			prova prova prova {
+			3: int x = 5 * 4 % 3;
+			4: System.out.println(x);
+			5:
+			}}
+		</testo>
+		<risposte type="checkbox">
+			<risposta value="A">2</risposta>
+			<risposta value="B">3</risposta>
+			<risposta value="C">5</risposta>
+			<risposta value="D">6</risposta>
+			<risposta value="E">The code will not compile because of line 3.
+			</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>
+			The * PROVA PROVA PROVA PROVAand % have the same operator
+			precedence, so the expression is
+			evaluated
+			from left-to-right. The
+			result of 5 * 4 is 20, and 20 % 3 is
+			2 (20 divided by 3 is 18, the
+			remainder is 2). The output is 2 and
+			option A is the correct answer.
+		</spiegazione>
+	</domanda>
 </domande>

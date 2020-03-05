@@ -100,19 +100,21 @@ public class ControllerRest {
 	}
 
 	@RequestMapping(value = "/insertListaDomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void insertDomande(@RequestBody List<Domanda> domande) {
+	public @ResponseBody String insertDomande(@RequestBody List<Domanda> domande) {
 		if(domande.size()==0) {
-			System.out.println("INSERIRE ALMENO UNA DOMANDA!");
+			return "INSERIRE ALMENO UNA DOMANDA!";
 		}
 		else if(domande.size()==1) {
 			quizService.insertDomanda(domande.get(0));
+			return "DOMANDA INSERITA!";
 		}
 		else {
 			for (Domanda dom : domande) 
 				quizService.insertDomanda(dom);
 			}
+		return "DOMANDE INSERITE!";
 	}
-
+	
 	@RequestMapping(value = "/updateListaDomande", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List <Domanda> domande, HttpServletResponse response) {
 		List <Domanda> listaDomandeAggiornate = new ArrayList<Domanda>();
