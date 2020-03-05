@@ -26,6 +26,8 @@ public class Utils {
 	public static final String PATH_INDEX_BOOKS = Libro.LIB_PATH+"index.xml";
 
 	
+	
+	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -39,6 +41,22 @@ public class Utils {
         }
 		return childElements;
 	}
+	
+	
+	public static List<String> prendiPathIdDomanda(Domanda d) {
+//		String id = dir + "|" + chapter + "|" + question;
+		List<String> idSezionato = new ArrayList<>();
+		String[] array = d.getId().split("|");
+		String dir = array[0];
+		idSezionato.add(dir);
+		String chapter = array[1];
+		idSezionato.add(chapter);
+		String question = array[2];	
+		idSezionato.add(question);		
+		return idSezionato;
+	}
+	
+	
 	
 	public static List<Libro> readFileLibri() {
 		List<Libro> elencoLibri = new ArrayList<>();
@@ -63,6 +81,8 @@ public class Utils {
 		}
 		return elencoLibri;
 	}
+	
+	
 
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
@@ -263,6 +283,9 @@ public class Utils {
 			e.printStackTrace();
 		}	
 	}
+	
+	
+	
 	
 	
 

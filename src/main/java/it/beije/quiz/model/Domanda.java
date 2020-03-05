@@ -1,9 +1,24 @@
 package it.beije.quiz.model;
 
+import java.io.File;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+
 public class Domanda {
-	
+
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
@@ -17,12 +32,12 @@ public class Domanda {
 	private String rispostaUtente = "";
 	private String rispostaEsatta;
 	private String spiegazione;
-	
-	public Domanda() {}
-	
-	public Domanda(String id, String book, String chapter, int question, String testo,
-			String answerType, List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
+
+	public Domanda() {
+	}
+
+	public Domanda(String id, String book, String chapter, int question, String testo, String answerType,
+			List<Risposta> risposte, String rispostaEsatta, String spiegazione) {
 		this.id = id;
 		this.book = book;
 		this.chapter = chapter;
@@ -33,19 +48,19 @@ public class Domanda {
 		this.risposte = risposte;
 		this.spiegazione = spiegazione;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
-	
+
 	public String getChapter() {
 		return chapter;
 	}
-	
+
 	public String getTesto() {
 		return testo;
 	}
-	
+
 	public String getRispostaEsatta() {
 		return rispostaEsatta;
 	}
@@ -65,23 +80,69 @@ public class Domanda {
 	public int getQuestion() {
 		return question;
 	}
-	
+
 	public String getRispostaUtente() {
 		return rispostaUtente;
 	}
+
 	public void setRispostaUtente(String rispostaUtente) {
 		this.rispostaUtente = rispostaUtente;
 	}
-	
+
 	public String getAnswerType() {
 		return answerType;
 	}
-	
-	public void editXML(Domanda domanda) {
-		// TODO Auto-generated method stub************************************************************************************
-		
+
+	public void editXML(Domanda domanda, String dirLibro, String chapter) {
+		// GAB************************************************************************************
+
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			// Load the input XML document, parse it and return an instance of the
+			// Document class.
+			String filePathXML = Libro.LIB_PATH + dirLibro + chapter + ".xml";
+			Document document = builder.parse(new File(filePathXML));
+
+			Element docElement = document.getElementById("id"); //select domanda from xml by id.
+			
+			NodeList listaCampiDomanda = docElement.getChildNodes();
+
+			for (int i = 0; i < listaCampiDomanda.getLength(); i++) {
+				
+	           Node node = listaCampiDomanda.item(i);
+
+			   if ("testo".equals(node.getNodeName())) {
+				node.setTextContent(domanda.getTesto());
+			   }
+			   if ("risposte".equals(node.getNodeName())) {
+				   node.setTextContent(domanda.getTesto());
+				   NamedNodeMap listaAttr= node.getAttributes();
+				   Node nodeAttrType = listaAttr.getNamedItem("type");
+				   nodeAttrType.setTextContent(domanda.getAnswerType());
+				   
+			   }
+			   if ("risposteEsatte".equals(node.getNodeName())) {
+				   node.setTextContent(domanda.getRispostaEsatta());
+			   }
+			   if ("spiegazione".equals(node.getNodeName())) {
+				   
+				   node.setTextContent(domanda.getSpiegazione());
+			   }
+
+			}
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(document);
+			StreamResult result = new StreamResult(filePathXML);
+			transformer.transform(source, result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
-	
+
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("id : ").append(id).append('\n');
@@ -97,7 +158,7 @@ public class Domanda {
 			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
 		}
 		builder.append("----------------------------\n");
-		
+
 		return builder.toString();
 	}
 
@@ -110,7 +171,7 @@ public class Domanda {
 		builder.append("\"testo\":\"").append(testo).append("\",");
 		builder.append("\"answerType\":\"").append(answerType).append("\",");
 		builder.append("\"risposte\":[");
-		for (Risposta r:risposte) {
+		for (Risposta r : risposte) {
 			builder.append("{\"value\":\"").append(r.getValue()).append("\",");
 			builder.append("\"text\":\"").append(r.getText()).append("\"},");
 		}
