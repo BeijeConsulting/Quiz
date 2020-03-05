@@ -53,7 +53,7 @@ public class RestController {
 	@RequestMapping(value = "/newdomanda", method = RequestMethod.POST)
 	public void insertDomanda(@RequestBody Domanda domanda) throws Exception {
 		String[] path = domanda.getId().split("([|])");
-		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + path[0] + "\\domande_cap" + path[1] + ".xml");
+		Utils.writeDomandeXML(domanda, quizService.baseDirectory + path[0] + "\\domande_cap" + path[1] + ".xml");
 	}
 	
 	@RequestMapping(value = "/newdomande", method = RequestMethod.POST)
@@ -67,8 +67,8 @@ public class RestController {
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public void updateDomanda(@RequestBody Domanda domanda) throws Exception {
 
-		Utils.deleteElement(domanda, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getChapter() + ".xml");
-		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getChapter() + ".xml");
+		Utils.deleteElement(domanda, quizService.baseDirectory + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getChapter() + ".xml");
+		Utils.writeDomandeXML(domanda, quizService.baseDirectory + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getChapter() + ".xml");
 		
 		quizService.ricaricaDomande();
 	}
@@ -95,7 +95,7 @@ public class RestController {
 		}
 		
 		if(domande.size() == 1) {
-			Utils.deleteElement(domande.get(0), "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + libro + "\\domande_cap" + cap + ".xml");
+			Utils.deleteElement(domande.get(0), quizService.baseDirectory + libro + "\\domande_cap" + cap + ".xml");
 		}
 	
 		quizService.ricaricaDomande();
