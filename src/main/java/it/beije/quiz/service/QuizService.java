@@ -4,7 +4,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
@@ -14,7 +19,7 @@ import it.beije.quiz.model.Libro;
 @Service
 public class QuizService {
 	
-	private static final String baseDirectory = "C:\\Users\\Padawan07\\git\\Quiz\\domande\\";
+	private static final String baseDirectory = "C:\\Users\\Padawan01\\git\\Quiz\\domande\\";
 	private static List<Libro> listaLibriInXML = null;
 
 	
@@ -58,6 +63,24 @@ public class QuizService {
 		return domande;
 	}
 	
+	public static  Domanda aggiornaDomanda(Domanda dom) {
+		StringBuilder path = new StringBuilder();
+		path.append(baseDirectory)
+				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
+		List<Domanda> lettura = Utils.readFileDomande(path.toString());
+		for (Domanda doma : lettura) {
+			if (doma.getId().equals(dom.getId())) {
+				Utils.eliminaDomanda(doma, new File(path.toString()));
+				Utils.aggiungiDomanda(dom, new File(path.toString()));
+				return dom;
+			}
+			
+		}
+		return null;
+
+		
+
+	}	
 	
 		
 		

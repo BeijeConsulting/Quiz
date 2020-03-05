@@ -24,12 +24,11 @@ import it.beije.quiz.service.QuizService;
 @RestController
 public class ControllerRest {
 
-
 	@Autowired
 	private QuizService quizService;
 
 	private List<File> listaFile = null;
-	
+
 //	
 //	@RequestMapping(value="/caricaDomanda/{dirLibro}/{capitolo}/{nDomanda}", method=RequestMethod.GET)
 //	public @ResponseBody Domanda getDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda ){
@@ -51,40 +50,38 @@ public class ControllerRest {
 //
 //
 //	}
-	
 
 	@RequestMapping(value = "/domande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
-	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo,@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
+	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo,
+			@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
 		List<Domanda> listaDomande = quizService.getDomande();
-		List<Domanda> domande= new ArrayList<Domanda>();
+		List<Domanda> domande = new ArrayList<Domanda>();
 
-		if(nDomanda==null) {
-			for(Domanda d:listaDomande)
-				if(d.getChapter()==capitolo && Utils.getDirectory(d.getId()).equals(dirLibro))
+		if (nDomanda == null) {
+			for (Domanda d : listaDomande)
+				if (d.getChapter() == capitolo && Utils.getDirectory(d.getId()).equals(dirLibro))
 					domande.add(d);
-		}
-		else {
+		} else {
 			String idDomanda = dirLibro + "|" + capitolo + "|" + nDomanda;
 
-			for(Domanda d : listaDomande)
-				if(d.getId().equals(idDomanda)) {
+			for (Domanda d : listaDomande)
+				if (d.getId().equals(idDomanda)) {
 					domande.add(d);
 					break;
 				}
-			
+
 		}
-		
+
 		return domande;
-		
 
 	}
 
 	@RequestMapping(value = "/insertDomanda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
-	
+
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
-		String dir=Utils.getDirectory(domanda.getId());
+		String dir = Utils.getDirectory(domanda.getId());
 
 		for (Libro l : quizService.getListaLibri()) {
 			if (dir.equals(l.getDir())) {
@@ -113,26 +110,6 @@ public class ControllerRest {
 		File file1 = new File(pathdomanda);
 		Utils.aggiungiDomanda(domanda, file1);
 		return domanda;
-
-	}
-
-	@RequestMapping(value = "/aggionadomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Domanda aggiornaDomanda(@RequestBody Domanda dom) {
-		StringBuilder path = new StringBuilder();
-		path.append(quizService.getBaseDirectory())
-				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
-		List<Domanda> lettura = Utils.readFileDomande(path.toString());
-		for (Domanda doma : lettura) {
-			if (doma.getId().equals(dom.getId())) {
-				Utils.eliminaDomanda(doma, new File(path.toString()));
-				Utils.aggiungiDomanda(dom, new File(path.toString()));
-				return dom;
-			}
-			
-		}
-		return null;
-
-		
 
 	}
 
@@ -166,53 +143,60 @@ public class ControllerRest {
 		return domande;
 	}
 
-	@RequestMapping(value = "/updateListaDomande", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List <Domanda> domande, HttpServletResponse response) {
-		List <Domanda> listaDomandeAggiornate = new ArrayList<Domanda>();
-		Domanda d=null;
-		for(Domanda domanda: domande) {
-			d=aggiornaDomanda(domanda);
-			if (d!=null)
-				listaDomandeAggiornate.add(domanda);
-			else {
-				response.setStatus(204);
-				break;
+	@RequestMapping(value = "/aggiornaDomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List<Domanda> domande,
+			HttpServletResponse response) {
+		List<Domanda> listaDomandeAggiornate = new ArrayList<Domanda>();
+		if (domande.size() == 1) {
+			listaDomandeAggiornate.add(QuizService.aggiornaDomanda(domande.get(0)));
+			
+		} else {
+			
+			Domanda d = null;
+			for (Domanda domanda : domande) {
+				d = QuizService.aggiornaDomanda(domanda);
+				if (d != null)
+					listaDomandeAggiornate.add(domanda);
+				else {
+					response.setStatus(204);
+					break;
+				}
+
 			}
 
+			if (listaDomandeAggiornate == null)
+				response.setStatus(204);
+
 		}
-
-		if(listaDomandeAggiornate==null) 
-			response.setStatus(204);
-
-			return listaDomandeAggiornate;		
-		
-
+		return listaDomandeAggiornate;
 
 	}
+
+	
 
 	@RequestMapping(value = "/deleteDomanda", method = RequestMethod.DELETE)
-	public @ResponseBody boolean  deleteDomanda( HttpServletResponse response, @RequestParam(name="idDomanda",required = true) String idDomanda) {
-		
-		String dirLibro=Utils.getDirectory(idDomanda);
-		int capitolo=Utils.getCapitolo(idDomanda);
-		int nDomanda=Utils.getNDomanda(idDomanda);
-		Domanda d= getDomande(dirLibro,capitolo,nDomanda).get(0);
-		if(d==null) {
+	public @ResponseBody boolean deleteDomanda(HttpServletResponse response,
+			@RequestParam(name = "idDomanda", required = true) String idDomanda) {
+
+		String dirLibro = Utils.getDirectory(idDomanda);
+		int capitolo = Utils.getCapitolo(idDomanda);
+		int nDomanda = Utils.getNDomanda(idDomanda);
+		Domanda d = getDomande(dirLibro, capitolo, nDomanda).get(0);
+		if (d == null) {
 			response.setStatus(204);
 			return false;
-		}
-		else {
-			StringBuilder path = new StringBuilder(quizService.getBaseDirectory()+dirLibro+"\\domande_cap"+ capitolo +".xml");
-	        String pathdomanda= path.toString();
-			File file2=new File(pathdomanda);
-			Utils.eliminaDomanda(d,file2);
+		} else {
+			StringBuilder path = new StringBuilder(
+					quizService.getBaseDirectory() + dirLibro + "\\domande_cap" + capitolo + ".xml");
+			String pathdomanda = path.toString();
+			File file2 = new File(pathdomanda);
+			Utils.eliminaDomanda(d, file2);
 			return true;
-			
+
 		}
-	
+
 	}
 
-	
 //	@RequestMapping(value = "/deleteDomande", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 //	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande, HttpServletResponse response){
 //		
@@ -223,11 +207,5 @@ public class ControllerRest {
 //			deleteDomanda(dirLibro,capitolo,nDomanda,response);
 //			}
 //		}
-	
+
 }
-
-
-	
-	
-	
-
