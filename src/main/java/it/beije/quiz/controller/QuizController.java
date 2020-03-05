@@ -1,7 +1,6 @@
 package it.beije.quiz.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

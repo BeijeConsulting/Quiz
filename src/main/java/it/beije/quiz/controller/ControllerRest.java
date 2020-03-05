@@ -29,27 +29,6 @@ public class ControllerRest {
 
 	private List<File> listaFile = null;
 
-//	
-//	@RequestMapping(value="/caricaDomanda/{dirLibro}/{capitolo}/{nDomanda}", method=RequestMethod.GET)
-//	public @ResponseBody Domanda getDomanda(@PathVariable String dirLibro, @PathVariable int capitolo, @PathVariable int nDomanda ){
-//		List <Domanda> listaDomande= new ArrayList<Domanda>();
-//		List<File> listaFile= Utils.selezionaFileDiInteresse(dirLibro);
-//
-//		for(File f: listaFile) {
-//
-//
-//			listaDomande.addAll(Utils.readFileDomande(f.getPath()));
-//		}
-//
-//		String idDomanda = dirLibro + "|" + capitolo + "|" + nDomanda;
-//		for (Domanda d : listaDomande)
-//			if (d.getId().equals(idDomanda))
-//				return d;
-//
-//		return null;
-//
-//
-//	}
 
 	@RequestMapping(value = "/domande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
 	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo,
@@ -76,72 +55,26 @@ public class ControllerRest {
 
 	}
 
-	@RequestMapping(value = "/insertDomanda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
+
+
 	
-		boolean vero = false;
-		StringBuilder path = new StringBuilder();
-		String dir = Utils.getDirectory(domanda.getId());
-
-		for (Libro l : quizService.getListaLibri()) {
-			if (dir.equals(l.getDir())) {
-				vero = true;
-				break;
-			}
-		}
-		path.append(quizService.getBaseDirectory()).append(dir);
-		File file = new File(path.toString());
-		if (vero != true) {
-			file.mkdir();
-			Libro l = new Libro();
-			l.setDir(dir);
-			l.setIdBook(dir);
-			l.setTitle(domanda.getBook());
-			quizService.getListaLibri().add(l);
-			try {
-				Utils.scriviSuXML(quizService.getListaLibri(), "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		String pathdomanda = path.toString() + "\\" + "domande_cap" + domanda.getChapter() + ".xml";
-		File file1 = new File(pathdomanda);
-		Utils.aggiungiDomanda(domanda, file1);
-		return domanda;
-
-	}
 
 	@RequestMapping(value = "/insertListaDomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Domanda> insertDomande(@RequestBody List<Domanda> domande) {
-
-		for (Domanda dom : domande) {
-			StringBuilder path = new StringBuilder();
-			String dir = Utils.getDirectory(dom.getId());
-			path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\").append(dir);
-			File file = new File(path.toString());
-			if (!file.exists()) {
-				file.mkdir();
-				Libro l = new Libro();
-				l.setDir(dir);
-				l.setIdBook(dir);
-				l.setTitle(dom.getBook());
-				List<Libro> lista = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-				lista.add(l);
-				try {
-
-					Utils.scriviSuXML(lista, "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			file = new File(path.toString() + "\\domande_cap" + dom.getChapter() + ".xml");
-			Utils.aggiungiDomanda(dom, file);
+	public @ResponseBody String insertDomande(@RequestBody List<Domanda> domande) {
+		if(domande.size()==0) {
+			return "INSERIRE ALMENO UNA DOMANDA!";
 		}
-		return domande;
+		else if(domande.size()==1) {
+			quizService.insertDomanda(domande.get(0));
+			return "DOMANDA INSERITA!";
+		}
+		else {
+			for (Domanda dom : domande) 
+				quizService.insertDomanda(dom);
+			}
+		return "DOMANDE INSERITE!";
 	}
+
 
 	@RequestMapping(value = "/aggiornaDomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List<Domanda> domande,
@@ -197,15 +130,6 @@ public class ControllerRest {
 
 	}
 
-//	@RequestMapping(value = "/deleteDomande", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody void deleteDomande(@RequestBody List <Domanda> domande, HttpServletResponse response){
-//		
-//		for(Domanda d: domande) {
-//			int nDomanda= d.getQuestion();
-//			String dirLibro=Utils.getDirectory(d.getId());
-//			int capitolo=d.getChapter();
-//			deleteDomanda(dirLibro,capitolo,nDomanda,response);
-//			}
-//		}
+
 
 }

@@ -4,12 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
@@ -62,7 +57,7 @@ public class QuizService {
 
 		return domande;
 	}
-	
+
 	public Domanda aggiornaDomanda(Domanda dom) {
 		caricaDomande();
 		StringBuilder path = new StringBuilder();
@@ -87,6 +82,43 @@ public class QuizService {
 		
 
 	}	
+
+	public Domanda insertDomanda(Domanda domanda){
+		caricaDomande();
+		boolean vero = false;
+		StringBuilder path = new StringBuilder();
+		String dir=Utils.getDirectory(domanda.getId());
+
+		for (Libro l : getListaLibri()) {
+			if (dir.equals(l.getDir())) {
+				vero = true;
+				break;
+			}
+		}
+		path.append(getBaseDirectory()).append(dir);
+		File file = new File(path.toString());
+		if (vero != true) {
+			file.mkdir();
+			Libro l = new Libro();
+			l.setDir(dir);
+			l.setIdBook(dir);
+			l.setTitle(domanda.getBook());
+			getListaLibri().add(l);
+			try {
+				Utils.scriviSuXML(getListaLibri(), "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		String pathdomanda = path.toString() + "\\" + "domande_cap" + domanda.getChapter() + ".xml";
+		File file1 = new File(pathdomanda);
+		Utils.aggiungiDomanda(domanda, file1);
+		domande.add(domanda);
+		return domanda;
+
+	}
+
 	
 		
 		
