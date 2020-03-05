@@ -1,32 +1,18 @@
 package it.beije.quiz.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Risposta;
 import it.beije.quiz.service.QuizService;
 
 
@@ -74,6 +60,11 @@ public class RestController {
 			String[] path = d.getId().split("([|])");
 			Utils.writeDomandeXML(d, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + path[0] + "\\domande_cap" + path[1] + ".xml");
 		}
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public void updateDomanda(@RequestBody Domanda domanda) {
+		
 	}
 
 	private List<Domanda> domandeLibro(List<Domanda> d, String libro) {
