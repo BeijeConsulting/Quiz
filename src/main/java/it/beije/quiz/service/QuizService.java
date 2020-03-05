@@ -13,11 +13,11 @@ import it.beije.quiz.model.Libro;
 
 @Service
 public class QuizService {
-	
+
 	private static final String baseDirectory = "C:\\Users\\Padawan14\\git\\Quiz\\domande\\";
 	private static List<Libro> listaLibriInXML = null;
 
-	
+
 	public String getBaseDirectory() {
 		return baseDirectory;
 	}
@@ -25,7 +25,7 @@ public class QuizService {
 	public  List <Libro> getListaLibri(){
 		if(listaLibriInXML==null)
 			listaLibriInXML=Utils.caricaLibriDaIndexXML(baseDirectory+"index.xml");
-		
+
 		return listaLibriInXML;
 	}
 
@@ -59,27 +59,21 @@ public class QuizService {
 	}
 
 	public Domanda aggiornaDomanda(Domanda dom) {
-		caricaDomande();
 		StringBuilder path = new StringBuilder();
 		path.append(baseDirectory)
-				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
-		List <Domanda> nuoveDomande=new ArrayList<Domanda>();
+		.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
 		Domanda domandaAgg=null;
 		for (Domanda doma : domande) {
 			if (doma.getId().equals(dom.getId())) {
-				nuoveDomande.add(dom);
 				Utils.eliminaDomanda(doma, new File(path.toString()));
 				Utils.aggiungiDomanda(dom, new File(path.toString()));
 				domandaAgg=dom;
-			} else {
-				nuoveDomande.add(doma);
-			}
-			
-		}
-		domande=nuoveDomande;
+			} 	
+		}		caricaDomande();
+
 		return domandaAgg;
 
-		
+
 
 	}	
 
@@ -105,7 +99,7 @@ public class QuizService {
 			l.setTitle(domanda.getBook());
 			getListaLibri().add(l);
 			try {
-				Utils.scriviSuXML(getListaLibri(), "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
+				Utils.scriviSuXML(getListaLibri(), baseDirectory+"index.xml");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -119,9 +113,20 @@ public class QuizService {
 
 	}
 
-	
-		
-		
-	
-	
+	public void elimina(Domanda d) {
+		caricaDomande();
+
+		List <Domanda> nuoveDomande=new ArrayList<Domanda>();
+		StringBuilder path = new StringBuilder(
+				baseDirectory + Utils.getDirectory(d.getId()) + "\\domande_cap" + d.getChapter()+ ".xml");
+		String pathdomanda = path.toString();
+		File file2 = new File(pathdomanda);
+		Utils.eliminaDomanda(d, file2);
+		caricaDomande();
+	}		
+
+
+
+
+
 }

@@ -1,36 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|6" question="6"><testo>
-			Given the following classes, what is the maximum number of
-			imports that can be removed
-			and have the code still compile?
-
-			package aquarium; public class Water { }
-
-			package aquarium;
-			import java.lang.*;
-			import java.lang.System;
-			import
-			aquarium.Water;
-			import aquarium.*;
-			public class Tank {
-			public void print(Water water) {
-			System.out.println(water); } }
-		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">1</risposta><risposta value="">2</risposta><risposta value="">3</risposta><risposta value="">4</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|6" question="6"><testo>
-			Given the following classes, what is the maximum number of
-			imports that can be removed
-			and have the code still compile?
-
-			package aquarium; public class Water { }
-
-			package aquarium;
-			import java.lang.*;
-			import java.lang.System;
-			import
-			aquarium.Water;
-			import aquarium.*;
-			public class Tank {
-			public void print(Water water) {
-			System.out.println(water); } }
-		</testo><risposte type="checkbox"><risposta value="">0</risposta><risposta value="">1</risposta><risposta value="">2</risposta><risposta value="">3</risposta><risposta value="">4</risposta><risposta value="">Does not compile.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|7" question="7"><testo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|7" question="7"><testo>
 			Given the following classes, which of the following snippets
 			can be inserted in place of
 			INSERT IMPORTS HERE and have the code

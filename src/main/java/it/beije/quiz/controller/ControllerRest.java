@@ -119,11 +119,7 @@ public class ControllerRest {
 			response.setStatus(204);
 			return false;
 		} else {
-			StringBuilder path = new StringBuilder(
-					quizService.getBaseDirectory() + dirLibro + "\\domande_cap" + capitolo + ".xml");
-			String pathdomanda = path.toString();
-			File file2 = new File(pathdomanda);
-			Utils.eliminaDomanda(d, file2);
+			quizService.elimina(d);
 			return true;
 
 		}
