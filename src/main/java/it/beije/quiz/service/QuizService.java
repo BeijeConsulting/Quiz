@@ -19,7 +19,7 @@ import it.beije.quiz.model.Libro;
 @Service
 public class QuizService {
 	
-	private static final String baseDirectory = "C:\\Users\\Padawan01\\git\\Quiz\\domande\\";
+	private static final String baseDirectory = "C:\\Users\\Padawan14\\git\\Quiz\\domande\\";
 	private static List<Libro> listaLibriInXML = null;
 
 	
@@ -63,20 +63,26 @@ public class QuizService {
 		return domande;
 	}
 	
-	public static  Domanda aggiornaDomanda(Domanda dom) {
+	public Domanda aggiornaDomanda(Domanda dom) {
+		caricaDomande();
 		StringBuilder path = new StringBuilder();
 		path.append(baseDirectory)
 				.append(Utils.getDirectory(dom.getId()) + "\\domande_cap" + Utils.getCapitolo(dom.getId()) + ".xml");
-		List<Domanda> lettura = Utils.readFileDomande(path.toString());
-		for (Domanda doma : lettura) {
+		List <Domanda> nuoveDomande=new ArrayList<Domanda>();
+		Domanda domandaAgg=null;
+		for (Domanda doma : domande) {
 			if (doma.getId().equals(dom.getId())) {
+				nuoveDomande.add(dom);
 				Utils.eliminaDomanda(doma, new File(path.toString()));
 				Utils.aggiungiDomanda(dom, new File(path.toString()));
-				return dom;
+				domandaAgg=dom;
+			} else {
+				nuoveDomande.add(doma);
 			}
 			
 		}
-		return null;
+		domande=nuoveDomande;
+		return domandaAgg;
 
 		
 

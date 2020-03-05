@@ -78,7 +78,7 @@ public class ControllerRest {
 
 	@RequestMapping(value = "/insertDomanda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
-
+	
 		boolean vero = false;
 		StringBuilder path = new StringBuilder();
 		String dir = Utils.getDirectory(domanda.getId());
@@ -148,13 +148,13 @@ public class ControllerRest {
 			HttpServletResponse response) {
 		List<Domanda> listaDomandeAggiornate = new ArrayList<Domanda>();
 		if (domande.size() == 1) {
-			listaDomandeAggiornate.add(QuizService.aggiornaDomanda(domande.get(0)));
+			listaDomandeAggiornate.add(quizService.aggiornaDomanda(domande.get(0)));
 			
 		} else {
 			
 			Domanda d = null;
 			for (Domanda domanda : domande) {
-				d = QuizService.aggiornaDomanda(domanda);
+				d = quizService.aggiornaDomanda(domanda);
 				if (d != null)
 					listaDomandeAggiornate.add(domanda);
 				else {

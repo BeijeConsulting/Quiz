@@ -1,96 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|3" question="3"><testo>
-			Which of the following are true? (Choose all that apply)
-			4:
-			short numPets = 5;
-			5: int numGrains = 5.6;
-			6: String name = "Scruffy";
-			7: numPets.length();
-			8: numGrains.length();
-			9: name.length();
-		</testo><risposte type="checkbox"><risposta value="">Line 4 generates a compiler error.</risposta><risposta value="">Line 5 generates a compiler error.</risposta><risposta value="">Line 6 generates a compiler error</risposta><risposta value="">Line 7 generates a compiler error</risposta><risposta value="">Line 8 generates a compiler error.</risposta><risposta value="">Line 9 generates a compiler error.</risposta><risposta value="">The code compiles as is</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|3" question="3"><testo>
-			Which of the following are true? (Choose all that apply)
-			4:
-			short numPets = 5;
-			5: int numGrains = 5.6;
-			6: String name = "Scruffy";
-			7: numPets.length();
-			8: numGrains.length();
-			9: name.length();
-		</testo><risposte type="checkbox"><risposta value="">Line 4 generates a compiler error.</risposta><risposta value="">Line 5 generates a compiler error.</risposta><risposta value="">Line 6 generates a compiler error</risposta><risposta value="">Line 7 generates a compiler error</risposta><risposta value="">Line 8 generates a compiler error.</risposta><risposta value="">Line 9 generates a compiler error.</risposta><risposta value="">The code compiles as is</risposta></risposte><risposteEsatte>B, D, E</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|4" question="4"><testo>
-			Given the following class, which of the following is true?
-			(Choose all that apply)
-
-			1: public class Snake {
-			2:
-			3: public void shed(boolean time) {
-			4:
-			5: if (time) {
-			6:
-			7: }
-			8: System.out.println(result);
-			9:
-			10: }
-			11: }
-		</testo><risposte type="checkbox"><risposta value="">If String result = "done"; is inserted on
-				line 2, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
-				line 4, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
-				line 6, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
-				line 9, the code will compile.</risposta><risposta value="">None of the above changes will make the code
-				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|4" question="4"><testo>
-			Given the following class, which of the following is true?
-			(Choose all that apply)
-
-			1: public class Snake {
-			2:
-			3: public void shed(boolean time) {
-			4:
-			5: if (time) {
-			6:
-			7: }
-			8: System.out.println(result);
-			9:
-			10: }
-			11: }
-		</testo><risposte type="checkbox"><risposta value="">If String result = "done"; is inserted on
-				line 2, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
-				line 4, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
-				line 6, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
-				line 9, the code will compile.</risposta><risposta value="">None of the above changes will make the code
-				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|5" question="5"><testo>
-			Given the following classes, which of the following can
-			independently replace INSERT
-			IMPORTS HERE to make the code compile?
-			(Choose all that apply)
-
-			package aquarium;
-			public class Tank { }
-
-			package aquarium.jellies;
-			public class Jelly { }
-
-			package visitor;
-			INSERT IMPORTS HERE
-			public class AquariumVisitor {
-			public void admire(Jelly jelly) { } }
-		</testo><risposte type="checkbox"><risposta value="">import aquarium.*;</risposta><risposta value="">import aquarium.*.Jelly;</risposta><risposta value="">import aquarium.jellies.Jelly;</risposta><risposta value="">import aquarium.jellies.*;</risposta><risposta value="">import aquarium.jellies.Jelly.*;</risposta><risposta value="">None of these can make the code compile.
-			</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|5" question="5"><testo>
-			Given the following classes, which of the following can
-			independently replace INSERT
-			IMPORTS HERE to make the code compile?
-			(Choose all that apply)
-
-			package aquarium;
-			public class Tank { }
-
-			package aquarium.jellies;
-			public class Jelly { }
-
-			package visitor;
-			INSERT IMPORTS HERE
-			public class AquariumVisitor {
-			public void admire(Jelly jelly) { } }
-		</testo><risposte type="checkbox"><risposta value="">import aquarium.*;</risposta><risposta value="">import aquarium.*.Jelly;</risposta><risposta value="">import aquarium.jellies.Jelly;</risposta><risposta value="">import aquarium.jellies.*;</risposta><risposta value="">import aquarium.jellies.Jelly.*;</risposta><risposta value="">None of these can make the code compile.
-			</risposta></risposte><risposteEsatte>C, D</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|6" question="6"><testo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|6" question="6"><testo>
 			Given the following classes, what is the maximum number of
 			imports that can be removed
 			and have the code still compile?
@@ -532,4 +440,46 @@ fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</ri
 ghuiohvhjiojhjo&#13;
 fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|2154" question="2154"><testo>fghjioihjghbjklplkjkhb&#13;
 ghuiohvhjiojhjo&#13;
-fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda></domande>
+fyguhihughu</testo><risposte type="radio"><risposta value="A">uyggihjjhjblk,</risposta><risposta value="B">ojhhbjhljbkil</risposta><risposta value="C">jbnkjkbjk</risposta></risposte><risposteEsatte>C</risposteEsatte><spiegazione>iugtiugtuiguiguiiuigi</spiegazione></domanda><domanda book="oca_manual" chapter="5" id="null|5|2" question="2"><testo>
+			Aggionra123}
+		</testo><risposte type="checkbox"><risposta value="A">Platypus</risposta><risposta value="B">Mammal</risposta><risposta value="C">PlatypusMammal</risposta><risposta value="D">MammalPlatypus</risposta><risposta value="E">The code will not compile because of line 8.</risposta><risposta value="F">The code will not compile because of line 11.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
+			The code will not compile because the parent class Mammal doesn’t define a no-argument constructor, so the first line of a Platypus constructor should be an explicit call
+			to super(int age). If there was such a call, then the output would be MammalPlatypus,
+			since the super constructor is executed before the child constructor.
+		</spiegazione></domanda><domanda book="oca_manual" chapter="5" id="null|5|2" question="2"><testo>
+			Aggionra123}
+		</testo><risposte type="checkbox"><risposta value="A">Platypus</risposta><risposta value="B">Mammal</risposta><risposta value="C">PlatypusMammal</risposta><risposta value="D">MammalPlatypus</risposta><risposta value="E">The code will not compile because of line 8.</risposta><risposta value="F">The code will not compile because of line 11.</risposta></risposte><risposteEsatte>E</risposteEsatte><spiegazione> 
+			The code will not compile because the parent class Mammal doesn’t define a no-argument constructor, so the first line of a Platypus constructor should be an explicit call
+			to super(int age). If there was such a call, then the output would be MammalPlatypus,
+			since the super constructor is executed before the child constructor.
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|4" question="4"><testo>
+			Testo aggiornato {
+			4:
+			5: if (time) {
+			6:
+			7: }
+			8: System.out.println(result);
+			9:
+			10: }
+			11: }
+		</testo><risposte type="checkbox"><risposta value="">If String result = "done"; is inserted on
+				line 2, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
+				line 4, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
+				line 6, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
+				line 9, the code will compile.</risposta><risposta value="">None of the above changes will make the code
+				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|5" question="5"><testo>
+			Testo aggiornato {
+			4:
+			5: if (time) {
+			6:
+			7: }
+			8: System.out.println(result);
+			9:
+			10: }
+			11: }
+		</testo><risposte type="checkbox"><risposta value="">If String result = "done"; is inserted on
+				line 2, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
+				line 4, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
+				line 6, the code will compile.</risposta><risposta value="">If String result = "done"; is inserted on
+				line 9, the code will compile.</risposta><risposta value="">None of the above changes will make the code
+				compile.</risposta></risposte><risposteEsatte>A, B</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda></domande>
