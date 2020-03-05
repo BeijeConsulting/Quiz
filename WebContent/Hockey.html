@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Gang</title>
+</head>
+<style>
+    body{
+        background-image: url("Icehockeylayout.svg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 610px; 
+        background-size: cover;
+    }
+
+    .Player1{
+    background-color: #ff00bf;
+    position: absolute;
+	top: 250px;
+	left: 500px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	filter: drop-shadow(0px 0px 20px Black);
+    }
+
+    .Porta1{
+        background-color: black;
+        position: absolute;
+        top: 220px;
+        left: 100px;
+        width: 30px;
+        height: 200px;
+    }
+
+    .Player2{
+    background-color: #ffe066;
+    position: absolute;
+    top: 250px;
+    left: 750px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+	filter: drop-shadow(0px 0px 20px Black);
+    }
+
+    .Porta2{
+        background-color: black;
+        position: absolute;
+        top: 220px;
+        left: 1215px;
+        width: 30px;
+        height: 200px;
+    }
+
+    .Ball{
+    background-color: Black;
+    position: absolute;
+	  top: 278px;
+    left: 655px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+	  filter: drop-shadow(0px 0px 20px Black);
+    }
+</style>
+
+<body>
+    <div id="Player1" class="Player1"></div>
+    <div class="Player2"></div>
+    <div class="Porta1"></div>
+    <div class="Porta2"></div>
+    <div id="Ball" class="Ball" onClick="BallMovement()"></div>
+</body>
+<script>
+  
+    //Make the DIV element draggagle:
+    var ball = document.getElementById("Ball"); 
+     dragElement(document.getElementById("Player1"));
+     BallMovement(document.getElementById("Ball"));
+    
+    
+    function dragElement(elmnt) {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      if (document.getElementById(elmnt.id)) {
+        console.log(elmnt.id + "header");
+        /* if present, the header is where you move the DIV from:*/
+        elmnt.onmousedown = dragMouseDown;
+        
+      }
+    
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+    
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
+    
+      function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+
+    function setup(){
+        createCanvas(window.outerWidth, window.outerHeight);
+      }
+
+      
+      function BallMovement(){
+        console.log("Che dici");
+
+        ball.style.left = 30 + "px";
+      }
+
+      
+    </script>
+</html>
