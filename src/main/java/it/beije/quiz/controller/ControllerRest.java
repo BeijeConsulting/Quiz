@@ -79,43 +79,6 @@ public class ControllerRest {
 
 	}
 
-	@RequestMapping(value = "/insertDomanda", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Domanda insertDomande(@RequestBody Domanda domanda) {
-	
-		boolean vero = false;
-		StringBuilder path = new StringBuilder();
-		String dir=Utils.getDirectory(domanda.getId());
-
-		for (Libro l : quizService.getListaLibri()) {
-			if (dir.equals(l.getDir())) {
-				vero = true;
-				break;
-			}
-		}
-		path.append(quizService.getBaseDirectory()).append(dir);
-		File file = new File(path.toString());
-		if (vero != true) {
-			file.mkdir();
-			Libro l = new Libro();
-			l.setDir(dir);
-			l.setIdBook(dir);
-			l.setTitle(domanda.getBook());
-			quizService.getListaLibri().add(l);
-			try {
-				Utils.scriviSuXML(quizService.getListaLibri(), "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		String pathdomanda = path.toString() + "\\" + "domande_cap" + domanda.getChapter() + ".xml";
-		File file1 = new File(pathdomanda);
-		Utils.aggiungiDomanda(domanda, file1);
-		return domanda;
-
-	}
-
 	@RequestMapping(value = "/aggionadomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda aggiornaDomanda(@RequestBody Domanda dom) {
 		StringBuilder path = new StringBuilder();
@@ -137,33 +100,17 @@ public class ControllerRest {
 	}
 
 	@RequestMapping(value = "/insertListaDomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Domanda> insertDomande(@RequestBody List<Domanda> domande) {
-
-		for (Domanda dom : domande) {
-			StringBuilder path = new StringBuilder();
-			String dir = Utils.getDirectory(dom.getId());
-			path.append("C:\\Users\\Padawan07\\git\\Quiz\\domande\\").append(dir);
-			File file = new File(path.toString());
-			if (!file.exists()) {
-				file.mkdir();
-				Libro l = new Libro();
-				l.setDir(dir);
-				l.setIdBook(dir);
-				l.setTitle(dom.getBook());
-				List<Libro> lista = Utils.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-				lista.add(l);
-				try {
-
-					Utils.scriviSuXML(lista, "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			file = new File(path.toString() + "\\domande_cap" + dom.getChapter() + ".xml");
-			Utils.aggiungiDomanda(dom, file);
+	public @ResponseBody void insertDomande(@RequestBody List<Domanda> domande) {
+		if(domande.size()==0) {
+			System.out.println("INSERIRE ALMENO UNA DOMANDA!");
 		}
-		return domande;
+		else if(domande.size()==1) {
+			quizService.insertDomanda(domande.get(0));
+		}
+		else {
+			for (Domanda dom : domande) 
+				quizService.insertDomanda(dom);
+			}
 	}
 
 	@RequestMapping(value = "/updateListaDomande", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -58,6 +58,43 @@ public class QuizService {
 		return domande;
 	}
 	
+	public Domanda insertDomanda(Domanda domanda){
+		boolean vero = false;
+		StringBuilder path = new StringBuilder();
+		String dir=Utils.getDirectory(domanda.getId());
+
+		for (Libro l : getListaLibri()) {
+			if (dir.equals(l.getDir())) {
+				vero = true;
+				break;
+			}
+		}
+		path.append(getBaseDirectory()).append(dir);
+		File file = new File(path.toString());
+		if (vero != true) {
+			file.mkdir();
+			Libro l = new Libro();
+			l.setDir(dir);
+			l.setIdBook(dir);
+			l.setTitle(domanda.getBook());
+			getListaLibri().add(l);
+			try {
+				Utils.scriviSuXML(getListaLibri(), "C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		String pathdomanda = path.toString() + "\\" + "domande_cap" + domanda.getChapter() + ".xml";
+		File file1 = new File(pathdomanda);
+		Utils.aggiungiDomanda(domanda, file1);
+		domande.add(domanda);
+		return domanda;
+
+	}
+		
+	
 	
 		
 		
