@@ -210,52 +210,31 @@ public class Utils {
 
 	// delete Element XML
 	public static void deleteElement(Domanda domanda, String pathfile) throws ParserConfigurationException, SAXException, IOException, TransformerException {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		File f = new File(pathfile);
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+		Document document = documentBuilder.parse(pathfile);
+		Element root = document.getDocumentElement(); // domande
+		System.out.println("Root: " + root.getTagName());
+		NodeList nodiDomanda = root.getElementsByTagName("domanda");
+		System.out.println(nodiDomanda.getLength());
+		for(int i = 0; i < nodiDomanda.getLength(); i++) {
+			Node n = nodiDomanda.item(i);
+		    if (n.getNodeType() == Node.ELEMENT_NODE) {
+		        Element elem = (Element) n;
+		        if(elem.getAttribute("id").equals(domanda.getId())) {
+		        	root.removeChild(elem);
+		        	System.out.println("delete");
+		        	break;
+		        }
+		    }
+		}
 		
-		Document document;
-		document = builder.parse(f);
-		
-		System.out.println(pathfile);
+		DOMSource source = new DOMSource(document);
 
-//		Element docElement;
-//		docElement = document.getElementById(domanda.getId());
-//		document.removeChild(docElement);
-		
-//		NodeList nodes = document.getChildNodes();
-//		System.out.println(nodes.getLength());
-//		for (int i = 0; i < nodes.getLength(); i++) {
-//            Node nNode = nodes.item(i);
-//            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-//                Element eElement = (Element) nNode;
-//                if(eElement.getElementsByTagName("domande")..equals(domanda.getId())) {
-//                    nNode.removeChild(nNode);
-//                    System.out.println("elimina");
-//                }
-//            }
-//        }
-		
-		
-		NodeList nodes = document.getElementsByTagName("domanda");
-		System.out.println(nodes.getLength()); // 1
-		
-        for(int i=0;i<nodes.getLength();i++) {
-        	Node nNode = nodes.item(i);
-        	Element docEl = (Element) nNode;
-        	System.out.println(docEl.getTagName());
-        	System.out.println(docEl.getAttribute("id"));
-        	if(docEl.getAttribute("id").equals(domanda.getId())) {
-        		//nNode.removeChild(docEl);
-//        		document.removeChild(docEl);
-        		nNode.removeChild(docEl.getElementsByTagName("domanda").item(0));
-        		System.out.println("ELIMINATO");
-        	}
-        }
-		// Output to console for testing
-		// StreamResult result = new StreamResult(System.out);
-
-		System.out.println("Domanda eliminata!");
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		StreamResult result = new StreamResult(pathfile);
+		transformer.transform(source, result);
 	}
 
 	public static String formattaTesto(String testo) {

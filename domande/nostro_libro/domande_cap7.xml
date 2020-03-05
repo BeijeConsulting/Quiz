@@ -11,20 +11,9 @@
 		<risposteEsatte>AC</risposteEsatte>
 		<spiegazione>spiegazione</spiegazione>
 	</domanda>
-	<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|1"
-		question="1">
-		<testo>testo della domanda da inserire</testo>
-		<risposte type="checkbox">
-			<risposta value="A">aaa</risposta>
-			<risposta value="B">bbb</risposta>
-			<risposta value="C">ccc</risposta>
-		</risposte>
-		<risposteEsatte>AC</risposteEsatte>
-		<spiegazione>spiegazione</spiegazione>
-	</domanda>
 	<domanda book="Libro Dinal" chapter="7" id="nostro_libro|7|3"
 		question="1">
-		<testo>testo della domanda da inserire</testo>
+		<testo>hhhhhhhhhhhhhhhhhhhhhhhhhhh</testo>
 		<risposte type="checkbox">
 			<risposta value="A">aaa</risposta>
 			<risposta value="B">bbb</risposta>

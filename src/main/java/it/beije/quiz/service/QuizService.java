@@ -43,4 +43,7 @@ public class QuizService {
 		return domande;
 	}
 
+	public void ricaricaDomande() {
+		caricaDomande();
+	}
 }

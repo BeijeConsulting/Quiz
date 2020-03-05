@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +20,10 @@ import it.beije.quiz.service.QuizService;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
-
+	
 	@Autowired
 	private QuizService quizService;
-
+	
 	@RequestMapping(value = {"/domande", "/domande/{libro}", "/domande/{libro}/{capitolo}",
 	"/domande/{libro}/{capitolo}/{question}"}, method = RequestMethod.GET)
 	public @ResponseBody List<Domanda> getDomande(@PathVariable(required = false) String libro, 
@@ -63,8 +65,40 @@ public class RestController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public void updateDomanda(@RequestBody Domanda domanda) {
+	public void updateDomanda(@RequestBody Domanda domanda) throws Exception {
+
+		Utils.deleteElement(domanda, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getChapter() + ".xml");
+		Utils.writeDomandeXML(domanda, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + domanda.getId().split("([|])")[0] + "\\domande_cap" + domanda.getChapter() + ".xml");
 		
+		quizService.ricaricaDomande();
+	}
+	
+	@RequestMapping(value = "/delete/{libro}/{cap}/{question}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String libro, @PathVariable String cap, @PathVariable String question) throws ParserConfigurationException, SAXException, IOException, TransformerException {
+		String id = libro + "|" + cap + "|" + question;
+		
+		List<Domanda> domande = quizService.getDomande();
+			
+		if(libro != null) {
+			domande = domandeLibro(domande, libro);
+			System.out.println("Libro: " + domande.size());
+			
+			if(cap != null) {
+				domande = domandeCapitolo(domande, cap);
+				System.out.println("Cap: " + domande.size());
+				
+				if(question != null) {
+					domande = domandeQuestion(domande, question);
+					System.out.println("Dom: " + domande.size());
+				}
+			}
+		}
+		
+		if(domande.size() == 1) {
+			Utils.deleteElement(domande.get(0), "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + libro + "\\domande_cap" + cap + ".xml");
+		}
+	
+		quizService.ricaricaDomande();
 	}
 
 	private List<Domanda> domandeLibro(List<Domanda> d, String libro) {
