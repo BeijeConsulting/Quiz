@@ -60,7 +60,7 @@ public class RestController {
 	public void insertDomande(@RequestBody List<Domanda> domande) throws Exception {
 		for(Domanda d : domande) {
 			String[] path = d.getId().split("([|])");
-			Utils.writeDomandeXML(d, "C:\\Users\\Padawan04\\git\\Quiz\\domande\\" + path[0] + "\\domande_cap" + path[1] + ".xml");
+			Utils.writeDomandeXML(d, quizService.baseDirectory + path[0] + "\\domande_cap" + path[1] + ".xml");
 		}
 	}
 	
