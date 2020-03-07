@@ -3,19 +3,21 @@ package it.beije.quiz;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.regex.Pattern;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.beije.quiz.model.Domanda;
 
 public class Utils {
 
-	
-	public static final String BASE_DIRECTORY = "C:\\Users\\" + System.getProperty("user.name") +"\\git\\Quiz\\domande\\";
+	public static final String BASE_DIRECTORY = "C:\\Users\\" + System.getProperty("user.name")
+			+ "\\git\\Quiz\\domande\\";
+
 	/*--------------------------------------*/
-	/* 		General Utils Methods			*/
+	/* General Utils Methods */
 	/*--------------------------------------*/
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
@@ -40,7 +42,7 @@ public class Utils {
 
 		return rispostaEsatta.length() == 0;
 	}
-		
+
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 
@@ -54,13 +56,14 @@ public class Utils {
 		}
 		return childElements;
 	}
-	
-	public static int trovaUltimoCapitolo(String dir) {  //5032020___GAB___non è più servito ma potrebbe serivere, trova l'ultimo capitolo xml dentro un dir.
+
+	public static int trovaUltimoCapitolo(String dir) { // 5032020___GAB___non è più servito ma potrebbe serivere, trova
+														// l'ultimo capitolo xml dentro un dir.
 
 		File file = new File(BASE_DIRECTORY + dir);
 		if (file.isDirectory()) {
 			File[] lista = file.listFiles();
-			for(File f : lista) {
+			for (File f : lista) {
 				System.out.println("file dentro dir: " + f);
 			}
 			if (lista.length == 0) {
@@ -74,8 +77,9 @@ public class Utils {
 
 		return 0;
 	}
-	
-	public static boolean isNumber(String s) { //5032020___ANDRE___controlla se la stringa è un numero. Sì true No false
+
+	public static boolean isNumber(String s) { // 5032020___ANDRE___controlla se la stringa è un numero. Sì true No
+												// false
 		try {
 			Integer.parseInt(s);
 			return true;
@@ -83,8 +87,19 @@ public class Utils {
 			return false;
 		}
 	}
-	/*--------------------------------------*/
 
-	
+	public static String getDirectoryFromDomanda(Domanda domanda) {
+
+		String idDom = domanda.getId();
+		System.out.println("id domanda:---" + idDom);
+		String[] temp = idDom.split(Pattern.quote("|"));
+		for(String a : temp) {
+			System.out.println("temp:-----" + a);
+			System.out.println("\n");
+		}
+		return temp[0];
+	}
+
+	/*--------------------------------------*/
 
 }

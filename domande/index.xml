@@ -5,4 +5,10 @@
 	<quiz dir="oca_certification_guide_manning"
 		id_book="oca_certification_guide_manning"
 		title="OCA Java SE 8 Programmer I Certification Guide" />
+	<quiz dir="test_gabriele4" id_book="test_gabriele4"
+		title="test_gabriele4" />
+		<quiz dir="test_gabriele5" id_book="test_gabriele5"
+		title="test_gabriele5" />
+	<quiz dir="test_gabriele7" id_book="test_gabriele7"
+		title="test_gabriele7" />
 </index>
