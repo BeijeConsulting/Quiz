@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande><domanda book="Cicciogamerèunciccionedimerda" chapter="1" id="1" question="1"><testo>sfgasfgf</testo><risposte type="checkbox"><risposta value="A">Si</risposta><risposta value="B">NO</risposta><risposta value="C">Forse</risposta><risposta value="D">pERCHè</risposta></risposte><risposteEsatte>AC</risposteEsatte><spiegazione>DFGFGSZF</spiegazione></domanda></domande>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="Cicciogamerèunciccionedimerda" chapter="1"
+		id="1" question="1">
+		<testo>sfgasfgf</testo>
+		<risposte type="checkbox">
+			<risposta value="A">Si</risposta>
+			<risposta value="B">NO</risposta>
+			<risposta value="C">Forse</risposta>
+			<risposta value="D">pERCHè</risposta>
+		</risposte>
+		<risposteEsatte>AC</risposteEsatte>
+		<spiegazione>DFGFGSZF</spiegazione>
+	</domanda>
+</domande>
