@@ -16,6 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import it.beije.quiz.Utils;
@@ -88,7 +89,7 @@ public class QuizService {
 				int question = Integer.parseInt(domanda.getAttribute("question"));
 				String testo = contenutoDomanda.get(0).getTextContent();
 				String id = dir + "|" + chapter + "|" + question; // modifico in runtime l'id.
-//				System.out.println("ID: " + id); // Debug
+				// System.out.println("ID: " + id); // Debug
 
 				// caricare le risposte possibili
 				rispostePossibili = contenutoDomanda.get(1);
@@ -121,19 +122,66 @@ public class QuizService {
 		return arrayDomande;
 	}
 
-	public boolean aggiornaDomandaInXML(Domanda dom) throws Exception {
+	public boolean eliminaDomandaInXML(Domanda PresenteNelXML) throws Exception {
+
 		StringBuilder path = new StringBuilder();
-		
-		String capitolo = Utils.isNumber(dom.getChapter()) ? "domande_cap" + dom.getChapter()
-				: "domanda_" + dom.getChapter();
-		path.append(BASE_DIRECTORY).append(Utils.getDirectoryFromDomanda(dom)).append("\\").append(capitolo)
+		/************
+		 * LOCALIZZO FILE CONTENENTE LA DOMANDA DA ELIMINARE
+		 ***********************/
+		String capitolo = Utils.isNumber(PresenteNelXML.getChapter()) ? "domande_cap" + PresenteNelXML.getChapter()
+				: "domanda_" + PresenteNelXML.getChapter();
+		path.append(BASE_DIRECTORY).append(Utils.getDirectoryFromDomanda(PresenteNelXML)).append("\\").append(capitolo)
+				.append(".xml");
+
+		System.out.println("Debug QuizService:...:...:...:...:..:" + path.toString());
+
+		/************************************************************************************/
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		File file = new File(path.toString());
+
+		Document document = builder.parse(file);
+		Element element = document.getDocumentElement(); // rootElem domande
+		List<Element> domande = Utils.getChildElements(element); // domanda per domanda. lista di elementi
+
+		for (int i = 0; i < domande.size(); i++) {
+			Element domanda = domande.get(i);
+			if (domanda.getAttribute("book").equals(PresenteNelXML.getBook())) {
+				System.out.println("domanda.getAttribute(\"book\").equals(PresenteNelXML.getBook()) TRUE TRUE TRUE");
+				if (domanda.getAttribute("chapter").equals(PresenteNelXML.getChapter())) {
+					System.out.println(
+							"domanda.getAttribute(\"chapter\").equals(PresenteNelXML.getChapter()) TRUE TRUE TRUE");
+					if (domanda.getAttribute("question").equals(String.valueOf(PresenteNelXML.getQuestion()))) {
+						System.out.println(
+								"domanda.getAttribute(\"question\").equals(String.valueOf(PresenteNelXML.getQuestion())) TRUE TRUE TRUE");
+						Node parent = domanda.getParentNode();
+						parent.removeChild(domanda);
+						parent.normalize();
+						caricaDomande();
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public boolean aggiornaDomandaInXML(Domanda domandaNuova) throws Exception {
+
+		StringBuilder path = new StringBuilder();
+
+		String capitolo = Utils.isNumber(domandaNuova.getChapter()) ? "domande_cap" + domandaNuova.getChapter()
+				: "domanda_" + domandaNuova.getChapter();
+		path.append(BASE_DIRECTORY).append(Utils.getDirectoryFromDomanda(domandaNuova)).append("\\").append(capitolo)
 				.append(".xml");
 		System.out.println("Debug QuizService:...:...:...:...:..:" + path.toString());
-		
+
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		File f = new File(path.toString());
-		
+
 		Document document = builder.parse(f);
 		Element element = document.getDocumentElement();
 		List<Element> domande = Utils.getChildElements(element);
@@ -142,48 +190,49 @@ public class QuizService {
 		List<Element> elementiRisposta = null;
 		Element rispostePossibili = null;
 		for (Element domanda : domande) {
+			System.out.println("sovrascrivo parametri in XML..");
 			contenutoDomanda = Utils.getChildElements(domanda);
-			domanda.setAttribute("id", dom.getId());
-			domanda.setAttribute("book", dom.getBook());
-			domanda.setAttribute("chapter", dom.getChapter());
-			domanda.setAttribute("question", String.valueOf(dom.getQuestion()));
-			
-			contenutoDomanda.get(0).setTextContent(dom.getTesto());
-			
+			domanda.setAttribute("id", domandaNuova.getId());
+			domanda.setAttribute("book", domandaNuova.getBook());
+			domanda.setAttribute("chapter", domandaNuova.getChapter());
+			domanda.setAttribute("question", String.valueOf(domandaNuova.getQuestion()));
+
+			contenutoDomanda.get(0).setTextContent(domandaNuova.getTesto());
+
 			rispostePossibili = contenutoDomanda.get(1);
-			
-			rispostePossibili.setTextContent(dom.getRispostaUtente());
-			rispostePossibili.setAttribute("type", dom.getAnswerType());
+
+			rispostePossibili.setTextContent(domandaNuova.getRispostaUtente());
+			rispostePossibili.setAttribute("type", domandaNuova.getAnswerType());
 			elementiRisposta = Utils.getChildElements(rispostePossibili);
 			int lengthRisposte = elementiRisposta.size();
 			// caricare le risposte possibili
 			List<Risposta> risposte = new ArrayList<Risposta>();
-			for (int i=0; i <lengthRisposte; i++) {
+			for (int i = 0; i < lengthRisposte; i++) {
 				Risposta r = new Risposta();
 				Element risposta = elementiRisposta.get(i);
-				String attrValue = dom.getRisposte().get(i).getValue(); //attr
-				String textContent = dom.getRisposte().get(i).getText(); //txtContent
+				String attrValue = domandaNuova.getRisposte().get(i).getValue(); // attr
+				String textContent = domandaNuova.getRisposte().get(i).getText(); // txtContent
 				risposta.setAttribute("value", attrValue);
 				risposta.setTextContent(textContent);
-				
+
 				r.setValue(attrValue);
 				r.setText(textContent);
-				
+
 				risposte.add(r);
 			}
 
-			contenutoDomanda.get(2).setTextContent(dom.getRispostaEsatta());
-//			String rispostaEsatta = contenutoDomanda.get(2).getTextContent().replace(" ", "").replace(",", "");
-			
-			
-			contenutoDomanda.get(3).setTextContent(dom.getSpiegazione());
-//			String spiegazione = contenutoDomanda.get(3).getTextContent();
+			contenutoDomanda.get(2).setTextContent(domandaNuova.getRispostaEsatta());
+			// String rispostaEsatta = contenutoDomanda.get(2).getTextContent().replace(" ",
+			// "").replace(",", "");
+
+			contenutoDomanda.get(3).setTextContent(domandaNuova.getSpiegazione());
+			// String spiegazione = contenutoDomanda.get(3).getTextContent();
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(document);
 			StreamResult result = new StreamResult(path.toString());
-			
+
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
 
@@ -193,12 +242,11 @@ public class QuizService {
 			int sizeDomandePrima = listaDomande.size();
 			caricaDomande();
 			int sizeDomandeDopo = listaDomande.size();
-			if(sizeDomandePrima!=sizeDomandeDopo)	{
+			if (sizeDomandePrima != sizeDomandeDopo) {
 				return true;
-			}		
-		}	
-			return false;
-	
+			}
+		}
+		return false;
 
 	}
 
@@ -447,6 +495,7 @@ public class QuizService {
 			e.printStackTrace();
 		}
 		System.out.println("riga392--Elimina--..........idDomanada.........:" + domanda.getId());
+		
 		docElement = document.getElementById(domanda.getId());
 		System.out.println("docElem 392 elimina:-----------" + docElement);
 		document.removeChild(docElement);
@@ -476,7 +525,7 @@ public class QuizService {
 	public static List<Domanda> domandeQuestion(List<Domanda> listaDomande, String question) {
 		List<Domanda> lista = new ArrayList<>();
 		for (Domanda d : listaDomande) {
-			if (String.valueOf(d.getQuestion()).contains(question)) {
+			if (String.valueOf(d.getQuestion()).equals(question)) {
 				lista.add(d);
 			}
 		}

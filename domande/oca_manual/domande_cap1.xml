@@ -1,17 +1,9 @@
-<?xml version="1.0" ?>
-<domande>
-	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="1">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande>
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
 			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
-		<risposte type="checkbox">
-			<risposta value="A">A$B</risposta>
-			<risposta value="B">_helloWorld</risposta>
-			<risposta value="C">true</risposta>
-			<risposta value="D">java.lang</risposta>
-			<risposta value="E">Public</risposta>
-			<risposta value="F">1980_s</risposta>
-		</risposte>
-		<risposteEsatte>A, B, E</risposteEsatte>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
 			Option A is valid because you can use the dollar sign in identifiers. Option B is
 			valid because you can use an underscore in identifiers. Option C is not a valid identifier
@@ -21,600 +13,312 @@
 			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="2">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			What is the output of the following program?
-			1: public class WaterBottle {
-			2: private String brand;
-			3: private boolean empty;
-			4: public static void main(String[] args) {
-			5: WaterBottle wb = new WaterBottle();
-			6: System.out.print("Empty = " + wb.empty);
-			7: System.out.print(", Brand = " + wb.brand);
-			8: } } 
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Line 6 generates a compiler error. </risposta>
-			<risposta value="B">Line 7 generates a compiler error.</risposta>
-			<risposta value="C">There is no output.</risposta>
-			<risposta value="D">Empty = false, Brand = null</risposta>
-			<risposta value="E">Empty = false, Brand = </risposta>
-			<risposta value="F">Empty = null, Brand = null</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Boolean fields initialize to false and references initialize to null, so empty is false and brand is null.
-			Brand = null is output. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="3">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true? (Choose all that apply)
-			4: short numPets = 5;
-			5: int numGrains = 5.6;
-			6: String name = "Scruffy";
-			7: numPets.length();
-			8: numGrains.length();
-			9: name.length(); 
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Line 4 generates a compiler error.</risposta>
-			<risposta value="B">Line 5 generates a compiler error.</risposta>
-			<risposta value="C">Line 6 generates a compiler error</risposta>
-			<risposta value="D">Line 7 generates a compiler error</risposta>
-			<risposta value="E">Line 8 generates a compiler error.</risposta>
-			<risposta value="F">Line 9 generates a compiler error.</risposta>
-			<risposta value="G">The code compiles as is</risposta>
-		</risposte>
-		<risposteEsatte>B, D, E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option A (line 4) compiles because short is an integral type. Option B (line
-			5) generates a compiler error because int is an integral type, but 5.6 is a floating-point
-			type. Option C (line 6) compiles because it is assigned a String. Options D and E (lines
-			7 and 8) do not compile because short and int are primitives. Primitives do not allow
-			methods to be called on them. Option F (line 9) compiles because length() is defined
-			on String. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="4">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following class, which of the following is true? (Choose all that apply)
-			
-			 1: public class Snake {
-			 2:
-			 3: public void shed(boolean time) {
-			 4:
-			 5: if (time) {
-			 6:
-			 7: }
-			 8: System.out.println(result);
-			 9:
-			10: }
-			11: }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">If String result = "done"; is inserted on line 2, the code will compile.</risposta>
-			<risposta value="B">If String result = "done"; is inserted on line 4, the code will compile.</risposta>
-			<risposta value="C">If String result = "done"; is inserted on line 6, the code will compile.</risposta>
-			<risposta value="D">If String result = "done"; is inserted on line 9, the code will compile.</risposta>
-			<risposta value="E">None of the above changes will make the code compile.</risposta>
-		</risposte>
-		<risposteEsatte>A, B</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Adding the variable at line 2 makes result an instance variable. Since instance
-			variables are in scope for the entire life of the object, option A is correct. Option B is
-			correct because adding the variable at line 4 makes result a local variable with a scope
-			of the whole method. Adding the variable at line 6 makes result a local variable with
-			a scope of lines 6–7. Since it is out of scope on line 8, the println does not compile and
-			option C is incorrect. Adding the variable at line 9 makes result a local variable with
-			a scope of lines 9 and 10. Since line 8 is before the declaration, it does not compile and
-			option D is incorrect. Finally, option E is incorrect because the code can be made to
-			compile. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="5">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following classes, which of the following can independently replace INSERT
-			IMPORTS HERE to make the code compile? (Choose all that apply)
-			
-			package aquarium;
-			public class Tank { }
-			
-			package aquarium.jellies;
-			public class Jelly { }
-			
-			package visitor;
-			INSERT IMPORTS HERE
-			public class AquariumVisitor {
-				public void admire(Jelly jelly) { } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">import aquarium.*;</risposta>
-			<risposta value="B">import aquarium.*.Jelly;</risposta>
-			<risposta value="C">import aquarium.jellies.Jelly;</risposta>
-			<risposta value="D">import aquarium.jellies.*;</risposta>
-			<risposta value="E">import aquarium.jellies.Jelly.*;</risposta>
-			<risposta value="F">None of these can make the code compile.</risposta>
-		</risposte>
-		<risposteEsatte>C, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option C is correct because it imports Jelly by classname. Option D is correct because it imports all the classes in the jellies package, which includes Jelly.
-			Option A is incorrect because it only imports classes in the aquarium package—Tank
-			in this case—and not those in lower-level packages. Option B is incorrect because you
-			cannot use wildcards anyplace other than the end of an import statement. Option E is
-			incorrect because you cannot import parts of a class with a regular import statement.
-			Option F is incorrect because options C and D do make the code compile. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="6">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following classes, what is the maximum number of imports that can be removed
-			and have the code still compile?
-			
-			package aquarium; public class Water { }
-			
-			package aquarium;
-			import java.lang.*;
-			import java.lang.System;
-			import aquarium.Water;
-			import aquarium.*;
-			public class Tank {
-				public void print(Water water) {
-					System.out.println(water); } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">0</risposta>
-			<risposta value="B">1</risposta>
-			<risposta value="C">2</risposta>
-			<risposta value="D">3</risposta>
-			<risposta value="E">4</risposta>
-			<risposta value="F">Does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			The first two imports can be removed because java.lang is automatically imported.
-			The second two imports can be removed because Tank and Water are in the same package, making the correct answer E. If Tank and Water were in different packages, one of
-			these two imports could be removed. In that case, the answer would be option D.  
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="7">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following classes, which of the following snippets can be inserted in place of
-			INSERT IMPORTS HERE and have the code compile? (Choose all that apply)
-			
-			package aquarium;
-			public class Water {
-				boolean salty = false;
-			}
-			
-			package aquarium.jellies;
-			public class Water {
-				boolean salty = true;
-			}
-			
-			package employee;
-				INSERT IMPORTS HERE
-			public class WaterFiller {
-				Water water;
-			}
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">import aquarium.*;</risposta>
-			<risposta value="B">import aquarium.Water;
-								import aquarium.jellies.*;
-			</risposta>
-			<risposta value="C">import aquarium.*;
-								import aquarium.jellies.Water;
-			</risposta>
-			<risposta value="D">import aquarium.*;
-								import aquarium.jellies.*;
-			</risposta>
-			<risposta value="E">import aquarium.Water;
-								import aquarium.jellies.Water;
-			</risposta>
-			<risposta value="F">None of these imports can make the code compile</risposta>
-		</risposte>
-		<risposteEsatte>A, B, C</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option A is correct because it imports all the classes in the aquarium package
-			including aquarium.Water. Options B and C are correct because they import Water by
-			classname. Since importing by classname takes precedence over wildcards, these compile. Option D is incorrect because Java doesn’t know which of the two wildcard Water
-			classes to use. Option E is incorrect because you cannot specify the same classname in
-			two imports 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="8">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following class, which of the following calls print out Blue Jay? (Choose all that
-			apply)
-			
-			public class BirdDisplay {
-				public static void main(String[] name) {
-					System.out.println(name[1]);
-			} }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">java BirdDisplay Sparrow Blue Jay</risposta>
-			<risposta value="B">java BirdDisplay Sparrow "Blue Jay"</risposta>
-			<risposta value="C">java BirdDisplay Blue Jay Sparrow</risposta>
-			<risposta value="D">java BirdDisplay "Blue Jay" Sparrow</risposta>
-			<risposta value="E">java BirdDisplay.class Sparrow "Blue Jay"</risposta>
-			<risposta value="F">Does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>B</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option B is correct because arrays start counting from zero and strings with spaces
-			must be in quotes. Option A is incorrect because it outputs Blue. C is incorrect because
-			it outputs Jay. Option D is incorrect because it outputs Sparrow. Options E and F are
-			incorrect because they output Error: Could not find or load main class BirdDisplay.class.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="9">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following legally fill in the blank so you can run the main() method from the
-			command line? (Choose all that apply)
-			
-			public static void main(______________) 
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">String[] _names</risposta>
-			<risposta value="B">String[] 123</risposta>
-			<risposta value="C">String abc[]</risposta>
-			<risposta value="D">String _Names[]</risposta>
-			<risposta value="E">String... $n</risposta>
-			<risposta value="F">String names</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>A, C, D, E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option A is correct because it is the traditional main() method signature
-			and variables may begin with underscores. Options C and D are correct because the
-			array operator may appear after the variable name. Option E is correct because
-			varargs are allowed in place of an array. Option B is incorrect because variables are
-			not allowed to begin with a digit. Option F is incorrect because the argument must be
-			an array or varargs. Option F is a perfectly good method. However, it is not one that
-			can be run from the command line because it has the wrong parameter type. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="10">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are legal entry point methods that can be run from the command
-			line? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">private static void main(String[] args) </risposta>
-			<risposta value="B">public static final main(String[] args) </risposta>
-			<risposta value="C">public void main(String[] args) </risposta>
-			<risposta value="D">public static void test(String[] args)</risposta>
-			<risposta value="E">public static void main(String[] args) </risposta>
-			<risposta value="F">public static main(String[] args) </risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option E is the canonical main() method signature. You need to memorize it.
-			Option A is incorrect because the main() method must be public. Options B and F
-			are incorrect because the main() method must have a void return type. Option C is
-			incorrect because the main() method must be static. Option D is incorrect because the
-			main() method must be named main.  
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="11">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">An instance variable of type double defaults to null.</risposta>
-			<risposta value="B">An instance variable of type int defaults to null.</risposta>
-			<risposta value="C">An instance variable of type String defaults to null.</risposta>
-			<risposta value="D">An instance variable of type double defaults to 0.0.</risposta>
-			<risposta value="E">An instance variable of type int defaults to 0.0.</risposta>
-			<risposta value="F">An instance variable of type String defaults to 0.0.</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>C, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option C is correct because all non-primitive values default to null. Option D is
-			correct because float and double primitives default to 0.0. Options B and E are incorrect because int primitives default to 0.  
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="12">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">A local variable of type boolean defaults to null.</risposta>
-			<risposta value="B">A local variable of type float defaults to 0.</risposta>
-			<risposta value="C">A local variable of type Object defaults to null.</risposta>
-			<risposta value="D">A local variable of type boolean defaults to false.</risposta>
-			<risposta value="E">A local variable of type boolean defaults to true.</risposta>
-			<risposta value="F">A local variable of type float defaults to 0.0.</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>G</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Option G is correct because local variables do not get assigned default values. The
-			code fails to compile if a local variable is not explicitly initialized. If this question
-			were about instance variables, options D and F would be correct. A boolean primitive
-			defaults to false and a float primitive defaults to 0.0.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="13">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">An instance variable of type boolean defaults to false</risposta>
-			<risposta value="B">An instance variable of type boolean defaults to true</risposta>
-			<risposta value="C">An instance variable of type boolean defaults to null</risposta>
-			<risposta value="D">An instance variable of type int defaults to 0</risposta>
-			<risposta value="E">An instance variable of type int defaults to 0.0</risposta>
-			<risposta value="F">An instance variable of type int defaults to null.</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>A, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Options A and D are correct because boolean primitives default to false and
-			int primitives default to 0. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="14">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following class in the file /my/directory/named/A/Bird.java:
-			
-			INSERT CODE HERE
-			public class Bird { }
-			
-			Which of the following replaces INSERT CODE HERE if we compile from /my/directory?(Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">package my.directory.named.a;</risposta>
-			<risposta value="B">package my.directory.named.A;</risposta>
-			<risposta value="C">package named.a;</risposta>
-			<risposta value="D">package named.A;</risposta>
-			<risposta value="E">package a;</risposta>
-			<risposta value="F">package A;</risposta>
-			<risposta value="G">Does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			The package name represents any folders underneath the current path, which is
-			named.A in this case. Option B is incorrect because package names are case sensitive,
-			just like variable names and other identifiers. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="15">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following lines of code compile? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">int i1 = 1_234;</risposta>
-			<risposta value="B">double d1 = 1_234_.0;</risposta>
-			<risposta value="C">double d2 = 1_234._0;</risposta>
-			<risposta value="D">double d3 = 1_234.0_;</risposta>
-			<risposta value="E">double d4 = 1_234.0;</risposta>
-			<risposta value="F">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>A, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Underscores are allowed as long as they are directly between two other digits.
-			This means options A and E are correct. Options B and C are incorrect because the
-			underscore is adjacent to the decimal point. Option D is incorrect because the underscore is the last character.  
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="16">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Given the following class, which of the following lines of code can replace INSERT CODE
-			HERE to make the code compile? (Choose all that apply)
-			
-			public class Price {
-				public void admission() {
-					INSERT CODE HERE
-					System.out.println(amount);
-			 } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">int amount = 9L;</risposta>
-			<risposta value="B">int amount = 0b101;</risposta>
-			<risposta value="C">int amount = 0xE;</risposta>
-			<risposta value="D">double amount = 0xE;</risposta>
-			<risposta value="E">double amount = 1_2_.0_0;</risposta>
-			<risposta value="F">int amount = 1_2_;</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>B, C, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			0b is the prefix for a binary value and is correct. 0x is the prefix for a hexadecimal value. This value can be assigned to many primitive types, including int and
-			double, making options C and D correct. Option A is incorrect because 9L is a long
-			value. long amount = 9L would be allowed. Option E is incorrect because the underscore is immediately before the decimal. Option F is incorrect because the underscore is
-			the very last character. 
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="17">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true? (Choose all that apply)
-			
-			public class Bunny {
-				public static void main(String[] args) {
-					Bunny bun = new Bunny();
-			} }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Bunny is a class</risposta>
-			<risposta value="B">bun is a class</risposta>
-			<risposta value="C">main is a class.</risposta>
-			<risposta value="D">Bunny is a reference to an object</risposta>
-			<risposta value="E">bun is a reference to an object.</risposta>
-			<risposta value="F">main is a reference to an object.</risposta>
-			<risposta value="G">None of the above.</risposta>
-		</risposte>
-		<risposteEsatte>A, E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Bunny is a class, which can be seen from the declaration: public class Bunny. bun
-			is a reference to an object. main() is a method.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="18">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which represent the order in which the following statements can be assembled into a program that will compile successfully? (Choose all that apply)
-			
-			A: class Rabbit {}
-			B: import java.util.*;
-			C: package animals;
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">A, B, C</risposta>
-			<risposta value="B">B, C, A</risposta>
-			<risposta value="C">C, B, A</risposta>
-			<risposta value="D">B, A</risposta>
-			<risposta value="E">C, A</risposta>
-			<risposta value="F">A, C</risposta>
-			<risposta value="G">A, B</risposta>
-		</risposte>
-		<risposteEsatte>C, D, E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			package and import are both optional. If both are present, the order must
-			be package, then import, then class. Option A is incorrect because class is before
-			package and import. Option B is incorrect because import is before package. Option
-			F is incorrect because class is before package. Option G is incorrect because class is
-			before import.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="19">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Suppose we have a class named Rabbit. Which of the following statements are true?
-			(Choose all that apply)
-			
-			1: public class Rabbit {
-			2: 	public static void main(String[] args) {
-			3: 		Rabbit one = new Rabbit();
-			4: 		Rabbit two = new Rabbit();
-			5: 		Rabbit three = one;
-			6: 		one = null;
-			7: 		Rabbit four = one;
-			8: 		three = null;
-			9: 		two = null;
-			10: 	two = new Rabbit();
-			11: 	System.gc();
-			12: } }
-
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">The Rabbit object from line 3 is first eligible for garbage collection immediately following line 6.</risposta>
-			<risposta value="B">The Rabbit object from line 3 is first eligible for garbage collection immediately following line 8.</risposta>
-			<risposta value="C">The Rabbit object from line 3 is first eligible for garbage collection immediately following line 12.</risposta>
-			<risposta value="D">The Rabbit object from line 4 is first eligible for garbage collection immediately following line 9.</risposta>
-			<risposta value="E">The Rabbit object from line 4 is first eligible for garbage collection immediately following line 11.</risposta>
-			<risposta value="F">The Rabbit object from line 4 is first eligible for garbage collection immediately following line 12.</risposta>
-		</risposte>
-		<risposteEsatte>B, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			The Rabbit object from line 3 has two references to it: one and three. The references are nulled out on lines 6 and 8, respectively. Option B is correct because this
-			makes the object eligible for garbage collection after line 8. Line 7 sets the reference
-			four to the now null one, which means it has no effect on garbage collection. The Rabbit object from line 4 only has a single reference to it: two. Option D is correct because
-			this single reference becomes null on line 9. The Rabbit object declared on line 10
-			becomes eligible for garbage collection at the end of the method on line 12. Calling
-			System.gc() has no effect on eligibility for garbage collection.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="20">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			What is true about the following code? (Choose all that apply)
-			
-			public class Bear {
-				protected void finalize() {
-					System.out.println("Roar!");
-			}
-
-			public static void main(String[] args) {
-				Bear bear = new Bear();
-				bear = null;
-				System.gc();
-			} }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">finalize() is guaranteed to be called.</risposta>
-			<risposta value="B">finalize() might or might not be called</risposta>
-			<risposta value="C">finalize() is guaranteed not to be called.</risposta>
-			<risposta value="D">Garbage collection is guaranteed to run.</risposta>
-			<risposta value="E">Garbage collection might or might not run.</risposta>
-			<risposta value="F">Garbage collection is guaranteed not to run.</risposta>
-			<risposta value="G">The code does not compile.</risposta>
-		</risposte>
-		<risposteEsatte>B, E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Calling System.gc() suggests that Java might wish to run the garbage collector.
-			Java is free to ignore the request, making option E correct. finalize() runs if an object
-			attempts to be garbage collected, making option B correct.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="21" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="21">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			What does the following code output?
-			
-			1: public class Salmon {
-			2: 	int count;
-			3: 	public void Salmon() {
-			4: 		count = 4;
-			5: }
-			6: public static void main(String[] args) {
-			7: 	Salmon s = new Salmon();
-			8: 	System.out.println(s.count);
-			9: } }
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">0</risposta>
-			<risposta value="B">4</risposta>
-			<risposta value="C">Compilation fails on line 3.</risposta>
-			<risposta value="D">Compilation fails on line 4.</risposta>
-			<risposta value="E">Compilation fails on line 7.</risposta>
-			<risposta value="F">Compilation fails on line 8.</risposta>
-		</risposte>
-		<risposteEsatte>A</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			While the code on line 3 does compile, it is not a constructor because it has a return
-			type. It is a method that happens to have the same name as the class. When the code
-			runs, the default constructor is called and count has the default value (0) for an int.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="22" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="22">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true statements? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">Java allows operator overloading.</risposta>
-			<risposta value="B">Java code compiled on Windows can run on Linux.</risposta>
-			<risposta value="C">Java has pointers to specific locations in memory.</risposta>
-			<risposta value="D">Java is a procedural language.</risposta>
-			<risposta value="E">Java is an object-oriented language.</risposta>
-			<risposta value="F">Java is a functional programming language.</risposta>
-		</risposte>
-		<risposteEsatte>B, E</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			C++ has operator overloading and pointers. Java made a point of not having
-			either. Java does have references to objects, but these are pointing to an object that can
-			move around in memory. Option B is correct because Java is platform independent.
-			Option E is correct because Java is object oriented. While it does support some parts of
-			functional programming, these occur within a class.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
-	<domanda id="23" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="23">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="oca_manual|1|1" question="1">
 		<testo>
-			Which of the following are true? (Choose all that apply)
-		</testo>
-		<risposte type="checkbox">
-			<risposta value="A">javac compiles a .class file into a .java file.</risposta>
-			<risposta value="B">javac compiles a .java file into a .bytecode file.</risposta>
-			<risposta value="C">javac compiles a .java file into a .class file.</risposta>
-			<risposta value="D">Java takes the name of the class as a parameter.</risposta>
-			<risposta value="E">Java takes the name of the .bytecode file as a parameter.</risposta>
-			<risposta value="F">Java takes the name of the .class file as a parameter. </risposta>
-		</risposte>
-		<risposteEsatte>C, D</risposteEsatte>
+			Which of the following are valid Java identifiers? (Choose all that apply)</testo>
+		<risposte type="checkbox"/>
+		<risposteEsatte>ABE</risposteEsatte>
 		<spiegazione> 
-			Java puts source code in .java files and bytecode in .class files. It does not use
-			a .bytecode file. When running a Java program, you pass just the name of the class
-			without the .class extension.
+			Option A is valid because you can use the dollar sign in identifiers. Option B is
+			valid because you can use an underscore in identifiers. Option C is not a valid identifier
+			because true is a Java reserved word. Option D is not valid because the dot (.) is not
+			allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
+			a reserved word and therefore a valid identifier. Option F is not valid because the first
+			character is not a letter, $, or _.
 		</spiegazione>
 	</domanda>
 </domande>

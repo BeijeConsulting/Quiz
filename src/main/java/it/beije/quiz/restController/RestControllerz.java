@@ -32,9 +32,8 @@ public class RestControllerz {
 	private static final String NEW_LIBRO = "/inserisci/{libro}";
 	private static final String NEW_LIBRO_CAPITOLO = "/inserisci/{libro}/{capitolo}";
 	private static final String NEW_LIBRO_CAPITOLO_DOMANDA = "/inserisci/{libro}/{capitolo}/{domanda}";
-	// private static final String PUT_LIBRO = "/modifica/{libro}";
-	// private static final String PUT_CAPITOLO = "/modifica/{libro}/{capitolo}";
-	private static final String PUT_DOMANDA = "/updatedomanda/{id}";
+	private static final String PUT_DOMANDE = "/aggiornadomande";
+	private static final String DELETE_DOMANDE = "/eliminadomande";
 
 	@Autowired
 	private QuizService quizService;
@@ -134,43 +133,71 @@ public class RestControllerz {
 		return libroz;
 	}
 
-	
-	
-	// 07032020___GAB___method to update quetion. (not finished).
-	@RequestMapping(value = { PUT_DOMANDA }, method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody boolean aggiornaDomanda(@RequestBody Domanda domanda, @PathVariable String id) {
-		System.out.println("entro");
-		String idUnivocoDomanda = domanda.getId();
-		System.out.println("aggiornaDomanda RestControllerz:..........:" + idUnivocoDomanda);
+	// PUT_NEW_DOMANDA = "/aggiornadomande";
+	// 08082020___GAB___method to update question. (finished).
 
-		System.out.println("Directory della domanda...............:" + Utils.getDirectoryFromDomanda(domanda));
+	@RequestMapping(value = PUT_DOMANDE, method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String updateListaDomande(HttpServletResponse response,
+			@RequestBody Domanda... domandeJsonBody) {
 
-		String pathCapitolo = Utils.isNumber(domanda.getChapter()) ? "domande_cap" + domanda.getChapter()
-				: "domande_" + domanda.getChapter();
-		System.out.println(pathCapitolo);
+		List<Domanda> listaGlobaleDomande = quizService.getDomande();
 
-		List<Domanda> listaDomande = quizService.getDomande();
-		QuizService.domandeLibro(listaDomande, domanda.getBook());
-		System.out.println("numeroDomandeDopoScrematuraPerLibro:...............:" + listaDomande.size());
-		QuizService.domandeCapitolo(listaDomande, pathCapitolo);
-		System.out.println("numeroDomandeDopoScrematuraPerCapitolo:...............:" + listaDomande.size());
-		QuizService.domandeQuestion(listaDomande, String.valueOf(domanda.getQuestion()));
-		System.out.println("numeroDomandeDopoScrematuraPerDomanda:...............:" + listaDomande.size());
+		for (Domanda domList : listaGlobaleDomande) { // Global Questions
 
-		for (Domanda dom : listaDomande) {
-			if (dom.getId().equals(idUnivocoDomanda)) {
-				// MATCH DOMANDA DA MODIFICARE.....
-				try {
-					quizService.aggiornaDomandaInXML(domanda);
+			for (Domanda domJson : domandeJsonBody) { // JsonBody Question array.
 
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("!-###--presa eccezione aggiornaDomanda ResControllerz Class--###-!");
+				if (domJson.getId().equals(domList.getId())) {
+
+					// Match. domList è la domanda da modificare nell'XML. d è la domanda che
+					// prenderà il suo posto!!
+					try {
+						if (quizService.aggiornaDomandaInXML(domJson)) {
+							return "File XML aggiornato Con successo ! ! !";
+						}
+
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println(
+								"qualcosa non va. (RestControllerz.class #==> aggiornaDomandaInXML(domList) <==#");
+					}
+
 				}
 			}
 		}
 
-		return false;
+		return "File XML NON aggiornato !!!!!!!";
+	}
+
+	@RequestMapping(value = DELETE_DOMANDE, method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String deleteListaDomande(HttpServletResponse response,
+			@RequestBody String... idJsonBodyDomande) {
+
+		List<Domanda> listaGlobaleDomande = quizService.getDomande();
+
+		for (Domanda domList : listaGlobaleDomande) { // Global Questions
+
+			for (String domJson : idJsonBodyDomande) { // JsonBody Question array.
+
+				if (domJson.equals(domList.getId())) {
+					System.out.println("trovato match id domanda in json=" + domJson);
+					System.out.println("id domanda in global list question:........." + domList);
+					// Match. domList è la domanda da eliminare nell'XML.
+					try {
+						if (quizService.eliminaDomandaInXML(domList)) {
+							return "File XML aggiornato Con successo ! ! ! (Operazione -- Eliminazione Elemento)";
+						}
+
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println(
+								"qualcosa non va. (RestControllerz.class #==> aggiornaDomandaInXML(domList) <==#");
+					}
+
+				}
+			}
+		}
+
+		return "File XML NON aggiornato !!!!!!!";
 	}
 
 }
