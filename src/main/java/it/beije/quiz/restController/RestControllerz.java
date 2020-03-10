@@ -170,7 +170,7 @@ public class RestControllerz {
 
 	@RequestMapping(value = DELETE_DOMANDE, method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String deleteListaDomande(HttpServletResponse response,
-			@RequestBody String... idJsonBodyDomande) {
+			@RequestBody String... idJsonBodyDomande) { // ["test_gabriele|1|1", ...]
 
 		List<Domanda> listaGlobaleDomande = quizService.getDomande();
 
