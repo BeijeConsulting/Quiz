@@ -48,6 +48,11 @@ public class QuizController {
 //		model.addAttribute("totDomande", model.getAttribute("totDomande"));
 //		return "confermaselezione";
 //	}
+	
+	@RequestMapping(value = "/getDomande")
+	public String prova() {
+		return "getDomande";
+	}
 
 	@RequestMapping(value="/confermaselezione", method = RequestMethod.POST)
 	public String lettura(Model model, HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
