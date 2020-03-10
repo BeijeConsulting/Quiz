@@ -27,7 +27,7 @@ public class QuizRestController {
 	@Autowired
 	private QuizService quizService;
 
-	@RequestMapping(value = "/insertdomanda", method = RequestMethod.POST,
+	@RequestMapping(value = "/domanda", method = RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomanda(@RequestBody Domanda domanda) {
 		boolean isNew=false;
@@ -61,7 +61,7 @@ public class QuizRestController {
 		return domanda;
 	}
 
-	@RequestMapping(value = "/getall", method = RequestMethod.GET,
+	@RequestMapping(value = "/domanda", method = RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> getAllDomande() {
 
@@ -82,7 +82,7 @@ public class QuizRestController {
 		return libri.get(0).getDomande();
 	}
 
-	@RequestMapping(value = "/getone/{id}", method = RequestMethod.GET,
+	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda getDomanda(@PathVariable String id) {
 		Domanda dOut=new Domanda();	
@@ -103,7 +103,7 @@ public class QuizRestController {
 		return dOut;	
 	}
 
-	@RequestMapping(value = "/getchapter/{id}", method = RequestMethod.GET,
+	@RequestMapping(value = "/capitolo/{id}", method = RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> getDomandaFromCapitolo(@PathVariable String id) {
 		List <Domanda> dOut=new ArrayList<Domanda>();
@@ -128,7 +128,7 @@ public class QuizRestController {
 		return dOut;
 	}
 
-	@RequestMapping(value = "/updatedomanda/{id}", method = RequestMethod.PUT,
+	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.PUT,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda updateDomanda(@RequestBody Domanda domanda, @PathVariable String id) {
 
@@ -161,7 +161,7 @@ public class QuizRestController {
 
 	}
 
-	@RequestMapping(value = "/deletedomanda/{id}", method = RequestMethod.DELETE,
+	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.DELETE,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda deleteDomanda(@PathVariable String id) {
 

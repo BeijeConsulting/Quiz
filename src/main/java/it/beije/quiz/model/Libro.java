@@ -9,7 +9,7 @@ public class Libro {
 	private String nameDir;
 	private List<Domanda> domande;
 	private boolean valore=false;
-
+	
 	public boolean setValore(boolean valore) {return valore;}
 
 	public List<Domanda> getDomande() {
