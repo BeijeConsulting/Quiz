@@ -69,6 +69,20 @@ public class RestControllerz {
 	public @ResponseBody Libro inserisciLibroCapitoloDomanda(@PathVariable String libro,
 			@PathVariable(required = false) String capitolo, @RequestBody(required = false) Domanda domanda,
 			HttpServletResponse response) {
+		
+		/*
+		 * List<Libro> listaLibri = //metodo carica lista libri presenti;
+		 * Libro newLibro = new Libro();
+		 * newLibro.setId(domandaCaricata.getBook())
+		 * ... //setTitle
+		 * ... //setDir
+		 * 
+		 * for(Libro l : listaLibri)
+		 * 	if(l.getTitle().equals(domandaCaricata.getBook())
+		 * 		newLibro = l;
+		 * newLibro = createLibro(newLibro)
+		 * caricaDomandainXML
+		 */
 
 		List<Libro> listaLibri = new ArrayList<Libro>();
 		String path = QuizService.BASE_DIRECTORY;
