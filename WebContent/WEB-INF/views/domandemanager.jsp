@@ -82,7 +82,10 @@ Spiegazione: <br>
 
 <input type="button" value="Esegui" onclick="esegui()">
 &nbsp &nbsp &nbsp &nbsp
-<input type="iniziaquiz" value="Inizia Quiz" onclick="iniziaQuiz()")>
+<form action="startquiz" method="get">
+<input type="submit" value="Inizia Quiz">
+</form>
+
 
 <br><br>
 <!-- <div id="domandaVis" class="domandaVis"> -->
@@ -242,10 +245,6 @@ function getRisposte(){
 	}
 }
 
-
-function iniziaQuiz(){
-	fetch('http://localhost:8080/quiz/startquiz');
-}
 
 
 function createNewResponse() {
