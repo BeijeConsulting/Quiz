@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande>
+	<domanda book="nostro_libro" chapter="3" id="nostro_libro|3|3" question="3">
+		<testo>dsadsadsa</testo>
+		<risposte type="checkbox">
+			<risposta value="A">aaaaa</risposta>
+			<risposta value="B">bbbbb</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>dasdadsadsadsadasdsa</spiegazione>
+	</domanda>
+	<domanda book="nostro_libro" chapter="3" id="nostro_libro|3|1" question="1">
+		<testo>sdasadsa</testo>
+		<risposte type="checkbox">
+			<risposta value="A">aaaaa</risposta>
+			<risposta value="B">bbbbb</risposta>
+			<risposta value="C">ccccc</risposta>
+		</risposte>
+		<risposteEsatte>AC</risposteEsatte>
+		<spiegazione>stererearae</spiegazione>
+	</domanda>
+<domanda book="nostro_libro" chapter="3" id="nostro_libro|3|2" question="2"><testo>testo</testo><risposte type="checkbox"><risposta value="A">aaaaa</risposta><risposta value="B">bbbbb</risposta><risposta value="C">ccccc</risposta></risposte><risposteEsatte>AC</risposteEsatte><spiegazione>spiegazione</spiegazione></domanda></domande>

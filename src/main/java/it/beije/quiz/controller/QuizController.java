@@ -94,10 +94,14 @@ public class QuizController {
 		}
 
 		model.addAttribute("totDomande", tot);
+		
 //		tot = 0;
 		
+		System.out.println("SIZE: " + tot);
+		System.out.println("SIZE domande: " + domande.size());
+		
 
-		return "confermaselezione";
+		return "domanda";
 	}
 
 	private void setTimer(Model model) {

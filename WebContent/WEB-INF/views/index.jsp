@@ -85,7 +85,7 @@ body {
 	<br> Seleziona da quale libro prendere le domande:
 	<br>
 	<br>
-	<form id="getLibri">
+	<form id="getLibri" action="confermaselezione" method="POST">
 		<%
 		/*List<Libro> libri = Utils.getLibri();
 		int i = 1;
@@ -113,7 +113,7 @@ body {
 		.then(response => response.json())
 		.then(json => {
 			console.log(json);
-			for(let i = 0; i < json.length; i++) {
+			for(let i = 1; i <= json.length; i++) {
 				console.log(i);
 				document.getElementById("getLibri").innerHTML += "<label class=\"container\"><input id=" + json[i].dir + " onclick=\"updateTime('" + json[i].dir + "')\" type=\"checkbox\" name=\"libro_" + i +
 				"\" value=\"" + json[i].dir + "\">" + json[i].title + "<span class=\"checkmark\"></span></label>";
@@ -121,7 +121,8 @@ body {
 			
 			document.getElementById("getLibri").innerHTML += "<div id=\"tempodomande\">Totale domande caricate: <span id=\"numDomande\">0</span><br>" + "Tempo disponibile: <span id=\"time\">0</span> minuti";
 			
-			document.getElementById("getLibri").innerHTML += "<br><button onclick=\"conferma()\" type=\"buttom\" class=\"btn btn-info\">CONFERMA</button>";
+			//document.getElementById("getLibri").innerHTML += "<br><button onclick=\"conferma()\" type=\"buttom\" class=\"btn btn-info\">CONFERMA</button>";
+			document.getElementById("getLibri").innerHTML += "<br><input onclick=\"conferma()\" type=\"submit\" class=\"btn btn-info\">CONFERMA</button>";
 		})
 	.catch(error => console.log('Errore get Libri'));
 
@@ -160,7 +161,7 @@ function updateTime(dir) {
 function conferma() {
 	console.log("conferma");
 	old = document.getElementById("contenitore").innerHTML;
-	document.getElementById("contenitore").innerHTML = "<form method=\"POST\" action=\"domanda/0\">Domande selezionate: " + domande + "<br>Tempo disponibile: " + tempo + "<br><buttom type\"button\" value=\"Reset\" onclick=\"reset2()\" class=\"btn btn-default\">Reset</buttom><input type=\"submit\" value=\"Start\" name=\"inizia\" /></form>";
+	document.getElementById("contenitore").innerHTML = "<form method=\"POST\" action=\"confermaselezione\">Domande selezionate: " + domande + "<br>Tempo disponibile: " + tempo + "<br><buttom type\"button\" value=\"Reset\" onclick=\"reset2()\" class=\"btn btn-default\">Reset</buttom><input type=\"submit\" value=\"Start\" name=\"inizia\" /></form>";
 }
 
 function reset2() {
