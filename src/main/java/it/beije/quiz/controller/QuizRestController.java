@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +23,14 @@ import it.beije.quiz.service.QuizService;
 @RestController
 public class QuizRestController {
 
-	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+	private final String MAIN_PATH = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
 	private List<Libro> LIBRI = new ArrayList<Libro>();
 
 	@Autowired
 	private QuizService quizService;
-
-	@RequestMapping(value = "/domanda", method = RequestMethod.POST,
+	
+	//insert nuova domanda
+	@RequestMapping(value = "/new/domanda", method = RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda insertDomanda(@RequestBody Domanda domanda) {
 		boolean isNew=false;
@@ -61,8 +64,8 @@ public class QuizRestController {
 		return domanda;
 	}
 
-	@RequestMapping(value = "/domanda", method = RequestMethod.GET,
-			consumes=MediaType.APPLICATION_JSON_VALUE)
+	//Get tutte le domande
+	@RequestMapping(value = "/get/domanda/all", method = RequestMethod.GET)
 	public @ResponseBody List<Domanda> getAllDomande() {
 
 		List<Libro> libri = new ArrayList<Libro>();
@@ -82,8 +85,8 @@ public class QuizRestController {
 		return libri.get(0).getDomande();
 	}
 
-	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.GET,
-			consumes=MediaType.APPLICATION_JSON_VALUE)
+	
+	@RequestMapping(value = "/get/domanda/{id}", method = RequestMethod.GET)
 	public @ResponseBody Domanda getDomanda(@PathVariable String id) {
 		Domanda dOut=new Domanda();	
 		try 
@@ -103,8 +106,7 @@ public class QuizRestController {
 		return dOut;	
 	}
 
-	@RequestMapping(value = "/capitolo/{id}", method = RequestMethod.GET,
-			consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/capitolo/{id}", method = RequestMethod.GET)
 	public @ResponseBody List<Domanda> getDomandaFromCapitolo(@PathVariable String id) {
 		List <Domanda> dOut=new ArrayList<Domanda>();
 		dOut.clear();
@@ -128,7 +130,7 @@ public class QuizRestController {
 		return dOut;
 	}
 
-	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.PUT,
+	@RequestMapping(value = "/update/domanda/{id}", method = RequestMethod.PUT,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda updateDomanda(@RequestBody Domanda domanda, @PathVariable String id) {
 
@@ -161,7 +163,7 @@ public class QuizRestController {
 
 	}
 
-	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.DELETE,
+	@RequestMapping(value = "/delete/domanda/{id}", method = RequestMethod.DELETE,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Domanda deleteDomanda(@PathVariable String id) {
 
