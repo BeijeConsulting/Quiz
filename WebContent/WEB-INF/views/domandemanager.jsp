@@ -96,6 +96,8 @@ Spiegazione: <br>
 	var idBook = "";
 	var valoreSelezione = "";
 	var c = 2;
+	var risposte = [];
+	var tipoRisposta = "";
 	
 function esegui(){
 		selezione = document.getElementsByName("selezione");
@@ -130,24 +132,9 @@ function visualDomanda(){
 }
 	
 function insertDomanda(){
-	var risposte = "";
-	var radios = document.getElementsByName('tipoRisposta');
-	var tipoRisposta = "";
-	
-	for(var i = 1; i < c; i++){
-		risposte += JSON.stringify({ value: $('#valueRisposta' + i).val(),
-						 			text: $('#risposta' + i).val() });
-	}
-	
-	for (var i = 0, length = radios.length; i < length; i++) {
-	  if (radios[i].checked) {
-	    tipoRisposta = radios[i].value;
-	    break;
-	  }
-	}
+	getRisposte();
 	
 	console.log(risposte);
-	console.log(tipoRisposta);
 	
 	 fetch('http://localhost:8080/quiz/new/domanda', {
 		    method: 'POST',
@@ -157,8 +144,8 @@ function insertDomanda(){
 		      question: document.getElementById("domanda").value,
 		      testo: document.getElementById("testo").value,
 		      answerType: tipoRisposta,
-		      risposte: [],
-		      rispostaUtente: document.getElementById("rispostaUtente").value,
+		      risposte: risposte,
+		   	  rispostaUtente: document.getElementById("rispostaUtente").value,
 		      rispostaEsatta: document.getElementById("rispostaEsatta").value,
 		      spiegazione: document.getElementById("spiegazione").value
 		    }),
@@ -173,9 +160,26 @@ function insertDomanda(){
 }		
 		
 function updateDomanda(){
+	getRisposte();
 	getIdBook();
 	
-	 fetch('http://localhost:8080/quiz/update/domanda/' + idBook)
+	 fetch('http://localhost:8080/quiz/update/domanda/' + idBook, {
+		    method: 'PUT',
+		    body: JSON.stringify({
+		      book: document.getElementById("libro").value,
+		      chapter: document.getElementById("capitolo").value,
+		      question: document.getElementById("domanda").value,
+		      testo: document.getElementById("testo").value,
+		      answerType: tipoRisposta,
+		      risposte: risposte,
+		   	  rispostaUtente: document.getElementById("rispostaUtente").value,
+		      rispostaEsatta: document.getElementById("rispostaEsatta").value,
+		      spiegazione: document.getElementById("spiegazione").value
+		    }),
+		    headers: {
+		      "Content-type": "application/json; charset=UTF-8"
+		    }
+		  })
 	  .then(response => response.json())
 	  .then(json => {
 		console.log( json);})
@@ -183,13 +187,15 @@ function updateDomanda(){
 }
 
 function deleteDomanda(){
+	getRisposte();
 	getIdBook();
 	
-	fetch('http://localhost:8080/quiz/delete/domanda/' + idBook)
-	  .then(response => response.json())
-	  .then(json => {
-		console.log( json);})
-		.catch(error => console.log('!!'));
+	fetch('http://localhost:8080/quiz/delete/domanda/' + idBook, {
+	    method: 'DELETE'})
+  .then(response => response.json())
+  .then(json => {
+	console.log( json);})
+	.catch(error => console.log('!!'));
 }
 
 function getIdBook(){
@@ -214,6 +220,25 @@ function visualParametri(){
 	document.getElementById("parametriVisual").style.display = "inline";
 	 else 
 	document.getElementById("parametriVisual").style.display = "none";
+}
+
+function getRisposte(){
+	var radios = document.getElementsByName('tipoRisposta');
+
+	for(let i = 1; i < c; i++){
+		risposte.push({
+			value: $('#valueRisposta' + i).val(),
+			text: $('#risposta' + i).val()
+		})
+	}
+	
+	
+	for (let i = 0, length = radios.length; i < length; i++) {
+	  if (radios[i].checked) {
+	    tipoRisposta = radios[i].value;
+	    break;
+	  }
+	}
 }
 
 
