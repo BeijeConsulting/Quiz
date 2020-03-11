@@ -6,12 +6,13 @@
 	<h1>Campi Domanda:</h1>
 	<br>
 	<br> INSERISCI UNA DOMANDA: 
-	<input type="text" placeholder="insert book title" id="question">
-	<br>
-	<br>
+	Inserisci il titolo del libro a cui appartiene la domanda:<input type="text" placeholder="inserisci titolo " id="book_title">
+	<input type="text" placeholder="insert book title" id="question"><br><br>
+	Inserisci il capitolo della domanda: <input type="text" placeholder="inserisci capitolo " id="chapter"><br>
 	<input type="button" value="INSERIMENTO..." onclick="inserisciDomanda()">
 	<br>
 	<br>
+	<input type="button" value="Aggiungi Risposta" id="button_risposte">
 	<hr>
 	<hr>
 	<div id="result"></div>
@@ -59,7 +60,7 @@
 						"Content-Type" : "application/json"
 					}),
 					body : JSON.stringify({
-						"id": ,
+						"id": "" ,
 						"book": ,
 						"chapter": ,
 						"question": ,
