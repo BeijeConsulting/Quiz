@@ -45,7 +45,7 @@ Domanda:  &nbsp <input id="domanda" type="number">
 </div>
 <br><br>
 
-<div id="parametriInsert">
+<div id="parametriInsert" class="param">
 
 Testo: <br> 
 <textarea id="testo" rows="2" cols="50"></textarea><br><br>
@@ -187,7 +187,6 @@ function updateDomanda(){
 }
 
 function deleteDomanda(){
-	getRisposte();
 	getIdBook();
 	
 	fetch('http://localhost:8080/quiz/delete/domanda/' + idBook, {
@@ -216,10 +215,14 @@ function visualParametri(){
 	console.log(libro);
 	
 	console.log(valoreSelezione);
-	if(valoreSelezione == "visualDomanda" || valoreSelezione == "updateDomanda" || valoreSelezione == "deleteDomanda" || valoreSelezione == "insertDomanda")
+	if(valoreSelezione == "visualDomanda" || valoreSelezione == "insertDomanda"){
 	document.getElementById("parametriVisual").style.display = "inline";
-	 else 
-	document.getElementById("parametriVisual").style.display = "none";
+	document.getElementById("parametriInsert").style.display = "none";
+	
+	} else if(valoreSelezione == "updateDomanda" || valoreSelezione == "deleteDomanda") {
+	document.getElementById("parametriVisual").style.display = "inline";
+	document.getElementById("parametriInsert").style.display = "inline";
+	}
 }
 
 function getRisposte(){
