@@ -147,9 +147,10 @@ public class RestControllerz {
 		
 		// setDir
 		for (Libro l : listaLibri)
-			if (l.getTitle().equals(domanda.getBook()))
+			if (l.getTitle().equals(domanda.getBook()) ||
+				l.getIdBook().equals(domanda.getBook()) || 
+				l.getNameDir().equals(domanda.getBook()))
 				newLibro = l;
-		newLibro = quizService.createLibro(newLibro);
 		String dirDomanda = newLibro.getNameDir();
 		System.out.println("dirDomanda:..........................:" + dirDomanda);
 		StringBuilder path = new StringBuilder();

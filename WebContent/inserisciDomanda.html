@@ -82,36 +82,37 @@
 			console.log(answerType);
 			
 			//********************************************************************************************//
-			let listaRisposte = "[";
+		/*	let listaRisposte = "[";
 			let a = 0;
 			do{
+				let risposta = document.getElementById("risp" + a);
 				let value = String.fromCharCode(65 + a);
 				listaRisposte += JSON.stringify({
 					"value" : value,
 					"text" : risposta.value
 				});
 				if(++a!=nRisp) listaRisposte += ",";
-			}while(a<nRisp);
+			}while(a<nRisp);*/
 			
 
-/*			let listaRisposte = new Array(nRisp);
+			let listaRisposte = new Array(nRisp);
 			for (let a = 0; a < nRisp; a++) {
 				let risposta = document.getElementById("risp" + a);
 				var value = String.fromCharCode(65 + a);
 				if (risposta.value == "")
 					break;
 				else {
-					listaRisposte[a] = JSON.stringify({
+					listaRisposte[a] = JSON.parse(JSON.stringify({
 						"value" : value,
 						"text" : risposta.value
-					})
+					}))
 				}
-			}*/
+			}
 			fetch(url, {
 				method : "POST",
 				headers : new Headers({
 					"Content-Type" : "application/json"
-				}),
+					}),
 				body : JSON.stringify({
 					"id" : "",
 					"book" : bookTitle,
@@ -124,7 +125,7 @@
 					"rispostaEsatta" : risposteEsatte,
 					"spiegazione" : spiegazione
 				})
-			});
+			})
 		}
 	</script>
 

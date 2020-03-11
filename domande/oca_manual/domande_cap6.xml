@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<domande>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="1" question="1">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><domande>
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="1" question="1">
 		<testo>
 			Which of the following statements are true? (Choose all that
 			apply)
@@ -27,8 +25,7 @@
 			subclasses, but it’s not a good idea.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="2" question="2">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="2" question="2">
 		<testo>
 			Which of the following pairs fill in the blanks to make this
 			code compile? (Choose all that apply)
@@ -54,8 +51,7 @@
 			created.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="3" question="3">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="3" question="3">
 		<testo>
 			When are you required to use a finally block in a regular try
 			statement (not a try-with-resources)?
@@ -79,8 +75,7 @@
 			catch clauses.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="4" question="4">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="4" question="4">
 		<testo>
 			Which exception will the following throw?
 
@@ -103,8 +98,7 @@
 			thrown.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="5" question="5">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="5" question="5">
 		<testo>
 			Which of the following exceptions are thrown by the JVM?
 			(Choose all that apply)
@@ -127,8 +121,7 @@
 			corresponding problem arises.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="6" question="6">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="6" question="6">
 		<testo>
 			What will happen if you add the statement System.out.println(5
 			/ 0); to a working main() method?
@@ -152,8 +145,7 @@
 			so an ArithmeticException object is raised.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="7" question="7">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="7" question="7">
 		<testo>
 			What is printed besides the stack trace caused by the
 			NullPointerException from line 16?
@@ -210,8 +202,7 @@
 			before the stack trace.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="8" question="8">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="8" question="8">
 		<testo>
 			What is the output of the following snippet, assuming a and b
 			are both 0?
@@ -248,8 +239,7 @@
 			it is unreachable code.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="9" question="9">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="9" question="9">
 		<testo>
 			What is the output of the following program?
 
@@ -293,8 +283,7 @@
 			the JVM is no longer running.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="10" question="10">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="10" question="10">
 		<testo>
 			What is the output of the following program?
 
@@ -345,8 +334,7 @@
 			the output is 1245.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="11" question="11">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="11" question="11">
 		<testo>
 			What is the output of the following program?
 
@@ -399,8 +387,7 @@
 			stack trace for the NumberFormatException is printed.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="12" question="12">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="12" question="12">
 		<testo>
 			What is printed by the following? (Choose all that apply)
 
@@ -459,8 +446,7 @@
 			is correct.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="13" question="13">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="13" question="13">
 		<testo>
 			Which of the following statements are true? (Choose all that
 			apply)
@@ -490,8 +476,7 @@
 			exception.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="14" question="14">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="14" question="14">
 		<testo>
 			Which of the following can be inserted on line 8 to make this
 			code compile? (Choose all that apply)
@@ -520,8 +505,7 @@
 			broader exception is not allowed.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="15" question="15">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="15" question="15">
 		<testo>
 			Which of the following are unchecked exceptions? (Choose all
 			that apply
@@ -545,8 +529,7 @@
 			extend Exception but not RuntimeException are checked exceptions.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="16" question="16">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="16" question="16">
 		<testo>
 			Which scenario is the best use of an exception?
 		</testo>
@@ -575,8 +558,7 @@
 			because you should run!
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="17" question="17">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="17" question="17">
 		<testo>
 			Which of the following can be inserted into Lion to make this
 			code compile? (Choose all that apply)
@@ -611,8 +593,7 @@
 			signature in the interface.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="18" question="18">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="18" question="18">
 		<testo>
 			Which of the following are true? (Choose all that apply)
 		</testo>
@@ -638,8 +619,7 @@
 			declared, but this is bad practice.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="19" question="19">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="19" question="19">
 		<testo>
 			Which of the following can be inserted in the blank to make the
 			code compile? (Choose all that apply)
@@ -678,8 +658,7 @@
 			make that block unreachable.
 		</spiegazione>
 	</domanda>
-	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]"
-		chapter="6" id="20" question="20">
+	<domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="6" id="20" question="20">
 		<testo>
 			What does the output of the following contain? (Choose all that
 			apply)
@@ -729,4 +708,4 @@
 			exception, that’s the one printed.
 		</spiegazione>
 		</domanda>	
-</domande>
+<domanda book="oca_manual" chapter="6" id="21" question="666"><testo>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</testo><risposte type="checkbox"/><risposteEsatte>A</risposteEsatte><spiegazione>AAA</spiegazione></domanda><domanda book="oca_manual" chapter="6" id="22" question="666"><testo>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</testo><risposte type="checkbox"/><risposteEsatte>A</risposteEsatte><spiegazione>AAA</spiegazione></domanda><domanda book="oca_manual" chapter="6" id="23" question="666"><testo>AAAAAAAAAAAAAAAAAAAAAAAAAAA</testo><risposte type="checkbox"><risposta value="A">A</risposta><risposta value="B">A</risposta><risposta value="C">A</risposta><risposta value="D">A</risposta><risposta value="E">A</risposta><risposta value="F">A</risposta><risposta value="G">A</risposta><risposta value="H">A</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>AAA</spiegazione></domanda></domande>
