@@ -81,21 +81,7 @@
 			TA String is immutable. Calling concat() returns a new String but does not change
 			the original. A StringBuilder is mutable. Calling append() adds characters to the
 			existing character sequence along with returning a reference to the same object. 
-		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="7" question="7"><testo/><risposte type=""/><risposteEsatte/><spiegazione/></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="8" question="8"><testo>
-			Which are the results of the following code? (Choose all that apply)
-			
-			String numbers = "012345678";
-			System.out.println(numbers.substring(1, 3));
-			System.out.println(numbers.substring(7, 7));
-			System.out.println(numbers.substring(7));
-		</testo><risposte type="checkbox"><risposta value="A">12</risposta><risposta value="B">123</risposta><risposta value="C">7</risposta><risposta value="D">78</risposta><risposta value="E">A blank line.</risposta><risposta value="F">An exception is thrown.</risposta><risposta value="G">The code does not compile.</risposta></risposte><risposteEsatte>A, D, E</risposteEsatte><spiegazione> 
-			substring() has two forms. The first takes the index to start with and the
-			index to stop immediately before. The second takes just the index to start with and
-			goes to the end of the String. Remember that indexes are zero based. The first call
-			starts at index 1 and ends with index 2 since it needs to stop before index 3. The second call starts at index 7 and ends in the same place, resulting in an empty String.
-			This prints out a blank line. The final call starts at index 7 and goes to the end of the
-			String.
-		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="9" question="9"><testo>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="7" question="7"><testo>Cos'è Java</testo><risposte type="radio"><risposta value="A">Un Programma</risposta><risposta value="B">Un Linguaggio di programmazione</risposta><risposta value="C">Un isola dello Sri Lanka</risposta><risposta value="D">Un tipo di tè</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>Perchè Java è un famoso linguaggio di Programmazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="8" question="7"><testo>Cos'è Java</testo><risposte type="radio"><risposta value="A">Un Programma</risposta><risposta value="B">Un Linguaggio di programmazione</risposta><risposta value="C">Un isola dello Sri Lanka</risposta><risposta value="D">Un tipo di tè</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>Perchè Java è un famoso linguaggio di Programmazione</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="3" id="9" question="9"><testo>
 			What is the result of the following code?
 			
 			3: String s = "purr";
