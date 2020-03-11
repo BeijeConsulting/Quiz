@@ -19,6 +19,14 @@
 
 
 	<script>
+	
+		function inserisciRisposta() {
+			
+			let insertBut = document.getElementById("button_risposte");
+			let newLab = document.createElement("INPUT");
+			newLab.setAttribute("type", "text");
+			list.insertBefore(newLab, insertBut);
+		}
 		/*
 		private static final String NEW_LIBRO = "/inserisci/{libro}";
 		private static final String NEW_LIBRO_CAPITOLO = "/inserisci/{libro}/{capitolo}";
