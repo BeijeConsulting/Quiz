@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domande>
+	<domanda book="nostro_libro" chapter="2" id="nostro_libro|2|2"
+		question="2">
+		<testo>nsdjahdj</testo>
+		<risposte type="checkbox">
+			<risposta value="A">aaaaa</risposta>
+		</risposte>
+		<risposteEsatte>A</risposteEsatte>
+		<spiegazione>vhsfuhjah</spiegazione>
+	</domanda>
+</domande>
