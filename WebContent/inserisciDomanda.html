@@ -1,176 +1,119 @@
 <!DOCTYPE html>
 <html>
+<head>
+
+<style>
+</style>
+</head>
 <body>
 
 
 	<h1>Campi Domanda:</h1>
 	<br>
-	<br> INSERISCI UNA DOMANDA: 
-	Inserisci il titolo del libro a cui appartiene la domanda:<input type="text" placeholder="inserisci titolo " id="book_title">
-	<input type="text" placeholder="insert book title" id="question"><br><br>
-	Inserisci il capitolo della domanda: <input type="text" placeholder="inserisci capitolo " id="chapter"><br>
-	<input type="button" value="INSERIMENTO..." onclick="inserisciDomanda()">
+	<br> INSERISCI UNA DOMANDA:
+	<br>
+	<br> Inserisci il titolo del libro a cui appartiene la domanda:
+	<input type="text" placeholder="insert book title" id="book_title">
+	<br>
+	<br> Inserisci il capitolo della domanda:
+	<input type="number" placeholder="inserisci capitolo " id="chapter">
+	<br>
+	<br> Inserisci il numero della domanda:
+	<input type="number" placeholder="inserisci question " id="n_question">
+	<br>
+	<br> Inserisci il testo della domanda:
 	<br>
 	<br>
-	<input type="button" value="Aggiungi Risposta" id="button_risposte">
+	<textarea id="txt_domanda" rows="5" cols="60"></textarea>
+	<br>
+	<br>
+	<h4>MODALITA' DI RISPOSTA:</h4>
+	<br>
+	Risposta multipla:<input type="radio" id="param_type" name="param_type" value="checkbox">
+	<br><br>
+	Risposta singola:<input type="radio" id="param_type" name="param_type" value="radio">
+
+	<br>
+	<br>
+	<br>
+	<input type="button" value="Aggiungi Risposta..." id="button_risposte" onclick="inserisciRisposta()">
+	<div id="risposte"></div>
+
+	Inserisci Risposta/e Esatta/e:
+	<input type="text" id="risposteEsatte" placeholder='esempio : "ABCD"'>
+	<br>
+	<br> Inserisci spiegazione:
+	<br>
+	<br>
+	<textarea  rows="5" cols="60" id="spiegazione"></textarea>
 	<hr>
 	<hr>
+	<input type="button" value="Inserisci Tutti i Campi Domanda..."
+		onclick="inserisciDomanda()">
 	<div id="result"></div>
 
 
 
 	<script>
-		var nRisp=0;
+		var nRisp = 0;
 		function inserisciRisposta() {
-			
+
 			let insertBut = document.getElementById("button_risposte");
-			let newLab = document.createElement("INPUT");
+			let newLab = document.createElement("input");
 			newLab.setAttribute("type", "text");
-			newLab.setAttribute("id", "risp"+nRisp);
-			list.insertBefore(newLab, insertBut);
+			newLab.setAttribute("id", "risp" + nRisp);
+			document.getElementById("risposte").appendChild(newLab);
 			nRisp++;
 		}
-		/*
-		private static final String NEW_LIBRO = "/inserisci/{libro}";
-		private static final String NEW_LIBRO_CAPITOLO = "/inserisci/{libro}/{capitolo}";
-		private static final String NEW_LIBRO_CAPITOLO_DOMANDA = "/inserisci/{libro}/{capitolo}/{domanda}";
-		 */
+	
 		function inserisciDomanda() {
 
-			let quest= document.getElementById("question").value;
+			let bookTitle = document.getElementById("book_title").value;
+			let quest = document.getElementById("n_question").value;
+			let chapter = document.getElementById("chapter").value;
+			
+			let text = document.getElementById("txt_domanda").value;
+			
+			let risposteEsatte = document.getElementById("risposteEsatte").value;
+			let spiegazione = document.getElementById("spiegazione").value;
 			let url = 'http://localhost:8080/Quiz/creadomanda';
 			
+			let answerType = document.getElementById("param_type").value;
+			console.log(answerType);
+			
+
 			let listaRisposte = new Array(nRisp);
-			for(let a=0; a<nRisp; a++) {
-				let risposta = document.getElementById("risp"+a);
-				var value = String.fromCharCode(65 + a); 
-				if(risposta.value=="") break;
+			for (let a = 0; a < nRisp; a++) {
+				let risposta = document.getElementById("risp" + a);
+				var value = String.fromCharCode(65 + a);
+				if (risposta.value == "")
+					break;
 				else {
-					listaRisposte[a]=JSON.stringify({
-						"value": value,
-						"text": risposta.value
+					listaRisposte[a] = JSON.stringify({
+						"value" : value,
+						"text" : risposta.value
 					})
 				}
 			}
-			
-			if (quest.value != "") {
-				fetch(url, {
-					method : "POST",
-					headers : new Headers({
-						"Content-Type" : "application/json"
-					}),
-					body : JSON.stringify({
-						"id": "" ,
-						"book": ,
-						"chapter": ,
-						"question": ,
-						"testo": ,
-						"answerType": ,
-						"risposte": listaRisposte
-					
-					
-						
-					})
-				});
-
-				if(chapter.value!="") {
-					fetch(url+='/'+)
-				}
-			}
-			
+			fetch(url, {
+				method : "POST",
+				headers : new Headers({
+					"Content-Type" : "application/json"
+				}),
+				body : JSON.stringify({
+					"id" : "",
+					"book" : bookTitle,
+					"chapter" : chapter,
+					"question" : quest,
+					"testo" : text,
+					"answerType" : answerType,
+					"risposte" : listaRisposte,
+					"rispostaUtente" :"",
+					"rispostaEsatta" : risposteEsatte,
+					"spiegazione" : spiegazione
+				})
+			});
 		}
-		/*	
-		
-		"id": "",
-    "book": "OCA Oracle Certified Associate Java SE 8 [2014]",
-    "chapter": "6",
-    "question": 180,
-    "testo": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_",
-    "answerType": "checkbox",
-    
-    "risposte": [
-        {
-            "value": "A",
-            "text": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_"
-        },
-        {
-            "value": "B",
-            "text": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_"
-        },
-        {
-            "value": "C",
-            "text": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_"
-        },
-        {
-            "value": "D",
-            "text": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_"
-        },
-        {
-            "value": "E",
-            "text": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_"
-        },
-        {
-            "value": "F",
-            "text": "_TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST__TEST_REST_"
-        }
-    ],
-    "rispostaUtente": "",
-    "rispostaEsatta": "ABE",
-    "spiegazione": " 
-		
-		
-		
-		
-		
-		
-		
-		
-		var myHeaders = new Headers();
-		var myInit = { method: 'POST',
-		           headers: myHeaders,
-		           mode: 'cors',
-		           cache: 'default' };
-		
-		
-		
-		if(bookTitle.value!=""){
-		url+=bookTitle;
-		fetch(url, myInit)
-		.then(response => console.log(response))
-		
-		
-		//<quiz dir="oca_manual" id_book="oca_manual" title="OCA Oracle Certified Associate Java SE 8 [2014]"/>
-		}
-		}
-		
-		 fetch('https://jsonplaceholder.typicode.com/posts', {
-		 method: 'POST',
-		 body: JSON.stringify({
-		 title: 'foo',
-		 body: 'bar',
-		 userId: 1
-		 }),
-		 headers: {
-		 "Content-type": "application/json; charset=UTF-8"
-		 }
-		 })
-		 .then(response => response.json())
-		 .then(json => console.log(json))
-
-
-		 }
-
-
-		 fetch(url, {
-		 method: "post",
-		 headers: new Headers({
-		 "Content-Type": "application/json"
-		 }),
-		 body: JSON.stringify({
-		 nome: "etc",
-		 eta: 12
-		 })
-		 .then(...)*/
 	</script>
 
 </body>
