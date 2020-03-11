@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.service.QuizService;
 
 @RestController
@@ -59,6 +60,20 @@ public class ControllerRest {
 			}
 		return "DOMANDE INSERITE!";
 		
+	}
+	@RequestMapping(value="/insertLibri", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String insertLibri(@RequestBody List<Libro> libri) {
+		if(libri.size()==0) {
+			return "INSERIRE ALMENO UN LIBRO!";
+		}
+		else if(libri.size()==1) {
+			quizService.insertLibro(libri);
+			return "LIBRO INSERITO!";
+		}
+		else {
+				quizService.insertLibro(libri);
+			}
+		return "LIBRI INSERITI CORRETTAMENTE!";	
 	}
 	@RequestMapping(value = "/aggiornaDomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List<Domanda> domande,

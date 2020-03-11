@@ -1,12 +1,15 @@
 package it.beije.quiz.model;
 
-import java.util.List;
+
 
 public class Libro {
 	
 	private String idBook;
 	private String dir;
 	private String title;
+	
+	public Libro() {
+	}
 	
 	
 
