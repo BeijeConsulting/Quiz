@@ -191,10 +191,6 @@ function deleteDomanda(){
 	
 	fetch('http://localhost:8080/quiz/delete/domanda/' + idBook, {
 	    method: 'DELETE'})
-  .then(response => response.json())
-  .then(json => {
-	console.log( json);})
-	.catch(error => console.log('!!'));
 }
 
 function getIdBook(){
@@ -215,11 +211,11 @@ function visualParametri(){
 	console.log(libro);
 	
 	console.log(valoreSelezione);
-	if(valoreSelezione == "visualDomanda" || valoreSelezione == "insertDomanda"){
+	if(valoreSelezione == "visualDomanda" || valoreSelezione == "deleteDomanda"){
 	document.getElementById("parametriVisual").style.display = "inline";
 	document.getElementById("parametriInsert").style.display = "none";
 	
-	} else if(valoreSelezione == "updateDomanda" || valoreSelezione == "deleteDomanda") {
+	} else if(valoreSelezione == "insertDomanda" || valoreSelezione == "updateDomanda") {
 	document.getElementById("parametriVisual").style.display = "inline";
 	document.getElementById("parametriInsert").style.display = "inline";
 	}

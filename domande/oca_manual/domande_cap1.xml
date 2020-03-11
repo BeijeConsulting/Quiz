@@ -276,28 +276,4 @@
 			Calling System.gc() suggests that Java might wish to run the garbage collector.
 			Java is free to ignore the request, making option E correct. finalize() runs if an object
 			attempts to be garbage collected, making option B correct.
-		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="21" question="21"><testo>
-			What does the following code output?
-			
-			1: public class Salmon {
-			2: 	int count;
-			3: 	public void Salmon() {
-			4: 		count = 4;
-			5: }
-			6: public static void main(String[] args) {
-			7: 	Salmon s = new Salmon();
-			8: 	System.out.println(s.count);
-			9: } }
-		</testo><risposte type="checkbox"><risposta value="A">0</risposta><risposta value="B">4</risposta><risposta value="C">Compilation fails on line 3.</risposta><risposta value="D">Compilation fails on line 4.</risposta><risposta value="E">Compilation fails on line 7.</risposta><risposta value="F">Compilation fails on line 8.</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione> 
-			While the code on line 3 does compile, it is not a constructor because it has a return
-			type. It is a method that happens to have the same name as the class. When the code
-			runs, the default constructor is called and count has the default value (0) for an int.
-		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="22" question="22"><testo>
-			Which of the following are true statements? (Choose all that apply)
-		</testo><risposte type="checkbox"><risposta value="A">Java allows operator overloading.</risposta><risposta value="B">Java code compiled on Windows can run on Linux.</risposta><risposta value="C">Java has pointers to specific locations in memory.</risposta><risposta value="D">Java is a procedural language.</risposta><risposta value="E">Java is an object-oriented language.</risposta><risposta value="F">Java is a functional programming language.</risposta></risposte><risposteEsatte>B, E</risposteEsatte><spiegazione> 
-			C++ has operator overloading and pointers. Java made a point of not having
-			either. Java does have references to objects, but these are pointing to an object that can
-			move around in memory. Option B is correct because Java is platform independent.
-			Option E is correct because Java is object oriented. While it does support some parts of
-			functional programming, these occur within a class.
-		</spiegazione></domanda><domanda book="oca_manual" chapter="1" id="23" question="23"><testo>CAMBIO</testo><risposte type="radio"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>CAMBIOO</spiegazione></domanda><domanda book="oca_manual" chapter="1" id="24" question="24"><testo>Prova</testo><risposte type="radio"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>Spiegazione</spiegazione></domanda><domanda book="oca_manual" chapter="1" id="25" question="25"><testo>adwawdaw</testo><risposte type="checkbox"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta><risposta value="C">acacaw</risposta></risposte><risposteEsatte>ABC</risposteEsatte><spiegazione>awdawdaw</spiegazione></domanda></domande>
+		</spiegazione></domanda><domanda book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" id="21" question="21"><testo/><risposte type=""/><risposteEsatte/><spiegazione/></domanda><domanda book="oca_manual" chapter="1" id="22" question="22"><testo>Cambio la 22</testo><risposte type="radio"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta></risposte><risposteEsatte>B</risposteEsatte><spiegazione>Cambio la 22</spiegazione></domanda><domanda book="oca_manual" chapter="1" id="23" question="23"><testo>CAMBIO</testo><risposte type="radio"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>CAMBIOO</spiegazione></domanda><domanda book="oca_manual" chapter="1" id="24" question="24"><testo>Prova</testo><risposte type="radio"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta></risposte><risposteEsatte>A</risposteEsatte><spiegazione>Spiegazione</spiegazione></domanda><domanda book="oca_manual" chapter="1" id="25" question="25"><testo>adwawdaw</testo><risposte type="checkbox"><risposta value="A">Ciao</risposta><risposta value="B">Che Dici</risposta><risposta value="C">acacaw</risposta></risposte><risposteEsatte>ABC</risposteEsatte><spiegazione>awdawdaw</spiegazione></domanda></domande>

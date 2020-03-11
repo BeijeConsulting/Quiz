@@ -163,8 +163,7 @@ public class QuizRestController {
 
 	}
 
-	@RequestMapping(value = "/delete/domanda/{id}", method = RequestMethod.DELETE,
-			consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/delete/domanda/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody Domanda deleteDomanda(@PathVariable String id) {
 
 		List <Domanda> dUpdate=new ArrayList<Domanda>();
