@@ -74,7 +74,7 @@ public class QuizController {
 		libro.setDir(IDlibro);
 		// libro.setDomanda(null);
 
-		File file = new File("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+		File file = new File("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 		List<Libro> lista = Utils.caricaLibriDaIndexXML(file);
 		lista.add(libro);
 		try {

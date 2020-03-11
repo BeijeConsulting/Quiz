@@ -14,6 +14,23 @@
 <title>Crea libro</title>
 </head>
 <body>
+<script>
+function insertLibri() {
+	let idlibro = document.getElementById("idBook").value;
+	let titolo=document.getElementById("title").value;
+	let dir="";
+	fetch('http://localhost:8080/Quiz/insertLibri',{
+				method:"post",
+				headers: new Headers({"Content-Type": "application/json"}),
+				body: JSON.stringify([{idBook:idlibro,dir:idlibro,title:titolo}])
+				})
+		  .then(response => response.json())
+		  .then(json => console.log(json))
+		  
+		  }
+
+</script>
+
 <header class="header clearfix">
 		<a href="./" class="header__logo">Logo</a> <a href=""
 			class="header__icon-bar"> <span></span> <span></span> <span></span>
@@ -41,11 +58,10 @@
 		<div class="panel__copy" style="background-color: #da614e">
 			<h2 class="panel__copy__title">Crea nuovo libro</h2>
 			
-			<form action="./creaLibro" method="post">
-			 Directory del libro: <input type="text" name="IDbook"><br><br>
-			 Titolo del libro: <input type="text" name="title"><br><br>	
-			<input type="submit" value="CONFERMA AGGIUNTA LIBRO">
-			</form>
+			 Directory del libro: <input type="text" name="IDbook" id="idBook"><br><br>
+			 Titolo del libro: <input type="text" name="title" id="title"><br><br>	
+			<input type="button" onclick="insertLibri()" value="CONFERMA AGGIUNTA LIBRO">
+			
 		</div>				
 	</article>
 

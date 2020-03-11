@@ -46,7 +46,7 @@ function getDomande() {
 			<label for="book">${libro.title}</label>
 			<br><br>
 		</c:forEach>
-		<input type="submit" value="START QUIZ!">
+		
 
 	</form> 
 LIBRO: <input id="dirLibro" type="text" name="dirLibro"><br>
