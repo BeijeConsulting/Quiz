@@ -10,49 +10,54 @@
 <body>
 <script>
 
+let arrayDomande=[];
+let indice=0;
 function getDomande() {
 	let dirLibro = document.getElementById("dirLibro").value;
-	let capitolo=document.getElementById("capitolo").value;
-	var txt="";
 	var risp=" ";
+	
 	let numDom=document.getElementById("numDom").value;
 
-	fetch('http://localhost:8080/Quiz/domande/'+dirLibro+"/"+capitolo)
+	fetch('http://localhost:8080/Quiz/domande?dirLibro='+dirLibro)
 	  .then(response => response.json())
 	  .then(domande => {
-		console.log(domande);
-		numDom=domande.length;
+		arrayDomande=domande;
 		console.log(dirLibro);
-		for(i=0; i<domande.length;i++){
-			var element = domande[i];
-			console.log(element);
-			txt+="<h4>"+element.id+"</h4>"+element.testo;
-			risp= element.risposte;
-			for(j=0;j<risp.length;j++)
-			
-				txt+="<br><br>"+risp[j].value + " "+ risp[j].text+"<br>";
-			
-		}
-	  document.getElementById("domandelibro").innerHTML=txt;
-	  document.getElementById("numDom").innerHTML=numDom;
+		  document.getElementById("numDom").innerHTML=domande.length;
+		
+	  document.getElementById("domandelibro").innerHTML="<h4>"+domande[0].id+'</h4><div id="testo">'+domande[0].testo+'</div><br><input type="button" value="next" onclick="next()">';
+
 	  })
 	  .catch(error => console.log('errore'));
 	 } 
 	 
+
+function back(){
+	if(indice !=0)
+	indice--;
+	
+	  document.getElementById("domandelibro").innerHTML="<h4>"+arrayDomande[indice].id+"</h4>"+arrayDomande[indice].testo+'<br><input type="button" value="back" onclick="back()"><input type="button" value="next" onclick="next()">';
+}
+function next(){
+	if(indice<arrayDomande.length)
+	indice++;
+	  document.getElementById("domandelibro").innerHTML="<h4>"+arrayDomande[indice].id+"</h4>"+arrayDomande[indice].testo+'<br><input type="button" value="back" onclick="back()"><input type="button" value="next" onclick="next()">';	
+	
+}	 
 </script>
-	  <form action="/domande/{dirLibro}/{capitolo}" method="get"> 
-		<c:forEach items="${listaLibri}" var="libro">
-			<input type="checkbox" id="book" name="dirs" value="${libro.idBook}">
-			<label for="book">${libro.title}</label>
-			<br><br>
-		</c:forEach>
-		
+	
+		LIBRO: <input id="dirLibro" type="text" name="dirLibro"><br>
+		<input type="button" value="START QUIZ" onclick="getDomande()">
+		<br><br>TOT DOMANDE:<div id="numDom"></div>
+		<br>DOMANDE LIBRO: <div id="domandelibro"></div> 
+<!-- 	 <input type="submit" value="START QUIZ!">
+
 
 	</form> 
-LIBRO: <input id="dirLibro" type="text" name="dirLibro"><br>
+
 <br>CAPITOLO <input id="capitolo" type="text" name="capitolo"><br>
 <br><input type="button" value="CARICA DOMANDE" onclick="getDomande()">
 <br><br>TOT DOMANDE:<div id="numDom"></div>
-<br>DOMANDE LIBRO: <div id="domandelibro"></div>
+<br>DOMANDE LIBRO: <div id="domandelibro"></div> -->	
 </body>
 </html>

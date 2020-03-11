@@ -23,4 +23,7 @@ public class Risposta {
 		this.text = text;
 	}
 	
+	public Risposta() {
+		
+	}
 }

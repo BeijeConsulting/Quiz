@@ -1,5 +1,6 @@
 package it.beije.quiz.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -22,13 +23,28 @@ public class ControllerRest {
 
 	@Autowired
 	private QuizService quizService;
-	@RequestMapping(value = "/domande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
-	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo,
+
+	private List<File> listaFile = null;
+
+
+	@RequestMapping(value = "/domande", method = RequestMethod.GET)
+	public @ResponseBody List<Domanda> getDomande(@RequestParam(name="dirLibro", required=false) String dirLibro, @RequestParam(name="capitolo", required=false) Integer capitolo,
+
 			@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
+		
+		
 		List<Domanda> listaDomande = quizService.getDomande();
 		List<Domanda> domande = new ArrayList<Domanda>();
 
-		if (nDomanda == null) {
+		if(dirLibro==null) {
+			return listaDomande;
+		}
+		else if(capitolo==null) {
+			for(Domanda d: listaDomande)
+			if(Utils.getDirectory(d.getId()).equals(dirLibro))
+				domande.add(d);
+		}
+		else if (nDomanda == null) {
 			for (Domanda d : listaDomande)
 				if (d.getChapter() == capitolo && Utils.getDirectory(d.getId()).equals(dirLibro))
 					domande.add(d);
@@ -61,6 +77,7 @@ public class ControllerRest {
 		return "DOMANDE INSERITE!";
 		
 	}
+
 	@RequestMapping(value="/insertLibri", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String insertLibri(@RequestBody List<Libro> libri) {
 		if(libri.size()==0) {

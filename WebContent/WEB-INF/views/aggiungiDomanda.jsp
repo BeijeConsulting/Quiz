@@ -35,6 +35,9 @@
 	</section>
 
 
+
+
+
 	<article class="panel">
 		<div class="panel__copy" style="background-color: #da614e">
 			<h2 class="panel__copy__title">Inserisci Nuova Domanda</h2>
@@ -42,62 +45,87 @@
 
 				<label for="books">Scegli il libro in cui inserire la
 					domanda:<br> <br>
-				</label> <select class="select-css" id="books" name="param_libro">
+				</label> 
+				
+				<select class="select-css" id="books" name="param_libro">
 					<c:forEach items="${listaLibri}" var="libro">
 						<option id="book" value="${libro.title}">${libro.title}</option>
 					</c:forEach>
-				</select> <br> <br> Id domanda <input type="number"
+				</select> <br> <br> Id domanda <input type="number" id="idDomanda"
 					placeholder="inserisci id domanda" class="quantity" min="1"
-					name="param_id"> Capitolo <input type="number"
+					name="param_id">
+				
+				 Capitolo <input type="number" id="capitolo"
 					placeholder="inserisci capitolo" class="quantity" min="1"
 					name="param_capitolo" id="capitoli"><br> <br>
-				Numero della domanda <input type="number"
+				
+				
+				Numero della domanda <input type="number" id="nDomanda"
 					placeholder="inserisci n° domanda" class="quantity" min="1"
 					name="param_nDomanda" style="align: center"><br> <br>
 
 				Testo della domanda: <br> <br>
-				<textarea name="param_testo" form="formDomande" cols="87" rows="12"></textarea>
+				<textarea name="param_testo" form="formDomande" cols="87" rows="12" id="testo"></textarea>
 
 
 				<input type="button" onclick="inserisciRisposta()"
 					value="inserisci risposta" id="aggiungiRisp"> <input
 					type="button" onclick="rimuoviRisposta()" value="rimuovi risposta"
 					id="rimuoviRisp">
+					
 				<div id="insertBook"></div>
+				
 				<br> <input type="hidden" name="n_risposte" value="0" id="nRisp">
+				
+				
 					Tipo di domanda: <br> <input type="radio"
-					id="checkbox" name="param_type" value="checkbox"> <label
-					for="checkbox">Risposta multipla</label> <input type="radio"
-					id="radio" name="param_type" value="radio"> <label
-					for="radio">Risposta singola</label><br> <br> <br>
+					id="checkbox" name="param_type" value="checkbox">
+			 <label	for="checkbox">Risposta multipla</label> 
+			 
+			 <input type="radio" id="radio" name="param_type" value="radio"> 
+			 
+			 <label	for="radio">Risposta singola</label><br> <br> <br>
+			 
 				RisposteEsatte :<input type="text" placeholder='esempio : "ABCD"' name="param_risposteEsatte"><br>
+				
 				<br> Spiegazione:<br>
 				<textarea cols="87" rows="12" name="param_spiegazione"></textarea>
 				<br> <br> <input type="submit" value="Salva"
 					onclick="valida()">
-
-
-
+					
 			</form>
+			
 		</div>
-
-
-
-
 	</article>
 	<footer class="footer clearfix">
 		Copyright - 2020 TeamClaRiGa_Design
-
 		<form action="nostriContatti.jsp" method="POST">
 			<input type="submit" value="chi siamo" style="float: right;">
 		</form>
 	</footer>
-
-
-
-
-
+	
+	
 	<script type="text/javascript">
+	/* function insertDomanda(domanda) {
+		let idDomanda =document.getElementById("idDomanda").value;
+		let libro =document.getElementById("book").value;
+		let capitolo =document.getElementById("capitolo").value;
+		let nDomanda =document.getElementById("nDomanda").value;
+		let testoDomanda =document.getElementById("testo").value;
+
+		fetch('http://localhost:8080/Quiz/insertListaDomande',{
+				method:"post",
+				headers: new Headers({"Content-Type": "application/json"}),
+				body: JSON.stringify(domanda)})
+		  .then(response => response.json())
+		  .then(json => console.log(json))
+
+
+	}
+	
+	
+	
+	*/
 		var i = 0;
 		var j = i;
 		function inserisciRisposta() {
@@ -140,7 +168,8 @@
 			var testo = document.myForm.param_testo.value;
 			var spiegazione = document.myForm.param_spiegazione.value;
 			var libro = document.myForm.param_libro.value;
-
+			var tipoRisposte = document.myForm.param_type.value;
+			var risposteEsatte= document.myForm.param_risposteEsatte;
 			var listaRisposte = [];
 		
 			for (; i > 0;) {
@@ -152,8 +181,8 @@
 				//	console.log(document.myForm.a.value);
 			}
 
-			while (listaRisposte.length != 0) {
-				var risposta = listaRisposte.pop();
+			for (i=0; i<listaRisposte.length; i++) {
+				var risposta = listaRisposte[i];
 				console.log("dentro for controllo");
 				console.log(risposta);
 				if (risposta == "" || risposta == "undefined"
@@ -207,9 +236,51 @@
 				compilaForm();
 				document.myForm.action = "./salvaDomanda";
 				document.myForm.submit();
+				var rispDaIns=[];
+			 /*	for(i=0; i< listaRisposte; i++){
+					var carattere= String.fromCharCode(65+i);
+					var risposte={	
+								value: carattere,
+								text: 
+					}
+				}
+				var domanda=['{
+								id:id,
+								book:libro,
+								chapter:capitoli,
+								question:nDomanda,
+								testo:testoDomanda,
+								answerType:tipoRisposte,
+								risposte:[{
+												value:"A",
+												testo:"txt1"
+											},
+											{
+												value:"B",
+												testo:"txt2"
+											},
+											{
+												value:"C",
+												testo:"txt3"
+											}
+										],
+								
+								rispostaUtente: "",
+								rispostaEsatta: risposteEsatte,
+								spiegazione:spiegazione
+			}]
+					
+			}']
+				*/
+				insertDomanda();
 			}
 
 		}
+		
+		
+		
+		
+		
 	</script>
 
 
