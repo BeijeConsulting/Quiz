@@ -23,7 +23,7 @@ import it.beije.quiz.service.QuizService;
 @RestController
 public class QuizRestController {
 
-	private final String MAIN_PATH = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
+	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 	private List<Libro> LIBRI = new ArrayList<Libro>();
 
 	@Autowired

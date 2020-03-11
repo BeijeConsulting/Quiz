@@ -27,7 +27,7 @@ import it.beije.quiz.model.Risposta;
 @Service
 public class QuizService {
 	
-	private final String MAIN_PATH = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
+	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
 	public final String PATH_INDEX_BOOKS = MAIN_PATH +"index.xml";
 
 	public List<Domanda> getLibriCarichi(Libro l){
