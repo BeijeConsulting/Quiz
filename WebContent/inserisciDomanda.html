@@ -19,13 +19,15 @@
 
 
 	<script>
-	
+		var nRisp=0;
 		function inserisciRisposta() {
 			
 			let insertBut = document.getElementById("button_risposte");
 			let newLab = document.createElement("INPUT");
 			newLab.setAttribute("type", "text");
+			newLab.setAttribute("id", "risp"+nRisp);
 			list.insertBefore(newLab, insertBut);
+			nRisp++;
 		}
 		/*
 		private static final String NEW_LIBRO = "/inserisci/{libro}";
@@ -36,6 +38,20 @@
 
 			let quest= document.getElementById("question").value;
 			let url = 'http://localhost:8080/Quiz/creadomanda';
+			
+			let listaRisposte = new Array(nRisp);
+			for(let a=0; a<nRisp; a++) {
+				let risposta = document.getElementById("risp"+a);
+				var value = String.fromCharCode(65 + a); 
+				if(risposta.value=="") break;
+				else {
+					listaRisposte[a]=JSON.stringify({
+						"value": value,
+						"text": risposta.value
+					})
+				}
+			}
+			
 			if (quest.value != "") {
 				fetch(url, {
 					method : "POST",
@@ -49,12 +65,7 @@
 						"question": ,
 						"testo": ,
 						"answerType": ,
-						"risposte": [
-							
-							
-							
-							
-						]
+						"risposte": listaRisposte
 					
 					
 						
