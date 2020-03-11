@@ -3,6 +3,8 @@ package it.beije.quiz.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.rmi.CORBA.Util;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.xml.sax.SAXException;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Libro;
 import it.beije.quiz.service.QuizService;
 
 
@@ -23,6 +26,11 @@ public class RestController {
 	
 	@Autowired
 	private QuizService quizService;
+	
+	@RequestMapping(value = "/libri", method = RequestMethod.GET)
+	public List<Libro> getLibri() throws ParserConfigurationException, SAXException, IOException {
+		return Utils.getLibri();
+	}
 	
 	@RequestMapping(value = {"/domande", "/domande/{libro}", "/domande/{libro}/{capitolo}",
 	"/domande/{libro}/{capitolo}/{question}"}, method = RequestMethod.GET)
