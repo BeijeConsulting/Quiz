@@ -81,6 +81,8 @@ Spiegazione: <br>
 <br><br>
 
 <input type="button" value="Esegui" onclick="esegui()">
+&nbsp &nbsp &nbsp &nbsp
+<input type="iniziaquiz" value="Inizia Quiz" onclick="iniziaQuiz()")>
 
 <br><br>
 <!-- <div id="domandaVis" class="domandaVis"> -->
@@ -191,10 +193,6 @@ function deleteDomanda(){
 	
 	fetch('http://localhost:8080/quiz/delete/domanda/' + idBook, {
 	    method: 'DELETE'})
-  .then(response => response.json())
-  .then(json => {
-	console.log( json);})
-	.catch(error => console.log('!!'));
 }
 
 function getIdBook(){
@@ -215,11 +213,11 @@ function visualParametri(){
 	console.log(libro);
 	
 	console.log(valoreSelezione);
-	if(valoreSelezione == "visualDomanda" || valoreSelezione == "insertDomanda"){
+	if(valoreSelezione == "visualDomanda" || valoreSelezione == "deleteDomanda"){
 	document.getElementById("parametriVisual").style.display = "inline";
 	document.getElementById("parametriInsert").style.display = "none";
 	
-	} else if(valoreSelezione == "updateDomanda" || valoreSelezione == "deleteDomanda") {
+	} else if(valoreSelezione == "insertDomanda" || valoreSelezione == "updateDomanda") {
 	document.getElementById("parametriVisual").style.display = "inline";
 	document.getElementById("parametriInsert").style.display = "inline";
 	}
@@ -244,6 +242,10 @@ function getRisposte(){
 	}
 }
 
+
+function iniziaQuiz(){
+	fetch('http://localhost:8080/quiz/startquiz');
+}
 
 
 function createNewResponse() {
