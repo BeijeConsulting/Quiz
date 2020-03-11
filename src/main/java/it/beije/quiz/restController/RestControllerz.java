@@ -151,6 +151,7 @@ public class RestControllerz {
 				l.getIdBook().equals(domanda.getBook()) || 
 				l.getNameDir().equals(domanda.getBook()))
 				newLibro = l;
+		//OKAY
 		String dirDomanda = newLibro.getNameDir();
 		System.out.println("dirDomanda:..........................:" + dirDomanda);
 		StringBuilder path = new StringBuilder();
