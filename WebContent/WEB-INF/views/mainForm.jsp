@@ -88,7 +88,7 @@
 			style='background-image: url("pages/banner3.png");'></div>
 		<div class="banner__copy">
 			<div class="banner__copy__text">
-				<h3>Svogli un Quiz</h3>
+				<h3>Svolgi un Quiz</h3>
 				<h4>svolgere un quiz come vuoi tu!</h4>
 				<p>questa sezione è dedicata allo svolgimento di un quiz in base
 					ai contenuti precedentemente inseriti. In particolare, sarà

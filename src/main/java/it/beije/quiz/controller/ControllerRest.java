@@ -3,9 +3,7 @@ package it.beije.quiz.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Libro;
 import it.beije.quiz.service.QuizService;
 
 @RestController
@@ -32,6 +28,7 @@ public class ControllerRest {
 
 	@RequestMapping(value = "/domande", method = RequestMethod.GET)
 	public @ResponseBody List<Domanda> getDomande(@RequestParam(name="dirLibro", required=false) String dirLibro, @RequestParam(name="capitolo", required=false) Integer capitolo,
+
 			@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
 		List<Domanda> listaDomande = quizService.getDomande();
 		List<Domanda> domande = new ArrayList<Domanda>();
@@ -60,13 +57,7 @@ public class ControllerRest {
 		}
 
 		return domande;
-
 	}
-
-
-
-	
-
 	@RequestMapping(value = "/insertListaDomande", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String insertDomande(@RequestBody List<Domanda> domande) {
 		if(domande.size()==0) {
@@ -81,10 +72,9 @@ public class ControllerRest {
 				quizService.insertDomanda(dom);
 			}
 		return "DOMANDE INSERITE!";
+		
 	}
 
-
-	
 	@RequestMapping(value = "/aggiornaDomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List<Domanda> domande,
 			HttpServletResponse response) {
@@ -105,17 +95,9 @@ public class ControllerRest {
 				}
 
 			}
-
-			if (listaDomandeAggiornate == null)
-				response.setStatus(204);
-
 		}
 		return listaDomandeAggiornate;
-
 	}
-
-	
-
 	@RequestMapping(value = "/deleteDomanda", method = RequestMethod.DELETE)
 	public @ResponseBody boolean deleteDomanda(HttpServletResponse response,
 			@RequestParam(name = "idDomanda", required = true) String idDomanda) {
@@ -134,7 +116,5 @@ public class ControllerRest {
 		}
 
 	}
-
-
 
 }
