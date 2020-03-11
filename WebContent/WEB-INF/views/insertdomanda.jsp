@@ -175,6 +175,7 @@ function insertNewDomanda() {
 			<input class="buttom" type="reset" name="reset" value="Reset campi domanda" />
 		</div>
 	</form>
+	<a href="/Quiz" >Torna alla Home</a>
 </div>
 <br><br>
 

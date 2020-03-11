@@ -166,9 +166,9 @@ function updateTime(dir) {
 function conferma() {
 	console.log("conferma");
 	old = document.getElementById("contenitore").innerHTML;
-	//document.getElementById("contenitore").innerHTML = "<form method=\"POST\" action=\"confermaselezione\">Domande selezionate: " + domande + "<br>Tempo disponibile: " + tempo + "<br><buttom type\"button\" value=\"Reset\" onclick=\"reset2()\" class=\"btn btn-secondary\">Reset</buttom><input class=\"btn btn-primary\" type=\"submit\" value=\"Start\" name=\"inizia\" /></form>";
-	document.getElementById("contenitore").innerHTML = "Domande selezionate: " + domande + "<br>Tempo disponibile: " + tempo + "<br><buttom type\"button\" value=\"Reset\" onclick=\"reset2()\" class=\"btn btn-secondary\">Reset</buttom><buttom onclick)=\"startQuiz()\" class=\"btn btn-primary\" type=\"submit\" value=\"Start\" name=\"inizia\">Start</buttom>"
-	window.location.replace("http://localhost:8080/Quiz/viewdomanda?0");
+	document.getElementById("contenitore").innerHTML = "<form method=\"post\" action=\"viewdomanda/0\">Domande selezionate: " + domande + "<br>Tempo disponibile: " + tempo + "<br><buttom type\"button\" value=\"Reset\" onclick=\"reset2()\" class=\"btn btn-secondary\">Reset</buttom><input class=\"btn btn-primary\" type=\"submit\" value=\"Start\" name=\"inizia\" /></form>";
+	//document.getElementById("contenitore").innerHTML = "Domande selezionate: " + domande + "<br>Tempo disponibile: " + tempo + "<br><buttom type\"button\" value=\"Reset\" onclick=\"reset2()\" class=\"btn btn-secondary\">Reset</buttom><buttom onclick)=\"startQuiz()\" class=\"btn btn-primary\" type=\"submit\" value=\"Start\" name=\"inizia\">Start</buttom>"
+	//window.location.replace("http://localhost:8080/Quiz/viewdomanda/0");
 }
 
 function reset2() {
@@ -192,11 +192,14 @@ function listDomandeLibro(libriDir) {
 }*/
 /*
 function startQuiz() {
-	let i;
-	for(i = 0; i < libri.length; i++) {}
-		allQuestion += listDomandeLibro(libri[i]);
-	}
-	console.log("domande:" + i);
+	fetch('http://localhost:8080/Quiz/newdomanda', {
+		method: 'POST',
+		body: JSON.stringify(domanda),
+		headers: {
+		  "Content-type": "application/json; charset=UTF-8",
+		  'Accept': 'application/json'
+		}
+	  })
 }*/
 </script>
 

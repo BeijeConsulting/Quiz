@@ -1,8 +1,10 @@
-#################################
-GRUPPO MasterJSONSkywalker ######
-#################################
+########################################
+###### GRUPPO MasterJSONSkywalker ######
+########################################
 
-1) Abbiamo modificato la index.jsp in modo che tramite fetch JS sia possibile ottenere i contenuti dei vari libri disponibili
-2) Abbiamo modificato la insertdomanda in modo che l'inserimento della nuova domande avvenga tramite l'utilizzo della fetch JS in POST
 
-Manca la visualizzazione delle domande
+- Modifica del file index.jsp per permettergli di leggere tramite FETCH i dati relativi ai libri disponibili
+
+- Modifica del file insertdomanda.jsp per fare in modo di inserire nuove domande tramite FETCH POST
+
+Mancherebbe la visualizzazione delle domande
