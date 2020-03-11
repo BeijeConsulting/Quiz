@@ -14,42 +14,32 @@ import it.beije.quiz.model.Libro;
 @Service
 public class QuizService {
 
-	private static final String baseDirectory = "C:\\Users\\Padawan14\\git\\Quiz\\domande\\";
+	private static final String baseDirectory = "C:\\Users\\"+System.getProperty("user.name")+"\\git\\Quiz\\domande\\";
 	private static List<Libro> listaLibriInXML = null;
-
-
 	public String getBaseDirectory() {
 		return baseDirectory;
 	}
-
 	public  List <Libro> getListaLibri(){
 		if(listaLibriInXML==null)
 			listaLibriInXML=Utils.caricaLibriDaIndexXML(baseDirectory+"index.xml");
 
 		return listaLibriInXML;
 	}
-
-
 	public QuizService() {
 		System.out.println("Creo istanza di QuizService");
 	}
-
 	private List<Domanda> domande = null;
-
 	private void caricaDomande() {
 		domande = new ArrayList<Domanda>();
 		File f = new File(baseDirectory);
-		String dir = "";
 		for(File file : f.listFiles()) {
 			if(file.isDirectory()) {
-				dir = file.getName();
 				for(File ff : file.listFiles()) {
 					domande.addAll(Utils.readFileDomande(ff.getPath()));
 				}
 			} 
 		}
 	}
-
 	public List<Domanda> getDomande() {
 		if (domande == null) {
 			caricaDomande();
@@ -57,7 +47,6 @@ public class QuizService {
 
 		return domande;
 	}
-
 	public Domanda aggiornaDomanda(Domanda dom) {
 		StringBuilder path = new StringBuilder();
 		path.append(baseDirectory)
@@ -76,7 +65,6 @@ public class QuizService {
 
 
 	}	
-
 	public Domanda insertDomanda(Domanda domanda){
 		caricaDomande();
 		boolean vero = false;
@@ -112,11 +100,8 @@ public class QuizService {
 		return domanda;
 
 	}
-
 	public void elimina(Domanda d) {
 		caricaDomande();
-
-		List <Domanda> nuoveDomande=new ArrayList<Domanda>();
 		StringBuilder path = new StringBuilder(
 				baseDirectory + Utils.getDirectory(d.getId()) + "\\domande_cap" + d.getChapter()+ ".xml");
 		String pathdomanda = path.toString();
@@ -124,9 +109,4 @@ public class QuizService {
 		Utils.eliminaDomanda(d, file2);
 		caricaDomande();
 	}		
-
-
-
-
-
 }

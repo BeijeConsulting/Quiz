@@ -28,25 +28,21 @@ public class Utils {
 		sb.append(dir).append("|").append(capitolo).append("|").append(nDomanda);
 		return sb.toString();
 	}
-
 	public static String getDirectory(String id) {
 		String[] elementi = id.split("([|])");
 
 		return elementi[0];
 	}
-
 	public static int getCapitolo(String id) {
 		String[] elementi = id.split("([|])");
 
 		return Integer.parseInt(elementi[1]);
 	}
-
 	public static int getNDomanda(String id) {
 		String[] elementi = id.split("([|])");
 
 		return Integer.parseInt(elementi[2]);
 	}
-
 	public static List<File> selezionaFileDiInteresse(String dir) {
 
 		File file = null;
@@ -68,11 +64,9 @@ public class Utils {
 		}
 		return filez;
 	}
-
 	public static void caricaFileInteressanti(List<File> filez) {
 
 	}
-
 	public static List<Libro> caricaLibriDaIndexXML(String pathIndexFile) { // TeamClariGa_Ga metodo per parsare
 																			// index.xml
 		File file = new File(pathIndexFile);
@@ -80,7 +74,6 @@ public class Utils {
 
 		return listaLibri;
 	}
-
 	public static List<Libro> caricaLibriDaIndexXML(File file) {
 
 		List<Libro> listaLibri = new ArrayList<Libro>();
@@ -110,11 +103,6 @@ public class Utils {
 		}
 		return listaLibri;
 	}
-
-//	public static void main(String[] args) {
-//		Utils.caricaLibriDaIndexXML("domande/index.xml");
-//	}
-
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 
@@ -129,9 +117,8 @@ public class Utils {
 
 		return childElements;
 	}
-
 	public static void scriviSuXML(List<Libro> libro, String pathfile) throws Exception {
-//STRING
+
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 
@@ -161,7 +148,6 @@ public class Utils {
 
 		System.out.println("File saved!");
 	}
-
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 
@@ -205,7 +191,7 @@ public class Utils {
 				String spiegazione = contenutoDomanda.get(3).getTextContent();
 
 				List<Libro> listaLibriInXML = Utils
-						.caricaLibriDaIndexXML("C:\\Users\\Padawan14\\git\\Quiz\\domande\\index.xml");
+						.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
 
 				String dir = null;
 				for (Libro l : listaLibriInXML) {
@@ -230,7 +216,6 @@ public class Utils {
 
 		return arrayDomande;
 	}
-
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -238,7 +223,6 @@ public class Utils {
 
 		return testo;
 	}
-
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
@@ -254,12 +238,6 @@ public class Utils {
 
 		return rispostaEsatta.length() == 0;
 	}
-
-	/**************** BRANCH CLARK *****************/
-
-	/*********************
-	 * Scrittura (append) della domanda nel file xml gia esistente
-	 *****************************************/
 	public static void aggiungiDomanda(Domanda domanda, File fileXML) {
 		List<Domanda> listDomande = new ArrayList<Domanda>();
 		listDomande = readFileDomande(fileXML.getPath());
@@ -333,7 +311,6 @@ public class Utils {
 
 
 	}
-
 	public static void eliminaDomanda(Domanda domanda, File fileXML) {
 		List<Domanda> listDomande = new ArrayList<Domanda>();
 		listDomande = readFileDomande(fileXML.getPath());
@@ -412,4 +389,3 @@ public class Utils {
 	}
 }
 
-/******************************************/
