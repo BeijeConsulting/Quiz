@@ -80,7 +80,7 @@ body {
 
 <body>
 	<div id="contenitore" style="padding: 10px;">
-	Questa è la pagina di ingresso al tuo Quiz Online
+	Questa ï¿½ la pagina di ingresso al tuo Quiz Online
 	<br>
 	<br> Seleziona da quale libro prendere le domande:
 	<br>
@@ -205,4 +205,3 @@ function startQuiz() {
 
 </body>
 </html>
-
