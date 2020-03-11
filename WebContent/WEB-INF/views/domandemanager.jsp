@@ -12,6 +12,11 @@ display : none;
 .domanda{
 display : none;
 }
+
+.risposte {
+	width: 200px;
+}
+
 </style>
 <body>
 
@@ -40,21 +45,57 @@ Domanda:  &nbsp <input id="domanda" type="number">
 </div>
 <br><br>
 
+<div id="parametriInsert">
+
+Testo: <br> 
+<textarea id="testo" rows="2" cols="50"></textarea><br><br>
+
+Tipo di domanda:  &nbsp 
+<input id="singola" value="radio" name="tipoRisposta" type="radio">
+<label for="singola">Risposta singola</label>
+
+<input id="multipla" value="checkbox" name="tipoRisposta" type="radio">
+<label for="singola">Risposta multipla</label><br><br>
+
+<table >
+<tr>
+		<td class="valignTop">Risposte:&nbsp;<button type="button" onclick="createNewResponse()">Add</button>		&nbsp;
+	    </td>
+		<td class="risposte">
+		<div style="float: left;">
+		<input type="text" maxlength="5" class="number" id="valueRisposta1" placeholder="A" />
+		</div>
+		<div><input style="width: 538px;" type="text" placeholder="testo della risposta" id="risposta1" />
+		</div>
+		</td>
+</tr>
+</table>
+<br>
+Risposta Utente: &nbsp 
+<input id="rispostaUtente" type="text"> &nbsp &nbsp &nbsp &nbsp 
+Risposta Esatta: &nbsp 
+<input id="rispostaEsatta" type="text"><br><br>
+Spiegazione: <br> 
+<textarea id="spiegazione" rows="2" cols="50"></textarea><br><br>
+</div>
+<br><br>
+
 <input type="button" value="Esegui" onclick="esegui()">
 
 <br><br>
-<div id="domandaVis" class="domandaVis">
-<p id="visual">Ciao</p>
-</div>
+<!-- <div id="domandaVis" class="domandaVis"> -->
+<!-- <p id="visual">Ciao</p> -->
+<!-- </div> -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-
 	var selezione = document.getElementsByName("selezione");
 	var libro = document.getElementById("libro").value = "";
 	var capitolo = document.getElementById("capitolo").value = "";
 	var domanda = document.getElementById("domanda").value = "";
 	var idBook = "";
 	var valoreSelezione = "";
+	var c = 2;
 	
 function esegui(){
 		selezione = document.getElementsByName("selezione");
@@ -89,7 +130,42 @@ function visualDomanda(){
 }
 	
 function insertDomanda(){
-	 fetch('http://localhost:8080/quiz/new/domanda')
+	var risposte = "";
+	var radios = document.getElementsByName('tipoRisposta');
+	var tipoRisposta = "";
+	
+	for(var i = 1; i < c; i++){
+		risposte += JSON.stringify({ value: $('#valueRisposta' + i).val(),
+						 			text: $('#risposta' + i).val() });
+	}
+	
+	for (var i = 0, length = radios.length; i < length; i++) {
+	  if (radios[i].checked) {
+	    tipoRisposta = radios[i].value;
+	    break;
+	  }
+	}
+	
+	console.log(risposte);
+	console.log(tipoRisposta);
+	
+	 fetch('http://localhost:8080/quiz/new/domanda', {
+		    method: 'POST',
+		    body: JSON.stringify({
+		      book: document.getElementById("libro").value,
+		      chapter: document.getElementById("capitolo").value,
+		      question: document.getElementById("domanda").value,
+		      testo: document.getElementById("testo").value,
+		      answerType: tipoRisposta,
+		      risposte: [],
+		      rispostaUtente: document.getElementById("rispostaUtente").value,
+		      rispostaEsatta: document.getElementById("rispostaEsatta").value,
+		      spiegazione: document.getElementById("spiegazione").value
+		    }),
+		    headers: {
+		      "Content-type": "application/json; charset=UTF-8"
+		    }
+		  })
 	  .then(response => response.json())
 	  .then(json => {
 		console.log( json);})
@@ -134,15 +210,19 @@ function visualParametri(){
 	console.log(libro);
 	
 	console.log(valoreSelezione);
-	if(valoreSelezione == "visualDomanda" || valoreSelezione == "updateDomanda" || valoreSelezione == "deleteDomanda")
+	if(valoreSelezione == "visualDomanda" || valoreSelezione == "updateDomanda" || valoreSelezione == "deleteDomanda" || valoreSelezione == "insertDomanda")
 	document.getElementById("parametriVisual").style.display = "inline";
 	 else 
 	document.getElementById("parametriVisual").style.display = "none";
 }
 
+
+
+function createNewResponse() {
+   	$('.risposte').append('<div style="margin-top: 5px;"><div style="float: left;"><input type="text" maxlength="5" id="valueRisposta' + c + '" class="number" placeholder="A" /></div><div><input style="width: 538px;" type="text" placeholder="testo della risposta" id="risposta' + c + '" /></div></div>');
+   	c++;
+}
 </script>
 
 </body>
 </html>
-
-
