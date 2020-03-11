@@ -48,6 +48,13 @@ public class QuizController {
 
 		return "domandemanager";
 	}
+	
+	@RequestMapping(value = "/startquiz", method = RequestMethod.GET) // index è una parola chiave prende quello che indichi nel
+	// name="prefix" value="/WEB-INF/views/"
+	public String startquiz(HttpServletRequest request, Model model) {
+
+		return "index";
+	}
 
 	@RequestMapping(value = "/totaledomande", method = RequestMethod.GET)
 	public String init(Model model, HttpServletRequest request, HttpSession session)

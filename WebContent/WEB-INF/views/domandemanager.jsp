@@ -81,6 +81,8 @@ Spiegazione: <br>
 <br><br>
 
 <input type="button" value="Esegui" onclick="esegui()">
+&nbsp &nbsp &nbsp &nbsp
+<input type="iniziaquiz" value="Inizia Quiz" onclick="iniziaQuiz()")>
 
 <br><br>
 <!-- <div id="domandaVis" class="domandaVis"> -->
@@ -240,6 +242,10 @@ function getRisposte(){
 	}
 }
 
+
+function iniziaQuiz(){
+	fetch('http://localhost:8080/quiz/startquiz');
+}
 
 
 function createNewResponse() {
