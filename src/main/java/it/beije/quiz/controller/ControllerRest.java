@@ -30,12 +30,20 @@ public class ControllerRest {
 	private List<File> listaFile = null;
 
 
-	@RequestMapping(value = "/domande/{dirLibro}/{capitolo}", method = RequestMethod.GET)
-	public @ResponseBody List<Domanda> getDomande(@PathVariable String dirLibro, @PathVariable int capitolo,
+	@RequestMapping(value = "/domande", method = RequestMethod.GET)
+	public @ResponseBody List<Domanda> getDomande(@RequestParam(name="dirLibro", required=false) String dirLibro, @RequestParam(name="capitolo", required=false) Integer capitolo,
 			@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
 		List<Domanda> listaDomande = quizService.getDomande();
 		List<Domanda> domande = new ArrayList<Domanda>();
 
+		if(dirLibro==null) {
+			return listaDomande;
+		}
+		else if(capitolo==null) {
+			for(Domanda d: listaDomande)
+			if(Utils.getDirectory(d.getId()).equals(dirLibro))
+				domande.add(d);
+		}
 		if (nDomanda == null) {
 			for (Domanda d : listaDomande)
 				if (d.getChapter() == capitolo && Utils.getDirectory(d.getId()).equals(dirLibro))
@@ -76,6 +84,7 @@ public class ControllerRest {
 	}
 
 
+	
 	@RequestMapping(value = "/aggiornaDomanda", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Domanda> updateListaDomande(@RequestBody List<Domanda> domande,
 			HttpServletResponse response) {
