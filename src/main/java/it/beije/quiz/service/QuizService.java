@@ -100,6 +100,26 @@ public class QuizService {
 		return domanda;
 
 	}
+	public boolean insertLibro(List<Libro> libri) {
+		List<Libro> prova= new ArrayList<Libro>();
+		prova= getListaLibri();
+		prova.addAll(libri);
+		StringBuilder path = new StringBuilder();
+		for(int i=0;i<libri.size();i++)
+		path.append(getBaseDirectory()).append(libri.get(i).getDir());
+		File file = new File(path.toString());
+		file.mkdir();
+		try {
+			Utils.scriviSuXML(prova, baseDirectory+"index.xml");
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
 	public void elimina(Domanda d) {
 		caricaDomande();
 		StringBuilder path = new StringBuilder(
