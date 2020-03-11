@@ -31,6 +31,8 @@ public class ControllerRest {
 	public @ResponseBody List<Domanda> getDomande(@RequestParam(name="dirLibro", required=false) String dirLibro, @RequestParam(name="capitolo", required=false) Integer capitolo,
 
 			@RequestParam(name = "nDomanda", required = false) Integer nDomanda) {
+		
+		
 		List<Domanda> listaDomande = quizService.getDomande();
 		List<Domanda> domande = new ArrayList<Domanda>();
 
@@ -42,7 +44,7 @@ public class ControllerRest {
 			if(Utils.getDirectory(d.getId()).equals(dirLibro))
 				domande.add(d);
 		}
-		if (nDomanda == null) {
+		else if (nDomanda == null) {
 			for (Domanda d : listaDomande)
 				if (d.getChapter() == capitolo && Utils.getDirectory(d.getId()).equals(dirLibro))
 					domande.add(d);

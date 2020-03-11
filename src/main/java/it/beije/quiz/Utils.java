@@ -191,7 +191,7 @@ public class Utils {
 				String spiegazione = contenutoDomanda.get(3).getTextContent();
 
 				List<Libro> listaLibriInXML = Utils
-						.caricaLibriDaIndexXML("C:\\Users\\Padawan07\\git\\Quiz\\domande\\index.xml");
+						.caricaLibriDaIndexXML("C:\\Users\\"+System.getProperty("user.name")+"\\git\\Quiz\\domande\\index.xml");
 
 				String dir = null;
 				for (Libro l : listaLibriInXML) {

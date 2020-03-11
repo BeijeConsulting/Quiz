@@ -106,7 +106,7 @@
 	
 	
 	<script type="text/javascript">
-	function insertDomanda(domanda) {
+	/* function insertDomanda(domanda) {
 		let idDomanda =document.getElementById("idDomanda").value;
 		let libro =document.getElementById("book").value;
 		let capitolo =document.getElementById("capitolo").value;
@@ -125,7 +125,7 @@
 	
 	
 	
-	
+	*/
 		var i = 0;
 		var j = i;
 		function inserisciRisposta() {
@@ -233,12 +233,16 @@
 				console.log(testo);
 				return false;
 			} else {
-				/*compilaForm();
+				compilaForm();
 				document.myForm.action = "./salvaDomanda";
-				document.myForm.submit();*/
+				document.myForm.submit();
 				var rispDaIns=[];
-				for(i=0; i< listaRisposte; i++){
-					
+			 /*	for(i=0; i< listaRisposte; i++){
+					var carattere= String.fromCharCode(65+i);
+					var risposte={	
+								value: carattere,
+								text: 
+					}
 				}
 				var domanda=['{
 								id:id,
@@ -267,7 +271,7 @@
 			}]
 					
 			}']
-				
+				*/
 				insertDomanda();
 			}
 
