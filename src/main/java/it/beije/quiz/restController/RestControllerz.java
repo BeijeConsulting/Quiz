@@ -29,6 +29,7 @@ public class RestControllerz {
 	private static final String GET_DOMANDE_LIBRO = "/domande/{libro}";
 	private static final String GET_DOMANDE_LIBRO_CAPITOLO = "/domande/{libro}/{capitolo}";
 	private static final String GET_DOMANDA = "/domande/{libro}/{capitolo}/{question}";
+	private static final String NEW_DOMANDA = "/creadomanda";
 	private static final String NEW_LIBRO = "/inserisci/{libro}";
 	private static final String NEW_LIBRO_CAPITOLO = "/inserisci/{libro}/{capitolo}";
 	private static final String NEW_LIBRO_CAPITOLO_DOMANDA = "/inserisci/{libro}/{capitolo}/{domanda}";
@@ -69,20 +70,6 @@ public class RestControllerz {
 	public @ResponseBody Libro inserisciLibroCapitoloDomanda(@PathVariable String libro,
 			@PathVariable(required = false) String capitolo, @RequestBody(required = false) Domanda domanda,
 			HttpServletResponse response) {
-		
-		/*
-		 * List<Libro> listaLibri = //metodo carica lista libri presenti;
-		 * Libro newLibro = new Libro();
-		 * newLibro.setId(domandaCaricata.getBook())
-		 * ... //setTitle
-		 * ... //setDir
-		 * 
-		 * for(Libro l : listaLibri)
-		 * 	if(l.getTitle().equals(domandaCaricata.getBook())
-		 * 		newLibro = l;
-		 * newLibro = createLibro(newLibro)
-		 * caricaDomandainXML
-		 */
 
 		List<Libro> listaLibri = new ArrayList<Libro>();
 		String path = QuizService.BASE_DIRECTORY;
@@ -145,6 +132,38 @@ public class RestControllerz {
 		}
 
 		return libroz;
+	}
+
+	@RequestMapping(value = { NEW_DOMANDA }, method = RequestMethod.POST)
+	public @ResponseBody Domanda inserisciLibroCapitoloDomanda(@RequestBody Domanda domanda,
+			HttpServletResponse response) {
+
+		List<Libro> listaLibri = quizService.leggiLibriInIndexXML();// metodo carica lista libri presenti;
+		Libro newLibro = new Libro();
+		String replace = domanda.getBook().replace("", "_");
+		newLibro.setIdBook(replace);
+		newLibro.setTitle(domanda.getBook());
+		newLibro.setNameDir(replace);
+		
+		// setDir
+		for (Libro l : listaLibri)
+			if (l.getTitle().equals(domanda.getBook()))
+				newLibro = l;
+		newLibro = quizService.createLibro(newLibro);
+		String dirDomanda = newLibro.getNameDir();
+		System.out.println("dirDomanda:..........................:" + dirDomanda);
+		StringBuilder path = new StringBuilder();
+
+		String capitolo = Utils.isNumber(domanda.getChapter()) ? "domande_cap" + domanda.getChapter()
+				: "domanda_" + domanda.getChapter();
+		
+		path.append(newLibro.getNameDir()).append("\\")
+				.append(capitolo).append(".xml");
+		System.out.println(path.toString());
+
+		quizService.caricaDomande(newLibro, capitolo, domanda);
+
+		return domanda;
 	}
 
 	// PUT_NEW_DOMANDA = "/aggiornadomande";

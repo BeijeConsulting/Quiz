@@ -91,12 +91,7 @@ public class Utils {
 	public static String getDirectoryFromDomanda(Domanda domanda) {
 
 		String idDom = domanda.getId();
-		System.out.println("id domanda:---" + idDom);
-		String[] temp = idDom.split(Pattern.quote("|"));
-		for(String a : temp) {
-			System.out.println("temp:-----" + a);
-			System.out.println("\n");
-		}
+		String[] temp = idDom.split(Pattern.quote("|"));	
 		return temp[0];
 	}
 

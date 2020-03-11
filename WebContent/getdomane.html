@@ -1,0 +1,57 @@
+
+<html>
+<body>
+		BOOK : <input id="dirlibro" type="text" name="dirlibro" ><br>
+		CHAPTER:<input id="chapter" type="text" name="chapter" ><br>
+		QUESTION: <input id="question" type="text" name="question" ><br>
+		<input type="button" value="DOMANDE" onclick="getDomande()"><br><br>				
+		<hr><hr>
+		OUTPUT DOMANDAE : <div id="domandelibro"></div>	
+<script>
+
+
+function getDomande() {
+	var txt = "";
+	let dirLibro = document.getElementById("dirlibro").value;
+	let chapter = document.getElementById("chapter").value;
+	let question = document.getElementById("question").value;
+	let url="";
+	console.log(url);
+	let tutteDomande = true;
+	if(dirlibro.value!=""){
+		url+='http://localhost:8080/Quiz/domande/'+dirLibro;
+		if(chapter.value!=""){
+			tutteDomande = false;
+			url+='/'+chapter;
+			if(question.value!=""){
+				url+='/'+question;
+			}
+		}
+	}
+	
+	fetch(url)
+	.then(response => response.json())
+	.then(jsonObj => {
+		console.log(dirlibro);
+		for(let i = 0; i < jsonObj.length; i++){
+			element = jsonObj[i];
+			console.log(element);
+			txt+="<h4> ID: "+element.id+"</h4>";
+			txt+="<ul><li>book: "+element.book+"</li>";
+			txt+="<li>chapter: "+element.chapter+"</li>";
+			txt+="<li>question: "+element.question+"</li></ul>";
+		}
+		document.getElementById("domandelibro").innerHTML = txt;
+		
+	})
+	.catch(error => console.log("errore gab"));	
+	
+	
+}
+
+</script>
+
+</body>
+</html>
+
+
