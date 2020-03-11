@@ -40,13 +40,13 @@ public class QuizController {
 	private static boolean isNew = false;
 	private List<Libro> libri;
 	private ArrayList<Domanda> domandetot = new ArrayList<Domanda>();
-	private final String MAIN_PATH = "C:\\Users\\Beijeù\\git\\Quiz\\domande\\";
+	private final String MAIN_PATH = "C:\\Users\\Padawan11\\git\\Quiz\\domande\\";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET) // index è una parola chiave prende quello che indichi nel
 	// name="prefix" value="/WEB-INF/views/"
 	public String index(HttpServletRequest request, Model model) {
 
-		return "index";
+		return "domandemanager";
 	}
 
 	@RequestMapping(value = "/totaledomande", method = RequestMethod.GET)
