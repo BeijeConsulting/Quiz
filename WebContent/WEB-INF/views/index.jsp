@@ -10,44 +10,72 @@
 	Questa è la pagina di ingresso al tuo Quiz Online
 
 	<%-- SEZIONE SELEZIONE DOMANDE --%>
-	<h3>Seleziona le sezioni che desideri fare:</h3>
-	<form method="post" action="./start">
+
+	<form method="post" action="./load">
+		<label for="nomeQuiz">Nome quiz:</label>
+		<input type="text" name="nomeQuiz" id="nomeQuiz">
+		<h3>Seleziona le sezioni che desideri fare:</h3>
 		<b>OCA MANUAL</b>
+		<br>
 		<label> Capitolo 1
-			<input type="checkbox" value="oca_1" name="questions">
+			<input type="checkbox" value="oca_manual\domande_cap1.xml" name="questions">
 		</label>
+		<br>
 		<label> Capitolo 2
-			<input type="checkbox" value="oca_2" name="questions">
+			<input type="checkbox" value="oca_manual\domande_cap2.xml" name="questions">
 		</label>
+		<br>
 		<label> Capitolo 3
-			<input type="checkbox" value="oca_3" name="questions">
+			<input type="checkbox" value="oca_manual\domande_cap3.xml" name="questions">
 		</label>
+		<br>
 		<label> Capitolo 4
-			<input type="checkbox" value="oca_4" name="questions">
+			<input type="checkbox" value="oca_manual\domande_cap4.xml" name="questions">
 		</label>
+		<br>
 		<label> Capitolo 5
-			<input type="checkbox" value="oca_5" name="questions">
+			<input type="checkbox" value="oca_manual\domande_cap5.xml" name="questions">
 		</label>
+		<br>
 		<label> Capitolo 6
-			<input type="checkbox" value="oca_6" name="questions">
+			<input type="checkbox" value="oca_manual\domande_cap6.xml" name="questions">
 		</label>
+		<br>
 		<label> Assessment Test
-			<input type="checkbox" value="oca_at" name="questions">
+			<input type="checkbox" value="oca_manual\domande_Assessment_Test.xml" name="questions">
 		</label>
-
-		<input type="submit" value="LOAD">
-	</form>
-
-	<br>
-	<br>
-	Totale domande caricate : ${ totDomande }
-	<br>
-	Tempo disponibile : ${ totDomande * 2 } minuti
-	<br>
-	<br>
-	<%-- Richiede di stampare la prima domanda --%>
-	<form action="./domanda/1" method="get">
-		<input type="submit" value="INIZIA">
+		<br>
+		<b>MANNING</b>
+		<br>
+		<label> Capitolo 1
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap1.xml" name="questions">
+		</label>
+		<br>
+		<label> Capitolo 2
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap2.xml" name="questions">
+		</label>
+		<br>
+		<label> Capitolo 3
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap3.xml" name="questions">
+		</label>
+		<br>
+		<label> Capitolo 4
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap4.xml" name="questions">
+		</label>
+		<br>
+		<label> Capitolo 5
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap5.xml" name="questions">
+		</label>
+		<br>
+		<label> Capitolo 6
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap6.xml" name="questions">
+		</label>
+		<br>
+		<label> Capitolo 7
+			<input type="checkbox" value="oca_certification_guide_manning\domande_cap7.xml" name="questions">
+		</label>
+		<br>
+		<input type="submit" value="PREPARA QUIZ">
 	</form>
 </body>
 </html>
