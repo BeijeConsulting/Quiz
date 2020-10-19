@@ -53,10 +53,14 @@ public class QuizController {
 	}
 
 	@RequestMapping(value = "/load", method = RequestMethod.POST)
-	public String init(Model model, @Param("questions") String[] questions) {
+	public String init(Model model,
+					   HttpSession session,
+					   HttpServletRequest request,
+					   @Param("questions") String[] questions) {
 		System.out.println("Richiesta POST per /load.");
 		if (questions != null && questions.length > 0){
 			quizService.loadDomande(model, questions);
+			quizService.createQuiz(session, request);
 		}
 		return "avviaTest";
 	}

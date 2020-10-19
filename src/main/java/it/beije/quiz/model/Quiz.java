@@ -11,7 +11,7 @@ public class Quiz {
     private Integer id;
 
     @Column(name = "id_utente")
-    private Integer idUtente;
+    private Long idUtente;
 
     @Column(name = "name")
     private String nomeQuiz;
@@ -20,7 +20,7 @@ public class Quiz {
     private String results;
 
     @Column(name = "percentuale")
-    private Integer percentuale;
+    private Double percentuale;
 
     @Column(name = "passato")
     private boolean isPassed;
@@ -49,11 +49,11 @@ public class Quiz {
         this.results = results;
     }
 
-    public Integer getPercentuale() {
+    public Double getPercentuale() {
         return percentuale;
     }
 
-    public void setPercentuale(Integer percentuale) {
+    public void setPercentuale(Double percentuale) {
         this.percentuale = percentuale;
     }
 
@@ -65,11 +65,11 @@ public class Quiz {
         isPassed = passed;
     }
 
-    public Integer getIdUtente() {
+    public Long getIdUtente() {
         return idUtente;
     }
 
-    public void setIdUtente(Integer idUtente) {
+    public void setIdUtente(Long idUtente) {
         this.idUtente = idUtente;
     }
 }

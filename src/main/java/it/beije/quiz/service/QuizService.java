@@ -1,11 +1,16 @@
 package it.beije.quiz.service;
 
 import it.beije.quiz.Utils;
+import it.beije.quiz.bean.User;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Quiz;
+import it.beije.quiz.repository.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -15,12 +20,17 @@ import java.util.List;
 // Creato layer Service per togliere la logica dal Controller
 @Service
 public class QuizService {
+    @Autowired
+    private QuizRepository quizRepository;
+
+    private Quiz quiz = null;
+
     private List<Domanda> domande = new ArrayList<>();
     private int totaleDomande;
     private int totaleRisposteCorrette;
     private LocalTime time = null;
-    //private final String PATH = "C:\\Code\\Quiz\\domande\\";
-    private final String PATH = "C:\\Users\\Padawan06\\git\\Quiz\\domande\\";
+    private final String PATH = "C:\\Code\\Quiz\\domande\\";
+   // private final String PATH = "C:\\Users\\Padawan06\\git\\Quiz\\domande\\";
     
     /**
      * Verifica la correttezza delle risposta e ritorna i risultati da stampare nella pagina
@@ -37,6 +47,7 @@ public class QuizService {
                     .append("<br><br>");
             if (corretta) {
                 results.append("ESATTO!!! :)<br>");
+                System.out.println("Risposta corretta.");
                 totaleRisposteCorrette++;
             } else {
                 results.append("La risposta esatta era ")
@@ -49,12 +60,29 @@ public class QuizService {
         return results.toString();
     }
 
-    private void saveResultsToDatabase(String results){
-        // salva sul db il valore di totaleRisposteCorrette
-        // fai % di risposte corrette
-        // setta il boolean passato o meno
+    public void createQuiz(HttpSession session, HttpServletRequest request){
+        System.out.println("creo quiz");
+        quiz = new Quiz();
+        System.out.println("quiz id: " + quiz.getId());
+        quiz.setNomeQuiz((String) request.getAttribute("quizName"));
+        quiz.setIdUtente(((User)session.getAttribute("userBean")).getId());
+        quizRepository.saveAndFlush(quiz);
+        System.out.println("quiz id: " + quiz.getId());
+    }
 
+    private void saveResultsToDatabase(String results){
+        System.out.println("Risp corrette: " + totaleRisposteCorrette);
+        System.out.println("Risp totali: " + totaleDomande);
+        double percentuale = totaleRisposteCorrette / (double)totaleDomande * 100;
+        // fai % di risposte corrette
+        System.out.println("Percentuale: " + percentuale);
+        quiz.setPercentuale(percentuale);
+        // setta il boolean passato o meno
+        quiz.setPassed(percentuale >= 65);
         // brutto, ma salvo direttamente su db la stringa generata nel metodo result
+        quiz.setResults(results);
+
+        quizRepository.saveAndFlush(quiz);
     }
 
     /**

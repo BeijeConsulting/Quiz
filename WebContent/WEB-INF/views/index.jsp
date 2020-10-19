@@ -13,7 +13,7 @@
 
 	<form method="post" action="./load">
 		<label for="nomeQuiz">Nome quiz:</label>
-		<input type="text" name="nomeQuiz" id="nomeQuiz">
+		<input type="text" name="nomeQuiz" id="nomeQuiz" required>
 		<h3>Seleziona le sezioni che desideri fare:</h3>
 		<b>OCA MANUAL</b>
 		<br>
