@@ -16,7 +16,7 @@ public class Book {
 	@Column(name="id")
 	private Integer id;
 	
-	@Column
+	@Column(name="title")
 	private String title;
 	
 	public Integer getId() {

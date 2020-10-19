@@ -16,19 +16,19 @@ public class Question {
 	@Column(name="id")
 	private Integer id;
 	
-	@Column
+	@Column(name="book_id")
 	private Integer bookId;
 	
-	@Column
+	@Column(name="chapter")
 	private Integer chapter;
 	
-	@Column
+	@Column(name="question")
 	private Integer question;
 	
-	@Column
+	@Column(name="text")
 	private String text;
 	
-	@Column
+	@Column(name="answer_type")
 	private String answerType;
 	
 	@Column

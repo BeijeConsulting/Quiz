@@ -17,16 +17,16 @@ public class Answer {
 	@Column(name="id")
 	private Integer id;
 
-	@Column
+	@Column(name="question_id")
 	private Integer questionId;
 	
-	@Column
+	@Column(name="value")
 	private String value;
 	
-	@Column
+	@Column(name="text")
 	private String text;
 	
-	@Column
+	@Column(name="correct")
 	private boolean correct;
 	
 	public Integer getId() {
