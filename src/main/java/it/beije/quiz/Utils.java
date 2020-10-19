@@ -16,10 +16,14 @@ import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 
 public class Utils {
-	
+
+	/**
+	 * Metodo util per la lettura di file XML
+	 * @param element Elemento da cui estrarre gli elementi child
+	 * @return List di elements figli dell'element parametro
+	 */
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<>();
-		
 		NodeList nodeList = element.getChildNodes();
         Node node = null;
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -28,13 +32,16 @@ public class Utils {
         		childElements.add((Element)node);
         	}
         }
-		
 		return childElements;
 	}
 
+	/**
+	 * Legge un file xml e crea una lista di oggetti Domanda
+	 * @param pathFile la path del file xml da cui leggere le domande
+	 * @return la lista di domande
+	 */
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<>();
-		
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
@@ -43,10 +50,8 @@ public class Utils {
 	        // Document class.
 	        Document document = builder.parse(new File(pathFile));
 	        Element element = document.getDocumentElement();	        
-//	        System.out.println(element.getTagName());
 	        List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
-	        	        
+
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
@@ -70,28 +75,27 @@ public class Utils {
 		        	
 		        	risposte.add(r);
 		        }
-		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
 	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
-	        	
-//	        	System.out.println(d);
-	        }	        		
-	        
+	        }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return arrayDomande;
 	}
-	
+
+	/**
+	 * Formatta una Stringa
+	 * @param testo String da formattare
+	 * @return La String formattata
+	 */
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
 		}
-		
 		return testo;
 	}
 
@@ -111,9 +115,9 @@ public class Utils {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;
 			if (rispostaEsatta.indexOf(c) < 0) {
-				return false;//Se non trovo la risposta termino il ciclo perché sicuro è errata
+				return false; // Se non trovo la risposta termino il ciclo perché sicuro è errata
 			} else {
-				//tolgo risposta esatta da elenco risposte esatte per evitare duplicati
+				// Tolgo risposta esatta da elenco risposte esatte per evitare duplicati
 				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
 			}
 		}
