@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UtenteController {
 	
-	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
 		@RequestMapping(value = "/log", method = RequestMethod.GET)
 		public String login() {
-			log.debug("Redirect..");
+			System.out.println("Redirect..");
 			return "login";
 		}
 		
