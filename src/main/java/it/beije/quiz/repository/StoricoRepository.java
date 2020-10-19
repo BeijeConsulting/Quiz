@@ -9,5 +9,5 @@ import it.beije.quiz.model.Storico;
 @Repository
 public interface StoricoRepository  extends JpaRepository<Storico, Integer> {
 
-	List<Storico> findByIdUtente(Integer utente);
+	List<Storico> findByIdutente(Integer utente);
 }

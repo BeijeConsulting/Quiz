@@ -19,6 +19,6 @@ public class StoricoService {
 	
 	public List<Storico> getByUtente(Integer utente){
 		log.debug("carico lista storico");
-		return storicoRepository.findByIdUtente(utente);
+		return storicoRepository.findByIdutente(utente);
 	}
 }
