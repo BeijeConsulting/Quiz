@@ -8,6 +8,8 @@
 	<title>Inizia il tuo Quiz OnLine</title>
 </head>
 <body>
+	<h3>Benvenuto ${user.nickname}</h3>
+	<br>
 	Questa è la pagina di ingresso al tuo Quiz Online<br>
 	
 	<%if(!(boolean)session.getAttribute("selected")) {%>
