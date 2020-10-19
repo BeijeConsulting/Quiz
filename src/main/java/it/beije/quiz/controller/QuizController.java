@@ -14,10 +14,7 @@ import it.beije.quiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
 import it.beije.quiz.Utils;
@@ -31,7 +28,7 @@ public class QuizController {
 	// Creato layer Service per togliere la logica dal Controller
 	@Autowired
 	private QuizService quizService;
-	
+
 	/**
 	 * Controller pagina iniziale. Carica il file xml e mostra le domande disponibili
 	 * @param model Richiede il modello per caricare il num totale di domande
@@ -94,6 +91,13 @@ public class QuizController {
 		model.addAttribute("body", risultati);
 		return "risultati";
 	}
+
+	@PostMapping(value = "/start")
+	public String setQuestions(HttpServletRequest request){
+		System.out.println(request.getParameterNames() + " " + request.getAttributeNames());
+		return "index";
+	}
+
 
 	//////////////////////////////////////////////////////
 	/// CONTROLLER REST
