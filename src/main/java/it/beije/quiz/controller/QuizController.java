@@ -63,6 +63,14 @@ public class QuizController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) {
 		
+		/*
+		 *  TODO:
+		 *  Modifica JSP per selezionare capitoli (serve il model)
+		 *  Lettura dei libri
+		 *  Suddivisione dei capitoli secondo il libro
+		 *  BONUS: Randomizzazione
+		 */
+		
 		if (domande == null) {
 			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
 			tot = domande.size();
@@ -127,6 +135,11 @@ public class QuizController {
 	 */
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index) {
+		
+		/*
+		 * TODO:
+		 * Se ancora non è stato creato, creare la lista delle domande in base a cosa ha selezionato l'utente
+		 */
 		
 		setTimer(model);
 		
