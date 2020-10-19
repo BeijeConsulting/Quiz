@@ -212,7 +212,8 @@ public class QuizController {
 		Utente utente = (Utente)session.getAttribute("utente");
 		storico.setIdutente(utente.getId());
 		storico.setDurata(hours+"."+minutes+"."+seconds);
-		storico.setEsito(esito);
+		if(esito) storico.setEsito("pass");
+		else storico.setEsito("fail");
 		storico.setPunteggio(counter+"/"+domande.size());
 		storico.setScore(score);
 		storico.setData(LocalDate.now());

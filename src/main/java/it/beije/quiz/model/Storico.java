@@ -25,7 +25,7 @@ public class Storico {
 	private String durata;
 	
 	@Column(name="esito")
-	private boolean esito;
+	private String esito;
 	
 	@Column(name="score")
 	private double score;
@@ -60,11 +60,11 @@ public class Storico {
 		this.durata = durata;
 	}
 
-	public boolean isEsito() {
+	public String getEsito() {
 		return esito;
 	}
 
-	public void setEsito(boolean esito) {
+	public void setEsito(String esito) {
 		this.esito = esito;
 	}
 
