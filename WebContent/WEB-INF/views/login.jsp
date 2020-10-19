@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,6 +110,11 @@ input[type=submit]:hover {
 	     			<input type="password" id="password" name="password" placeholder="Password" required>
 	   			</div>
  			</div>
+ 			<c:if test = "${erroreLogin.length > 0}">
+	 			<div class="row">
+	 				${ erroreLogin }
+				</div>
+			</c:if>
  			<div class="row">
    				<input type="submit" value="Login">
  			</div>

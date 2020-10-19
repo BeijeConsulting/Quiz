@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,16 +57,22 @@ public class QuizController {
 //	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
+	public String init(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
 		
-		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-			tot = domande.size();
+			if (domande == null) {
+				domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+				tot = domande.size();
+			}
+			
+			model.addAttribute("totDomande", tot);
+			
+			return "index";
 		}
-		
-		model.addAttribute("totDomande", tot);
-		
-		return "index";
+		else {
+			return "forbidden";
+		}
 	}
 	
 	private void setTimer(Model model) {
@@ -108,53 +115,71 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
-	public String domanda(Model model, @PathVariable("index") int index) {
+	public String domanda(HttpServletRequest request, Model model, @PathVariable("index") int index) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
 		
 		setTimer(model);
 		
 		return caricaDomanda(model, index);
+		}
+		else {
+			return "forbidden";
+		}
 	}
 	
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
-
-		Enumeration<String> enums = request.getParameterNames();
-		StringBuilder builder = new StringBuilder();
-		while (enums.hasMoreElements()) {
-			String name = enums.nextElement();
-			//System.out.println(name + " : " + request.getParameter(name));
-			if (name.startsWith("rspt_")) {
-				builder.append(request.getParameter(name));
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
+		
+			Enumeration<String> enums = request.getParameterNames();
+			StringBuilder builder = new StringBuilder();
+			while (enums.hasMoreElements()) {
+				String name = enums.nextElement();
+				//System.out.println(name + " : " + request.getParameter(name));
+				if (name.startsWith("rspt_")) {
+					builder.append(request.getParameter(name));
+				}
 			}
+			domande.get(index).setRispostaUtente(builder.toString());
+			
+			setTimer(model);
+			
+			return caricaDomanda(model, ++index);
 		}
-		domande.get(index).setRispostaUtente(builder.toString());
-		
-		setTimer(model);
-		
-		return caricaDomanda(model, ++index);
+		else {
+			return "forbidden";
+		}
 	}
 
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
-	public String risultati(Model model) {
-		//ELABORAZIONE RISPOSTE
-		StringBuilder builder = new StringBuilder();
-		for (Domanda d : domande) {
-			boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
-			
-			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
-			if (corretta) {
-				builder.append("ESATTO!!! :)<br>");
-			} else {
-				builder.append("La risposta esatta era " +  d.getRispostaEsatta() + " :(<br>");
+	public String risultati(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
+			//ELABORAZIONE RISPOSTE
+			StringBuilder builder = new StringBuilder();
+			for (Domanda d : domande) {
+				boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
+				
+				builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
+				if (corretta) {
+					builder.append("ESATTO!!! :)<br>");
+				} else {
+					builder.append("La risposta esatta era " +  d.getRispostaEsatta() + " :(<br>");
+				}
+				
+				builder.append("<br><br>");
 			}
 			
-			builder.append("<br><br>");
+			model.addAttribute("body", builder.toString());
+			
+			return "risultati";
 		}
-		
-		model.addAttribute("body", builder.toString());
-		
-		return "risultati";
+		else {
+			return "forbidden";
+		}
 	}
 	
 	/////// REST
