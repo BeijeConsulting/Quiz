@@ -42,14 +42,14 @@ public class DatabaseXmlImport {
 			for(String s : books) {
 				Book b = new Book();
 				b.setTitle(s);
-				b = bookRepo.save(b);
+				b = bookRepo.saveAndFlush(b);
 				File bookDir = new File(mainDir, s);
 				String[] chapters = bookDir.list();
 				for(String c : chapters) {
 					Chapter ch = new Chapter();
 					ch.setTitle(c.replace("domande_", "").replace(".xml", ""));
 					ch.setBook(b.getId());
-					ch = chapterRepo.save(ch);
+					ch = chapterRepo.saveAndFlush(ch);
 					File chapter = new File(bookDir, c);
 					saveQuestions(chapter, ch.getId());
 				}

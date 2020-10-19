@@ -13,7 +13,7 @@ import it.beije.quiz.database.JpaEntityManager;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(value = {"it.beije.oort.bm.library.repository"})
+@EnableJpaRepositories(value = {"it.beije.quiz.repository"})
 public class ConfigurationClass {
 	
     @Primary
