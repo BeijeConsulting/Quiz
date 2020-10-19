@@ -17,6 +17,8 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	
+	
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -32,6 +34,20 @@ public class Utils {
 		return childElements;
 	}
 
+	/* 
+	 * Lettura del file domande in formato XML
+	 * In output una lista oggetti "Domanda" formati dai seguenti parametri:
+	 * - id
+	 * - book
+	 * - chapter
+	 * - question
+	 * - testo
+	 * - answerType
+	 * - risposte
+	 * - rispostaEsatta
+	 * - spiegazione
+	 */
+	
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
@@ -87,6 +103,10 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	/*
+	 * Il testo della domanda viene formattato 
+	 */
+	
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -94,6 +114,11 @@ public class Utils {
 		
 		return testo;
 	}
+	
+	/*
+	 * Vengono comparati le stringhe di risposta esatta e di risposta date
+	 * 
+	 */
 	
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
 		for (int i = 0; i < risposta.length(); i++) {
