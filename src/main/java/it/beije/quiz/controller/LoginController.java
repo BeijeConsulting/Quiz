@@ -23,7 +23,7 @@ import it.beije.quiz.entity.User;
 
 
 @Controller
-public class LoginControlle {
+public class LoginController {
 	
 	@Autowired
 	private UserService userService;
