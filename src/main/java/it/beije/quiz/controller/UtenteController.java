@@ -43,5 +43,11 @@ public class UtenteController {
 				return "home";
 			}
 		}
+		
+		@RequestMapping(value = "/log", method = RequestMethod.GET)
+		public String backHome() {
+			log.debug("Redirect to home page");
+			return "home";
+		}
 
 }
