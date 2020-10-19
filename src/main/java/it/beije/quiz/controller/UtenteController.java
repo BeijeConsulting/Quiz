@@ -41,5 +41,12 @@ public class UtenteController {
 				return "home";
 			}
 		}
+		
+		@RequestMapping(value="/logout", method = RequestMethod.GET)
+		public String logout(HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			session.removeAttribute("utente");
+			return "login";			
+		}
 
 }

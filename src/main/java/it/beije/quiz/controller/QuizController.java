@@ -2,6 +2,7 @@ package it.beije.quiz.controller;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -9,7 +10,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +24,9 @@ import org.springframework.web.context.annotation.SessionScope;
 import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
+import it.beije.quiz.model.Storico;
+import it.beije.quiz.model.Utente;
+import it.beije.quiz.repository.StoricoRepository;
 
 
 @Controller
@@ -30,6 +36,9 @@ public class QuizController {
 	private List<Domanda> domande;
 	private int tot;
 	private LocalTime time = null;
+	
+	@Autowired
+	private StoricoRepository storicoRepository;
 
 
 	/**
@@ -171,7 +180,8 @@ public class QuizController {
 	 * controllando se siano corrette o meno
 	 */
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
-	public String risultati(Model model) {
+	public String risultati(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		int counter = 0;
 		//ELABORAZIONE RISPOSTE
 		StringBuilder builder = new StringBuilder();
@@ -190,7 +200,22 @@ public class QuizController {
 		}
 		
 		model.addAttribute("body", builder.toString());
-		
+		double score = counter * 100 / domande.size();
+		boolean esito = score >= 65;
+		LocalTime now = LocalTime.now();
+		Duration diff = Duration.between(time, now);
+		long hours = diff.getSeconds()/3600;
+		long minutes = diff.getSeconds()/60 - hours* 60;
+		long seconds =  diff.getSeconds() - hours * 3600 - minutes * 60;
+		Storico storico = new Storico();
+		Utente utente = (Utente)session.getAttribute("utente");
+		storico.setIdutente(utente.getId());
+		storico.setDurata(hours+"."+minutes+"."+seconds);
+		storico.setEsito(esito);
+		storico.setPunteggio(counter+"/"+domande.size());
+		storico.setScore(score);
+		storico.setData(LocalDate.now());
+		storicoRepository.saveAndFlush(storico);
 		return "risultati";
 	}
 	
