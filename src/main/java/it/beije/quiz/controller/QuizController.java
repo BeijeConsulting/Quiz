@@ -56,19 +56,31 @@ public class QuizController {
 //	}
 	
 	/*
-	 * carica la pagina iniziale e controlla se sono già state caricate domande
+	 * salva la scelta del set di domande e rimanda all'index
+	 * caricando la pagina iniziale
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
-		
+	
+	@RequestMapping(value="/", method= RequestMethod.POST)
+	public String iniziale(Model model, @RequestParam String setDomande) {
+		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan04\\git\\Quiz\\domande\\");
+		builder.append(setDomande).append(".xml");
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\Users\\Padawan04\\git\\Quiz\\domande\\oca_certification_guide_manning\\domande_cap2.xml");
+			domande = Utils.readFileDomande(builder.toString());
 			tot = domande.size();
 		}
 		
 		model.addAttribute("totDomande", tot);
 		
 		return "index";
+	}
+	
+	/*
+	 * rimanda alla pagina iniziale con la scelta del set di domande
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String init(Model model) {
+		
+		return "sceltaset";
 	}
 	
 	/*
