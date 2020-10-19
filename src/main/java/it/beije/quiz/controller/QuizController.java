@@ -40,29 +40,6 @@ public class QuizController {
 	@Autowired
 	private StoricoRepository storicoRepository;
 
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		System.out.println("Home Page Requested, locale = " + locale);
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate);
-//
-//		return "home";
-//	}
-
-//	@RequestMapping(value = "/user", method = RequestMethod.POST)
-//	public String user(@Validated User user, Model model) {
-//		System.out.println("User Page Requested");
-//		model.addAttribute("userName", user.getUserName());
-//		return "user";
-//	}
 	
 	/*
 	 * salva la scelta del set di domande e rimanda all'index
@@ -71,8 +48,8 @@ public class QuizController {
 	
 	@RequestMapping(value="/sceltaset", method= RequestMethod.POST)
 	public String iniziale(Model model, @RequestParam String setDomande) {
-//		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan10\\git\\Quiz\\domande\\");
-		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan04\\git\\Quiz\\domande\\");
+		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan10\\git\\Quiz\\domande\\");
+//		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan04\\git\\Quiz\\domande\\");
 		builder.append(setDomande).append(".xml");
 		if (domande == null) {
 			domande = Utils.readFileDomande(builder.toString());
