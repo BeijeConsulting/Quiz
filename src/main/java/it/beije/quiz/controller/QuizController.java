@@ -55,6 +55,11 @@ public class QuizController {
 //		return "user";
 //	}
 	
+	/*
+	 * Inizializzazione della pagina, carica le domande da un file se ancora la lista è nulla, controlla quante sono,
+	 * lo mette nel model e ritorna la pagina iniziale.
+	 * Purtroppo legge solo domande.xml, quindi c'è da impostre manualmente il file da cui legge.
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) {
 		
@@ -68,6 +73,11 @@ public class QuizController {
 		return "index";
 	}
 	
+	/*
+	 * All'inizio, se nel controller il time è ancora nullo, allora imposta il tempo attuale: il test è iniziato.
+	 * Ogni volta che viene chiamato il metodo, controlla quanto tempo è passato da quando è iniziato il test indicandolo
+	 * con il pattern HH:mm:ss
+	 */
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
@@ -86,6 +96,11 @@ public class QuizController {
 		model.addAttribute("secondi", seconds);
 	}
 	
+	/*
+	 * Raccoglie un index e trova la domanda dalla lista delle domande caricata.
+	 * Mette nel model i vari attributi di quella domanda.
+	 * Però se l'index è il tot (ha raggiunto al fine), allora mostra il riepilogo.
+	 */
 	private String caricaDomanda(Model model, int index) {
 		if (index < tot) {
 			Domanda d = domande.get(index);
@@ -107,6 +122,9 @@ public class QuizController {
 		}
 	}
 	
+	/*
+	 * Carica la domanda secondo l'index o ritorna il riepilogo. Nel frattempo setta anche il timer.
+	 */
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index) {
 		
@@ -115,6 +133,10 @@ public class QuizController {
 		return caricaDomanda(model, index);
 	}
 	
+	/*
+	 * Quando viene data la risposta, viene salvato nella domanda attuale la risposta dell'utente.
+	 * Poi setta il timer e passa all'index successivo.
+	 */
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
@@ -135,6 +157,10 @@ public class QuizController {
 		return caricaDomanda(model, ++index);
 	}
 
+	/*
+	 * Pagina dei risultati, qua vengono controllate se le varie risposte sono corrette,
+	 * dando i vari feedback
+	 */
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
 	public String risultati(Model model) {
 		//ELABORAZIONE RISPOSTE
@@ -161,6 +187,11 @@ public class QuizController {
 	
 	/////// REST
 	
+	/*
+	 * Ah boh, sembra un tentativo di fare un servizio rest e utilizza tra l'altro una domanda preimpostata.
+	 * Sicuramente è importante il fatto che la risposta è un Json che dovrà essere utilizzato per settare
+	 * le varie domande.
+	 */
 	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
 	public void testrest(Model model, HttpServletResponse response) throws IOException {
 		System.out.println("entra??");

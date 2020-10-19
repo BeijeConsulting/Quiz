@@ -17,6 +17,9 @@ import it.beije.quiz.model.Risposta;
 
 public class Utils {
 	
+	/*
+	 * Metodo che crea la lista (ordinata) degli elementi XML di un file XML generico
+	 */
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -32,6 +35,13 @@ public class Utils {
 		return childElements;
 	}
 
+	
+	/*
+	 * Metodo per leggere le domande da un file XML, prima carica il file, ne trova tutti gli elementi
+	 * e trova il testo delle varie domande più le possibili risposte di quella domanda, trovandone
+	 * anche i vari capitoli, n° domanda, risposta/e esatta/e...
+	 * Alla fine della lista risultante vengono aggiunti i vari entity domande così caricati.
+	 */
 	public static List<Domanda> readFileDomande(String pathFile) {
 		List<Domanda> arrayDomande = new ArrayList<Domanda>();
 		
@@ -87,6 +97,9 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	/*
+	 * Formattazione testo: fa in modo che i vari "a capo" e le tab vengano rispettate anche in una pagina HTML
+	 */
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -95,7 +108,12 @@ public class Utils {
 		return testo;
 	}
 	
+	/*
+	 * Vengono date le risposte date dagli utenti e la risposta esatta.
+	 * Il risultato è se l'utente ha dato la risposta corretta.
+	 */
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+		rispostaEsatta = rispostaEsatta.replace(" ", "").replace(",", ""); // Bug fixato
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;

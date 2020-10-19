@@ -2,6 +2,9 @@ package it.beije.quiz.model;
 
 import java.util.List;
 
+/*
+ * Semplice entity Domanda
+ */
 public class Domanda {
 	
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";

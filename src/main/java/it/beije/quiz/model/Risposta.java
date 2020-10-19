@@ -1,5 +1,8 @@
 package it.beije.quiz.model;
 
+/*
+ * Semplice entity Risposta
+ */
 public class Risposta {
 	
 	private String value;
