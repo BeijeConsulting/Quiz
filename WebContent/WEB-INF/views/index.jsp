@@ -5,6 +5,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Inizia il tuo Quiz OnLine</title>
+	<link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 </head>
 <body>
 	Questa è la pagina di ingresso al tuo Quiz Online<br>
