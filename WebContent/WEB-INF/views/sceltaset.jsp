@@ -8,7 +8,7 @@
 <title>Scelta Domande</title>
 </head>
 <body>
-<form action="./" method="POST">
+<form action="sceltaset" method="POST">
             <label for="scelta">Guide Manning o Manual?</label>
             <select id="scelta" name="scelta" onchange="updateForm(this)">
                 <option disabled selected>Seleziona</option>

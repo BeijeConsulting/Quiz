@@ -12,7 +12,7 @@
  	
 	<h1>QUIZ MENU':</h1>
 	<div class="main">
-		<form action="sceltaset" method="POST" >
+		<form action="sceltaset" method="GET" >
 			<button type="submit"><span>Inizia un nuovo quiz</span></button>
 		</form>	
 		<br><br>	

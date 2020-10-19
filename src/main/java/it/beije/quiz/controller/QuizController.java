@@ -71,7 +71,8 @@ public class QuizController {
 	
 	@RequestMapping(value="/sceltaset", method= RequestMethod.POST)
 	public String iniziale(Model model, @RequestParam String setDomande) {
-		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan10\\git\\Quiz\\domande\\");
+//		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan10\\git\\Quiz\\domande\\");
+		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan04\\git\\Quiz\\domande\\");
 		builder.append(setDomande).append(".xml");
 		if (domande == null) {
 			domande = Utils.readFileDomande(builder.toString());
@@ -200,7 +201,7 @@ public class QuizController {
 		}
 		
 		model.addAttribute("body", builder.toString());
-		double score = counter * 100 / domande.size();
+		double score = counter * 100.0 / domande.size();
 		boolean esito = score >= 65;
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
