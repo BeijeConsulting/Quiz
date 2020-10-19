@@ -1,16 +1,28 @@
 package it.beije.quiz.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "esami")
 public class Quiz {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "id_utente")
+    private Integer idUtente;
+
+    @Column(name = "name")
     private String nomeQuiz;
+
+    @Column(name = "results")
     private String results;
+
+    @Column(name = "percentuale")
     private Integer percentuale;
+
+    @Column(name = "passato")
     private boolean isPassed;
 
     public Integer getId() {
@@ -51,5 +63,13 @@ public class Quiz {
 
     public void setPassed(boolean passed) {
         isPassed = passed;
+    }
+
+    public Integer getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(Integer idUtente) {
+        this.idUtente = idUtente;
     }
 }
