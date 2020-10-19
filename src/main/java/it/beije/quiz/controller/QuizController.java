@@ -55,11 +55,14 @@ public class QuizController {
 //		return "user";
 //	}
 	
+	/*
+	 * carica la pagina iniziale e controlla se sono già state caricate domande
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) {
 		
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+			domande = Utils.readFileDomande("C:\\Users\\Padawan04\\git\\Quiz\\domande\\oca_certification_guide_manning\\domande_cap2.xml");
 			tot = domande.size();
 		}
 		
@@ -68,6 +71,10 @@ public class QuizController {
 		return "index";
 	}
 	
+	/*
+	 * setta il timer ad ogni nuova domanda, partendo dal momento in cui si chiama il metodo get
+	 * della prima domanda
+	 */
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
@@ -86,6 +93,11 @@ public class QuizController {
 		model.addAttribute("secondi", seconds);
 	}
 	
+	/*
+	 * carica la domanda con l'index dato dal metodo post o get.
+	 * Ho aggiunto la lettera corrispondente alla risposta, su domanda.jsp
+	 * e modificato il link Succ. (di domanda.jsp) perchè chiamava erroneamente tot al posto di totDomande
+	 */
 	private String caricaDomanda(Model model, int index) {
 		if (index < tot) {
 			Domanda d = domande.get(index);
@@ -107,6 +119,9 @@ public class QuizController {
 		}
 	}
 	
+	/*
+	 * metodo che fa partire il timer e carica la prima domanda del set domande
+	 */
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index) {
 		
@@ -115,6 +130,10 @@ public class QuizController {
 		return caricaDomanda(model, index);
 	}
 	
+	/*
+	 * metodo chiamato dopo aver risposto ad una domanda;
+	 * carica le risposte dell'utente e va alla domanda successiva
+	 */
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
@@ -135,6 +154,10 @@ public class QuizController {
 		return caricaDomanda(model, ++index);
 	}
 
+	/*
+	 * crea il body del riepilogo delle risposte
+	 * controllando se siano corrette o meno
+	 */
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
 	public String risultati(Model model) {
 		//ELABORAZIONE RISPOSTE
