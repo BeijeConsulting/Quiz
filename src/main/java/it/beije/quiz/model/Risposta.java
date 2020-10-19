@@ -1,24 +1,59 @@
 package it.beije.quiz.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /*
  * Semplice entity Risposta
  */
+
+@Entity
+@Table(name = "quiz")
 public class Risposta {
-	
-	private String value;
-	private String text;
-	
-	public String getValue() {
-		return value;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private Long id;
+	@Column(name="id_domanda")
+	private Long idDomanda;
+	@Column
+	private String lettera;
+	@Column
+	private String risposta;
+	@Column
+	private boolean corretto;
+	public Long getId() {
+		return id;
 	}
-	public String getText() {
-		return text;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	public void setValue(String value) {
-		this.value = value;
+	public Long getIdDomanda() {
+		return idDomanda;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public void setIdDomanda(Long idDomanda) {
+		this.idDomanda = idDomanda;
+	}
+	public String getLettera() {
+		return lettera;
+	}
+	public void setLettera(String lettera) {
+		this.lettera = lettera;
+	}
+	public String getRisposta() {
+		return risposta;
+	}
+	public void setRisposta(String risposta) {
+		this.risposta = risposta;
+	}
+	public boolean isCorretto() {
+		return corretto;
+	}
+	public void setCorretto(boolean corretto) {
+		this.corretto = corretto;
 	}
 }
