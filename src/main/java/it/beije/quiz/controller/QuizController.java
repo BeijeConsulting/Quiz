@@ -16,6 +16,7 @@ import it.beije.quiz.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,14 +42,21 @@ public class QuizController {
 
 	/**
 	 * Controller pagina iniziale. Carica il file xml e mostra le domande disponibili
-	 * @param model Richiede il modello per caricare il num totale di domande
 	 * @return la pagina di index
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
+	public String init() {
 		System.out.println("Richiesta GET per /.");
-		quizService.loadDomande(model);
 		return "index";
+	}
+
+	@RequestMapping(value = "/load", method = RequestMethod.POST)
+	public String init(Model model, @Param("questions") String[] questions) {
+		System.out.println("Richiesta POST per /load.");
+		if (questions != null && questions.length > 0){
+			quizService.loadDomande(model, questions);
+		}
+		return "avviaTest";
 	}
 
 	/**
@@ -101,13 +109,6 @@ public class QuizController {
 		model.addAttribute("body", risultati);
 		return "risultati";
 	}
-
-	@PostMapping(value = "/start")
-	public String setQuestions(HttpServletRequest request){
-		System.out.println(request.getParameterNames() + " " + request.getAttributeNames());
-		return "index";
-	}
-
 
 	//////////////////////////////////////////////////////
 	/// CONTROLLER REST

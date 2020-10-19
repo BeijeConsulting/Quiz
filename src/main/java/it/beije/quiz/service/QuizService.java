@@ -8,15 +8,18 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
 // Creato layer Service per togliere la logica dal Controller
 @Service
 public class QuizService {
-    private List<Domanda> domande;
+    private List<Domanda> domande = new ArrayList<>();
     private int totaleDomande;
+    private int totaleRisposteCorrette;
     private LocalTime time = null;
+    private final String PATH = "C:\\Code\\Quiz\\domande\\";
 
     /**
      * Verifica la correttezza delle risposta e ritorna i risultati da stampare nella pagina
@@ -33,6 +36,7 @@ public class QuizService {
                     .append("<br><br>");
             if (corretta) {
                 results.append("ESATTO!!! :)<br>");
+                totaleRisposteCorrette++;
             } else {
                 results.append("La risposta esatta era ")
                         .append(d.getRispostaEsatta())
@@ -40,7 +44,16 @@ public class QuizService {
             }
             results.append("<br><br>");
         }
+        saveResultsToDatabase(results.toString());
         return results.toString();
+    }
+
+    private void saveResultsToDatabase(String results){
+        //salva sul db il valore di totaleRisposteCorrette
+        // fai % di risposte corrette
+        // setta il boolean passato o meno
+
+        // brutto, ma salvo direttamente su db la stringa generata nel metodo result
     }
 
     /**
@@ -95,12 +108,11 @@ public class QuizService {
     /**
      * Carica le domande all'avvio della pagina/server
      */
-    public void loadDomande(Model model){
-        if (domande == null) {
-            domande = Utils.readFileDomande(
-                    "C:\\Code\\Quiz\\domande\\oca_certification_guide_manning\\domande_cap1.xml");
-            totaleDomande = domande.size();
+    public void loadDomande(Model model, String[] userSelection){
+        for (String s : userSelection){
+            domande.addAll(Utils.readFileDomande(PATH + s));
         }
+        totaleDomande = domande.size();
         model.addAttribute("totDomande", totaleDomande);
     }
 
