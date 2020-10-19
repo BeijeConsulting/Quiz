@@ -7,6 +7,7 @@
 	<title>QUIZ</title>
 </head>
 <body>
+	Ecco il tuo risultato, ${sessionScope.userBean.name}:
 	${ body }
 </body>
 </html>

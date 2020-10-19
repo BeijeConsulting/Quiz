@@ -1,9 +1,12 @@
 package it.beije.quiz.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Quiz {
+    @Id
+
     private Integer id;
     private String nomeQuiz;
     private String results;

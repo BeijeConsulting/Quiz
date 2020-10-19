@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.beije.quiz.service.QuizService;
 import it.beije.quiz.service.UserService;
@@ -45,7 +46,8 @@ public class QuizController {
 	 * @return la pagina di index
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init() {
+	public String init(HttpSession session) {
+		if (session.getAttribute("userBean") == null) return "signIn";
 		System.out.println("Richiesta GET per /.");
 		return "index";
 	}
@@ -173,7 +175,7 @@ public class QuizController {
 			request.getSession().setAttribute("userBean", user);
 			return "index";
 		}else {
-			System.out.println("non c'è. utente: "+user);
+			System.out.println("non c'è. utente: "+ user);
 			model.addAttribute("errore", "CREDENZIALI ERRATE");
 			return "signIn";
 		}
@@ -193,8 +195,7 @@ public class QuizController {
 
 		userService.insert(newUser);
 		log.debug("user:" +newUser);
-		
-		
+
 		if(newUser != null) {
 			request.getSession().setAttribute("userBean", newUser);
 			return "index";
@@ -203,9 +204,5 @@ public class QuizController {
 			model.addAttribute("errore", "CREDENZIALI ERRATE");
 			return "signUp";
 		}
-		
 	}
-
-
-
 }
