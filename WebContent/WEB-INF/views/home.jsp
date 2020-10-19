@@ -19,6 +19,7 @@
 		<form action="storicoesiti" method="GET"> 
 			<button type ="submit"><span>Storico quiz</span></button> 
 		</form>
+		<h3><a href ="/logout">Logout</a></h3>
 		<br><br>		
 	</div>		
 </body>
