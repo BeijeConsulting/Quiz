@@ -13,7 +13,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Risposta;
 
 public class Utils {
 
@@ -57,28 +56,26 @@ public class Utils {
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
+		        long id = Long.parseLong(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
 		        String testo = contenutoDomanda.get(0).getTextContent();
+		        StringBuilder risposte = new StringBuilder();
 		        
 		        //caricare le risposte possibili
 		        rispostePossibili = contenutoDomanda.get(1);
 		        String answerType = rispostePossibili.getAttribute("type");
 		        elementiRisposta = Utils.getChildElements(rispostePossibili);
-		        List<Risposta> risposte = new ArrayList<>();
 		        for (Element risposta : elementiRisposta) {
-		        	Risposta r = new Risposta();
-		        	r.setValue(risposta.getAttribute("value"));
-		        	r.setText(risposta.getTextContent());
-		        	
-		        	risposte.add(r);
+					risposte.append(risposta.getAttribute("value"))
+							.append(risposta.getTextContent())
+							.append("/");
 		        }
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
 		        
-	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
+	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte.toString(), rispostaEsatta, spiegazione);
 	        	arrayDomande.add(d);
 	        }
 		} catch (Exception e) {

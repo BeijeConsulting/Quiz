@@ -1,26 +1,48 @@
 package it.beije.quiz.model;
 
-import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "domande")
 public class Domanda {
 	
 	public static final String ANSWER_TYPE_CHECKBOX = "checkbox";
 	public static final String ANSWER_TYPE_RADIO = "radio";
 
-	private int id;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idDomanda;
+
+	@Column(name = "id_da_xml")
+	private Long id;
+
+	@Column
 	private String book;
-	private int chapter;
-	private int question;
+
+	@Column
+	private Integer chapter;
+
+	@Column
+	private Integer question;
+	@Column
 	private String testo;
+	@Column
 	private String answerType;
-	private List<Risposta> risposte;
+	@Column
+	private String risposte; //saved as LETTERARISPOSTA(unito)RISPOSTA/
+	@Transient
 	private String rispostaUtente = "";
+	@Column
 	private String rispostaEsatta;
+	@Column
 	private String spiegazione;
-	
-	public Domanda(int id, String book, int chapter, int question, String testo,
-			String answerType, List<Risposta> risposte,
-			String rispostaEsatta, String spiegazione) {
+
+	public Domanda(){}
+
+	public Domanda(Long id, String book, int chapter, int question, String testo,
+				   String answerType, String risposte,
+				   String rispostaEsatta, String spiegazione) {
 		this.id = id;
 		this.book = book;
 		this.chapter = chapter;
@@ -32,11 +54,11 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public int getChapter() {
+	public Integer getChapter() {
 		return chapter;
 	}
 	
@@ -52,7 +74,7 @@ public class Domanda {
 		return spiegazione;
 	}
 
-	public List<Risposta> getRisposte() {
+	public String getRisposte() {
 		return risposte;
 	}
 
@@ -60,17 +82,21 @@ public class Domanda {
 		return book;
 	}
 
-	public int getQuestion() {
+	public Integer getQuestion() {
 		return question;
 	}
 	
 	public String getRispostaUtente() {
-		return rispostaUtente;
+		return rispostaUtente == null ? "" : rispostaUtente;
 	}
 	public void setRispostaUtente(String rispostaUtente) {
-		this.rispostaUtente = rispostaUtente;
+		if (rispostaUtente != null){
+			this.rispostaUtente = rispostaUtente;
+		} else {
+			this.rispostaUtente = "";
+		}
 	}
-	
+
 	public String getAnswerType() {
 		return answerType;
 	}
@@ -87,31 +113,33 @@ public class Domanda {
 		builder.append("rispostaUtente : ").append(rispostaUtente).append('\n');
 		builder.append("answerType : ").append(answerType).append('\n');
 		builder.append("RISPOSTE\n");
-		for (Risposta r : risposte) {
-			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
-		}
-		builder.append("----------------------------\n");
-		
+		builder.append(risposte);
+
 		return builder.toString();
 	}
 
-	public String toJson() {
-		StringBuilder builder = new StringBuilder("{");
-		builder.append("\"id\":").append(id).append(';');
-		builder.append("\"book\":\"").append(book).append("\";");
-		builder.append("\"chapter\":").append(chapter).append(';');
-		builder.append("\"question\":").append(question).append(';');
-		builder.append("\"testo\":\"").append(testo).append("\";");
-		builder.append("\"rispostaEsatta\":\"").append(rispostaEsatta).append("\";");
-		builder.append("\"rispostaUtente\":\"").append(rispostaUtente).append("\";");
-		builder.append("\"answerType\":\"").append(answerType).append("\";");
-		builder.append("\"risposte\":{");
-		for (Risposta r:risposte) {
-			builder.append("\"value\":\"").append(r.getValue()).append("\";");
-			builder.append("\"text\":\"").append(r.getText()).append("\";");
-		}
-		builder.append("}}");
-		
-		return builder.toString();
+	public Long getIdDomanda() {
+		return idDomanda;
 	}
+
+	public void setIdDomanda(Long idDomanda) {
+		this.idDomanda = idDomanda;
+	}
+//
+//	public String toJson() {
+//		StringBuilder builder = new StringBuilder("{");
+//		builder.append("\"id\":").append(id).append(';');
+//		builder.append("\"book\":\"").append(book).append("\";");
+//		builder.append("\"chapter\":").append(chapter).append(';');
+//		builder.append("\"question\":").append(question).append(';');
+//		builder.append("\"testo\":\"").append(testo).append("\";");
+//		builder.append("\"rispostaEsatta\":\"").append(rispostaEsatta).append("\";");
+//		builder.append("\"rispostaUtente\":\"").append(rispostaUtente).append("\";");
+//		builder.append("\"answerType\":\"").append(answerType).append("\";");
+//		builder.append("\"risposte\":{");
+//		builder.append(risposte);
+//		builder.append("}}");
+//
+//		return builder.toString();
+//	}
 }

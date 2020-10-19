@@ -4,7 +4,10 @@
         <!-- 	    <class>it.beije.quiz.model.Domanda</class>
                 <class>it.beije.quiz.model.Risposta</class>
          -->
-<!--        <class>it.beije.quiz.bean.User</class>-->
+        <class>it.beije.quiz.bean.User</class>
+        <class>it.beije.quiz.model.Domanda</class>
+        <class>it.beije.quiz.model.Quiz</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/quiz?serverTimezone=CET"/>

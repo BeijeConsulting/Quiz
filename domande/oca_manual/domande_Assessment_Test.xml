@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <domande>
-	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="1">
+	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="1">
 		<testo>
 			What is the result of the following class? (Choose all that apply)
 			
@@ -31,7 +31,7 @@
 			code would compile and output 0null. For more information, see Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="2">
+	<domanda id="2" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="2">
 		<testo>
 			What is the result of the following code?
 			
@@ -61,7 +61,7 @@
 			Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="3">
+	<domanda id="3" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="3">
 		<testo>
 			What is the output of the following code? (Choose all that apply)
 			
@@ -100,7 +100,7 @@
 			options A, B, and G can be eliminated. For more information, see Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="4">
+	<domanda id="4" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="4">
 		<testo>
 			What is the output of the following program?
 			
@@ -163,7 +163,7 @@
 			For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="5">
+	<domanda id="5" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="5">
 		<testo>
 			What is the output of the following code snippet?
 			
@@ -194,7 +194,7 @@
 			information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="6">
+	<domanda id="6" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="6">
 		<testo>
 			What is the result of the following program?
 			
@@ -224,7 +224,7 @@
 			and the output on line 9 is 15. For more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="7">
+	<domanda id="7" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="7">
 		<testo>
 			What is the result of the following code?
 			
@@ -254,7 +254,7 @@
 			more information, see Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="8">
+	<domanda id="8" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="8">
 		<testo>
 			What is the output of the following code?
 			
@@ -295,7 +295,7 @@
 			and option A is the correct answer.
 		</spiegazione>
 	</domanda>
-	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="9">
+	<domanda id="9" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="9">
 		<testo>
 			Which of the following statements are true? (Choose all that apply)
 		</testo>
@@ -315,7 +315,7 @@
 			practice. For more information, see Chapter 6.
 		</spiegazione>
 	</domanda>
-	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="10">
+	<domanda id="10" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="10">
 		<testo>
 			Which are true of the following code? (Choose all that apply)
 			
@@ -351,7 +351,7 @@
 			have to. For more information, see Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="11">
+	<domanda id="11" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="11">
 		<testo>
 			What is the output of the following program?
 			
@@ -394,7 +394,7 @@
 				For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="12">
+	<domanda id="12" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="12">
 		<testo>
 			What is the result of the following program?
 			
@@ -427,7 +427,7 @@
 			more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="13">
+	<domanda id="13" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="13">
 		<testo>
 			What is the output of the following program?
 			
@@ -458,7 +458,7 @@
 			is option C. For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="14">
+	<domanda id="14" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="14">
 		<testo>
 			Assuming we have a valid, non-null HenHouse object whose value is initialized by the
 			blank line shown here, which of the following are possible outputs of this application?(Choose all that apply)
@@ -494,7 +494,7 @@
 			under multiple circumstances. For more information, see Chapter 2.
 		</spiegazione>
 	</domanda>
-	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="15">
+	<domanda id="15" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="15">
 		<testo>
 			Which of the following statements can be inserted in the blank line so that the code will
 			compile successfully? (Choose all that apply)
@@ -530,7 +530,7 @@
 			Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="16">
+	<domanda id="16" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="16">
 		<testo>
 		What individual changes, if any, would allow the following code to compile? (Choose all that apply)
 		
@@ -558,7 +558,7 @@
 			correct since the changes are taken together. For more information, see Chapter 5.
 		</spiegazione>
 	</domanda>
-	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="17">
+	<domanda id="17" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="17">
 		<testo>
 			Which of the following lines can be inserted at line 11 to print true? (Choose all that apply)
 			
@@ -589,7 +589,7 @@
 			to Integer, they would be correct. For more information, see Chapter 4.
 		</spiegazione>
 	</domanda>
-	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="18">
+	<domanda id="18" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="18">
 		<testo>
 			Which of the following print out a date representing April 1, 2015? (Choose all that apply)
 		</testo>
@@ -609,7 +609,7 @@
 			For more information, see Chapter 3.
 		</spiegazione>
 	</domanda>
-	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="19">
+	<domanda id="19" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="19">
 		<testo>
 			Bytecode is in a file with which extension?
 		</testo>
@@ -628,7 +628,7 @@
 			Chapter 1.
 		</spiegazione>
 	</domanda>
-	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="Assessment_Test" question="20">
+	<domanda id="20" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="0" question="20">
 		<testo>
 			Which of the following are checked exceptions? (Choose all that apply)
 		</testo>

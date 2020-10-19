@@ -195,7 +195,7 @@
 			They aren’t reflected in the calling method (the main method). 
 		</spiegazione>
 	</domanda>
-	<domanda id="xx" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="xx">
+	<domanda id="6" book="OCA Java SE 8 Programmer I Certification Guide" chapter="3" question="6">
 		<testo>
 			What is the output of the following code?
 			

@@ -73,7 +73,7 @@ public class QuizService {
     private void saveResultsToDatabase(String results){
         System.out.println("Risp corrette: " + totaleRisposteCorrette);
         System.out.println("Risp totali: " + totaleDomande);
-        double percentuale = totaleRisposteCorrette / (double)totaleDomande * 100;
+        double percentuale = (totaleRisposteCorrette / (double)totaleDomande) * 100;
         // fai % di risposte corrette
         System.out.println("Percentuale: " + percentuale);
         quiz.setPercentuale(percentuale);

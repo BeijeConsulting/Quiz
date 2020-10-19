@@ -1,16 +1,14 @@
 package it.beije.quiz.controller;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import it.beije.quiz.XMLtoDB;
 import it.beije.quiz.service.QuizService;
 import it.beije.quiz.service.UserService;
 
@@ -24,9 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
 import it.beije.quiz.bean.User;
-import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Risposta;
 
 @Controller
 @SessionScope
@@ -40,6 +36,9 @@ public class QuizController {
 	
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private XMLtoDB xmLtoDB;
 
 	/**
 	 * Controller pagina iniziale. Carica il file xml e mostra le domande disponibili
@@ -115,29 +114,11 @@ public class QuizController {
 		model.addAttribute("body", risultati);
 		return "risultati";
 	}
-
-	//////////////////////////////////////////////////////
-	/// CONTROLLER REST
-	//////////////////////////////////////////////////////
-	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
-	public void testRest(Model model,
-						 HttpServletResponse response) throws IOException {
-		System.out.println("Richiesta pagina /api/domanda in get");
-		List<Risposta> risposte = new ArrayList<>();
-		Risposta r = new Risposta();
-		r.setValue("A");
-		r.setText("risposta prova");
-		risposte.add(r);
-		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
-		
-		response.setContentType("application/json");
-		response.getWriter().append(domanda.toJson());
-	}
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public String signIn() {
 		log.info("signIn get...");
-		
+
 		return "signIn";
 	}
 	
@@ -150,7 +131,6 @@ public class QuizController {
 		User user = userService.retrieve(email, password);	
 		log.debug("user:" +user);
 		
-		
 		if(user != null) {
 			request.getSession().setAttribute("userBean", user);
 			return "index";
@@ -159,7 +139,6 @@ public class QuizController {
 			model.addAttribute("errore", "CREDENZIALI ERRATE");
 			return "signIn";
 		}
-
 	}
 	
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
@@ -184,5 +163,14 @@ public class QuizController {
 			model.addAttribute("errore", "CREDENZIALI ERRATE");
 			return "signUp";
 		}
+	}
+
+	/**
+	 * Converte tutti gli XML e li inserisce nel database
+	 */
+	@RequestMapping(value = "/converter", method = RequestMethod.GET)
+	public String converter() {
+		xmLtoDB.convertAll();
+		return "index";
 	}
 }
