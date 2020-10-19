@@ -19,7 +19,7 @@ public class JpaEntityManager {
 	public static synchronized EntityManagerFactory getInstance() {
 		try {
 			if (emfactory == null) {
-				emfactory = Persistence.createEntityManagerFactory("Biblioteca");
+				emfactory = Persistence.createEntityManagerFactory("Quiz");
 			}
 			return emfactory;
 		} catch(Exception e) {
