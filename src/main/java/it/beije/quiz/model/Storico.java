@@ -30,7 +30,7 @@ public class Storico {
 	@Column(name="score")
 	private double score;
 
-	@Column(name="idutente")
+	@Column(name="id_utente")
 	private Integer idutente;
 	
 	@Column(name="punteggio")
