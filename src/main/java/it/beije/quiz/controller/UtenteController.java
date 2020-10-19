@@ -42,6 +42,14 @@ public class UtenteController {
 			}
 		}
 		
+	
+		
+		@RequestMapping(value = "/log", method = RequestMethod.GET)
+		public String backHome() {
+			log.debug("Redirect to home page");
+			return "home";
+		}
+		
 		@RequestMapping(value="/logout", method = RequestMethod.GET)
 		public String logout(HttpServletRequest request) {
 			HttpSession session = request.getSession();
