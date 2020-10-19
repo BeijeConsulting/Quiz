@@ -38,8 +38,8 @@ public class LoginController {
 		String password = request.getParameter("password");
 		user = userService.checkLogin(email, password);
 		if(user!=null) {
-			session.setAttribute("firstName", user.getName());
-			session.setAttribute("lastName", user.getSurname());
+			session.setAttribute("name", user.getName());
+			session.setAttribute("surname", user.getSurname());
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("auth", true);
 			returnPath = "myaccount";

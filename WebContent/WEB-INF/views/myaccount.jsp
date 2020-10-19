@@ -7,7 +7,7 @@
 <title>My Account</title>
 </head>
 <body>
-    <p>Welcome ${user.Name} ${user.Surname}</p>
+    <p>Welcome ${name} ${surname}</p>
 
 </body>
 </html>
