@@ -14,6 +14,7 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
 	public User get(Integer id) {
 		Optional<User> o = userRepository.findById(id);
 		return o.isPresent() ? o.get() : null;

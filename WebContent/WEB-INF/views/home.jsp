@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>My Account</title>
+<title>Hike Tracker</title>
 </head>
 <body>
-    <p>Welcome ${user.Name} ${user.Surname}</p>
-
+    <p>Welcome</p>
+    <a href="login">LOGIN</a><br>
+    <a href="accountregistration">NEW ACCOUNT</a><br>
 </body>
 </html>

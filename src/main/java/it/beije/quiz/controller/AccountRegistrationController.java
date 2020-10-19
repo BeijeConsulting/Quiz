@@ -43,8 +43,8 @@ public class AccountRegistrationController {
 		newUser.setPassword(password);
 		User user = userService.register(newUser); 
 		if(user!=null) {
-			session.setAttribute("firstName", user.getName());
-			session.setAttribute("lastName", user.getSurname());
+			session.setAttribute("Name", user.getName());
+			session.setAttribute("Surame", user.getSurname());
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("auth", true);
 			returnPath = "myaccount";
