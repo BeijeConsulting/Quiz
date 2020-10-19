@@ -51,10 +51,10 @@ public class QuizController {
 		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan10\\git\\Quiz\\domande\\");
 //		StringBuilder builder = new StringBuilder("C:\\Users\\Padawan04\\git\\Quiz\\domande\\");
 		builder.append(setDomande).append(".xml");
-		if (domande == null) {
+		
 			domande = Utils.readFileDomande(builder.toString());
 			tot = domande.size();
-		}
+		
 		
 		model.addAttribute("totDomande", tot);
 		

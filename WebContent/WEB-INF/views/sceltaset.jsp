@@ -1,21 +1,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Scelta Domande</title>
-<link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/static/attivita2.css" />">
 </head>
 <body>
+<div align="left"><h3><a href ="./log">Home</a></h3></div>
+<div align="center" class="main">
 <form action="sceltaset" method="POST">
-            <label for="scelta">Guide Manning o Manual?</label>
+          <h2> <label for="scelta">Guide Manning o Manual?</label></h2>
             <select id="scelta" name="scelta" onchange="updateForm(this)">
                 <option disabled selected>Seleziona</option>
                 <option value="guide">Guide Manning</option>
                 <option value="manual">Manual</option>
             </select>
+            <br>
 		<div id="guide" style="display: none">
  		<label for="setDomande">Set Domande</label>
             <select id="setDomande" name="setDomande">
@@ -25,8 +29,10 @@
                 </c:forEach>
             </select>
         </div>
+        
 		<div id="manual" style="display: none">
  		<label for="setDomande">Set Domande</label>
+ 		<br>
             <select id="setDomande" name="setDomande">
                 <option disabled selected>Seleziona</option>
                 <c:forEach var="i" items="1,2,3,4,5,6">
@@ -37,7 +43,7 @@
         </div> 
          <input type="submit" value="Conferma">       
 </form>
-<h3><a href ="./log">Home</a></h3>
+</div>
 <script>
 function updateForm(selector){
     let value = selector.value;
