@@ -55,6 +55,12 @@ public class QuizController {
 //		return "user";
 //	}
 	
+	
+	/*
+	 * Alla richiesta "/" avviene la lettura del file di domande XML 
+	 * e viene anche caricato il numero di domande totali.
+	 */
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String init(Model model) {
 		
@@ -67,6 +73,12 @@ public class QuizController {
 		
 		return "index";
 	}
+	
+	/*
+	 * Viene settato un timer inziale che indica il tempo disponibile
+	 * per eseguire il test.
+	 * Richiamato dalla request mapping "/domanda/{index}"
+	 */
 	
 	private void setTimer(Model model) {
 		if (time == null) {
@@ -85,6 +97,13 @@ public class QuizController {
 		model.addAttribute("minuti", minutes);
 		model.addAttribute("secondi", seconds);
 	}
+	
+	/*
+	 * Dalla lista di domande viene caricata la domanda
+	 * e la risposta associata.
+	 * Inoltre tutti gli attributi della classe domanda
+	 * vengono caricati nel model.
+	 */
 	
 	private String caricaDomanda(Model model, int index) {
 		if (index < tot) {
@@ -107,6 +126,11 @@ public class QuizController {
 		}
 	}
 	
+	/*
+	 * Viene caricata la domanda con il corrispettivo indice
+	 * 
+	 */
+	
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index) {
 		
@@ -114,6 +138,11 @@ public class QuizController {
 		
 		return caricaDomanda(model, index);
 	}
+	
+	/*
+	 * Una volta scelta la risposta essa viene memorizzata 
+	 * 
+	 */
 	
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
@@ -134,6 +163,13 @@ public class QuizController {
 		
 		return caricaDomanda(model, ++index);
 	}
+	
+	/*
+	 * Viene fatto un controllo delle risposte se esse sono corrette,
+	 * questo viene fatto alla fine del test 
+	 * Del riferimento all'oggetto domanda viene comparato:
+	 * "getRispostaEsatta()" e "getRispostaUtente()" con il metodo controlla risposta
+	 */
 
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
 	public String risultati(Model model) {
