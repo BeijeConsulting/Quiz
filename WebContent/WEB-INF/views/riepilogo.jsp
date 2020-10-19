@@ -9,6 +9,6 @@
 <body>
 DOMANDE TERMINATE
 <br><br>
-<a href="/quiz/risultati">VEDI LE RISPOSTE</a>
+<a href="${pageContext.request.contextPath}/risultati">VEDI LE RISPOSTE</a>
 </body>
 </html>

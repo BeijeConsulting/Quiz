@@ -7,12 +7,16 @@
 	<title>Inizia il tuo Quiz OnLine</title>
 </head>
 <body>
-	Questa è la pagina di ingresso al tuo Quiz Online<br>
+	Questa è la pagina di ingresso al tuo Quiz Online
 	<br>
-	Totale domande caricate : ${ totDomande }<br>
-	Tempo disponibile : ${ totDomande * 2 } minuti<br>
 	<br>
-	<form action="./domanda/0" method="get">
+	Totale domande caricate : ${ totDomande }
+	<br>
+	Tempo disponibile : ${ totDomande * 2 } minuti
+	<br>
+	<br>
+	<%-- Richiede di stampare la prima domanda --%>
+	<form action="./domanda/1" method="get">
 		<input type="submit" value="START">
 	</form>
 </body>

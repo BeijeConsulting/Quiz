@@ -18,7 +18,7 @@ import it.beije.quiz.model.Risposta;
 public class Utils {
 	
 	public static List<Element> getChildElements(Element element) {
-		List<Element> childElements = new ArrayList<Element>();
+		List<Element> childElements = new ArrayList<>();
 		
 		NodeList nodeList = element.getChildNodes();
         Node node = null;
@@ -33,7 +33,7 @@ public class Utils {
 	}
 
 	public static List<Domanda> readFileDomande(String pathFile) {
-		List<Domanda> arrayDomande = new ArrayList<Domanda>();
+		List<Domanda> arrayDomande = new ArrayList<>();
 		
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -62,7 +62,7 @@ public class Utils {
 		        rispostePossibili = contenutoDomanda.get(1);
 		        String answerType = rispostePossibili.getAttribute("type");
 		        elementiRisposta = Utils.getChildElements(rispostePossibili);
-		        List<Risposta> risposte = new ArrayList<Risposta>();
+		        List<Risposta> risposte = new ArrayList<>();
 		        for (Element risposta : elementiRisposta) {
 		        	Risposta r = new Risposta();
 		        	r.setValue(risposta.getAttribute("value"));
@@ -94,20 +94,29 @@ public class Utils {
 		
 		return testo;
 	}
-	
+
+	/**
+	 * Controlla se la risposta data dall'utente corrisponde alla risposta esatta
+	 * @param rispostaEsatta La risposta esatta
+	 * @param risposta La risposta dell'user
+	 * @return true se rispostaEsatta == risposta
+	 */
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+		// Rimuovo le virgole dalla risposta esatta e la formatto tutta unita (A, B, C diventa ABC)
+		// perché è il formato con cui viene ricevuta la risposta. Senza questa conversione tutte le
+		// risposte sono errate
+		rispostaEsatta = rispostaEsatta.replace(", ", "");
+
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;
 			if (rispostaEsatta.indexOf(c) < 0) {
-				return false;//se non trovo la risposta termino il ciclo
+				return false;//Se non trovo la risposta termino il ciclo perché sicuro è errata
 			} else {
 				//tolgo risposta esatta da elenco risposte esatte per evitare duplicati
 				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
 			}
 		}
-		
 		return rispostaEsatta.length() == 0;
 	}
-
 }
