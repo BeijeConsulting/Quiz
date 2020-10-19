@@ -26,13 +26,26 @@ public class Domanda {
 	@Column
 	private Integer chapter;
 	@Column
-	private String question;
+	private Integer question;
 	@Column
 	private String testo;
 	@Column
 	private String type;
 	@Column
 	private String spiegazione;
+	
+	public Domanda() {}
+	
+	public Domanda(String book, int chapter, int question, String testo, String type,
+			String spiegazione) {
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.testo = testo;
+		this.type = type;
+		this.spiegazione = spiegazione;
+		
+	}
 	
 	public Long getId() {
 		return id;
@@ -52,10 +65,10 @@ public class Domanda {
 	public void setChapter(Integer chapter) {
 		this.chapter = chapter;
 	}
-	public String getQuestion() {
+	public Integer getQuestion() {
 		return question;
 	}
-	public void setQuestion(String question) {
+	public void setQuestion(Integer question) {
 		this.question = question;
 	}
 	public String getTesto() {

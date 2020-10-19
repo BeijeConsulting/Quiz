@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,8 +15,16 @@ import org.w3c.dom.NodeList;
 
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
+//import it.beije.quiz.model.Risposta;
+//import it.beije.quiz.repository.DomandaRepository;
+import it.beije.quiz.service.DomandaService;
+import it.beije.quiz.service.RispostaService;
 
 public class Utils {
+	@Autowired
+	private DomandaService domandaService;
+	@Autowired
+	private RispostaService rispostaService;
 	
 	/*
 	 * Metodo che crea la lista (ordinata) degli elementi XML di un file XML generico
@@ -31,7 +40,6 @@ public class Utils {
         		childElements.add((Element)node);
         	}
         }
-		
 		return childElements;
 	}
 
@@ -42,59 +50,55 @@ public class Utils {
 	 * anche i vari capitoli, n° domanda, risposta/e esatta/e...
 	 * Alla fine della lista risultante vengono aggiunti i vari entity domande così caricati.
 	 */
-	public static List<Domanda> readFileDomande(String pathFile) {
-		List<Domanda> arrayDomande = new ArrayList<Domanda>();
-		
+	public void xmlToDatabase(String pathFile) {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
-
 	        // Load the input XML document, parse it and return an instance of the
 	        // Document class.
 	        Document document = builder.parse(new File(pathFile));
 	        Element element = document.getDocumentElement();	        
-//	        System.out.println(element.getTagName());
+	        System.out.println(element.getTagName());
 	        List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
-	        	        
+	        System.out.println(domande);        
 	        List<Element> contenutoDomanda = null;
 	        List<Element> elementiRisposta = null;
 	        Element rispostePossibili = null;
 	        for (Element domanda : domande) {
 	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
 		        String book = domanda.getAttribute("book");
 		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
 		        int question = Integer.parseInt(domanda.getAttribute("question"));
 		        String testo = contenutoDomanda.get(0).getTextContent();
-		        
 		        //caricare le risposte possibili
 		        rispostePossibili = contenutoDomanda.get(1);
-		        String answerType = rispostePossibili.getAttribute("type");
+		        String type = rispostePossibili.getAttribute("type");
 		        elementiRisposta = Utils.getChildElements(rispostePossibili);
 		        List<Risposta> risposte = new ArrayList<Risposta>();
 		        for (Element risposta : elementiRisposta) {
 		        	Risposta r = new Risposta();
-		        	r.setValue(risposta.getAttribute("value"));
-		        	r.setText(risposta.getTextContent());
-		        	
+		        	r.setLettera(risposta.getAttribute("value"));
+		        	r.setRisposta(risposta.getTextContent());
 		        	risposte.add(r);
 		        }
-		        
 		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
 		        String spiegazione = contenutoDomanda.get(3).getTextContent();
-		        
-	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
-	        	arrayDomande.add(d);
-	        	
-//	        	System.out.println(d);
+	        	Domanda d = new Domanda(book, chapter, question, testo, type, spiegazione);
+	        	Domanda dSaved = domandaService.insert(d);
+	        	for (Risposta r : risposte) {
+	        		r.setIdDomanda(dSaved.getId());
+	        		rispostaEsatta = rispostaEsatta.replace(" ", "").replace(",", "");
+	        		if (rispostaEsatta.indexOf(r.getLettera()) < 0) {
+	        			r.setCorretto(false);
+	        		} else {
+	        			r.setCorretto(true);
+	        		}
+	        		rispostaService.insert(r);
+	        	}
 	        }	        		
-	        
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return arrayDomande;
 	}
 	
 	/*

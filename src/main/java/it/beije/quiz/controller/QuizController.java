@@ -1,5 +1,14 @@
 package it.beije.quiz.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import it.beije.quiz.Utils;
+
+
 //import java.io.IOException;
 //import java.time.Duration;
 //import java.time.LocalTime;
@@ -23,13 +32,19 @@ package it.beije.quiz.controller;
 //import it.beije.quiz.model.Risposta;
 
 
-//@Controller
+@Controller
 //@SessionScope
 public class QuizController {
 	
 //	private List<Domanda> domande;
 //	private int tot;
 //	private LocalTime time = null;
+	private Utils utils = new Utils();
+	
+	@GetMapping(value = "/home")
+	public String home() {
+		return "home";
+	}
 
 
 	/**
@@ -60,19 +75,15 @@ public class QuizController {
 	 * lo mette nel model e ritorna la pagina iniziale.
 	 * Purtroppo legge solo domande.xml, quindi c'è da impostre manualmente il file da cui legge.
 	 */
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String init(Model model) {
-//		
-//		if (domande == null) {
-////			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-//			tot = domande.size();
-//		}
-//		
+	@PostMapping(value = "/home")
+	public String init(HttpServletRequest request) {
+		
+		utils.xmlToDatabase(request.getParameter("id"));
 //		model.addAttribute("totDomande", tot);
-//		
-//		return "index";
-//	}
-//	
+		
+		return "index";
+	}
+	
 	/*
 	 * All'inizio, se nel controller il time è ancora nullo, allora imposta il tempo attuale: il test è iniziato.
 	 * Ogni volta che viene chiamato il metodo, controlla quanto tempo è passato da quando è iniziato il test indicandolo
