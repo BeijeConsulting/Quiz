@@ -21,11 +21,11 @@ public class BookService {
 		
 	}
 
-	public Book getByTitle(String title) {
+	public Integer getBookIdByTitle(String title) {
 		
 		Optional<Book> book = bookRepository.findByTitle(title);
 		
-		return book.isPresent() ? book.get() : null;
+		return book.isPresent() ? book.get().getId() : null;
 		
 	}
 	

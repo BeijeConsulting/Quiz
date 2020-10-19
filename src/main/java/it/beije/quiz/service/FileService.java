@@ -29,6 +29,9 @@ public class FileService {
 	@Autowired
 	private QuestionService questionService;
 	
+	@Autowired
+	private BookService bookService;
+	
 	private List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
 		
@@ -65,10 +68,8 @@ public class FileService {
 	        	
 	        	questionContent = Utils.getChildElements(q);
 	        	
-		        String book = q.getAttribute("book");
-		        
-		        
-		        
+		        int bookId = bookService.getBookIdByTitle(q.getAttribute("book"));
+		        	
 		        int chapter = Integer.parseInt(q.getAttribute("chapter"));
 		        int questionNumber = Integer.parseInt(q.getAttribute("question"));
 		        
@@ -94,6 +95,7 @@ public class FileService {
 		        }
 		        
 	        	Question question = new Question();
+	        	question.setBookId(bookId);
 	        	question.setChapter(chapter);
 	        	question.setQuestion(questionNumber);
 	        	question.setText(text);
@@ -101,7 +103,6 @@ public class FileService {
 	        	question.setExplanation(explanation);
 	        	
 	        	questionService.insert(question);
-	        	
 	        }	        		
 		} catch (Exception e) {
 			e.printStackTrace();
