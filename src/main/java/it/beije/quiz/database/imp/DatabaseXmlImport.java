@@ -26,11 +26,11 @@ import it.beije.quiz.repository.QuestionRepository;
 public class DatabaseXmlImport {
 	
 	@Autowired
-	private static BookRepository bookRepo;
+	private BookRepository bookRepo;
 	@Autowired
-	private static ChapterRepository chapterRepo;
+	private ChapterRepository chapterRepo;
 	@Autowired
-	private static QuestionRepository questionRepo;
+	private QuestionRepository questionRepo;
 	
 	@Transactional
 	public void importFromXml(String path) {

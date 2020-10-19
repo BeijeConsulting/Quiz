@@ -15,7 +15,7 @@ public class Question {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id_question")
+	@Column(name = "question_id")
 	private Integer id;
 	@Column
 	private Integer chapter;

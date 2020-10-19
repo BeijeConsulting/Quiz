@@ -11,7 +11,7 @@ public class Chapter {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id_chapter")
+	@Column(name = "chapter_id")
 	private Integer id;
 	@Column
 	private Integer book;
