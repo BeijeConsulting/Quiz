@@ -37,6 +37,7 @@
         </div> 
          <input type="submit" value="Conferma">       
 </form>
+<h3><a href ="./log">Home</a></h3>
 <script>
 function updateForm(selector){
     let value = selector.value;

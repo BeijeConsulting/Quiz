@@ -60,7 +60,8 @@ public class Storico {
 		this.durata = durata;
 	}
 
-	public String isEsito() {
+
+	public String getEsito() {
 		return esito;
 	}
 
