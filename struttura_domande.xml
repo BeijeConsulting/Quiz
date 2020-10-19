@@ -1,4 +1,16 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" ?> <!-- warning: è un problema di eclipse e/o nello schema del web.xml ma a quanto pare anche cambiando web.xml non si risolve lo stesso quindi immagino sia di eclipse -->
+
+<!-- 
+Elenco <domande> di domande. Ogni domanda è immagazzinata in <domanda>.
+Ogni domanda ha - un identificativo numerico per il numero della domanda (id)
+				- una classe book per identificare il libro in cui si trova la domanda
+				- il capitolo
+				- dare il valore question a numero della domanda (?)
+Ogni domanda ha il testo del quesito raccolto in un tag <testo>
+Il form per le risposte è una checkbox
+
+ -->
+
 <domande>
 	<domanda id="1" book="OCA Oracle Certified Associate Java SE 8 [2014]" chapter="1" question="1">
 		<testo>
@@ -7,6 +19,8 @@ Which of the following can replace line 2 to make this code compile? (Choose all
 	1: import java.util.*;
 	2: // INSERT CODE HERE
 	3: public class Imports {
+	<!-- &lt per scrivere < (lett.:less then) ; &gt per scrivere > (lett.:greather then) 
+	 these entities are all new in HTML 4.0 and may not be supported by old browsers-->
 	4:   public void method(ArrayList&lt;String&gt; list) {
 	5:     sort(list);
 	6:   }
