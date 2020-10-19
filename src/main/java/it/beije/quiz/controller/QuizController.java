@@ -172,6 +172,7 @@ public class QuizController {
 	 */
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
 	public String risultati(Model model) {
+		int counter = 0;
 		//ELABORAZIONE RISPOSTE
 		StringBuilder builder = new StringBuilder();
 		for (Domanda d : domande) {
@@ -180,6 +181,7 @@ public class QuizController {
 			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
 			if (corretta) {
 				builder.append("ESATTO!!! :)<br>");
+				counter++;
 			} else {
 				builder.append("La risposta esatta era " +  d.getRispostaEsatta() + " :(<br>");
 			}
