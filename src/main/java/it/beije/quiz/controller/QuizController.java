@@ -2,7 +2,6 @@ package it.beije.quiz.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 
 import it.beije.quiz.Utils;
+import it.beije.quiz.database.imp.DatabaseXmlImport;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 
@@ -35,6 +36,8 @@ public class QuizController {
 	private int tot;
 	private LocalTime time = null;
 	private String resourcePath;
+	@Autowired
+	private DatabaseXmlImport DbImport;
 
 
 	/**
@@ -201,5 +204,12 @@ public class QuizController {
 		else {
 			return "riepilogo";
 		}
+	}
+	
+	@RequestMapping(value = "/import", method = RequestMethod.GET)
+	public String importQuestions() {
+		String path = "C:\\Users\\Padawan07\\git\\Quiz\\WebContent\\resources\\domande";
+		DbImport.importFromXml(path);
+		return "index";
 	}
 }
