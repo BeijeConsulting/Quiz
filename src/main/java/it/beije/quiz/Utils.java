@@ -87,6 +87,14 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+	public static String[] listFileNames(File dir) {
+		String[] fileNames = dir.list();
+		for(int i = 0; i<fileNames.length; i++) {
+			fileNames[i] = fileNames[i].replace(".xml", "");
+		}
+		return fileNames;
+	}
+	
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -96,9 +104,10 @@ public class Utils {
 	}
 	
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+		rispostaEsatta = rispostaEsatta.replaceAll(" ", "");
+		rispostaEsatta = rispostaEsatta.replaceAll(",", "");
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
-			if (c == ' ' || c == ',') continue;
 			if (rispostaEsatta.indexOf(c) < 0) {
 				return false;//se non trovo la risposta termino il ciclo
 			} else {

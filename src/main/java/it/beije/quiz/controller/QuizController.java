@@ -1,14 +1,18 @@
 package it.beije.quiz.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +34,7 @@ public class QuizController {
 	private List<Domanda> domande;
 	private int tot;
 	private LocalTime time = null;
+	private String resourcePath;
 
 
 	/**
@@ -55,11 +60,28 @@ public class QuizController {
 //		return "user";
 //	}
 	
+	
+	//Loads the question list
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
-		
+	public String init(HttpServletRequest req, Model model, HttpSession session) {
+		session.setAttribute("selected", false);
+		ServletContext servletContext = req.getServletContext();
+		String contextPath = servletContext.getRealPath(File.separator);
+		resourcePath = contextPath + "/resources/domande/";
+		File dirs = new File(resourcePath);
+		String[] subdirs = dirs.list();
+		model.addAttribute("quizManning", subdirs[0]);
+		model.addAttribute("quizOca", subdirs[1]);
+		model.addAttribute("questionManning" , Utils.listFileNames(new File(resourcePath + subdirs[0])));
+		model.addAttribute("questionOca" , Utils.listFileNames(new File(resourcePath + subdirs[1])));
+		return "index";
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String init(@RequestParam("fileName") String fileName, Model model, HttpSession session) {
+		session.setAttribute("selected", true);
 		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+			domande = Utils.readFileDomande(resourcePath + fileName + ".xml");
 			tot = domande.size();
 		}
 		
@@ -68,45 +90,8 @@ public class QuizController {
 		return "index";
 	}
 	
-	private void setTimer(Model model) {
-		if (time == null) {
-			time = LocalTime.now();
-		}
-		LocalTime now = LocalTime.now();
-		Duration diff = Duration.between(time, now);
-		int tot = domande.size();
-		int secondi = 2 * 60 * tot;
-		long hours = (secondi - diff.getSeconds())/3600;
-		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
-		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
-		
-		model.addAttribute("totDomande", tot);
-		model.addAttribute("ore", hours);
-		model.addAttribute("minuti", minutes);
-		model.addAttribute("secondi", seconds);
-	}
 	
-	private String caricaDomanda(Model model, int index) {
-		if (index < tot) {
-			Domanda d = domande.get(index);
-			String risposta = d.getRispostaUtente();
-			//System.out.println("risposta : " + risposta);
-			if (risposta == null) {
-				risposta = "";
-			}
-			model.addAttribute("index", index);
-			model.addAttribute("testoDomanda",Utils.formattaTesto(d.getTesto()));
-			model.addAttribute("rispUtente", risposta);
-			model.addAttribute("answerType", d.getAnswerType());
-			model.addAttribute("risposte",d.getRisposte());
-			
-			return "domanda";
-		}
-		else {
-			return "riepilogo";
-		}
-	}
-	
+	//shows question number n
 	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
 	public String domanda(Model model, @PathVariable("index") int index) {
 		
@@ -115,6 +100,7 @@ public class QuizController {
 		return caricaDomanda(model, index);
 	}
 	
+	//probably commit response & shows next question
 	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 	public String risposta(Model model, HttpServletRequest request,
 			@RequestParam("index") int index) {
@@ -135,6 +121,7 @@ public class QuizController {
 		return caricaDomanda(model, ++index);
 	}
 
+	//shows results
 	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
 	public String risultati(Model model) {
 		//ELABORAZIONE RISPOSTE
@@ -160,7 +147,7 @@ public class QuizController {
 	
 	
 	/////// REST
-	
+	//old code for testing only?
 	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
 	public void testrest(Model model, HttpServletResponse response) throws IOException {
 		System.out.println("entra??");
@@ -175,4 +162,44 @@ public class QuizController {
 		response.getWriter().append(domanda.toJson());
 	}
 
+	/////// private util
+	private void setTimer(Model model) {
+		if (time == null) {
+			time = LocalTime.now();
+		}
+		LocalTime now = LocalTime.now();
+		Duration diff = Duration.between(time, now);
+		int tot = domande.size();
+		int secondi = 2 * 60 * tot;
+		long hours = (secondi - diff.getSeconds())/3600;
+		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
+		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
+		
+		model.addAttribute("totDomande", tot);
+		model.addAttribute("ore", hours);
+		model.addAttribute("minuti", minutes);
+		model.addAttribute("secondi", seconds);
+	}
+	
+	//loads question or ends
+	private String caricaDomanda(Model model, int index) {
+		if (index < tot) {
+			Domanda d = domande.get(index);
+			String risposta = d.getRispostaUtente(); //if answered previously
+			//System.out.println("risposta : " + risposta);
+			if (risposta == null) {
+				risposta = "";
+			}
+			model.addAttribute("index", index);
+			model.addAttribute("testoDomanda",Utils.formattaTesto(d.getTesto()));
+			model.addAttribute("rispUtente", risposta);
+			model.addAttribute("answerType", d.getAnswerType());
+			model.addAttribute("risposte",d.getRisposte());
+			
+			return "domanda";
+		}
+		else {
+			return "riepilogo";
+		}
+	}
 }
