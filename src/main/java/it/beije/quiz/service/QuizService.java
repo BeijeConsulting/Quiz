@@ -19,8 +19,9 @@ public class QuizService {
     private int totaleDomande;
     private int totaleRisposteCorrette;
     private LocalTime time = null;
-    private final String PATH = "C:\\Code\\Quiz\\domande\\";
-
+    //private final String PATH = "C:\\Code\\Quiz\\domande\\";
+    private final String PATH = "C:\\Users\\Padawan06\\git\\Quiz\\domande\\";
+    
     /**
      * Verifica la correttezza delle risposta e ritorna i risultati da stampare nella pagina
      * @return La stringa preformattata per la pagina html
@@ -49,7 +50,7 @@ public class QuizService {
     }
 
     private void saveResultsToDatabase(String results){
-        //salva sul db il valore di totaleRisposteCorrette
+        // salva sul db il valore di totaleRisposteCorrette
         // fai % di risposte corrette
         // setta il boolean passato o meno
 

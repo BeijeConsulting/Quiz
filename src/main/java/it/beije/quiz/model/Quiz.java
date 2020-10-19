@@ -1,8 +1,8 @@
 package it.beije.quiz.model;
 
-import javax.persistence.Entity;
-
-@Entity
+//import javax.persistence.Entity;
+//
+//@Entity
 public class Quiz {
     private Integer id;
     private String nomeQuiz;
