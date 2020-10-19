@@ -10,18 +10,12 @@
 	</head>
 	<body>
 	<h1>ACCEDI</h1>
-	<%
-	String errore = (String)session.getAttribute("errore");
-	if (errore != null && errore.length() > 0) {
-	out.print("<b>"+errore+"</b><br/>");
-	session.removeAttribute("errore");
-}
-%>
+	<h4>${errore}</h4>
 	<div class="main">
-		<form action= "h"  method="POST">
+		<form action= "log"  method="POST">
 			<h3>Log in: </h3><br>
 			<label>Email: <input  name="email" type="email" placeholder="user@domain.it"></label><br><br>
-			<label>Password: <input name="passwd" type="password"></label><br>
+			<label>Password: <input name="password" type="password"></label><br>
 			<br>
 			
 			<button type ="submit"><span>Accedi</span></button> <button type ="reset"><span>Cancella</span></button>
