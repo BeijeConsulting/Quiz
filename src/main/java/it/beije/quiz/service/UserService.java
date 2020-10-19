@@ -3,11 +3,13 @@ package it.beije.quiz.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.beije.quiz.entity.User;
 import it.beije.quiz.repository.UserRepository;
 
+@Service
 public class UserService {
 
 	@Autowired
