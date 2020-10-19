@@ -1,13 +1,37 @@
 package it.beije.quiz.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "questions")
 public class Question {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer id;
+	
+	@Column
 	private Integer bookId;
+	
+	@Column
 	private Integer chapter;
+	
+	@Column
 	private Integer question;
+	
+	@Column
 	private String text;
+	
+	@Column
 	private String answerType;
+	
+	@Column
 	private String explanation;
 	
 	public Integer getId() {
