@@ -15,7 +15,7 @@ import it.beije.quiz.repository.UserRepository;
 @Service
 public class UserService {
 	
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private UserRepository userRepository;

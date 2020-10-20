@@ -28,7 +28,7 @@ import it.beije.quiz.model.Domanda;
 @SessionScope
 public class QuizController {
 	
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 		
 	// Creato layer Service per togliere la logica dal Controller
 	@Autowired

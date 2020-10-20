@@ -25,7 +25,7 @@ public class QuizService {
 
     private Quiz quiz = null;
 
-    private List<Domanda> domande = new ArrayList<>();
+    private final List<Domanda> domande = new ArrayList<>();
     private int totaleDomande;
     private int totaleRisposteCorrette;
     private LocalTime time = null;
