@@ -46,7 +46,7 @@ public class UserService {
 	
 	@Transactional
 	public void modify(Long id, User userData) {
-		log.debug(new StringBuilder().append("Modifying user with ID ").append(id).append(" as ").append(userData).toString());
+		log.debug("Modifying user with ID " + id + " as " + userData);
 		if (userData == null) {
 			throw new IllegalArgumentException("This user is null");
 		}
@@ -56,7 +56,7 @@ public class UserService {
 		User user = this.retrieve(id);
 		
 		if (user == null) {
-			String errorMsg = new StringBuilder().append("User with ID ").append(id).append(" not found").toString();
+			String errorMsg = "User with ID " + id + " not found";
 			log.error(errorMsg);
 			throw new IllegalArgumentException(errorMsg);
 		}
@@ -67,12 +67,12 @@ public class UserService {
 	
 	@Transactional
 	public void modifyPassword(Long id, String newPassword) {
-		log.debug(new StringBuilder().append("Modifying password of user with ID ").append(id).toString());
+		log.debug("Modifying password of user with ID " + id);
 		
 		User user = this.retrieve(id);
 		
 		if (user == null) {
-			String errorMsg = new StringBuilder().append("User with ID ").append(id).append(" not found").toString();
+			String errorMsg = "User with ID " + id + " not found";
 			log.error(errorMsg);
 			throw new IllegalArgumentException(errorMsg);
 		}
@@ -82,11 +82,11 @@ public class UserService {
 	}
 	
 	public boolean checkPassword(Long id, String password) {
-		log.debug(new StringBuilder().append("Checking password of user with ID ").append(id).toString());
+		log.debug("Checking password of user with ID " + id);
 		User user = this.retrieve(id);
 		
 		if (user == null) {
-			String errorMsg = new StringBuilder().append("User with ID ").append(id).append(" not found").toString();
+			String errorMsg = "User with ID " + id + " not found";
 			log.error(errorMsg);
 			throw new IllegalArgumentException(errorMsg);
 		}

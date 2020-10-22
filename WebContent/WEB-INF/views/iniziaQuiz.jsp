@@ -86,18 +86,20 @@ Questa è la pagina di ingresso al tuo Quiz Online
         <input type="checkbox" value="true" name="shuffle">
     </label>
     <br>
-    <input type="submit" value="INIZIA QUIZ">
+    <input type="submit" id="submit" value="INIZIA QUIZ">
 </form>
 
 <script>
     let domandeSelected = document.getElementById('totDomande');
     let timerP = document.getElementById('timerP');
     let timerSpan = document.getElementById('timer');
+    let submitButton = document.getElementById('submit').disabled;
 
     function clean(){
         domandeSelected.value = 0;
         domandeSelected.max = 0;
         timerP.style.display = "none";
+        submitButton.disabled = true;
     }
 
     function getTime(numberOfQuestions){
@@ -142,7 +144,6 @@ Questa è la pagina di ingresso al tuo Quiz Online
             chapters = chapters.join()
 
             let totDomande;
-            let time;
 
             fetch("/Quiz/rest/countQuestions/" + books + "/" + chapters + "")
                 .then(r => r.json())
@@ -151,7 +152,8 @@ Questa è la pagina di ingresso al tuo Quiz Online
                     domandeSelected.value = totDomande;
                     domandeSelected.max = totDomande;
                     updateTime(getTime(totDomande));
-                })
+                });
+            submitButton.disabled = false
         }
     }
 </script>

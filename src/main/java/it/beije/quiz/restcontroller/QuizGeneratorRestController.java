@@ -15,8 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class StartRestController {
-
+public class QuizGeneratorRestController {
     @Autowired
     private DomandaService domandaService;
 
@@ -25,7 +24,6 @@ public class StartRestController {
     @GetMapping("/getDomanda/{bookIDs}/{chapters}")
     public List<Domanda> getByBookAndChapter(@PathVariable String bookIDs,
                                              @PathVariable String chapters){
-
         String[] libri = bookIDs.split("-");
         String[] capitoli = chapters.split("-");
         List<Integer> nrLibri = new ArrayList<>();
@@ -67,7 +65,6 @@ public class StartRestController {
         }
 
         log.info("Number of the selected Chapters: " + nrChapters.toString());
-//        return domandaService.countDomandeByBookAndChapter(nrLibri, nrChapters);
         return count;
     }
 }
