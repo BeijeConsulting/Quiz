@@ -8,6 +8,8 @@
  		<class>it.beije.quiz.model.Domanda</class>
         <class>it.beije.quiz.model.Quiz</class>
         <class>it.beije.quiz.model.Risposta</class>
+        <class>it.beije.quiz.model.RisposteDate</class>
+        
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
