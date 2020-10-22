@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 
 import it.beije.quiz.Utils;
+import it.beije.quiz.entity.User;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 import it.beije.quiz.model.Storico;
@@ -208,7 +209,7 @@ public class QuizController {
 		long minutes = diff.getSeconds()/60 - hours* 60;
 		long seconds =  diff.getSeconds() - hours * 3600 - minutes * 60;
 		Storico storico = new Storico();
-		Utente utente = (Utente)session.getAttribute("utente");
+		User utente = (User)session.getAttribute("utente");
 		storico.setIdutente(utente.getId());
 		storico.setDurata(hours+"."+minutes+"."+seconds);
 		if(esito) storico.setEsito("pass");

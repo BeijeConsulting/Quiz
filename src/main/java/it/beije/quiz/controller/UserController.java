@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.beije.quiz.model.Utente;
-import it.beije.quiz.service.UtenteService;
-
+import it.beije.quiz.entity.User;
+import it.beije.quiz.service.UserService;
 @Controller
-public class UtenteController {
+public class UserController {
 	@Autowired
-	private UtenteService utenteService;
+	private UserService userService;
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 		@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -29,7 +28,7 @@ public class UtenteController {
 		
 		@RequestMapping(value = "/log", method = RequestMethod.POST)
 		public String postLogin(HttpServletRequest request, Model model, @RequestParam String email, @RequestParam String password){
-			Utente utente = utenteService.check(email, password);
+			User utente = userService.login(email, password);
 			HttpSession session = request.getSession();
 			if(utente==null) {
 				model.addAttribute("errore", "Credenziali Errate");

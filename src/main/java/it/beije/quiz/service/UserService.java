@@ -31,17 +31,17 @@ public class UserService {
 		return (utenteSession != null);
 	}
 
-	public Optional<User> findByEmail(String email) {
+	public User loadByEmail(String email) {
 		Optional<User> utente = userRepository.findByEmail(email.toLowerCase());
-		return utente;
+		return utente.isPresent() ? utente.get() : null;
 	}
 	
-	public Optional<User> findByEmailAndPassword(String email, String password) {
+	public User login(String email, String password) {
 	Optional<User> utente = userRepository.findByEmailAndPassword(email.toLowerCase(), password);
-	return utente;
+	return utente.isPresent() ? utente.get() : null;
 }
 	
-	public User findById(Integer id) {
+	public User loadById(Integer id) {
 	Optional<User> utente = userRepository.findById(id);
 	return utente.isPresent() ? utente.get() : null;
 }
