@@ -5,6 +5,10 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Inizia il tuo Quiz Online</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
 Questa è la pagina di ingresso al tuo Quiz Online
@@ -89,74 +93,6 @@ Questa è la pagina di ingresso al tuo Quiz Online
     <input type="submit" id="submit" value="INIZIA QUIZ">
 </form>
 
-<script>
-    let domandeSelected = document.getElementById('totDomande');
-    let timerP = document.getElementById('timerP');
-    let timerSpan = document.getElementById('timer');
-    let submitButton = document.getElementById('submit').disabled;
-
-    function clean(){
-        domandeSelected.value = 0;
-        domandeSelected.max = 0;
-        timerP.style.display = "none";
-        submitButton.disabled = true;
-    }
-
-    function getTime(numberOfQuestions){
-        return numberOfQuestions * 60 * 2
-    }
-
-    function updateTime(){
-        let seconds = getTime(domandeSelected.value);
-        if (seconds > 0){
-            timerP.style.display = "";
-        } else {
-            timerP.style.display = "none";
-        }
-        timerSpan.innerText = seconds.toHHMMSS();
-    }
-
-    Number.prototype.toHHMMSS = function () {
-        let sec = this;
-        let hours   = Math.floor(sec / 3600);
-        let minutes = Math.floor((sec - (hours * 3600)) / 60);
-        let  seconds = sec - (hours * 3600) - (minutes * 60);
-
-        if (hours   < 10) {hours   = "0"+hours;}
-        if (minutes < 10) {minutes = "0"+minutes;}
-        if (seconds < 10) {seconds = "0"+seconds;}
-        return hours+':'+minutes+':'+seconds;
-    }
-
-    function updateQuestions(){
-        let selected = document.querySelectorAll('input[type="checkbox"]:checked');
-        if (selected.length === 0){
-            clean();
-        } else {
-            let books = [], chapters = [];
-
-            for (let select of selected){
-                select = String(select.value).split("-");
-                books.push(select[0]);
-                chapters.push(select[1]);
-            }
-            books = books.join()
-            chapters = chapters.join()
-
-            let totDomande;
-
-            fetch("/Quiz/rest/countQuestions/" + books + "/" + chapters + "")
-                .then(r => r.json())
-                .then(j => totDomande = j)
-                .then(() => {
-                    domandeSelected.value = totDomande;
-                    domandeSelected.max = totDomande;
-                    updateTime(getTime(totDomande));
-                });
-            submitButton.disabled = false
-        }
-    }
-</script>
+<script src="${pageContext.request.contextPath}/resources/js/quizCreatorAjax.js"></script>
 </body>
-
 </html>
