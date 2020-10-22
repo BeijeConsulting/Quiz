@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
-import it.beije.quiz.bean.User;
+import it.beije.quiz.model.User;
 
 @Controller
 @SessionScope

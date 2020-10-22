@@ -14,7 +14,7 @@ public class Domanda {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
+	@Column(name = "book_title")
 	private String book;
 
 	@Column
@@ -22,21 +22,31 @@ public class Domanda {
 
 	@Column
 	private Integer question;
+
 	@Column
 	private String testo;
-	@Column
+
+	@Column(name="answer_type")
 	private String answerType;
 
-//	@Column
-//	private String risposte; //saved as LETTERARISPOSTA(unito)RISPOSTA/
+	@Column(name="book_id")
+	private Integer bookId;
 
 	@Transient
 	private String rispostaUtente = "";
 
-	@Column
+	@Column(name="risposta_esatta")
 	private String rispostaEsatta;
 	@Column
 	private String spiegazione;
+
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
 
 	public Domanda(){}
 
@@ -64,20 +74,6 @@ public class Domanda {
 		this.answerType = answerType;
 		this.spiegazione = spiegazione;
 	}
-
-//	public Domanda(Long id, String book, int chapter, int question, String testo,
-//				   String answerType, String risposte,
-//				   String rispostaEsatta, String spiegazione) {
-//		this.id = id;
-//		this.book = book;
-//		this.chapter = chapter;
-//		this.question = question;
-//		this.testo = testo;
-//		this.rispostaEsatta = rispostaEsatta;
-//		this.answerType = answerType;
-//		this.risposte = risposte;
-//		this.spiegazione = spiegazione;
-//	}
 	
 	public Long getId() {
 		return id;
@@ -98,10 +94,6 @@ public class Domanda {
 	public String getSpiegazione() {
 		return spiegazione;
 	}
-
-//	public String getRisposte() {
-//		return risposte;
-//	}
 
 	public String getBook() {
 		return book;
@@ -124,20 +116,5 @@ public class Domanda {
 
 	public String getAnswerType() {
 		return answerType;
-	}
-	
-	
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("id : ").append(id).append('\n');
-		builder.append("book : ").append(book).append('\n');
-		builder.append("chapter : ").append(chapter).append('\n');
-		builder.append("question : ").append(question).append('\n');
-		builder.append("testo : ").append(testo).append('\n');
-		builder.append("rispostaEsatta : ").append(rispostaEsatta).append('\n');
-		builder.append("rispostaUtente : ").append(rispostaUtente).append('\n');
-		builder.append("answerType : ").append(answerType).append('\n');
-		builder.append("RISPOSTE\n");
-		return builder.toString();
 	}
 }

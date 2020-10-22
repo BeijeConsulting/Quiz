@@ -4,3 +4,4 @@
 .classpath
 Quiz.iml
 /target
+persistence.xml
