@@ -22,6 +22,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+=======
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -29,5 +31,6 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+>>>>>>> branch 'gruppo-stanza-6' of https://github.com/BeijeConsulting/Quiz.git
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

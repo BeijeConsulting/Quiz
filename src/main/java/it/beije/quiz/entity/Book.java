@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "books")
@@ -19,6 +20,9 @@ public class Book {
 	@Column(name="title")
 	private String title;
 	
+	@Transient
+	private String dir;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -30,6 +34,12 @@ public class Book {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getDir() {
+		return dir;
+	}
+	public void setDir(String dir) {
+		this.dir = dir;
 	}
 	
 }

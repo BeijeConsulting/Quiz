@@ -25,7 +25,7 @@ public Integer lastId() {
 		
 		Optional<Question> question = questionRepository.findTopByOrderByIdDesc();
 		
-		return question.isPresent() ? question.get().getId() : null;
+		return question.isPresent() ? question.get().getId() : 0;
 		
 	}
 
