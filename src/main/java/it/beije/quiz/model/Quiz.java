@@ -11,7 +11,7 @@ public class Quiz {
     private Integer id;
 
     @Column(name = "id_utente")
-    private Long idUtente;
+    private Integer idUtente;
 
     @Column(name = "name")
     private String nomeQuiz;
@@ -43,11 +43,11 @@ public class Quiz {
         isPassed = passed;
     }
 
-    public Long getIdUtente() {
+    public Integer getIdUtente() {
         return idUtente;
     }
 
-    public void setIdUtente(Long idUtente) {
+    public void setIdUtente(Integer idUtente) {
         this.idUtente = idUtente;
     }
 }

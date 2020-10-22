@@ -1,8 +1,6 @@
 package it.beije.quiz.controller;
 
-import it.beije.quiz.model.Quiz;
-import it.beije.quiz.model.User;
-import it.beije.quiz.service.QuizServiceNew;
+import it.beije.quiz.service.QuizGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,15 +11,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class StartQuizController {
     @Autowired
-    private QuizServiceNew quizServiceNew;
+    private QuizGeneratorService quizGeneratorService;
 
     @PostMapping("/startQuiz")
     public String startQuiz(HttpServletRequest request, HttpSession session){
-        Quiz quiz = new Quiz();
-        quiz.setNomeQuiz(request.getParameter("nomeQuiz"));
-        quiz.setIdUtente(((User)session.getAttribute("userBean")).getId());
-        Integer idQuiz = quizServiceNew.saveQuiz(quiz);
-        session.setAttribute("idQuiz", idQuiz);
+        // TODO rimuovere è solo per debugging
+        session.setAttribute("userID", 5);
+
+        quizGeneratorService.createNewQuiz(request, session);
         return "domandaAjax";
     }
 }

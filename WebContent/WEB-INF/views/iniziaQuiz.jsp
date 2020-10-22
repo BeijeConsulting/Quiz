@@ -76,7 +76,7 @@ Questa è la pagina di ingresso al tuo Quiz Online
     </label>
     <br>
     <br>
-    <input type="number" placeholder="Domande selezionate" id="totDomande" max="" min="0" onchange="updateTime()">
+    <input type="number" placeholder="Domande selezionate" name="totDomande" id="totDomande" max="" min="0" onchange="updateTime()">
     <br>
     <br>
     <p style="display: none" id="timerP">Tempo disponibile: <span id="timer"></span></p>
@@ -104,7 +104,8 @@ Questa è la pagina di ingresso al tuo Quiz Online
         return numberOfQuestions * 60 * 2
     }
 
-    function updateTime(seconds){
+    function updateTime(){
+        let seconds = getTime(domandeSelected.value);
         if (seconds > 0){
             timerP.style.display = "";
         } else {

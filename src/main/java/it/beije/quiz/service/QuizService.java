@@ -64,25 +64,25 @@ public class QuizService {
         quiz = new Quiz();
         System.out.println("quiz id: " + quiz.getId());
         quiz.setNomeQuiz((String) request.getAttribute("quizName"));
-        quiz.setIdUtente(((User)session.getAttribute("userBean")).getId());
+        quiz.setIdUtente((Integer) session.getAttribute("userID"));
         quizRepository.saveAndFlush(quiz);
         System.out.println("quiz id: " + quiz.getId());
     }
 
-    private void saveResultsToDatabase(String results){
-        System.out.println("Risp corrette: " + totaleRisposteCorrette);
-        System.out.println("Risp totali: " + totaleDomande);
-        double percentuale = (totaleRisposteCorrette / (double)totaleDomande) * 100;
-        // fai % di risposte corrette
-        System.out.println("Percentuale: " + percentuale);
-        quiz.setPercentuale(percentuale);
-        // setta il boolean passato o meno
-        quiz.setPassed(percentuale >= 65);
-        // brutto, ma salvo direttamente su db la stringa generata nel metodo result
-        quiz.setResults(results);
-
-        quizRepository.saveAndFlush(quiz);
-    }
+//    private void saveResultsToDatabase(String results){
+//        System.out.println("Risp corrette: " + totaleRisposteCorrette);
+//        System.out.println("Risp totali: " + totaleDomande);
+//        double percentuale = (totaleRisposteCorrette / (double)totaleDomande) * 100;
+//        // fai % di risposte corrette
+//        System.out.println("Percentuale: " + percentuale);
+//        quiz.setPercentuale(percentuale);
+//        // setta il boolean passato o meno
+//        quiz.setPassed(percentuale >= 65);
+//        // brutto, ma salvo direttamente su db la stringa generata nel metodo result
+//        quiz.setResults(results);
+//
+//        quizRepository.saveAndFlush(quiz);
+//    }
 
     /**
      * Carica la domanda per la singola pagina
