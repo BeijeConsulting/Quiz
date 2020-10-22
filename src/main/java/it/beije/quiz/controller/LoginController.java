@@ -1,5 +1,8 @@
 package it.beije.quiz.controller;
 
+import java.time.LocalTime;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.annotation.SessionScope;
 
+import it.beije.quiz.Utils;
+import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.User;
 import it.beije.quiz.services.UserService;
 
 @Controller
-@SessionScope
 public class LoginController {
 	
 	 @Autowired
@@ -34,7 +38,7 @@ public class LoginController {
 		User logged = userService.checkLogin(submittedEmail, submittedPassword);
 		if(logged!=null) {
 			session.setAttribute("auth", true);
-			return "index";
+			return QuizController.init(request, model);
 		} else {
 			model.addAttribute("errorLogin", "error: incorrect email or password submitted!");
 			return "login";

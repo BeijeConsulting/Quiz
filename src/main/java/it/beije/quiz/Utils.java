@@ -96,6 +96,7 @@ public class Utils {
 	}
 	
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+		rispostaEsatta = rispostaEsatta.replace(", ", "");
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;

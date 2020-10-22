@@ -25,12 +25,15 @@ import it.beije.quiz.model.Risposta;
 
 
 @Controller
-@SessionScope
 public class QuizController {
 	
-	private List<Domanda> domande;
-	private int tot;
+	private static List<Domanda> domande;
+	private static int tot;
 	private LocalTime time = null;
+	
+//	private List<Domanda> domande;
+//	private int tot;
+//	private LocalTime time = null;
 
 
 	/**
@@ -57,10 +60,10 @@ public class QuizController {
 //	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(HttpServletRequest request, Model model) {
+	public static String init(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
-		
+			
 			if (domande == null) {
 				domande = Utils.readFileDomande("C:\\temp\\domande.xml");
 				tot = domande.size();
@@ -69,8 +72,7 @@ public class QuizController {
 			model.addAttribute("totDomande", tot);
 			
 			return "index";
-		}
-		else {
+		} else {
 			return "forbidden";
 		}
 	}
@@ -81,7 +83,9 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
+		System.out.println("###################-> " + domande);
 		int tot = domande.size();
+		System.out.println("###################-> " + domande);
 		int secondi = 2 * 60 * tot;
 		long hours = (secondi - diff.getSeconds())/3600;
 		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
@@ -119,9 +123,9 @@ public class QuizController {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
 		
-		setTimer(model);
-		
-		return caricaDomanda(model, index);
+			setTimer(model);
+			
+			return caricaDomanda(model, index);
 		}
 		else {
 			return "forbidden";
