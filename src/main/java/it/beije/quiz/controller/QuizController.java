@@ -46,7 +46,7 @@ public class QuizController {
 	
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
+-+
 
 	@RequestMapping(value="/gen_test", method= RequestMethod.POST )
 	public String genTest(HttpServletRequest request) {
