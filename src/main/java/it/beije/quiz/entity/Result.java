@@ -78,10 +78,15 @@ public class Result {
 	}
 	
 	public String toJson() {
-		StringBuilder sb = new StringBuilder("");
-		//sb.append("{").append("nome")
-		//TODO returning valid JSON
-		return "";
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"id_esame\":\"").append(this.id).append("\",");
+		sb.append("\"nome_esame\":\"").append(this.testName).append("\",");
+		sb.append("\"id_esame\":\"").append(this.id).append("\",");
+		sb.append("\"data_ora_inizio\":\"").append(this.dateTimeBegin.toString()).append("\",");
+		sb.append("\"data_ora_fine\":\"").append(this.dateTimeEnd.toString()).append("\",");
+		sb.append("\"score\":\"").append(this.score).append("\"");
+		sb.append("}");
+		return sb.toString();
 	}
 }
 
