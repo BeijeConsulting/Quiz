@@ -10,6 +10,6 @@ import it.beije.quiz.entity.Chapter;
 @Repository
 public interface ChapterRepository extends JpaRepository<Chapter, Integer> {
 
-	Optional<Chapter> getByTitle(String cName);
+	Optional<Chapter> getByTitleAndBook(Integer book, String cName);
 
 }
