@@ -51,11 +51,11 @@
 								<form action="./register" method="post" id="form_login">
 									<div class="row uniform">
 										<div class="12u$">
-											<input type="text" name="firstName" id="firstName" value="" placeholder="Nome" required/>
+											<input type="text" name="name" id="name" value="" placeholder="Nome" required/>
                                         </div>
                                         <!-- Break -->
                                         <div class="12u$">
-											<input type="text" name="lastName" id="lastName" value="" placeholder="Cognome" required/>
+											<input type="text" name="surname" id="surname" value="" placeholder="Cognome" required/>
                                         </div>
                                         <!-- Break -->
 										<div class="12u$">
@@ -68,7 +68,7 @@
 										<!-- Break -->
 										<div class="12u$">
 											<ul class="actions">
-												<li><input type="button" value="Registrati" /></li>
+												<li><input type="submit" value="Registrati" /></li>
 												<li>Già registrato? <a href="./login">Log in!</a></li>
 											</ul>
 										</div>

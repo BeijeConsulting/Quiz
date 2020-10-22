@@ -25,9 +25,9 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/">Home</a></li>
-					<li><a href="/storico">Storico</a></li>
-					<li><a href="/logout">Log out</a></li>
+					<li><a href="./">Home</a></li>
+					<li><a href="./storico">Storico</a></li>
+					<li><a href="./logout">Log out</a></li>
 				</ul>
 			</nav>
 

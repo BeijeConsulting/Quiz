@@ -60,7 +60,7 @@
 										<!-- Break -->
 										<div class="12u$">
 											<ul class="actions">
-												<li><input type="button" value="Login" /></li>
+												<li><input type="submit" value="Login" /></li>
 												<li>Nuovo utente? <a href="./register">Registrati!</a></li>
 											</ul>
 										</div>
