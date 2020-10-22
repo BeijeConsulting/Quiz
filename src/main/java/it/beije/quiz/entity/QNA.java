@@ -51,6 +51,4 @@ public class QNA {
 		return "QNA [questionId=" + questionId + ", answerId=" + answerId + ", test=" + test + ", answerType="
 				+ answerType + ", options=" + options + ", userChoice=" + userChoice + "]";
 	}
-	
-	
 }
