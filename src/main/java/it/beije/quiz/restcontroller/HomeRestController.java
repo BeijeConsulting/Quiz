@@ -18,11 +18,11 @@ public class HomeRestController {
 	@Autowired
 	LibroService libroService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<> home() {
-		
-		List<> libri = libroRepository.findAll();
-		return libri;
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public List<> home() {
+//		
+//		List<> libri = libroRepository.findAll();
+//		return libri;
+//	}
 
 }

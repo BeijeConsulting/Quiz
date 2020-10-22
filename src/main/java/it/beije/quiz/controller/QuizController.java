@@ -65,7 +65,7 @@ public class QuizController {
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
 			
 			if (domande == null) {
-				domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+				domande = Utils.readFileDomande("C:\\temp\\domande\\oca_certification_guide_manning\\domande_cap1.xml");
 				tot = domande.size();
 			}
 			
