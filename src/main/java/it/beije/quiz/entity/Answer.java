@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "answers")
 public class Answer {
@@ -18,6 +20,7 @@ public class Answer {
 	private Integer id;
 
 	@Column(name="question_id")
+	@JsonProperty("question_id")
 	private Integer questionId;
 	
 	@Column(name="value")
