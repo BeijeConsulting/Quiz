@@ -8,6 +8,7 @@
 		<class>it.beije.quiz.entity.Question</class>
 		<class>it.beije.quiz.entity.Book</class>
 		<class>it.beije.quiz.entity.Chapter</class>
+		<class>it.beije.quiz.entity.Answer</class>
 		<class>it.beije.quiz.model.Storico</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
