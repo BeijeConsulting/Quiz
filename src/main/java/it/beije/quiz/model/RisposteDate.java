@@ -1,7 +1,5 @@
 package it.beije.quiz.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,10 +47,10 @@ public class RisposteDate {
     }
     
     public Long getIdUtente() {
-        return idDomanda;
+        return idUtente;
     }
     public void setIdUtente(Long idUtente) {
-        this.idDomanda = idUtente;
+        this.idUtente = idUtente;
     }
     
     public Long getIdDomanda() {
@@ -63,7 +61,7 @@ public class RisposteDate {
     }
     
     public Long getIdEsame() {
-        return idDomanda;
+        return idEsame;
     }
     public void setIdEsame(Long idEsame) {
         this.idEsame = idEsame;

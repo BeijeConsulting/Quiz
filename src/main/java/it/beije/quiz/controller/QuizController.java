@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Controller
-@SessionScope
+//@SessionScope
 public class QuizController {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
