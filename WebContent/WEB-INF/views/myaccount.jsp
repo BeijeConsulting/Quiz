@@ -63,6 +63,6 @@
 			var row = '<tr><td>'+data[i].test_name+'</td><td>'+start+'</td><td>'+finish+'</td><td>'+data[i].questionsNumber+'</td><td>'+data[i].score+'</td></tr>'
 			table.innerHTML += row
 		}
-	}
+	} 
 </script>
 </html>
