@@ -4,7 +4,7 @@
 <!-- 	    <class>it.beije.quiz.model.Domanda</class>
         <class>it.beije.quiz.model.Risposta</class>
  -->        
- 		<class>it.beije.quiz.bean.User</class>
+ 		<class>it.beije.quiz.model.User</class>
  		<class>it.beije.quiz.model.Domanda</class>
         <class>it.beije.quiz.model.Quiz</class>
         <class>it.beije.quiz.model.Risposta</class>

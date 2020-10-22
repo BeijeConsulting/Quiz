@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.beije.quiz.utils.Converter;
+import it.beije.quiz.model.User;
 import it.beije.quiz.service.QuizService;
 import it.beije.quiz.service.UserService;
 
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
-
-import it.beije.quiz.bean.User;
 
 @Controller
 @SessionScope
