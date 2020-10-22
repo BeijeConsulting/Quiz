@@ -1,6 +1,5 @@
 package it.beije.quiz.service;
 
-import it.beije.quiz.Utils;
 import it.beije.quiz.bean.User;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Quiz;
@@ -36,29 +35,29 @@ public class QuizService {
      * Verifica la correttezza delle risposta e ritorna i risultati da stampare nella pagina
      * @return La stringa preformattata per la pagina html
      */
-    public String getResults(){
-        StringBuilder results = new StringBuilder();
-        for (Domanda d : domande) {
-            boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
-            results.append("DOMANDA ")
-                    .append(d.getId())
-                    .append(" : la tua risposta : ")
-                    .append(d.getRispostaUtente())
-                    .append("<br><br>");
-            if (corretta) {
-                results.append("ESATTO!!! :)<br>");
-                System.out.println("Risposta corretta.");
-                totaleRisposteCorrette++;
-            } else {
-                results.append("La risposta esatta era ")
-                        .append(d.getRispostaEsatta())
-                        .append(" :(<br>");
-            }
-            results.append("<br><br>");
-        }
-        saveResultsToDatabase(results.toString());
-        return results.toString();
-    }
+//    public String getResults(){
+//        StringBuilder results = new StringBuilder();
+//        for (Domanda d : domande) {
+//            boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
+//            results.append("DOMANDA ")
+//                    .append(d.getId())
+//                    .append(" : la tua risposta : ")
+//                    .append(d.getRispostaUtente())
+//                    .append("<br><br>");
+//            if (corretta) {
+//                results.append("ESATTO!!! :)<br>");
+//                System.out.println("Risposta corretta.");
+//                totaleRisposteCorrette++;
+//            } else {
+//                results.append("La risposta esatta era ")
+//                        .append(d.getRispostaEsatta())
+//                        .append(" :(<br>");
+//            }
+//            results.append("<br><br>");
+//        }
+//        saveResultsToDatabase(results.toString());
+//        return results.toString();
+//    }
 
     public void createQuiz(HttpSession session, HttpServletRequest request){
         System.out.println("creo quiz");
@@ -90,27 +89,27 @@ public class QuizService {
      * @param index indice della domanda richiesta
      * @return la pagina corretta se la domanda è l'ultima o meno
      */
-    public String caricaDomanda(Model model,
-                                 int index) {
-        System.out.println("Enter caricaDomanda method.");
-        if (index < totaleDomande) {
-            Domanda d = domande.get(index);
-            String risposta = d.getRispostaUtente();
-            if (risposta == null) {
-                risposta = "";
-            }
-            model.addAttribute("index", index);
-            model.addAttribute("testoDomanda",Utils.formattaTesto(d.getTesto()));
-            model.addAttribute("rispUtente", risposta);
-            model.addAttribute("answerType", d.getAnswerType());
-            model.addAttribute("risposte",d.getRisposte());
-            System.out.println("Exit caricaDomanda method with index<tot.");
-            return "domanda";
-        } else {
-            System.out.println("Exit caricaDomanda method with riepilogo.");
-            return "riepilogo";
-        }
-    }
+//    public String caricaDomanda(Model model,
+//                                 int index) {
+//        System.out.println("Enter caricaDomanda method.");
+//        if (index < totaleDomande) {
+//            Domanda d = domande.get(index);
+//            String risposta = d.getRispostaUtente();
+//            if (risposta == null) {
+//                risposta = "";
+//            }
+//            model.addAttribute("index", index);
+//            model.addAttribute("testoDomanda",Utils.formattaTesto(d.getTesto()));
+//            model.addAttribute("rispUtente", risposta);
+//            model.addAttribute("answerType", d.getAnswerType());
+//            model.addAttribute("risposte",d.getRisposte());
+//            System.out.println("Exit caricaDomanda method with index<tot.");
+//            return "domanda";
+//        } else {
+//            System.out.println("Exit caricaDomanda method with riepilogo.");
+//            return "riepilogo";
+//        }
+//    }
 
     /**
      * Metodo per aggiornare il timer
@@ -134,16 +133,16 @@ public class QuizService {
         System.out.println("Exit setTimer method.");
     }
 
-    /**
-     * Carica le domande all'avvio della pagina/server
-     */
-    public void loadDomande(Model model, String[] userSelection){
-        for (String s : userSelection){
-            domande.addAll(Utils.readFileDomande(PATH + s));
-        }
-        totaleDomande = domande.size();
-        model.addAttribute("totDomande", totaleDomande);
-    }
+//    /**
+//     * Carica le domande all'avvio della pagina/server
+//     */
+//    public void loadDomande(Model model, String[] userSelection){
+//        for (String s : userSelection){
+//            domande.addAll(Utils.readFileDomande(PATH + s));
+//        }
+//        totaleDomande = domande.size();
+//        model.addAttribute("totDomande", totaleDomande);
+//    }
 
     /**
      * Salva le risposte date dall'utente per la domanda

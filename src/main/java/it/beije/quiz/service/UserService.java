@@ -23,13 +23,13 @@ public class UserService {
 	public User retrieve(Long id) {
 		log.debug("Retrieving user with ID " + id);
 		Optional<User> user = userRepository.findById(id);
-		return user.isPresent() ? user.get() : null;
+		return user.orElse(null);
 	}
 	
 	public User retrieve(String email, String password) {
 		log.debug("Retrieving user " + email);
 		Optional<User> user = userRepository.findByEmailAndPassword(email, password);
-		return user.isPresent() ? user.get() : null;
+		return user.orElse(null);
 	}
 	
 	@Transactional

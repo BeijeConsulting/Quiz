@@ -3,7 +3,7 @@ package it.beije.quiz.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseAnswerParser {
+public class AnswerParser {
     // Prende le risposte nel formato del database e le converte in un array di risposte
     public static String[] parseRisposte(String risposteDB){
         return risposteDB.split("/");

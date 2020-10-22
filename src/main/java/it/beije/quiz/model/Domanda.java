@@ -12,9 +12,6 @@ public class Domanda {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idDomanda;
-
-	@Column(name = "id_da_xml")
 	private Long id;
 
 	@Column
@@ -29,10 +26,13 @@ public class Domanda {
 	private String testo;
 	@Column
 	private String answerType;
-	@Column
-	private String risposte; //saved as LETTERARISPOSTA(unito)RISPOSTA/
+
+//	@Column
+//	private String risposte; //saved as LETTERARISPOSTA(unito)RISPOSTA/
+
 	@Transient
 	private String rispostaUtente = "";
+
 	@Column
 	private String rispostaEsatta;
 	@Column
@@ -41,7 +41,7 @@ public class Domanda {
 	public Domanda(){}
 
 	public Domanda(Long id, String book, int chapter, int question, String testo,
-				   String answerType, String risposte,
+				   String answerType,
 				   String rispostaEsatta, String spiegazione) {
 		this.id = id;
 		this.book = book;
@@ -50,9 +50,34 @@ public class Domanda {
 		this.testo = testo;
 		this.rispostaEsatta = rispostaEsatta;
 		this.answerType = answerType;
-		this.risposte = risposte;
 		this.spiegazione = spiegazione;
 	}
+
+	public Domanda(String book, int chapter, int question, String testo,
+				   String answerType,
+				   String rispostaEsatta, String spiegazione) {
+		this.book = book;
+		this.chapter = chapter;
+		this.question = question;
+		this.testo = testo;
+		this.rispostaEsatta = rispostaEsatta;
+		this.answerType = answerType;
+		this.spiegazione = spiegazione;
+	}
+
+//	public Domanda(Long id, String book, int chapter, int question, String testo,
+//				   String answerType, String risposte,
+//				   String rispostaEsatta, String spiegazione) {
+//		this.id = id;
+//		this.book = book;
+//		this.chapter = chapter;
+//		this.question = question;
+//		this.testo = testo;
+//		this.rispostaEsatta = rispostaEsatta;
+//		this.answerType = answerType;
+//		this.risposte = risposte;
+//		this.spiegazione = spiegazione;
+//	}
 	
 	public Long getId() {
 		return id;
@@ -74,9 +99,9 @@ public class Domanda {
 		return spiegazione;
 	}
 
-	public String getRisposte() {
-		return risposte;
-	}
+//	public String getRisposte() {
+//		return risposte;
+//	}
 
 	public String getBook() {
 		return book;
@@ -113,33 +138,6 @@ public class Domanda {
 		builder.append("rispostaUtente : ").append(rispostaUtente).append('\n');
 		builder.append("answerType : ").append(answerType).append('\n');
 		builder.append("RISPOSTE\n");
-		builder.append(risposte);
-
 		return builder.toString();
 	}
-
-	public Long getIdDomanda() {
-		return idDomanda;
-	}
-
-	public void setIdDomanda(Long idDomanda) {
-		this.idDomanda = idDomanda;
-	}
-//
-//	public String toJson() {
-//		StringBuilder builder = new StringBuilder("{");
-//		builder.append("\"id\":").append(id).append(';');
-//		builder.append("\"book\":\"").append(book).append("\";");
-//		builder.append("\"chapter\":").append(chapter).append(';');
-//		builder.append("\"question\":").append(question).append(';');
-//		builder.append("\"testo\":\"").append(testo).append("\";");
-//		builder.append("\"rispostaEsatta\":\"").append(rispostaEsatta).append("\";");
-//		builder.append("\"rispostaUtente\":\"").append(rispostaUtente).append("\";");
-//		builder.append("\"answerType\":\"").append(answerType).append("\";");
-//		builder.append("\"risposte\":{");
-//		builder.append(risposte);
-//		builder.append("}}");
-//
-//		return builder.toString();
-//	}
 }

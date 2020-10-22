@@ -33,7 +33,6 @@ public class JpaEntityManagerFactory {
 			EntityManagerFactory factory = Persistence.createEntityManagerFactory(QUIZ);
 			factoryMap.put(QUIZ, factory);
 		}
-
 		return factoryMap.get(QUIZ);
 	}
 }
