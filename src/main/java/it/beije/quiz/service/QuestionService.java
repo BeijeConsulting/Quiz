@@ -49,11 +49,12 @@ public class QuestionService {
 			if (userAnswer == null) {
 				userAnswer = "";
 			}
+			String[] possibleanswers = q.getPossibleAnswers().split(" ||| ");
 			model.addAttribute("index", index);
 			model.addAttribute("questionText",Utils.formattaTesto(q.getText()));
 			model.addAttribute("userAnswer", userAnswer);
 			model.addAttribute("answerType", q.getAnswerType());
-			model.addAttribute("possibleAnswers",q.getPossibleAnswers());
+			model.addAttribute("possibleAnswers", possibleanswers);
 			
 			return "domanda";
 		}
@@ -65,7 +66,7 @@ public class QuestionService {
 	public String result(Model model, Test test/*, LocalTime time*/) {
 		int counter=0;
 		for (int i = 0; i < questions.size(); i++){
-			boolean correct = Utils.controllaRisposta(questions.get(i).getPossibleAnswers(), answers.get(i).getAnswer());
+			boolean correct = Utils.controllaRisposta(questions.get(i).getAnswer(), answers.get(i).getAnswer());
 			
 			if (correct) {
 				answers.get(i).setCorrect(true);

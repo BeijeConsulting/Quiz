@@ -52,7 +52,7 @@ tr:nth-child(even) {
 	<tr>
 		<td colspan=2><c:out value="Question N. ${questions.indexOf(question)}"/></td>
 		<td><c:out value="${answers.get(questions.indexOf(answers)).getAnswer()}"/></td>
-		<td><c:out value="${question.possibleAnswers}"/></td>
+		<td><c:out value="${question.answer}"/></td>
 		<td><c:out value="${answers.get(questions.indexOf(answers)).getCorrect()}"/></td>
 	</tr>
 	</c:forEach>
