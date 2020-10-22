@@ -20,7 +20,7 @@
             <select id="setDomande" name="setDomande">
                 <option disabled selected>Seleziona</option>
                 <c:forEach var="i" items="1,2,3,4,5,6,7">
-                    <option value="oca_certification_guide_manning\\domande_cap${i}">domande capitolo ${i}</option>
+                    <option value="cap${i}">domande capitolo ${i}</option>
                 </c:forEach>
             </select>
         </div>
@@ -29,9 +29,9 @@
             <select id="setDomande" name="setDomande">
                 <option disabled selected>Seleziona</option>
                 <c:forEach var="i" items="1,2,3,4,5,6">
-                    <option value="oca_manual\\domande_cap${i}">domande capitolo ${i}</option>
+                    <option value="cap${i}">domande capitolo ${i}</option>
                 </c:forEach>
-                	<option value="oca_manual\\domande_Assessment_Text">Assesment Text</option>
+                	<option value="Assessment_Test">Assesment Test</option>
             </select>
         </div> 
          <input type="submit" value="Conferma">       

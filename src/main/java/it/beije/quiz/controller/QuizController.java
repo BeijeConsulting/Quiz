@@ -27,13 +27,19 @@ import org.springframework.web.context.annotation.SessionScope;
 import it.beije.quiz.Utils;
 import it.beije.quiz.entity.Answer;
 import it.beije.quiz.entity.Book;
+import it.beije.quiz.entity.Chapter;
 import it.beije.quiz.entity.Question;
+import it.beije.quiz.entity.Test;
 import it.beije.quiz.entity.User;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 import it.beije.quiz.model.Storico;
 import it.beije.quiz.repository.StoricoRepository;
+import it.beije.quiz.service.AnswerService;
 import it.beije.quiz.service.BookService;
+import it.beije.quiz.service.ChapterService;
+import it.beije.quiz.service.QuestionService;
+import it.beije.quiz.service.TestService;
 
 
 @Controller
@@ -42,16 +48,29 @@ public class QuizController {
 	
 	private int tot;
 	private LocalTime time = null;
+	@Autowired
 	private BookService bookService;
+	@Autowired
+	private ChapterService chapterService;
+	@Autowired
+	private QuestionService questionService;
+	@Autowired
+	private AnswerService answerService;
+	@Autowired
+	private TestService testService;
 	
-
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	
+	
 
 
 	@RequestMapping(value="/gen_test", method= RequestMethod.POST )
-	public String genTest(HttpServletRequest request) {
+	public String genTest(HttpServletRequest request, HttpSession session) {
 		String sel = request.getParameter("scelta");
 		String set = request.getParameter("setDomande");
+		String name = request.getParameter("name");
+		int usr = ((User) session.getAttribute("user")).getId();
 		String bookTitle = null;
 		if(sel.equals("guide")) {
 			bookTitle = "oca_certification_guide_manning";
@@ -59,7 +78,12 @@ public class QuizController {
 			bookTitle = "oca_manual";
 		}
 		Book b = bookService.getBook(bookTitle);
-		return null;
+		Chapter c = chapterService.getChapter(set);
+		List<Question> questions = questionService.getChapterQuestions(c.getId());
+		Test t = testService.createTest(name, usr);
+		answerService.createAnswers(questions, t.getId());
+		session.setAttribute("questions", questions);
+		return "quiz_view"; //da cambiare con quello vero
 	}
 	/*
 	 * metodo che fa partire il timer e carica la prima domanda del set domande
