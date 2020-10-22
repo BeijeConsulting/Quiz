@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "results")
 public class Result {
@@ -34,6 +36,7 @@ public class Result {
 	@Column(name="questions_number")
 	private int questionsNumber;
 	
+	@JsonProperty("test_name")
 	@Column(name="test_name")
 	private String testName;
 	

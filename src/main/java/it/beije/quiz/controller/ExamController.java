@@ -60,18 +60,18 @@ public class ExamController {
 	 * e viene anche caricato il numero di domande totali.
 	 */
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(Model model) {
-		
-		if (domande == null) {
-			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-			tot = domande.size();
-		}
-		
-		model.addAttribute("totDomande", tot);
-		
-		return "index";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String init(Model model) {
+//		
+//		if (domande == null) {
+//			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
+//			tot = domande.size();
+//		}
+//		
+//		model.addAttribute("totDomande", tot);
+//		
+//		return "index";
+//	}
 	
 	/*
 	 * Viene settato un timer inziale che indica il tempo disponibile
