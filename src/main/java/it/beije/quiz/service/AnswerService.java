@@ -15,7 +15,7 @@ public class AnswerService {
 	@Autowired
 	private AnswerRepository answerRepo;
 
-	public void createAnswers(List<Question> questions, int test_id) {
+	public List<Answer> createAnswers(List<Question> questions, int test_id) {
 		for(int i = 0; i < questions.size(); i++) {
 			Answer a = new Answer();
 			a.setIndex(i+1);
@@ -23,6 +23,7 @@ public class AnswerService {
 			a.setTest(test_id);
 			answerRepo.saveAndFlush(a);
 		}
+		return answerRepo.findByTest(test_id);
 		
 	}
 

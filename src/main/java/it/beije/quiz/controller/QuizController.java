@@ -81,8 +81,9 @@ public class QuizController {
 		Chapter c = chapterService.getChapter(set);
 		List<Question> questions = questionService.getChapterQuestions(c.getId());
 		Test t = testService.createTest(name, usr);
-		answerService.createAnswers(questions, t.getId());
-		session.setAttribute("questions", questions);
+		List<Answer> answers = answerService.createAnswers(questions, t.getId());
+		questionService.setAnswers(answers);
+		questionService.setQuestions(questions);
 		return "quiz_view"; //da cambiare con quello vero
 	}
 	/*
@@ -169,6 +170,7 @@ public class QuizController {
 		r.setText("risposta prova");
 		risposte.add(r);
 		Domanda domanda = new Domanda(1, "book", 2, 3, "questa è una prova", "checkbox", risposte, "A", "nessuna");
+	}
 
 	private void setTimer(Model model) {
 		if (time == null) {
