@@ -106,7 +106,6 @@ public class ExamApiController {
 		}
 		response.sendRedirect("/exam/result");
 	}
-	
 
 	private void setTimer(HttpSession session) {
 		LocalDateTime start = (LocalDateTime)session.getAttribute("start_time");
