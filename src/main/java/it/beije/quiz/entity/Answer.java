@@ -13,24 +13,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "answers")
 public class Answer {
 
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 
 	@Column(name="question_id")
-	@JsonProperty("question_id")
 	private Integer questionId;
 	
-	@Column(name="value")
-	private String value;
+	@Column(name="options")
+	private String options;
 	
-	@Column(name="text")
-	private String text;
-	
-	@Column(name="correct")
-	private boolean correct;
+	@Column(name="corrects")
+	private String corrects;
 	
 	public Integer getId() {
 		return id;
@@ -44,22 +39,18 @@ public class Answer {
 	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
 	}
-	public String getValue() {
-		return value;
+	public String getOptions() {
+		return options;
 	}
-	public void setValue(String value) {
-		this.value = value;
+	public void setOptions(String options) {
+		this.options = options;
 	}
-	public String getText() {
-		return text;
+	public String getCorrects() {
+		return corrects;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public void setCorrects(String corrects) {
+		this.corrects = corrects;
 	}
-	public boolean isCorrect() {
-		return correct;
-	}
-	public void setCorrect(boolean correct) {
-		this.correct = correct;
-	}
+	
+	
 }
