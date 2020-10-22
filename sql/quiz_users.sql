@@ -1,0 +1,2 @@
+INSERT INTO quiz.users (id, name, surname, email, password) VALUES (1, 'Paolo', 'Rossi', null, null);
+INSERT INTO quiz.users (id, name, surname, email, password) VALUES (3, 'Alessio Franceschi', 'mario', 'alessiofranceschi2@gmail.com', 'ale');
