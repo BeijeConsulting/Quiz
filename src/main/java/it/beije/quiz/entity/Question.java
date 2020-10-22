@@ -20,10 +20,10 @@ public class Question {
 	private Integer bookId;
 	
 	@Column(name="chapter")
-	private Integer chapter;
+	private String chapter;
 	
 	@Column(name="question")
-	private Integer question;
+	private String question;
 	
 	@Column(name="text")
 	private String text;
@@ -46,16 +46,16 @@ public class Question {
 	public void setBookId(Integer bookId) {
 		this.bookId = bookId;
 	}
-	public Integer getChapter() {
+	public String getChapter() {
 		return chapter;
 	}
-	public void setChapter(Integer chapter) {
+	public void setChapter(String chapter) {
 		this.chapter = chapter;
 	}
-	public Integer getQuestion() {
+	public String getQuestion() {
 		return question;
 	}
-	public void setQuestion(Integer question) {
+	public void setQuestion(String question) {
 		this.question = question;
 	}
 	public String getText() {

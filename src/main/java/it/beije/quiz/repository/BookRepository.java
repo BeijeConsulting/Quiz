@@ -11,4 +11,6 @@ import it.beije.quiz.entity.Book;
 public interface BookRepository extends JpaRepository<Book, Integer>{
 
 	Optional<Book> findByTitle(String title);
+	
+	Optional<Book> findTopByOrderByIdDesc();
 }

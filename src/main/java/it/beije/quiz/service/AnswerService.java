@@ -25,7 +25,7 @@ public class AnswerService {
 		
 		Optional<Answer> answer = answerRepository.findTopByOrderByIdDesc();
 		
-		return answer.isPresent() ? answer.get().getId() : null;
+		return answer.isPresent() ? answer.get().getId() : 0;
 		
 	}
 
@@ -35,7 +35,7 @@ public class AnswerService {
 			throw new IllegalArgumentException("Answer bean is null");
 		}
 		
-		if(!"".equals(answer.getText()) || !"".equals(answer.getValue())) {
+		if(!"".equals(answer.getOptions()) || !"".equals(answer.getCorrects())) {
 			
 			answerRepository.save(answer);
 			
