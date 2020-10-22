@@ -50,14 +50,14 @@ var timer = setInterval(myTimer, 1000);
 
 DOMANDA ${ index + 1 } di ${ totDomande }<br>
 <br>
-${testoDomanda}
+${questionText}
 
 <form action = "/quiz/domanda" method = "post">
   <input type="hidden" name="index" value="${ index }">
-  <c:forEach var="scelte" items="${ risposte }">
+  <c:forEach var="answers" items="${ possibleAnswers }">
   <%-- Ho aggiunto la lettera della risposta che prima non c'era --%>
-    <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : scelte.value }' value = "${ scelte.value }"
-    ${ rispUtente.contains(scelte.value) ? "checked" : "" } > ${scelte.value} ) ${ scelte.text } <br>
+    <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answers.value }' value = "${ answers.value }"
+    ${ userAnswer.contains(answers.value) ? "checked" : "" } > ${answers.value} ) ${ answers.text } <br>
   </c:forEach>
   <br><input type="submit" value="Invio">
 </form>
