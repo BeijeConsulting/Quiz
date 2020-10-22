@@ -12,9 +12,10 @@
 <div align="center"><h1>WELCOME</h1></div>
 <div class="here">
 <form action="./log">
-<button type="submit" ><span>Sign-in</span></button><br>
+<button type="submit" ><span>LOGIN</span></button><br>
 </form><br>
-New User?<a href="./newuser">Register</a>
+New User? <a href="./newuser">Register here</a><br><br>
 </div>
+
 </body>
 </html>

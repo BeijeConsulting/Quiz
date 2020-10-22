@@ -9,18 +9,19 @@
 	 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 	</head>
 	<body>
-	<h1>ACCEDI</h1> 
+	<div align="center"> <h1>LOGIN PAGE</h1> </div>
 	<div align="right"><h3>${errore}</h3></div>	
 	<div class="main">
 		<form action= "log"  method="POST">
 			<h3>Log in:</h3> <br> 
-			<label>Email: <input  name="email" type="email" placeholder="user@domain.it"></label><br><br>
+			<label>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input  name="email" type="email" placeholder="user@domain.it"></label><br><br>
 			<label>Password: <input name="password" type="password"></label><br>
 			<br>
-			<button type ="submit"><span>Accedi</span></button> <button type ="reset"><span>Cancella</span></button>
+			<button type ="submit"><span>LOGIN</span></button> <button type ="reset"><span>DELETE</span></button>
 		</form>	<br><br>
-	<div align="right"></div><h3><a href ="./logout">Torna indietro</a></h3></div>
+	<div align="right"></div><h3><a href ="./logout">Back</a></h3>
 	</div>
+
 	
 	</body>
 </html>

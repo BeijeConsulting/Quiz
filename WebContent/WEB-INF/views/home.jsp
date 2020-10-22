@@ -9,18 +9,19 @@
 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 </head>
 <body>
- 	
-	<h1>QUIZ MENU':</h1>
+ 	<h1>QUIZ MENU':</h1>
+	<div align="right"><a href ="./logout">Logout here     </a></div>
 	<div class="main">
 		<form action="sceltaset" method="GET" >
-			<button type="submit"><span>Inizia un nuovo quiz</span></button>
+			<button type="submit"><span>Start new quiz</span></button>
 		</form>	
 		<br><br>	
 		<form action="storicoesiti" method="GET"> 
-			<button type ="submit"><span>Storico quiz</span></button> 
+			<button type ="submit"><span>Quiz history</span></button> 
 		</form>
-		<div align="right"><h3><a href ="./logout">Logout</a></h3></div>
+		
 		<br><br>		
-	</div>		
+	</div>	
+		
 </body>
 </html>
