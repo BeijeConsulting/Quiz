@@ -163,4 +163,9 @@ public class QuizController {
 		converter.convertAll();
 		return "index";
 	}
+	
+	@RequestMapping(value = "/testdomanda", method = RequestMethod.GET)
+	public String testdomanda() {
+		return "domandaAjax";
+	}
 }
