@@ -20,7 +20,7 @@ public class Result {
 	private Integer id;
 	
 	@Column(name="user_id")
-	private Integer user_id;
+	private Integer userId;
 	
 	@Column(name="date_time_begin")
 	private LocalDateTime dateTimeBegin;
@@ -32,10 +32,10 @@ public class Result {
 	private int score;
 	
 	@Column(name="questions_number")
-	private int questions_number;
+	private int questionsNumber;
 	
 	@Column(name="test_name")
-	private String test_name;
+	private String testName;
 	
 	public Integer getId() {
 		return id;
@@ -69,13 +69,19 @@ public class Result {
 		this.score = score;
 	}
 
-	public int getQuestions_number() {
-		return questions_number;
+	public int getQuestionsNumber() {
+		return questionsNumber;
 	}
 
-	public void setQuestions_number(int questions_number) {
-		this.questions_number = questions_number;
+	public void setQuestionsNumber(int questionsNumber) {
+		this.questionsNumber = questionsNumber;
 	}
 	
+	public String toJson() {
+		StringBuilder sb = new StringBuilder("");
+		//sb.append("{").append("nome")
+		//TODO returning valid JSON
+		return "";
+	}
 }
 

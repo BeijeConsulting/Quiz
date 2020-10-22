@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Hike Tracker</title>
+<title>Homepage</title>
 </head>
 <body>
-    <p>Welcome</p>
-    <a href="login">LOGIN</a><br>
-    <a href="accountregistration">NEW ACCOUNT</a><br>
+
 </body>
 </html>

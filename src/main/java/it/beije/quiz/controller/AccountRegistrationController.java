@@ -22,15 +22,12 @@ public class AccountRegistrationController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/accountregistration", method = RequestMethod.GET)
-	public String accountRegistration(HttpServletRequest request, HttpServletResponse response, Model model, Locale locale) {
-		System.out.println("account registration" + request.getContextPath());
-		
+	public String accountRegistration() {	
 		return "accountregistration";
 	}
 	
 	@RequestMapping(value = "/accountregistration", method = RequestMethod.POST)
-	public String accountRegistration(User newUser, HttpServletRequest request, HttpServletResponse response, Model model, Locale locale) {
-		System.out.println("account registration" + request.getContextPath());
+	public String accountRegistration(User newUser, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String returnPath = "";
 		String name = request.getParameter("name");
@@ -52,7 +49,6 @@ public class AccountRegistrationController {
 			model.addAttribute("error", "ERROR: Email already used");
 			returnPath = "accountregistration";
 		} 
-		
 		return returnPath;
 	}
 }

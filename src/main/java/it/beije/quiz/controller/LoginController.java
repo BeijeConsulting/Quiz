@@ -1,10 +1,6 @@
 package it.beije.quiz.controller;
 
-import java.time.LocalDateTime;
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +21,12 @@ public class LoginController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(HttpServletRequest request, HttpServletResponse response, Model model, Locale locale) {
-		
+	public String login() {
 		return "login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(User user,HttpServletRequest request, HttpServletResponse response, Model model, Locale locale) {
+	public String login(User user, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String returnPath = "";
 		String email = request.getParameter("email");
@@ -49,5 +44,14 @@ public class LoginController {
 		}
 		
 		return returnPath;
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String login(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			session.invalidate();
+		}
+		return "login";
 	}
 }
