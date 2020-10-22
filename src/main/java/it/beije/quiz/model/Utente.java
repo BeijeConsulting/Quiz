@@ -8,42 +8,47 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
-public class User {
+@Table(name="utente")
+public class Utente {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private Integer userId;
-	@Column(name="name")
-	private String firstName;
-	@Column(name="surname")
-	private String lastName;
+	private Long id;
+	@Column(name="nome")
+	private String nome;
+	@Column(name="cognome")
+	private String cognome;
 	@Column(name="email")
 	private String email;
 	@Column(name="password")
 	private String password;
 	
-	public User() {}
+	public Utente() {}
 	
-	public Integer getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getLastName() {
-		return lastName;
+
+	public String getCognome() {
+		return cognome;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -58,7 +63,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "Utente [nome=" + nome + ", cognome=" + cognome + ", email=" + email + "]";
 	}
 	
 	

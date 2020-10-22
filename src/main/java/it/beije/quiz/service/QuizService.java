@@ -1,8 +1,8 @@
-package it.beije.quiz.services;
+package it.beije.quiz.service;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class LibroService {
+public class QuizService {
 
 }

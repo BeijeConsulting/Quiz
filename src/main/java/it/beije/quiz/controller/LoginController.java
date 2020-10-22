@@ -1,8 +1,5 @@
 package it.beije.quiz.controller;
 
-import java.time.LocalTime;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,18 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.annotation.SessionScope;
 
-import it.beije.quiz.Utils;
-import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.User;
-import it.beije.quiz.services.UserService;
+import it.beije.quiz.model.Utente;
+import it.beije.quiz.service.UtenteService;
 
 @Controller
 public class LoginController {
 	
 	 @Autowired
-	 private UserService userService;
+	 private UtenteService userService;
 
 	 @RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -35,10 +29,11 @@ public class LoginController {
 		String submittedEmail = request.getParameter("email");
 		String submittedPassword = request.getParameter("password");
 		HttpSession session = request.getSession();
-		User logged = userService.checkLogin(submittedEmail, submittedPassword);
+		Utente logged = userService.checkLogin(submittedEmail, submittedPassword);
 		if(logged!=null) {
 			session.setAttribute("auth", true);
-			return QuizController.init(request, model);
+			//return QuizController.init(request, model);
+			return "index";
 		} else {
 			model.addAttribute("errorLogin", "error: incorrect email or password submitted!");
 			return "login";
@@ -58,12 +53,12 @@ public class LoginController {
 		String newCognome = request.getParameter("cognome");
 		String newEmail = request.getParameter("email");
 		String newPassword = request.getParameter("password");
-		User newUser = new User();
-		newUser.setFirstName(newNome);
-		newUser.setLastName(newCognome);
+		Utente newUser = new Utente();
+		newUser.setNome(newNome);
+		newUser.setCognome(newCognome);
 		newUser.setEmail(newEmail);
 		newUser.setPassword(newPassword);
-		User registered = userService.register(newUser);
+		Utente registered = userService.register(newUser);
 		HttpSession session = request.getSession();
 		if(registered!=null) {
 			session.setAttribute("auth", true);
@@ -73,5 +68,11 @@ public class LoginController {
 			return "register";
 		}
 		
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, Model model) {
+		request.getSession().invalidate();
+		return "login";		
 	}
 }

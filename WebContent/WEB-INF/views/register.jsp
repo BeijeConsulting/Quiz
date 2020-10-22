@@ -51,11 +51,11 @@
 								<form action="./register" method="post" id="form_login">
 									<div class="row uniform">
 										<div class="12u$">
-											<input type="text" name="name" id="name" value="" placeholder="Nome" required/>
+											<input type="text" name="nome" id="nome" value="" placeholder="Nome" required/>
                                         </div>
                                         <!-- Break -->
                                         <div class="12u$">
-											<input type="text" name="surname" id="surname" value="" placeholder="Cognome" required/>
+											<input type="text" name="cognome" id="cognome" value="" placeholder="Cognome" required/>
                                         </div>
                                         <!-- Break -->
 										<div class="12u$">
