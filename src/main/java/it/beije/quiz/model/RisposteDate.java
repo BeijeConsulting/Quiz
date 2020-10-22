@@ -69,10 +69,10 @@ public class RisposteDate {
         this.idEsame = idEsame;
     }
 
-    public String getLetter() {
+    public String getRisposta() {
         return risposta;
     }
-    public void setLetter(String risposta) {
+    public void setRisposta(String risposta) {
         this.risposta = risposta;
     }
     
