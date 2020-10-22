@@ -94,6 +94,15 @@ public class Utils {
 		return arrayDomande;
 	}
 	
+
+	public static String[] listFileNames(File dir) {
+		String[] fileNames = dir.list();
+		for(int i = 0; i<fileNames.length; i++) {
+			fileNames[i] = fileNames[i].replace(".xml", "");
+		}
+		return fileNames;
+	}
+	
 	/*
 	 * formatta il testo da caratteri java a html in quanto l'accapo e il tab valgono sempre come
 	 * un singolo spazio su html
@@ -113,10 +122,14 @@ public class Utils {
 	 * con un semplice replace
 	 */
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+<<<<<<< HEAD
 		rispostaEsatta = rispostaEsatta.replace(", ", "");
+=======
+		rispostaEsatta = rispostaEsatta.replaceAll(" ", "");
+		rispostaEsatta = rispostaEsatta.replaceAll(",", "");
+>>>>>>> refs/heads/brando
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
-			if (c == ' ' || c == ',') continue;
 			if (rispostaEsatta.indexOf(c) < 0) {
 				return false;//se non trovo la risposta termino il ciclo
 			} else {

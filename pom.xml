@@ -49,15 +49,15 @@
   		<artifactId>servlet-api</artifactId>
   		<version>2.5</version>
   	</dependency>
-	<dependency>
-		<groupId>org.springframework.data</groupId>
-		<artifactId>spring-data-jpa</artifactId>
-		<version>2.2.0.RELEASE</version>
-	</dependency>
  	  <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-core</artifactId>
     <version>2.13.3</version>
-  </dependency>	
+  </dependency>
+  	<dependency>
+  		<groupId>org.springframework.data</groupId>
+  		<artifactId>spring-data-jpa</artifactId>
+  		<version>2.2.0.RELEASE</version>
+  	</dependency>
   </dependencies>
   </project>
