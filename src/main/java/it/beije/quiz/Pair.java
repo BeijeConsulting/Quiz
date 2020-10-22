@@ -25,5 +25,9 @@ public class Pair<T,V> {
 		this.last = last;
 	}
 	
+	@Override
+	public String toString() {
+		return this.first + " . " + this.last;
+	}
 	
 }

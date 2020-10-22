@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import it.beije.quiz.model.Risposta;
+import it.beije.quiz.Pair;
 
 @Entity
 public class Question {
@@ -32,19 +32,18 @@ public class Question {
 	
 	public Question() {}
 	
-	public Question(int id, int chapter_id, String text, String answerType, List<Risposta> answers,
-			String answer, String expl) {
-		this.id = id;
+	
+	public Question(int chapter_id, String text, String answerType, List<Pair<String, String>> answers, String correctAnswer, String explanation) {
 		this.chapter = chapter_id;
 		this.text = text;
 		this.answerType = answerType;
-		this.answer = answer;
+		this.answer = correctAnswer;
 		StringBuilder answersBuilder = new StringBuilder();
-		for(Risposta r : answers) {
+		for(Pair<String, String> r : answers) {
 			answersBuilder.append(r).append(" ||| ");
 		}
 		this.possibleAnswers = answersBuilder.toString();
-		this.explanation = expl;
+		this.explanation = explanation;
 	}
 
 	public Integer getId() {

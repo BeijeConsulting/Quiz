@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import it.beije.quiz.Pair;
 import it.beije.quiz.Utils;
 import it.beije.quiz.entity.Book;
 import it.beije.quiz.entity.Chapter;
 import it.beije.quiz.entity.Question;
-import it.beije.quiz.model.Risposta;
 import it.beije.quiz.repository.BookRepository;
 import it.beije.quiz.repository.ChapterRepository;
 import it.beije.quiz.repository.QuestionRepository;
@@ -70,36 +70,30 @@ public class DatabaseXmlImport {
 	        Document document = builder.parse(chapter);
 	        Element element = document.getDocumentElement();	        
 	        List<Element> questions = Utils.getChildElements(element);        	        
-	        List<Element> questionText = null;
+	        List<Element> questionElements = null;
 	        List<Element> answerElements = null;
 	        Element possibleAnswers = null;
 	        for (Element q : questions) {
-	        	questionText = Utils.getChildElements(q);
-		        int id = Integer.parseInt(q.getAttribute("id"));
-		        String testo = questionText.get(0).getTextContent();
-		        
+	        	questionElements = Utils.getChildElements(q);
+		        String text = questionElements.get(0).getTextContent();
 		        //caricare le risposte possibili
-		        possibleAnswers = questionText.get(1);
+		        possibleAnswers = questionElements.get(1);
 		        String answerType = possibleAnswers.getAttribute("type");
 		        answerElements = Utils.getChildElements(possibleAnswers);
-		        List<Risposta> answers = new ArrayList<Risposta>();
+		        List<Pair<String, String>> answers = new ArrayList<>();
 		        for (Element answer : answerElements) {
-		        	Risposta r = new Risposta();
-		        	r.setValue(answer.getAttribute("value"));
-		        	r.setText(answer.getTextContent());
-		        	
+		        	Pair<String, String> r = new Pair<>(answer.getAttribute("value"), answer.getTextContent());
 		        	answers.add(r);
 		        }
+		        String correctAnswer = questionElements.get(2).getTextContent();
+		        String explanation = questionElements.get(3).getTextContent();
 		        
-		        String rispostaEsatta = questionText.get(2).getTextContent();
-		        String spiegazione = questionText.get(3).getTextContent();
-		        
-	        	Question d = new Question(id, chapter_id, testo, answerType, answers, rispostaEsatta, spiegazione);
+	        	Question d = new Question(chapter_id, text, answerType, answers, correctAnswer, explanation);
 	        	questionList.add(d);
 	        }	        		
 	        
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Capitolo non importato: " + chapter_id + "\nRivedere xml");;
 		}
 		for(Question q : questionList) {
 			questionRepo.save(q);
