@@ -24,7 +24,6 @@ import it.beije.quiz.model.Risposta;
 
 
 @Controller
-@SessionScope
 public class ExamController {
 	
 	private List<Domanda> domande;

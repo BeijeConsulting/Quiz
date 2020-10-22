@@ -1,10 +1,12 @@
 package it.beije.quiz.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.beije.quiz.entity.Book;
 import it.beije.quiz.entity.Question;
 import it.beije.quiz.repository.QuestionRepository;
 
@@ -14,6 +16,9 @@ public class QuestionService {
 	@Autowired
 	private QuestionRepository questionRepository;
 	
+	@Autowired
+	private BookService bookService;
+	
 	public Question load(Integer id) {
 		Optional<Question> answer = questionRepository.findById(id);
 		
@@ -21,7 +26,7 @@ public class QuestionService {
 		
 	}
 	
-public Integer lastId() {
+	public Integer lastId() {
 		
 		Optional<Question> question = questionRepository.findTopByOrderByIdDesc();
 		
@@ -42,5 +47,20 @@ public Integer lastId() {
 		} else {
 			throw new IllegalArgumentException("Question bean data is not valid");
 		}
+	}
+	
+	public List<Question> loadQuestionsBook(Integer idBook) {
+		
+		if(idBook == null) {
+			throw new IllegalArgumentException("the id book can't be null");
+		}
+		
+		Book book = bookService.load(idBook);
+		if(book == null) {
+			throw new IllegalArgumentException("there is no book with id "+idBook);
+		}
+		
+		return questionRepository.findAllByBookId(idBook);
+		
 	}
 }

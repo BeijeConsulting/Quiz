@@ -14,14 +14,18 @@ import it.beije.quiz.entity.Question;
 @Controller
 public class HomeController {
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if(session==null) {
-			return "login";
-		} else {
-			return "home";
-		}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home(HttpServletRequest request) {
+//		HttpSession session = request.getSession(false);
+//		if(session==null) {
+//			return "login";
+//		} else {
+//			return "home";
+//		}
+//	}
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+		return "index";
 	}
 	
 	@RequestMapping(value="/summary", method = RequestMethod.GET)
