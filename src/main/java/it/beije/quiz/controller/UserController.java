@@ -38,7 +38,7 @@ public class UserController {
 				return "login";
 			}
 			else { 
-				session.setAttribute("utente", utente);
+				session.setAttribute("user", utente);
 				return "home";
 			}
 		}
