@@ -21,4 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<resources mapping="/assets/**" location="/assets/" cache-period="31556926"/>
+
 </beans:beans>
