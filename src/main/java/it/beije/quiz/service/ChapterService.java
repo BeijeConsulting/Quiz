@@ -14,8 +14,8 @@ public class ChapterService {
 	@Autowired
 	private ChapterRepository chapterRepo;
 
-	public Chapter getChapter(String cName) {
-		Optional<Chapter> optChapter = chapterRepo.getByTitle(cName);
+	public Chapter getChapter(Integer book, String cName) {
+		Optional<Chapter> optChapter = chapterRepo.getByTitleAndBook(book, cName);
 		return optChapter.isPresent() ? optChapter.get() : null;
 	}
 
