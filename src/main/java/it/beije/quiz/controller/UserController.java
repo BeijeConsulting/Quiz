@@ -43,6 +43,12 @@ public class UserController {
 			}
 		}
 		
+		@GetMapping(value ="/home")
+		public String home() {
+			log.debug("Redirect to home page");
+			return "home";
+		}
+		
 	
 		
 		@RequestMapping(value = "/log", method = RequestMethod.GET)
