@@ -13,6 +13,7 @@
  			PASSWORD&nbsp;<input type="password" name="password" value=""/><br>
 			<input type="submit" value="SUBMIT"/>
 		</form>
+		<p>Non hai un account? Clicca <a href="./accountregistration">qui</a> per crearne uno!</p>
 		<p>${error}</p>
 </body>
 </html>

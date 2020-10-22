@@ -1,12 +1,15 @@
 package it.beije.quiz.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.beije.quiz.entity.Result;
 import it.beije.quiz.entity.User;
+import it.beije.quiz.repository.ResultRepository;
 import it.beije.quiz.repository.UserRepository;
 
 @Service
@@ -14,6 +17,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ResultRepository resultRepository;
 	
 	public User get(Integer id) {
 		Optional<User> o = userRepository.findById(id);
@@ -47,6 +53,12 @@ public class UserService {
 				userRepository.save(old);
 			} else throw new IllegalArgumentException();
 		}
+	}
+	
+	public String getSummary(Integer id) {
+		List<Result> results = resultRepository.findByUserId(id);
+		//TODO combining results in readable JSON entries and calculating stats
+		return "";
 	}
 	
 	private void updateField(User user, String field, String value) {
