@@ -8,5 +8,11 @@ import java.util.List;
 
 @Repository
 public interface DomandaRepository extends JpaRepository<Domanda, Long> {
-    List<Domanda> getAllByBookIdInAndChapterIn(List<Integer> bookId, List<Integer> chapter);
+    List<Domanda> findByBookIdInAndChapterIn(List<Integer> bookId, List<Integer> chapter);
+
+    List<Domanda> findByBookIdAndChapter(Integer bookId, Integer chapter);
+
+    Integer countByBookIdInAndChapterIn(List<Integer> bookId, List<Integer> chapter);
+
+    Integer countByBookIdAndChapter(Integer bookId, Integer chapter);
 }

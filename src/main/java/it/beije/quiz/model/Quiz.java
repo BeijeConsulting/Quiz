@@ -16,12 +16,6 @@ public class Quiz {
     @Column(name = "name")
     private String nomeQuiz;
 
-    @Column(name = "results")
-    private String results;
-
-    @Column(name = "percentuale")
-    private Double percentuale;
-
     @Column(name = "passato")
     private boolean isPassed;
 
@@ -39,22 +33,6 @@ public class Quiz {
 
     public void setNomeQuiz(String nomeQuiz) {
         this.nomeQuiz = nomeQuiz;
-    }
-
-    public String getResults() {
-        return results;
-    }
-
-    public void setResults(String results) {
-        this.results = results;
-    }
-
-    public Double getPercentuale() {
-        return percentuale;
-    }
-
-    public void setPercentuale(Double percentuale) {
-        this.percentuale = percentuale;
     }
 
     public boolean isPassed() {

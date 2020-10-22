@@ -1,4 +1,4 @@
-package it.beije.quiz.bean;
+package it.beije.quiz.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

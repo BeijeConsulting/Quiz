@@ -1,6 +1,6 @@
 package it.beije.quiz.service;
 
-import it.beije.quiz.bean.User;
+import it.beije.quiz.model.User;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Quiz;
 import it.beije.quiz.repository.QuizRepository;
