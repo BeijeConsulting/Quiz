@@ -8,7 +8,7 @@
 <title>Quiz Home</title>
 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 </head>
-<body >
+<body>
  	
 	<h1>QUIZ MENU':</h1>
 	<div class="main">
@@ -19,7 +19,7 @@
 		<form action="storicoesiti" method="GET"> 
 			<button type ="submit"><span>Storico quiz</span></button> 
 		</form>
-		<h3><a href ="./logout">Logout</a></h3>
+		<div align="right"><h3><a href ="./logout">Logout</a></h3></div>
 		<br><br>		
 	</div>		
 </body>
