@@ -63,25 +63,20 @@ public class QuestionService {
 	}
 	
 	public String result(Model model, Test test/*, LocalTime time*/) {
-		StringBuilder builder = new StringBuilder();
 		int counter=0;
 		for (int i = 0; i < questions.size(); i++){
 			boolean correct = Utils.controllaRisposta(questions.get(i).getPossibleAnswers(), answers.get(i).getAnswer());
 			
-			builder.append("DOMANDA " + (i+1) + " : la tua risposta : " + answers.get(i).getAnswer() + "<br><br>");
 			if (correct) {
-				builder.append("Corretto <br>");
 				answers.get(i).setCorrect(true);
 				counter++;
 			} else {
 				answers.get(i).setCorrect(false);
-				builder.append("La risposta esatta era " +  questions.get(i).getPossibleAnswers() + " :(<br>");
 			}
 			
-			builder.append("<br><br>");
 		}
-		
-		model.addAttribute("body", builder.toString());
+		model.addAttribute("questions", questions);
+		model.addAttribute("answers", answers);
 		double score = counter * 100.0 / questions.size();
 		boolean result = score >= 65;
 //		LocalTime now = LocalTime.now();
