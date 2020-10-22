@@ -7,12 +7,12 @@
 <title>New User</title>
 </head>
 <body>
-	<form action="/newuser" method="POST">
+	<form action="./newuser" method="POST">
 	NICKNAME<input type="text" value="" name="nickname" placeholder="redmario"/>
 	EMAIL<input type="email" value="" name="email" placeholder="mariorossi@gmail.com"/>
 	PASSWORD<input type="password" value="" name="password"/>
 	<input type="submit" value="CONFERMA"/><input type="reset" value="ANNULLA"/>
 	</form>
-	<a href="/log">HOME</a>
+	<a href="./">HOME</a>
 </body>
 </html>
