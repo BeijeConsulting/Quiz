@@ -25,7 +25,6 @@ import it.beije.quiz.Utils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 import it.beije.quiz.model.Storico;
-import it.beije.quiz.model.Utente;
 import it.beije.quiz.repository.StoricoRepository;
 
 

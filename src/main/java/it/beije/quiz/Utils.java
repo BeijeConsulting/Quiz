@@ -122,12 +122,8 @@ public class Utils {
 	 * con un semplice replace
 	 */
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
-<<<<<<< HEAD
-		rispostaEsatta = rispostaEsatta.replace(", ", "");
-=======
 		rispostaEsatta = rispostaEsatta.replaceAll(" ", "");
 		rispostaEsatta = rispostaEsatta.replaceAll(",", "");
->>>>>>> refs/heads/brando
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (rispostaEsatta.indexOf(c) < 0) {
