@@ -20,7 +20,6 @@
 			
 			<button type ="submit"><span>Accedi</span></button> <button type ="reset"><span>Cancella</span></button>
 		</form>	
-		<a href="./newuser">registrati</a>
 	</div>
 	</body>
 </html>

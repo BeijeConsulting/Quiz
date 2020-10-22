@@ -24,8 +24,8 @@ public class UserController {
 	
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String getLogin() {
-			log.debug("Redirect to login page (get)");
-			return "login";
+			log.debug("Redirect to index page (get)");
+			return "index";
 		}
 		
 		@RequestMapping(value = "/log", method = RequestMethod.POST)
@@ -47,21 +47,21 @@ public class UserController {
 		
 		@RequestMapping(value = "/log", method = RequestMethod.GET)
 		public String backHome() {
-			log.debug("Redirect to home page");
-			return "home";
+			log.debug("Redirect to login page");
+			return "login";
 		}
 		
 		@RequestMapping(value="/logout", method = RequestMethod.GET)
 		public String logout(HttpServletRequest request) {
 			HttpSession session = request.getSession();
 			session.removeAttribute("utente");
-			return "login";			
+			return "index";			
 		}
 		
 		@PostMapping(value="/newuser")
 		public String newUser(User newuser) {
 			userService.insert(newuser);
-			return "home";
+			return "index";
 		}
 		
 		@GetMapping(value="/newuser")
