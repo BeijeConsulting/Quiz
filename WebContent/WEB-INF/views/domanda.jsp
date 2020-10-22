@@ -52,7 +52,7 @@ DOMANDA ${ index + 1 } di ${ totDomande }<br>
 <br>
 ${questionText}
 
-<form action = "/quiz/domanda" method = "post">
+<form action = "/quiz/question" method = "post">
   <input type="hidden" name="index" value="${ index }">
   <c:forEach var="answers" items="${ possibleAnswers }">
   <%-- Ho aggiunto la lettera della risposta che prima non c'era --%>
@@ -64,7 +64,7 @@ ${questionText}
 <br>
 <br>
 
-<c:if test="${index > 0 }"><a href="/quiz/domanda/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
+<c:if test="${index > 0 }"><a href="/quiz/question/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <%--era da modificare tot in totDomande per visualizzare il link, svista negli attributi del model --%>
 <c:if test="${index < totDomande-1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
