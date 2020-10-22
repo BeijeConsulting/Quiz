@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Quiz | Test</title>
+		<title>Quiz | Storico</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="<c:url value="assets/css/main.css" />" />
@@ -37,7 +37,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>Java quiz</p>
-						<h2>Domanda X</h2>
+						<h2>Storico quiz svolti</h2>
 					</header>
 				</div>
 			</section>
@@ -45,57 +45,56 @@
 		<!-- One -->
 			<section id="one" class="wrapper style2">
 				<div class="inner">
-					<!-- Preformatted Code -->
-					<h3>Domanda</h3>
-					<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam rem ipsum dolor sit amet nullam id egestas urna aliquam 
-						rem ipsum dolor sit amet nullam id egestas urna aliquam rem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-					<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-	print 'Iteration ' + i;
-	deck.shuffle();
-	i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';
-</code></pre>
-				<!-- Form -->
-				<h3>Risposte</h3>
-
-				<form method="post" action="#">
-					<div class="row uniform">
-						<div class="12u$">
-							<input type="radio" id="priority-low" name="priority" checked>
-							<label for="priority-low">Low Priority</label>
-						</div>
-						<div class="12u$">
-							<input type="radio" id="priority-normal" name="priority">
-							<label for="priority-normal">Normal Priority</label>
-						</div>
-						<div class="12u$">
-							<input type="radio" id="priority-high" name="priority">
-							<label for="priority-high">High Priority</label>
-						</div>
-						<!-- Break -->
-						<div class="12u$">
-							<input type="checkbox" id="copy" name="copy">
-							<label for="copy">Email me a copy of this message</label>
-						</div>
-						<div class="12u$">
-							<input type="checkbox" id="human" name="human" checked>
-							<label for="human">I am a human and not a robot</label>
-						</div>
-						<!-- Break -->
-						<div class="12u$">
-							<ul class="actions">
-								<li><input type="submit" value="Send Message" /></li>
-								<li><input type="reset" value="Reset" class="alt" /></li>
-							</ul>
-						</div>
+					<div class="table-wrapper">
+						<table class="alt">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Item 1</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item 2</td>
+									<td>Vis ac commodo adipiscing arcu aliquet.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item 3</td>
+									<td> Morbi faucibus arcu accumsan lorem.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item 4</td>
+									<td>Vitae integer tempus condimentum.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item 5</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="2"></td>
+									<td>100.00</td>
+								</tr>
+							</tfoot>
+						</table>
 					</div>
-				</form>
 				</div>
 			</section>
+
+	
+
+		
 
 
 		<!-- Footer -->
@@ -104,6 +103,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 				&copy; Beije Consulting. All rights reserved.
 			</div>
 		</footer>
+
 
 		<!-- Scripts -->
 			<script src="<c:url value="assets/js/jquery.min.js" />"></script>
