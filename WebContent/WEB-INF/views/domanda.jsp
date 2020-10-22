@@ -55,8 +55,9 @@ ${testoDomanda}
 <form action = "/quiz/domanda" method = "post">
   <input type="hidden" name="index" value="${ index }">
   <c:forEach var="scelte" items="${ risposte }">
+  <%-- Ho aggiunto la lettera della risposta che prima non c'era --%>
     <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : scelte.value }' value = "${ scelte.value }"
-    ${ rispUtente.contains(scelte.value) ? "checked" : "" } > ${ scelte.text } <br>
+    ${ rispUtente.contains(scelte.value) ? "checked" : "" } > ${scelte.value} ) ${ scelte.text } <br>
   </c:forEach>
   <br><input type="submit" value="Invio">
 </form>
@@ -65,6 +66,7 @@ ${testoDomanda}
 
 <c:if test="${index > 0 }"><a href="/quiz/domanda/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<c:if test="${index < tot-1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
+<%--era da modificare tot in totDomande per visualizzare il link, svista negli attributi del model --%>
+<c:if test="${index < totDomande-1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
 </body>
 </html>

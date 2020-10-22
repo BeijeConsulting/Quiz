@@ -8,5 +8,6 @@
 </head>
 <body>
 	${ body }
+<h3><a href ="./log">Home</a></h3>
 </body>
 </html>

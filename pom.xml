@@ -1,10 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>it.beije.quiz.mvc</groupId>
-  <artifactId>Quiz</artifactId>
+  <groupId>quiz</groupId>
+  <artifactId>quiz</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>Quiz MVC Project</name>
   <build>
     <plugins>
       <plugin>
@@ -25,25 +24,40 @@
     </plugins>
   </build>
   <dependencies>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-web</artifactId>
-  		<version>5.2.0.RELEASE</version>
-  	</dependency>
+  <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
-  		<version>5.2.0.RELEASE</version>
+  		<version>5.2.9.RELEASE</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.hibernate</groupId>
+  		<artifactId>hibernate-core</artifactId>
+  		<version>5.4.21.Final</version>
+  	</dependency>
+  		<dependency>
+      <groupId>mysql</groupId>
+	  <artifactId>mysql-connector-java</artifactId>
+	  <version>8.0.21</version>
+	</dependency>
   	<dependency>
   		<groupId>javax.servlet</groupId>
-  		<artifactId>javax.servlet-api</artifactId>
-  		<version>3.1.0</version>
+  		<artifactId>servlet-api</artifactId>
+  		<version>2.5</version>
   	</dependency>
-  	<dependency>
-  		<groupId>jstl</groupId>
-  		<artifactId>jstl</artifactId>
-  		<version>1.2</version>
-  	</dependency>
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+		<version>2.2.0.RELEASE</version>
+	</dependency>
+ 	  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.13.3</version>
+  </dependency>	
   </dependencies>
-</project>
+  </project>
