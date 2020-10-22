@@ -93,7 +93,7 @@ public class DatabaseXmlImport {
 	        }	        		
 	        
 		} catch (Exception e) {
-			System.out.println();;
+			System.out.println("Capitolo non importato: " + chapter_id + "\nRivedere xml");;
 		}
 		for(Question q : questionList) {
 			questionRepo.save(q);
