@@ -27,7 +27,7 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h2>Storico Esiti di <%=((User)(session.getAttribute("utente"))).getNickname()%></h2>
+<h2>Storico Esiti di <%=((User)(session.getAttribute("user"))).getNickname()%></h2>
 <h3><a href ="./log">Home</a></h3>
 	<table>
 	<tr>

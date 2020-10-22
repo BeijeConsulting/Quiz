@@ -21,7 +21,7 @@ public class StoricoController {
 	
 	@GetMapping(value="/storicoesiti")
 	public String storicoprestiti(Model model, HttpServletRequest request) {
-		User utente =(User)(request.getSession().getAttribute("utente"));
+		User utente =(User)(request.getSession().getAttribute("user"));
 		List<Storico> storico = storicoService.getByUtente(utente.getId());
 		model.addAttribute("storico", storico);
 		return "storicoesiti";
