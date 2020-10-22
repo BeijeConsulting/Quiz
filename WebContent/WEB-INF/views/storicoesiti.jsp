@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="it.beije.quiz.model.Utente"%>
+<%@page import="it.beije.quiz.entity.User"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,7 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h2>Storico Esiti di <%=((Utente)(session.getAttribute("utente"))).getNome()%> <%=((Utente)(session.getAttribute("utente"))).getCognome()%></h2>
+<h2>Storico Esiti di <%=((User)(session.getAttribute("utente"))).getNickname()%></h2>
 <h3><a href ="./log">Home</a></h3>
 	<table>
 	<tr>
