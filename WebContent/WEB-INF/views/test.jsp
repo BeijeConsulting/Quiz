@@ -17,9 +17,8 @@ Totale domande caricate : ${ totDomande }
 Tempo disponibile : ${ totDomande * 2 } minuti
 <br>
 <br>
-<%-- Richiede di stampare la prima domanda --%>
-<form action="./domanda/1" method="get">
-    <input type="submit" value="INIZIA">
-</form>
+<%-- Domande quiz --%>
+<div id="domanda"></div>
+	
 </body>
 </html>

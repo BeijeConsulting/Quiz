@@ -13,6 +13,6 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 	Optional<Question> findTopByOrderByIdDesc();
 	
-	List<Question> findAllByBookId(Integer id);
+	List<Question> findAllByBookIdAndChapter(Integer id, String chapter);
 	
 }
