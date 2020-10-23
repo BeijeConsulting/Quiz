@@ -3,6 +3,8 @@ package it.beije.quiz.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -47,7 +49,7 @@ public class QuestionService {
 		return answers.get(index);
 	}
 	
-	public String loadQuestion(Model model, Integer index) {
+	public String loadQuestion(Model model, Integer index, Test test) {
 		if (index < questions.size()) {
 			Question q = questions.get(index);
 			Answer answer = answers.get(index);
@@ -73,7 +75,7 @@ public class QuestionService {
 			return "domanda";
 		}
 		else {
-			return "results";
+			return result(model, test);
 		}
 	}
 	

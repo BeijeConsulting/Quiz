@@ -51,9 +51,9 @@ tr:nth-child(even) {
 	<c:forEach items="${questions}" var="question">
 	<tr>
 		<td colspan=2><c:out value="Question N. ${questions.indexOf(question)}"/></td>
-		<td><c:out value="${answers.get(questions.indexOf(answers)).getAnswer()}"/></td>
+		<td><c:out value="${answers.get(questions.indexOf(question)).getAnswer()}"/></td>
 		<td><c:out value="${question.answer}"/></td>
-		<td><c:out value='${answers.get(questions.indexOf(answers)).getCorrect() eq true ? "pass" : "fail"}'/> </td>
+		<td><c:out value='${answers.get(questions.indexOf(question)).getCorrect() eq true ? "pass" : "fail"}'/> </td>
 	</tr>
 	</c:forEach>
 

@@ -3,6 +3,7 @@ package it.beije.quiz.controller;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,14 +31,17 @@ public class QuestionController {
 	 * starts the test beginning from the question in index (usually 0)
 	 */
 	@GetMapping(value="/question/{index}")
-	public String loadAnswer(@PathVariable int index, Model model) {	
+	public String loadAnswer(@PathVariable int index, Model model, HttpServletRequest request) {	
 //		settimer
-		questionService.loadQuestion(model, index);
-		return "domanda";
+		HttpSession session = request.getSession();
+		Test test = (Test)session.getAttribute("test");
+		return questionService.loadQuestion(model, index, test);
 	}
 	
 	@PostMapping(value = "/question")
 	public String answer(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Test test = (Test)session.getAttribute("test");
 		Enumeration<String> answers =  request.getParameterNames();
 		StringBuilder builder = new StringBuilder();
 		int index = 0;
@@ -52,7 +56,7 @@ public class QuestionController {
 		Answer a = questionService.getAnswer(index);
 		a.setAnswer(builder.toString());
 //		setTimer(model);		
-		return questionService.loadQuestion(model, ++index);
+		return questionService.loadQuestion(model, ++index, test);
 	}
 	
 	@GetMapping(value = "/result")
