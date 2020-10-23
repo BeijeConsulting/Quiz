@@ -15,9 +15,16 @@
 	<h3>Bentornato ${sessionScope.userBean.name}</h3>
 
 	<h5>Ecco le tue statistiche</h5>
-	<p>Esami Passati: <span id="esamiPassati"></span></p>
-	<p>Esami Fatti: <span id="esamiFatti"></span></p>
-	<p>Percentuale esami passati: <span id="percentuale"></span></p>
+	<p id="esamiPassati">Esami Passati: </p>
+	<p id="esamiFatti">Esami Fatti: </p>
+	<p id="percentuale">Percentuale esami passati: </p>
+
+	<button>
+		<a href="${pageContext.request.contextPath}/startQuiz">Nuovo Quiz</a>
+	</button>
+	<button>
+		<a href="#">Vedi Quiz Passati</a>
+	</button>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/statsAjax.js"></script>
 </body>

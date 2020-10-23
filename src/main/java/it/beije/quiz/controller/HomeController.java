@@ -3,6 +3,7 @@ package it.beije.quiz.controller;
 import it.beije.quiz.service.QuizGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,12 @@ public class HomeController {
 		if (session.getAttribute("userBean") == null) return "signIn";
 		System.out.println("Richiesta GET per /.");
 		return "index";
+	}
+
+	@GetMapping("/startQuiz")
+	public String startQuiz(HttpSession session){
+		if (session.getAttribute("userBean") == null) return "signIn";
+		return "iniziaQuiz";
 	}
 
 	@PostMapping("/startQuiz")
