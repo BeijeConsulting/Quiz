@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 </head>
 <body>
-<div class="main"><a href="./question/0">iniziaTEST</a></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div align="center"> <a href="question/0"><h2>Start Test</h2></a></div> <br>
+<div align="center"> <a href="home"><h3>Exit</h3></a></div>
+<div class="main"></div>
 </body>
 </html>

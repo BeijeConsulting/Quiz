@@ -42,7 +42,7 @@
         </div> 
         <br>
          Test name: <input type="text" value="" name="name"/><br><br>
-         <button type="submit"><span>Confirm</span></button>       
+         <button type="submit" disable ><span>Confirm</span></button>       
 </form>
 <script>
 function updateForm(selector){
