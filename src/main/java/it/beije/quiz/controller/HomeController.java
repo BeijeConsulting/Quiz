@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.beije.quiz.entity.QNA;
 import it.beije.quiz.entity.Question;
 
 @Controller
@@ -38,7 +39,7 @@ public class HomeController {
 	public String createExam(HttpServletRequest request) {
 		//TODO parsing delle impostazioni per l'esame da creare
 		HttpSession session = request.getSession();
-		List<Question> exam = null; //TODO N domande random dal database
+		List<QNA> exam = null; //TODO N domande random dal database
 		session.setAttribute("exam", exam);
 		session.setAttribute("index", new Integer(0));
 		session.setAttribute("tot", new Integer(10));

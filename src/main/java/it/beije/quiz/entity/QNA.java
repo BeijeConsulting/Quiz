@@ -1,14 +1,35 @@
 package it.beije.quiz.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class QNA {
 
+	@JsonProperty("question_id")
 	private Integer questionId;
+	@JsonProperty("answer_id")
 	private Integer answerId;
-	private String test;
+	@JsonProperty("raw_text")
+	private String rawText; //JSON???
+	@JsonProperty("answer_type")
 	private String answerType;
 	private String options;
+	@JsonProperty("user_choice")
 	private String userChoice;
+	private String corrects;
 	
+	
+	public QNA(Question q, Answer a, String userChoice) {
+		this.questionId=q.getId();
+		this.answerId=a.getId();
+		this.rawText=q.getText();
+		this.answerType=q.getAnswerType();
+		this.options=a.getOptions();
+		this.corrects = a.getCorrects();
+		this.userChoice= userChoice;
+		
+	}
+	
+	public QNA() {}
 	
 	public Integer getQuestionId() {
 		return questionId;
@@ -22,11 +43,11 @@ public class QNA {
 	public void setAnswerId(Integer answerId) {
 		this.answerId = answerId;
 	}
-	public String getTest() {
-		return test;
+	public String getRawText() {
+		return rawText;
 	}
-	public void setTest(String test) {
-		this.test = test;
+	public void setRawText(String rawText) {
+		this.rawText = rawText;
 	}
 	public String getAnswerType() {
 		return answerType;
@@ -46,9 +67,16 @@ public class QNA {
 	public void setUserChoice(String userChoice) {
 		this.userChoice = userChoice;
 	}
+	public String getCorrects() {
+		return corrects;
+	}
+	public void setCorrects(String corrects) {
+		this.corrects = corrects;
+	}
+
 	@Override
 	public String toString() {
-		return "QNA [questionId=" + questionId + ", answerId=" + answerId + ", test=" + test + ", answerType="
+		return "QNA [questionId=" + questionId + ", answerId=" + answerId + ", rawText=" + rawText + ", answerType="
 				+ answerType + ", options=" + options + ", userChoice=" + userChoice + "]";
 	}
 }

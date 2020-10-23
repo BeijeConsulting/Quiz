@@ -9,34 +9,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.beije.quiz.entity.Question;
+import it.beije.quiz.entity.QNA;
 @RequestMapping(value="/exam")
 @RestController
 public class ExamApiController {
 	
-	private Question init(HttpServletRequest request) {
+	private QNA init(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if(session==null) return null;
 		else {
 			setTimer(session);
-			List<Question> exam = (List<Question>)session.getAttribute("exam");
+			List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 			return exam.get(0);
 		}
 	}
 
-	private Question next(Question question, HttpServletRequest request) {
+	private QNA next(QNA question, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		
 		if(session==null) return null;//ERRORE sessione scaduta
 		else {
 			
-			List<Question> exam = (List<Question>)session.getAttribute("exam");
+			List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 			int index = (Integer)session.getAttribute("index");
 			int tot = (Integer)session.getAttribute("tot");
 			exam.set(index, question); //Aggiorna la risposta corrente nella lista di sessione
@@ -50,13 +51,13 @@ public class ExamApiController {
 		}
 	}
 	
-	private Question prev(Question question, HttpServletRequest request) {
+	private QNA prev(QNA question, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		
 		if(session==null) return null; //ERRORE sessione scaduta
 		else {
 			
-			List<Question> exam = (List<Question>)session.getAttribute("exam");
+			List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 			int index = (Integer)session.getAttribute("index");
 			int tot = (Integer)session.getAttribute("tot");
 			exam.set(index, question);
@@ -70,9 +71,9 @@ public class ExamApiController {
 		}
 	}
 	
-	private Question pick(Integer id,Question question , HttpServletRequest request) {
+	private QNA pick(Integer id ,QNA question , HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		List<Question> exam = (List<Question>)session.getAttribute("exam");
+		List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 		int index = (Integer)session.getAttribute("index");
 		int tot = (Integer)session.getAttribute("tot");
 		if(id<0 || id > tot) throw new IllegalArgumentException();
@@ -83,7 +84,7 @@ public class ExamApiController {
 	}
 	
 	@PostMapping(value={"/question/{id}", "/question"})
-	public Question change(@RequestBody Question question, HttpServletRequest request, @RequestParam Integer id) {
+	public QNA change(@RequestBody QNA question, HttpServletRequest request, @PathVariable Integer id) {
 		HttpSession session = request.getSession(false);
 		if(session==null) throw new IllegalArgumentException();
 		int index = (Integer)session.getAttribute("index");
@@ -94,13 +95,13 @@ public class ExamApiController {
 	}
 	
 	@PostMapping(value="/submit")
-	public void submit(Question question, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void submit(QNA question, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession(false);
 		if(session==null) throw new IllegalArgumentException(); //ERRORE sessione scaduta
 		else {
 			int index = (Integer)session.getAttribute("index");
-			List<Question> exam = (List<Question>)session.getAttribute("exam");
+			List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 			exam.set(index, question);
 			stopTimer(session);
 		}
@@ -116,7 +117,11 @@ public class ExamApiController {
 			session.setAttribute("start_time", start);
 			session.setAttribute("max_time", start.plus(d));
 		}
-		
+	}
+	
+	@GetMapping(value="/testredirect")
+	public void testRedirect(HttpServletResponse response) throws IOException {
+		response.sendRedirect("/Quiz/login");
 	}
 	
 	private void stopTimer(HttpSession session) {
@@ -124,8 +129,9 @@ public class ExamApiController {
 		if(finish==null) session.setAttribute("finish_time", LocalDateTime.now());
 	}
 	
-	@PostMapping(value="/timeup")
-	public boolean timeUp(HttpSession session) {
+	@GetMapping(value="/timeup")
+	public boolean timeUp(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
 		LocalDateTime start = (LocalDateTime)session.getAttribute("start_time");
 		Duration d = Duration.between(start, LocalDateTime.now());
 		if(d.toMinutes()>150) return true;
