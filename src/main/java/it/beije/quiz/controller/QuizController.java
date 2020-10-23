@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
 import it.beije.quiz.service.DomandaService;
+import it.beije.quiz.service.RispostaService;
 
 
 @Controller
@@ -26,8 +27,8 @@ public class QuizController {
 	@Autowired
 	private DomandaService domandaService;
 	
-//	@Autowired
-//	private RispostaService rispostaService;
+	@Autowired
+	private RispostaService rispostaService;
 	
 	public static List<Domanda> domande;
 	private static int tot;
@@ -86,8 +87,8 @@ public class QuizController {
 			int counter = 0;
 			session.setAttribute("counter", counter);
 			setTimer(model);
-//			List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(primaDomanda.getBook(), primaDomanda.getChapter(), primaDomanda.getQuestion());
-//			model.addAttribute("risposte", risposte);
+			List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(primaDomanda.getBook(), primaDomanda.getChapter(), primaDomanda.getQuestion());
+			model.addAttribute("risposte", risposte);
 			return "domanda";
 		} else {
 			return "forbidden";
@@ -100,8 +101,8 @@ public class QuizController {
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
 			if(id+1 < domande.size()) {
 				Domanda domandaAttuale = domande.get(id+1);
-//				List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(domandaAttuale.getBook(), domandaAttuale.getChapter(), domandaAttuale.getQuestion());
-//				model.addAttribute("risposte", risposte);
+				List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(domandaAttuale.getBook(), domandaAttuale.getChapter(), domandaAttuale.getQuestion());
+				model.addAttribute("risposte", risposte);
 				model.addAttribute("capitoli", domandaAttuale.getChapter());
 				model.addAttribute("libro", domandaAttuale.getBook());
 				model.addAttribute("domanda", domandaAttuale);
