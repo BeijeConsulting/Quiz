@@ -1,3 +1,4 @@
+  
 package it.beije.quiz.controller;
 
 import java.time.Duration;
@@ -79,18 +80,11 @@ public class QuizController {
 			String libro = request.getParameter("libro");
 			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
 			domande = domandaService.findByBookAndChapters(libro, capitoli);
-			Domanda primaDomanda = domande.get(0);
 			session.setAttribute("capitoli", capitoli);
 			session.setAttribute("libro", libro);
 			//model.addAttribute("risposte", domande.get(0));
-<<<<<<< HEAD
 			model.addAttribute("domanda", domande.get(0));
 			Domanda primaDomanda = domande.get(0);
-=======
-			model.addAttribute("domanda", primaDomanda);
-			List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(primaDomanda.getBook(), primaDomanda.getChapter(), primaDomanda.getQuestion());
-			model.addAttribute("risposte", risposte);
->>>>>>> branch 'quizKirolosmater' of https://github.com/BeijeConsulting/Quiz
 			int counter = 0;
 			session.setAttribute("counter", counter);
 			setTimer(model);
@@ -106,7 +100,6 @@ public class QuizController {
 	public String domandaNumero(@PathVariable Integer id, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
-<<<<<<< HEAD
 			if(id+1 < domande.size()) {
 				Domanda domandaAttuale = domande.get(id+1);
 				List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(domandaAttuale.getBook(), domandaAttuale.getChapter(), domandaAttuale.getQuestion());
@@ -117,17 +110,6 @@ public class QuizController {
 				session.setAttribute("counter", id+1);
 			
 				return "domanda";
-=======
-			Domanda domandaAttuale = domande.get(id+1);
-			List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(domandaAttuale.getBook(), domandaAttuale.getChapter(), domandaAttuale.getQuestion());
-			model.addAttribute("risposte", risposte);
-			model.addAttribute("capitoli", domandaAttuale.getChapter());
-			model.addAttribute("libro", domandaAttuale.getBook());
-			model.addAttribute("domanda", domandaAttuale);
-			session.setAttribute("counter", id+1);
-			if(id+1 == domande.size()) {
-				return "risultati";
->>>>>>> branch 'quizKirolosmater' of https://github.com/BeijeConsulting/Quiz
 			}
 			else {
 				return "risultati";
