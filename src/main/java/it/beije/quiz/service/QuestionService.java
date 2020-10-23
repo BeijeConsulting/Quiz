@@ -2,6 +2,8 @@ package it.beije.quiz.service;
 
 import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,8 @@ import it.beije.quiz.repository.TestRepository;
 
 @Service
 public class QuestionService {
+	
+	private LocalTime time;
 
 	@Autowired
 	private QuestionRepository questionRepo;
@@ -95,12 +99,12 @@ public class QuestionService {
 		model.addAttribute("questions", questions);
 		model.addAttribute("answers", answers);
 
-//		LocalTime now = LocalTime.now();
-//		Duration diff = Duration.between(time, now);
-//		long hours = diff.getSeconds()/3600;
-//		long minutes = diff.getSeconds()/60 - hours* 60;
-//		long seconds =  diff.getSeconds() - hours * 3600 - minutes * 60;
-//		test.setDuration(hours+":"+minutes+"."+seconds);
+		LocalTime now = LocalTime.now();
+		Duration diff = Duration.between(time, now);
+		long hours = diff.getSeconds()/3600;
+		long minutes = diff.getSeconds()/60 - hours* 60;
+		long seconds =  diff.getSeconds() - hours * 3600 - minutes * 60;
+		test.setDuration(hours+":"+minutes+"."+seconds);
 		
 		answerService.saveAll(answers);
 		int counter = answerService.getCorrect(test.getId());
@@ -108,7 +112,7 @@ public class QuestionService {
 		numForm.setMinimumFractionDigits(2);
 		numForm.setMaximumFractionDigits(2);
 		numForm.setRoundingMode(RoundingMode.CEILING);
-		double score = counter * 100.0 / questions.size() * 100;
+		double score = counter * 100.0 / questions.size();
 		model.addAttribute("percentage", numForm.format(score));
 		boolean result = score >= 65;
 		test.setResult(result);
@@ -117,6 +121,23 @@ public class QuestionService {
 		testRepository.saveAndFlush(test);
 		return "results";
 	}
+	
+	public void setTimer(Model model) {
+	if (time == null) {
+		time = LocalTime.now();
+	}
+	LocalTime now = LocalTime.now();
+	Duration diff = Duration.between(time, now);
+	int secondi = 2 * 60 * questions.size();
+	long hours = (secondi - diff.getSeconds())/3600;
+	long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
+	long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
+
+
+	model.addAttribute("ore", hours);
+	model.addAttribute("minuti", minutes);
+	model.addAttribute("secondi", seconds);
+}
 
 	
 }

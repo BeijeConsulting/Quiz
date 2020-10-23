@@ -32,7 +32,7 @@ public class QuestionController {
 	 */
 	@GetMapping(value="/question/{index}")
 	public String loadAnswer(@PathVariable int index, Model model, HttpServletRequest request) {	
-//		settimer
+		questionService.setTimer(model);
 		HttpSession session = request.getSession();
 		Test test = (Test)session.getAttribute("test");
 		return questionService.loadQuestion(model, index, test);
@@ -40,6 +40,7 @@ public class QuestionController {
 	
 	@PostMapping(value = "/question")
 	public String answer(Model model, HttpServletRequest request) {
+		questionService.setTimer(model);
 		HttpSession session = request.getSession();
 		Test test = (Test)session.getAttribute("test");
 		Enumeration<String> answers =  request.getParameterNames();

@@ -31,8 +31,6 @@ import it.beije.quiz.service.TestService;
 @SessionScope
 public class QuizController {
 	
-	//private int tot;
-	//private LocalTime time = null;
 	@Autowired
 	private BookService bookService;
 	@Autowired
@@ -77,22 +75,5 @@ public class QuizController {
 		log.debug("Accipigna sta funzionando");
 		return "testselect";
 	}
-//	private void setTimer(Model model) {
-//		if (time == null) {
-//			time = LocalTime.now();
-//		}
-//		LocalTime now = LocalTime.now();
-//		Duration diff = Duration.between(time, now);
-////		int tot = domande.size();
-//		int secondi = 2 * 60 * tot;
-//		long hours = (secondi - diff.getSeconds())/3600;
-//		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
-//		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
-//
-//		
-//		model.addAttribute("totDomande", tot);
-//		model.addAttribute("ore", hours);
-//		model.addAttribute("minuti", minutes);
-//		model.addAttribute("secondi", seconds);
-//	}
+
 }
