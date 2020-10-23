@@ -1,7 +1,7 @@
 let domandeSelected = document.getElementById('totDomande');
 let timerP = document.getElementById('timerP');
 let timerSpan = document.getElementById('timer');
-let submitButton = document.getElementById('submit').disabled;
+let submitButton = document.getElementById('submit');
 
 // Main functions which will run everytime the user changes his input. It will make a REST API request to
 // get the number of questions chosen and will modify the page accordingly.
@@ -30,7 +30,7 @@ function updateQuestions(){
                 domandeSelected.max = totDomande;
                 updateTime(getTime(totDomande));
             });
-        submitButton.disabled = false
+        document.getElementById('submitButton').removeAttribute("disabled");
     }
 }
 
@@ -52,7 +52,7 @@ function clean(){
     domandeSelected.value = 0;
     domandeSelected.max = 0;
     timerP.style.display = "none";
-    submitButton.disabled = true;
+    document.getElementById('submitButton').setAttribute("disabled","disabled");
 }
 
 // Get the time in seconds depending on the number of questions given

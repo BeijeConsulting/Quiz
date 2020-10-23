@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <button type="submit" id="submit"  class="btn btn-success">INIZIA</button>
+                <button type="submit" id="submitButton" disabled class="btn btn-success">INIZIA</button>
             </div>
         </form>
     </div>
