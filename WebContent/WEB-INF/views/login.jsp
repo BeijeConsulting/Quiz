@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="<c:url value="/assets/css/login.css" />"/>
 
+
 </head>
 <body>
 
@@ -22,10 +23,10 @@
 		 	
 		 	
 		 		<label>Email</label><br>
-                <input class="input-box" type="email" name="email" /><br>
+                <input class="input-box" type="email" name="email" required="required"/><br>
 
                 <label>Password</label><br>
-                <input class="input-box" type="password" name="password" /><br>
+                <input class="input-box" type="password" name="password" required="required"/><br>
 
                 <input class="submit-button" type="submit" value="LOGIN" />
 

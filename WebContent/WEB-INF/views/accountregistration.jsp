@@ -20,16 +20,16 @@
             	<form method="POST" action="./accountregistration">
 
                 	<label>Name</label><br>
-                	<input class="input-box" type="text" name="name" /><br>
+                	<input class="input-box" type="text" name="name" required="required"/><br>
 
                 	<label>Surname</label><br>
-                	<input class="input-box" type="text" name="surname"/><br>
+                	<input class="input-box" type="text" name="surname" required="required"/><br>
 
                 	<label>Email</label><br>
-                	<input class="input-box" type="text" name="email"/><br>
+                	<input class="input-box" type="text" name="email" required="required"/><br>
 
                 	<label>Password</label><br>
-                	<input class="input-box" type="password" name="password"/><br>
+                	<input class="input-box" type="password" name="password" required="required"/><br>
 
                 	<input class="submit-button" type="submit" value="REGISTER" />
 
