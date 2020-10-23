@@ -20,5 +20,4 @@ public class ConfigurationClass {
         transactionManager.setEntityManagerFactory(JpaEntityManagerFactory.getInstance());
         return transactionManager;
     }
-	
 }

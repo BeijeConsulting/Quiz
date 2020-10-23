@@ -23,4 +23,11 @@ public class QuizServiceNew {
         quizRepository.saveAndFlush(newQuiz);
     }
 
+    public Integer getCorrectQuizByUser(Integer userId){
+        return quizRepository.countQuizByIdUtenteAndPassed(userId, true);
+    }
+
+    public Integer getAllQuizByUser(Integer userId){
+        return quizRepository.countQuizByIdUtente(userId);
+    }
 }
