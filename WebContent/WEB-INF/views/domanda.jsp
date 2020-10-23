@@ -9,6 +9,7 @@
 </head>
  <link rel="stylesheet" href="<c:url value="/resources/static/attivita2.css" />">
 <body>
+<br>
 <div id ="timer" style="width: 80%;  text-align:right;"></div>
 
 <script type="text/javascript">
