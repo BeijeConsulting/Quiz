@@ -40,6 +40,17 @@ public class Result {
 	@Column(name="test_name")
 	private String testName;
 	
+	public Result() {}
+	public Result(Integer userId, LocalDateTime dateTimeBegin, LocalDateTime dateTimeEnd,
+			int score, int questionsNumber, String testName) {
+		this.userId=userId;
+		this.dateTimeBegin = dateTimeBegin;
+		this.dateTimeEnd = dateTimeEnd;
+		this.score = score;
+		this.questionsNumber = questionsNumber;
+		this.testName = testName;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

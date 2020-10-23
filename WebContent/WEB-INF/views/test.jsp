@@ -5,6 +5,11 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Start your OnLine Quiz</title>
+    <style>
+    	#domanda-footer {
+    	
+    	}
+    </style>
 </head>
 <body>
 
@@ -18,7 +23,19 @@ Tempo disponibile : ${ totDomande * 2 } minuti
 <br>
 <br>
 <%-- Domande quiz --%>
-<div id="domanda"></div>
-	
+	<div id="domanda-wrapper">
+		<div id="testo">
+		</div>
+		<div id="risposte">
+			<div id="risposte-radio">
+			</div>
+			<div id="risposte-check">
+			</div>
+		</div>
+		<div id="domanda-footer">
+			
+		</div>
+	</div>
+	<button id="button-start"> START </button>
 </body>
 </html>

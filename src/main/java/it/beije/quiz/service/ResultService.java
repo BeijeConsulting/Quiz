@@ -21,5 +21,9 @@ public class ResultService {
 		return results;
 		
 	}
+	
+	public void save(Result r) {
+		resultRepository.save(r);
+	}
 
 }

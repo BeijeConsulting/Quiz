@@ -105,7 +105,7 @@ public class ExamApiController {
 			exam.set(index, question);
 			stopTimer(session);
 		}
-		response.sendRedirect("/exam/result");
+		response.sendRedirect("/result");
 	}
 
 	private void setTimer(HttpSession session) {
