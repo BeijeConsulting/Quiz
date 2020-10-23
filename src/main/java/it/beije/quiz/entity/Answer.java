@@ -10,9 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Answer implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
-	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,9 +23,9 @@ public class Answer implements Serializable{
 	@Column
 	private String answer;
 	@Column
-	private boolean correct;
+	private Boolean correct;
 	@Column
-	private int index;
+	private int ind;
 	
 	
 	public Integer getId() {
@@ -54,17 +52,18 @@ public class Answer implements Serializable{
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public boolean isCorrect() {
+	
+	public Boolean getCorrect() {
 		return correct;
 	}
-	public void setCorrect(boolean correct) {
+	public void setCorrect(Boolean correct) {
 		this.correct = correct;
 	}
-	public int getIndex() {
-		return index;
+	public int getInd() {
+		return ind;
 	}
-	public void setIndex(int index) {
-		this.index = index;
+	public void setInd(int ind) {
+		this.ind = ind;
 	}
 	
 	
