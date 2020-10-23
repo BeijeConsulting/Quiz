@@ -1,5 +1,7 @@
 package it.beije.quiz.service;
 
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +104,12 @@ public class QuestionService {
 		
 		answerService.saveAll(answers);
 		int counter = answerService.getCorrect(test.getId());
-		double score = counter * 100.0 / questions.size();
+		NumberFormat numForm = NumberFormat.getInstance();
+		numForm.setMinimumFractionDigits(2);
+		numForm.setMaximumFractionDigits(2);
+		numForm.setRoundingMode(RoundingMode.CEILING);
+		double score = counter * 100.0 / questions.size() * 100;
+		model.addAttribute("percentage", numForm.format(score));
 		boolean result = score >= 65;
 		test.setResult(result);
 		test.setScore(counter);

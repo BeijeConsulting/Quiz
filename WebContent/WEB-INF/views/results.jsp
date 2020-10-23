@@ -31,6 +31,7 @@ tr:nth-child(even) {
 	<tr>
 		<th>Utente</th>
 		<th>Score</th>
+		<th>Percentage</th>
 		<th>Threshold</th>
 		<th>Passed</th>
 		<th>Date</th>
@@ -38,22 +39,23 @@ tr:nth-child(even) {
 	<tr>
 		<td><%= ((User)session.getAttribute("user")).getNickname() %> </td>
 		<td><%= ((Test)session.getAttribute("test")).getScore() %> </td>
+		<td><c:out value="${percentage}%"/> </td>
 		<td>65%</td>
-		<td><%= ((Test)session.getAttribute("test")).getScore() %></td>
+		<td><%=((Test)session.getAttribute("test")).isResult() ? "pass" : "fail"  %></td>
 		<td><%= ((Test)session.getAttribute("test")).getDate() %></td>
 	</tr>
 	<tr>
 		<th colspan=2>Question</th>
 		<th>Your Answer</th>
 		<th>Correct Answer</th>
-		<th>Outcome</th>
+		<th colspan=2>Outcome</th>
 	</tr>
 	<c:forEach items="${questions}" var="question">
 	<tr>
-		<td colspan=2><c:out value="Question N. ${questions.indexOf(question)}"/></td>
+		<td colspan=2><c:out value="Question N. ${questions.indexOf(question)+1}"/></td>
 		<td><c:out value="${answers.get(questions.indexOf(question)).getAnswer()}"/></td>
 		<td><c:out value="${question.answer}"/></td>
-		<td><c:out value='${answers.get(questions.indexOf(question)).getCorrect() eq true ? "pass" : "fail"}'/> </td>
+		<td colspan=2><c:out value='${answers.get(questions.indexOf(question)).getCorrect() eq true ? "correct" : "wrong"}'/> </td>
 	</tr>
 	</c:forEach>
 
