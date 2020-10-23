@@ -26,6 +26,16 @@ public class Risposta {
 	private String risposta;
 	@Column
 	private boolean corretto;
+	
+	public Risposta() {}
+	
+	public Risposta(Long idDomanda, String lettera, String risposta, boolean corretto) {
+		this.idDomanda = idDomanda;
+		this.lettera = lettera;
+		this.risposta = risposta;
+		this.corretto = corretto;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -55,5 +65,23 @@ public class Risposta {
 	}
 	public void setCorretto(boolean corretto) {
 		this.corretto = corretto;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("id : ").append(id).append('\n');
+		builder.append("idDomanda : ").append(idDomanda).append('\n');
+		builder.append("lettera : ").append(lettera).append('\n');
+		builder.append("risposta : ").append(risposta).append('\n');
+		builder.append("corretto : ").append(corretto).append('\n');
+//		builder.append("answerType : ").append(answerType).append('\n');
+//		builder.append("RISPOSTE\n");
+//		for (Risposta r : risposte) {
+//			builder.append("  ").append(r.getValue()).append(" - ").append(r.getText()).append('\n');
+//		}
+//		builder.append("----------------------------\n");
+		
+		return builder.toString();
 	}
 }

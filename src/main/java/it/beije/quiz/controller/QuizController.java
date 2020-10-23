@@ -44,6 +44,8 @@ public class QuizController {
 	}
 	
 	
+	
+	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public static String init(HttpServletRequest request, Model model) {
 //		HttpSession session = request.getSession();
