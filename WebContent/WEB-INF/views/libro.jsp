@@ -47,11 +47,11 @@
 				<div class="inner">
 					<h3>Seleziona capitoli</h3>
 					<!-- Form -->
-                    <form method="post" action="/domanda">
+                    <form method="post" action="./domanda">
                         <div class="row uniform">
                         <c:forEach var = "capitolo" items="${ capitoli }">
                             <div class="6u 12u$(small)">
-                                <input type="checkbox" id="capitolo${ capitolo }" name="capitolo${ capitolo }">
+                                <input type="checkbox" value="capitolo${ capitolo }" id="capitolo${ capitolo }" name="capitolo">
                                 <label for="capitolo${ capitolo }">Capitolo ${ capitolo }</label>
                             </div>
                         </c:forEach>
