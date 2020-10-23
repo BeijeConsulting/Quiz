@@ -17,7 +17,7 @@
 			<button type="submit"><span>Start new quiz</span></button>
 		</form>	
 		<br><br>	
-		<form action="storicoesiti" method="GET"> 
+		<form action="testhistory" method="GET"> 
 			<button type ="submit"><span>Quiz history</span></button> 
 		</form>
 		

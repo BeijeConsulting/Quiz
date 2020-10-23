@@ -9,21 +9,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import it.beije.quiz.entity.Test;
 import it.beije.quiz.entity.User;
 import it.beije.quiz.model.Storico;
 import it.beije.quiz.service.StoricoService;
+import it.beije.quiz.service.TestService;
 
 @Controller
-public class StoricoController {
+public class TestController {
 
 	@Autowired
-	private StoricoService storicoService;
+	private TestService testService;
 	
-	@GetMapping(value="/storicoesiti")
+	@GetMapping(value="/testhistory")
 	public String storicoprestiti(Model model, HttpServletRequest request) {
-		User utente =(User)(request.getSession().getAttribute("user"));
-		List<Storico> storico = storicoService.getByUtente(utente.getId());
-		model.addAttribute("storico", storico);
-		return "storicoesiti";
+		User user =(User)(request.getSession().getAttribute("user"));
+		List<Test> test = testService.getByUser(user.getId());
+		model.addAttribute("test", test);
+		return "testhistory";
 	}
 }

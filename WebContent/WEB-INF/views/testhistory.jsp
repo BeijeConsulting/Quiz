@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Storico Esiti</title>
+<title>Test History</title>
 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 <style>
 table {
@@ -34,20 +34,22 @@ tr:nth-child(even) {
 	<table>
 	<tr>
 		<th>ID</th>
-		<th>Data</th>
-		<th>Durata</th>
+		<th>Name</th>
+		<th>Date</th>
+		<th>Duration</th>
 		<th>Score</th>
-		<th>Punteggio</th>
-		<th>Esito</th>
+		<th>Result</th>
+		<th>Committed</th>
 	</tr>	
-	<c:forEach var="s" items="${storico}">
+	<c:forEach var="s" items="${test}">
 	<tr>
 		<td><c:out value= "${s.id}"/></td>
-		<td><c:out value= "${s.data}"/></td>
-		<td><c:out value= "${s.durata}"/></td>
-		<td><c:out value= "${s.score}%"/></td>
-		<td><c:out value= "${s.punteggio}"/></td>
-		<td><c:out value= "${s.esito}"/></td>
+		<td><c:out value= "${s.name}"/></td>
+		<td><c:out value= "${s.date}"/></td>
+		<td><c:out value= "${s.duration}"/></td>
+		<td><c:out value= "${s.score}"/></td>
+		<td><c:out value= "${s.result}"/></td>
+		<td><c:out value= "${s.committed}"/></td>
 	</tr>
 	</c:forEach>
 	</table>

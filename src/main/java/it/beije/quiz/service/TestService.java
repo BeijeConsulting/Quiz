@@ -1,6 +1,7 @@
 package it.beije.quiz.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,11 @@ public class TestService {
 		t.setDate(LocalDate.now().toString());
 		t.setUser(user);
 		return testRepo.saveAndFlush(t);
+	}
+
+	public List<Test> getByUser(Integer user) {
+		
+		return testRepo.findByUser(user);
 	}
 
 }
