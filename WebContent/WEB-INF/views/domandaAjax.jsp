@@ -11,25 +11,17 @@
 <script src="<c:url value="/resources/js/domandaAjax.js" />"></script>
 <title>Test Java</title>
 </head>
-<body onload="onPageLoad(13)">
-<!-- <body onload="onPageLoad(${request.getSession().getAttribute('idQuiz')})"> -->
-
-<!-- <div>Time</div>
-<div>Test - Nome</div>
-<div>Domanda n° </div>
-<div>Corpo domanda</div>
-<div>Risposte</div>
-<div>Bottoni</div> -->
+<body onload='onPageLoad(${sessionScope.idQuiz})'>
 
 <div id="page_title">Test - ${ request.getSession().getAttribute("idQuiz") }</div>
 <div id="question_title">Question n°<span id="question_number"></span></div>
 <div id="question_body">Corpo Domanda</div>
-<div id="answers_body">Corpo Domanda</div>
+<div id="answers_body">Corpo Risposta</div>
 <div id="page_buttons">
 	<button id="button_prev" type="button" onclick="onClickPrev()">Prev</button>
 	<button id="button_next" type="button" onclick="onClickNext()">Next</button>
 </div>
-<form id="end_test_form" action="./#" onsubmit="onSubmitForm()">
+<form id="end_test_form" action="./svolgiQuiz" onsubmit="onSubmitForm()" method="POST">
 	<div id="submit_block"><button id="button_submit" type="submit">Finish test</button></div>
 </form>
 

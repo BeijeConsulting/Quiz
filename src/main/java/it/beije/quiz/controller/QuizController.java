@@ -89,8 +89,13 @@ public class QuizController {
 	 * Converte tutti gli XML e li inserisce nel database
 	 */
 	
-	@RequestMapping(value = "/testdomanda", method = RequestMethod.GET)
-	public String testdomanda() {
+	@RequestMapping(value = "/svolgiQuiz", method = RequestMethod.GET)
+	public String getSvolgiQuiz() {
 		return "domandaAjax";
+	}
+	
+	@RequestMapping(value = "/svolgiQuiz", method = RequestMethod.POST)
+	public String postSvolgiQuiz() {
+		return "redirect:/history";
 	}
 }

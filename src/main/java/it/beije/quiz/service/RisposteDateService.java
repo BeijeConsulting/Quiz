@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.beije.quiz.model.RisposteDate;
 import it.beije.quiz.repository.RisposteDateRepository;
@@ -35,6 +36,11 @@ public class RisposteDateService {
 		return risposta.orElse(null);
 	}
 	
+	public RisposteDate rispostaDomanda(Integer idEsame, Integer idDomanda) {
+		Optional<RisposteDate> risposta = risposteDateRepository.findByIdEsameAndIdDomanda(idEsame, idDomanda);
+		return risposta.orElse(null);
+	}
+	
 	//@Transactional
 	public void insert(RisposteDate rispostaData) {
 		if (rispostaData == null) {
@@ -49,5 +55,16 @@ public class RisposteDateService {
 			log.info("risposta data inserita!");
 			
 		} else throw new IllegalArgumentException("dati libro non presenti");
+	}
+	
+	@Transactional
+	public RisposteDate modifyRispostaUtente(Integer id, String risposte) {
+		Optional<RisposteDate> rispostaData = risposteDateRepository.findById(id);
+		if(rispostaData.get() == null) {
+			return null;
+		}
+		
+		rispostaData.get().setRisposta(risposte);
+		return risposteDateRepository.saveAndFlush(rispostaData.get());
 	}
 }

@@ -39,6 +39,6 @@ public class HomeController {
 	public String startQuiz(HttpServletRequest request, HttpSession session){
 		if (session.getAttribute("userBean") == null) return "signIn";
 		quizGeneratorService.createNewQuiz(request, session);
-		return "domandaAjax";
+		return "redirect:/svolgiQuiz";
 	}
 }
