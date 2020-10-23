@@ -8,18 +8,35 @@
 <title>Quiz Application</title>
 
 <link rel="stylesheet" href="<c:url value="/assets/css/login.css" />"/>
-<script src="<c:url value="/assets/js/login.js" />"></script>
 
 </head>
 <body>
 
-		<h3>Please fill in the form suggested below</h3>
-		<form action="./login" method="post">
-			EMAIL&nbsp;<input type="email" name="email" value="" placeholder=""/><br/>
- 			PASSWORD&nbsp;<input type="password" name="password" value=""/><br>
-			<input type="submit" value="SUBMIT"/>
-		</form>
-		<p>don't have an account yet? Click <a href="./accountregistration">here</a> to create one!</p>
-		<p>${error}</p>
+	<div id="main-div">
+	
+		<div id="login-box">
+
+            <h1>Quiz Application</h1>
+            
+		 	<form method="POST" action="./login">
+		 	
+		 	
+		 		<label>Email</label><br>
+                <input class="input-box" type="email" name="email" /><br>
+
+                <label>Password</label><br>
+                <input class="input-box" type="password" name="password" /><br>
+
+                <input class="submit-button" type="submit" value="LOGIN" />
+
+            </form>
+		
+			<p>${error}</p>
+		
+	    	<a class="link" href="./accountregistration">Create new account</a>
+		
+		 </div>
+	</div>
+		
 </body>
 </html>
