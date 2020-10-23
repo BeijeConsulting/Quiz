@@ -48,7 +48,7 @@ var timer = setInterval(myTimer, 1000);
 
 </script>
 <div class="main">
-DOMANDA ${ index + 1 } di ${ questionSize }<br>
+QUESTION ${ index + 1 } of ${ questionSize }<br>
 <br>
 ${questionText}
 
@@ -59,9 +59,9 @@ ${questionText}
     <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answer.getFirst() }' value = "${ answer.getFirst() }"
     ${ userAnswer.contains(answer.getFirst()) ? "checked" : "" } > ${answer.getFirst()}. ${answer.getLast()} <br>
   </c:forEach><br>
- <c:if test="${index > 0 }"><button type="button" onclick="prec()">&lt;&lt;Prec.</button></c:if>
+ <c:if test="${index > 0 }"><button type="button" onclick="prec()">&lt;&lt;Back.</button></c:if>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <c:if test="${index < questionSize -1 }"><button type="submit">Succ.&gt;&gt;</button></c:if>
+  <c:if test="${index < questionSize -1 }"><button type="submit">Next.&gt;&gt;</button></c:if>
   <c:if test="${index == questionSize -1 }"><button type="submit">SUBMIT</button></c:if>
 </form>
 

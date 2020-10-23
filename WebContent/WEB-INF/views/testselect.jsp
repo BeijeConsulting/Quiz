@@ -15,7 +15,7 @@
 <div align="right"><h3><a href ="home">Home page</a></h3></div>
 <div class="main">
 <form action="gen_test" method="POST">
-            <label for="book">Guide Manning o Manual?</label>
+            <label for="book">Book choices: </label>
             <select id="book" name="book" onchange="updateForm(this)">
                 <option disabled selected>Select</option>
                 <option value="guide">Guide Manning</option>
