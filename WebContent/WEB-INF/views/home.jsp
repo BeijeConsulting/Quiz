@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>Welcome back, <%=((User)(session.getAttribute("user"))).getNickname()%></h1>	<div align="right"><a href ="./logout">Logout here</a></div>
- 	<div align="center">DASHBOARD:<h1>:</h1></div>
+ 	<div align="center"><h1>DASHBOARD:</h1></div>
 	<div class="main">
 		<form action="./testselect" method="GET" >
 			<button type="submit"><span>Start new quiz</span></button>
