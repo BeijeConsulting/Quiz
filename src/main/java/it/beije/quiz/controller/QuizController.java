@@ -73,29 +73,34 @@ public class QuizController {
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
 			String libro = request.getParameter("libro");
 			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
-			List<Domanda> domande = domandaService.findByBookAndChapters(libro, capitoli);
-			session.setAttribute("domande", domande);
+			domande = domandaService.findByBookAndChapters(libro, capitoli);
 			session.setAttribute("capitoli", capitoli);
 			session.setAttribute("libro", libro);
-			String url = "domanda/" + domande.get(0).getQuestion();
+			//model.addAttribute("risposte", domande.get(0));
+			model.addAttribute("domanda", domande.get(0));
+			int counter = 0;
+			session.setAttribute("counter", counter);
 			setTimer(model);
-			return url;
+			return "domanda";
 		} else {
 			return "forbidden";
 		}
 	}
 	
-	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.POST)
 	public String domandaNumero(@PathVariable Integer id, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
-			List<Domanda> domande = (List<Domanda>) session.getAttribute("domande");
-			session.setAttribute("domande", domande);
-			model.addAttribute("capitoli", domande.get(id).getChapter());
-			model.addAttribute("libro", domande.get(id).getBook());
-			String url = "domanda/" + domande.get(id).getQuestion();
-			setTimer(model);
-			return url;
+			model.addAttribute("capitoli", domande.get(id+1).getChapter());
+			model.addAttribute("libro", domande.get(id+1).getBook());
+			model.addAttribute("domanda", domande.get(id+1));
+			session.setAttribute("counter", id+1);
+			if(id+1 == domande.size()) {
+				return "risultati";
+			}
+			else {
+				return "domanda";
+			}
 		} else {
 			return "forbidden";
 		}
