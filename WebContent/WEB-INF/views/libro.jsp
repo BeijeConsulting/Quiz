@@ -111,6 +111,8 @@
 			}
 		
 		</script>
+		
+
 
 		<!-- Scripts -->
 			<script src="<c:url value="assets/js/jquery.min.js" />"></script>
