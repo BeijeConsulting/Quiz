@@ -32,6 +32,7 @@ public class LoginController {
 		Utente logged = userService.checkLogin(submittedEmail, submittedPassword);
 		if(logged!=null) {
 			session.setAttribute("auth", true);
+			session.setAttribute("username", logged.getNome());
 			//return QuizController.init(request, model);
 			return "index";
 		} else {

@@ -72,9 +72,9 @@
 												<li>Già registrato? <a href="./login">Log in!</a></li>
 											</ul>
 										</div>
-										<c:if test = "${erroreRegister.length > 0}">
+										<c:if test = "${errorRegister != null && errorRegister.length() > 0}">
 								 			<div class="12u$">
-								 				${ erroreRegister }
+								 				${ errorRegister }
 											</div>
 										</c:if>
 									</div>

@@ -18,7 +18,7 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo">Benvenuto, utenteXYZ</div>
+				<div class="logo">Benvenuto, <%= request.getSession().getAttribute("username") %></div>
 				<a href="#menu">Menu</a>
 			</header>
 

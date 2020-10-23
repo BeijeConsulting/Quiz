@@ -18,7 +18,7 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo">Benvenuto, utenteXYZ</div>
+				<div class="logo">Benvenuto, <%= request.getSession().getAttribute("username") %></div>
 				<a href="#menu">Menu</a>
 			</header>
 
@@ -36,7 +36,7 @@
 			<section id="two" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Java quiz</p>
+						<p id="timer"></p>
 						<h2>Domanda X</h2>
 					</header>
 				</div>
@@ -88,7 +88,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 						<!-- Break -->
 						<div class="12u$">
 							<ul class="actions">
-								<li><input type="submit" value="Send Message" /></li>
+								<li><input type="submit" value="Next" /></li>
 								<li><input type="reset" value="Reset" class="alt" /></li>
 							</ul>
 						</div>
@@ -111,6 +111,43 @@ print 'It took ' + i + ' iterations to sort the deck.';
 			<script src="<c:url value="assets/js/skel.min.js" />"></script>
 			<script src="<c:url value="assets/js/util.js" />"></script>
 			<script src="<c:url value="assets/js/main.js" />"></script>
+			
+			<script type="text/javascript">
+				var ore = ${ ore };
+				var minuti = ${ minuti };
+				var secondi = ${ secondi };
+				
+				function formattaTimer(hours,minutes,seconds) {
+					var t = "0" + hours;
+					t = t + ":" + ( minutes < 10 ? "0" : "") + minutes;
+					t = t + ":" + ( seconds < 10 ? "0" : "") + seconds;
+					return t;
+				}
+				
+				function myTimer() {
+					document.getElementById("timer").innerHTML = formattaTimer(ore, minuti, secondi--);
+				  if (secondi < 0) {
+					  if(minuti > 0) {
+						  secondi = 59;
+						  minuti--;
+					  }else if (ore > 0) {
+						  secondi = 59;
+						  minuti = 59;
+						  ore--;
+					  } else {
+				    		clearInterval(timer);
+				    		document.getElementById("timer").innerHTML = 'TEMPO SCADUTO';
+				    		//location.href = "/quiz/risposta";
+					  }
+				  }
+				  
+				}
+				
+				myTimer();
+				
+				var timer = setInterval(myTimer, 1000);
+				
+			</script>
 
 	</body>
 </html>

@@ -20,7 +20,7 @@ public class QuizController {
 	
 	private static List<Domanda> domande;
 	private static int tot;
-	private LocalTime time = null;
+	private static LocalTime time = null;
 	
 
 	@RequestMapping(value = "/storico", method = RequestMethod.GET)
@@ -34,10 +34,21 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public static String home(HttpServletRequest request) {
+	public static String home(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {			
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
 			return "index";
+		} else {
+			return "forbidden";
+		}
+	}
+	
+	@RequestMapping(value = "/domanda", method = RequestMethod.GET)
+	public String domanda(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			setTimer(model);
+			return "domanda";
 		} else {
 			return "forbidden";
 		}
@@ -62,14 +73,20 @@ public class QuizController {
 //		}
 //	}
 	
-	private void setTimer(Model model) {
+	public static void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
 		System.out.println("###################-> " + domande);
-		int tot = domande.size();
+		int tot;
+		if(domande != null) {
+			tot = domande.size();
+		}
+		else {
+			tot = 10;
+		}
 		System.out.println("###################-> " + domande);
 		int secondi = 2 * 60 * tot;
 		long hours = (secondi - diff.getSeconds())/3600;
