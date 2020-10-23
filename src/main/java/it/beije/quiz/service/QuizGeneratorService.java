@@ -27,6 +27,7 @@ public class QuizGeneratorService {
     public void createNewQuiz(HttpServletRequest request,
                               HttpSession session){
         // Creo il quiz
+        System.out.println("Creo nuovo quiz");
         Quiz quiz = new Quiz();
         // Imposta il nome. Se vuoto, crea un numero casuale e lo usa come nome
         quiz.setNomeQuiz(request.getParameter("nomeQuiz") != null
@@ -37,6 +38,7 @@ public class QuizGeneratorService {
         session.setAttribute("idQuiz", idQuiz);
 
         // Creo le domande per il quiz
+        System.out.println("Creo domande per quiz");
         String shuffle = request.getParameter("shuffle");
         String totDomandeString = request.getParameter("totDomande");
         String[] questions = request.getParameterValues("questions");
@@ -61,11 +63,13 @@ public class QuizGeneratorService {
 
     private void createQuestionsInDatabase(List<Domanda> domande, HttpSession session){
         for (Domanda d : domande){
+            System.out.println("domanda: " + d);
             RisposteDate r = new RisposteDate();
+            System.out.println(r);
             r.setIdDomanda(d.getId());
             r.setIdEsame((Integer) session.getAttribute("idQuiz"));
             r.setIdUtente((Integer) session.getAttribute("userID"));
-            rispostaDataRepository.saveAndFlush(r);
+            System.out.println(rispostaDataRepository.saveAndFlush(r).getRisposta());
         }
     }
 }

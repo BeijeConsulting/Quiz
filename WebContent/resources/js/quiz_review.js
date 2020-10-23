@@ -7,11 +7,7 @@ let answered = [];
 async function getAnswers(idQuestion) {
 	let path = getContextPath();
 	let answers = await fetch(path + "/rest/risposte/domanda/" + idQuestion)
-		.then(response => response.json())
-		.then(k => {
-			console.log("k" + k)
-		return k
-		});
+		.then(response => response.json());
 
 	return answers;
 }
@@ -35,19 +31,19 @@ function setQuestionBody(index) {
 	let questionBody = document.getElementById("question_body");
 	let question = questions[index];
 	
+	console.log(question.testo);
 	let testo = textToHtml(JSON.stringify(question.testo));
 	testo = testo.substring(1, testo.length - 1);
 	
 	questionBody.innerHTML = testo;
 }
 
+
 // Populate the section of the answers
 async function setAnswersBody(index) {
 	let answersBody = document.getElementById("answers_body");
-	console.log(answersBody);
-	console.log(questions[index].id)
 	let answers = await getAnswers(questions[index].id);
-	console.log(answers)
+	
 	// Clean
 	while(answersBody.firstChild) {
 		answersBody.removeChild(answersBody.lastChild);
@@ -55,36 +51,18 @@ async function setAnswersBody(index) {
 	
 	// Populate
 	for(let i = 0; i < answers.length; i++) {
-		console.log(buildAnswer(questions[index], answers[i]))
 		answersBody.appendChild(buildAnswer(questions[index], answers[i]));
 	}
 }
 
-
-
 function buildAnswer(question, answer) {
-	let answerBlock = document.createElement("div");
-	let input = document.createElement("input");
-	input.type = question.answerType;
-	if (input.type === "checkbox") {
-		input.name = "answer_" + answer.letter;
-	} else if (input.type === "radio"){
-		input.name = "answer_radio";
-	}
-	input.id = input.name;
-	input.value = answer.letter;
-	input.onchange = function () { onInputChange(this) };
-	if (answered[indexQuestions] !== undefined && answered[indexQuestions].includes(input.value)) {
-		input.checked = true;
-	}
+	let answerBlock = document.createElement("div");	
 	let label = document.createElement("label");
-	label.htmlFor = input.id;
 	let formattedText = textToHtml(JSON.stringify(answer.text));
 	formattedText = formattedText.substring(1, formattedText.length - 1);
-	console.log(formattedText);
-	label.innerHTML = " " + formattedText;
+    formattedText = answer.letter + "&nbsp;" + formattedText 
+	label.innerHTML = formattedText;
 	
-	answerBlock.appendChild(input);
 	answerBlock.appendChild(label);
 	return answerBlock;
 }
@@ -93,7 +71,7 @@ function updateAnswered(input) {
 	if (answered[indexQuestions] == null) {
 		answered[indexQuestions] = [];
 	}
-	if (input.type === "checkbox") {
+	if (input.type == "checkbox") {
 		if (input.checked) {
 			if (!answered[indexQuestions].includes(input.value)) {
 				answered[indexQuestions].push(input.value);
@@ -102,55 +80,17 @@ function updateAnswered(input) {
 			let index = answered[indexQuestions].indexOf(input.value);
 			let newAnswered = [];
 			for(let i = 0; i < answered[indexQuestions].length; i++) {
-				if (i !== index) {
+				if (i != index) {
 					newAnswered.push(answered[indexQuestions][i]);
 				}
 			}
 			answered[indexQuestions] = newAnswered;
 		}
-	} else if (input.type === "radio") {
+	} else if (input.type == "radio") {
 		answered[indexQuestions][0] = input.value;
 	}
 	
-	updateRispostaData(quiz, indexQuestions);
 	console.log(answered[indexQuestions]);
-}
-
-/*
-function setExplanation(index) {
-	let explanationBody = document.getElementById("explanation_body");
-	let question = questions[index];
-	
-	let explanation = textToHtml(JSON.stringify(question.explanation));
-	explanation = explanation.substring(1, testo.length - 1);
-	
-	explanationBody.innerHTML = explanation;
-}
-*/
-
-async function updateRispostaData(idQuiz, indexDomanda) {
-	let path = getContextPath();
-	let rispostaData = await fetch(path + "/rest/risposta_data/" + idQuiz +"/" + questions[indexDomanda].id).then(response => response.json());
-	let arrayAns = answered[indexDomanda];
-	let stringAns = "";
-	
-	for (let i = 0; i < arrayAns.length; i++) {
-		stringAns += arrayAns[i];
-		if (i + 1 < arrayAns.length) {
-			stringAns += ",";
-		}
-	}
-	
-	rispostaData.risposta = stringAns;
-	
-	rispostaData = await fetch(path + "/rest/risposta_data/" + idQuiz +"/" + questions[indexDomanda].id, {
-		method: 'PUT',
-		body: JSON.stringify(rispostaData),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8',
-			}
-		});
-	console.log(rispostaData);
 }
 
 function nextQuestion() {
@@ -160,6 +100,10 @@ function nextQuestion() {
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
 		setQuestionNumber();
+		
+			setCorrectAnswer(indexQuestions);
+	setGivenAnswer(quiz, indexQuestions);
+	setExplanation(indexQuestions);
 	}
 }
 
@@ -170,6 +114,10 @@ function prevQuestion() {
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
 		setQuestionNumber();
+		
+			setCorrectAnswer(indexQuestions);
+	setGivenAnswer(quiz, indexQuestions);
+	setExplanation(indexQuestions);
 	}
 }
 
@@ -206,12 +154,60 @@ function getContextPath() {
 
 async function onPageLoad(idQuiz) {
 	quiz = idQuiz;
-	console.log(quiz);
 	questions = await getQuestions(idQuiz);
 	setQuestionBody(indexQuestions);
 	setAnswersBody(indexQuestions);
+
+//-------------------	
+	setCorrectAnswer(indexQuestions);
+	setGivenAnswer(quiz, indexQuestions);
+	setExplanation(indexQuestions);
+//-------------------
+
 	setButtonsVisibility();
 	setQuestionNumber();
+}
+
+//----------------
+async function getGivenAnswer(idQuiz,indexDomanda) {
+	let rispostaData = await fetch(path + "/rest/risposta_data/" + idQuiz +"/" + questions[indexDomanda].id).then(response => response.json());
+	return rispostaData;
+}
+
+async function setGivenAnswer(idQuiz, indexDomanda) {
+	let rispostaData = await getGivenAnswer(idQuiz, indexDomanda);
+	let given = document.getElementById("given_answer");
+	
+	let testo = textToHtml(JSON.stringify(rispostaData.risposta));
+	testo = testo.substring(1, testo.length - 1);
+	
+	given.innerHTML = testo;
+}
+
+function setExplanation(index) {
+	let explanationBody = document.getElementById("explanation_body");
+	let question = questions[index];
+	
+	let explanation = textToHtml(JSON.stringify(question.explanation));
+	explanation = explanation.substring(1, testo.length - 1);
+	
+	explanationBody.innerHTML = spiegazione;
+}
+
+// Shows the question correct answer -------------------
+function setCorrectAnwer(index) {
+	let questionBody = document.getElementById("correct_answer");
+	let question = questions[index];
+	
+	console.log(question.risposta_esatta);
+	let testo = textToHtml(JSON.stringify(question.risposta_esatta));
+	testo = testo.substring(1, testo.length - 1);
+	
+	questionBody.innerHTML = testo;
+}
+
+//-------------------------------
+
 }
 
 function textToHtml(str) {
@@ -236,39 +232,3 @@ function onClickPrev() {
 function onSubmitForm() {
 	endTest();
 }
-
-
-let prepareTimer = async function (quizID) {
-	let sec = fetch("rest/quiz/getTimer/" + quizID)
-		.then(r => r.text())
-		.then(s => {
-			return Number.parseInt(s);
-		})
-		.then(sec => {
-			console.log("Seconds: " + sec);
-			startTimer(sec);
-		})
-};
-
-function startTimer(duration) {
-	let display = document.getElementById("timerDisplay");
-
-	let timer = duration;
-	let minutes, seconds
-	setInterval(function () {
-		minutes =  Math.floor(timer / 60);
-		seconds = timer - minutes * 60;
-
-		minutes = minutes < 10 ? "0" + minutes : minutes;
-		seconds = seconds < 10 ? "0" + seconds : seconds;
-
-		display.innerHTML = minutes + ":" + seconds;
-
-		console.log("Timer: " + minutes + ":" + seconds);
-
-		if (--timer < 0) {
-			display.innerHTML = "TEMPO SCADUTO";
-		}
-	}, 1000);
-}
-
