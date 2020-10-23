@@ -10,8 +10,8 @@
 </head>
 <body>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<div align="center"> <a href="question/0"><h2>Start Test</h2></a></div> <br>
-<div align="center"> <a href="home"><h3>Exit</h3></a></div>
+<div align="center"> <h2><a href="question/0">Start Test</a></h2></div> <br>
+<div align="center"> <h3><a href="home">Exit</a></h3></div>
 <div class="main"></div>
 </body>
 </html>

@@ -1,7 +1,5 @@
 package it.beije.quiz.controller;
 
-import java.time.LocalTime;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 	
-	private LocalTime time = null;
+	//private LocalTime time = null;
 	
 	/*
 	 * starts the test beginning from the question in index (usually 0)

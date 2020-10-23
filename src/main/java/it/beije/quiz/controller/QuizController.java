@@ -1,7 +1,5 @@
 package it.beije.quiz.controller;
 
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,8 +31,8 @@ import it.beije.quiz.service.TestService;
 @SessionScope
 public class QuizController {
 	
-	private int tot;
-	private LocalTime time = null;
+	//private int tot;
+	//private LocalTime time = null;
 	@Autowired
 	private BookService bookService;
 	@Autowired
@@ -80,22 +77,22 @@ public class QuizController {
 		log.debug("Accipigna sta funzionando");
 		return "testselect";
 	}
-	private void setTimer(Model model) {
-		if (time == null) {
-			time = LocalTime.now();
-		}
-		LocalTime now = LocalTime.now();
-		Duration diff = Duration.between(time, now);
-//		int tot = domande.size();
-		int secondi = 2 * 60 * tot;
-		long hours = (secondi - diff.getSeconds())/3600;
-		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
-		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
-
-		
-		model.addAttribute("totDomande", tot);
-		model.addAttribute("ore", hours);
-		model.addAttribute("minuti", minutes);
-		model.addAttribute("secondi", seconds);
-	}
+//	private void setTimer(Model model) {
+//		if (time == null) {
+//			time = LocalTime.now();
+//		}
+//		LocalTime now = LocalTime.now();
+//		Duration diff = Duration.between(time, now);
+////		int tot = domande.size();
+//		int secondi = 2 * 60 * tot;
+//		long hours = (secondi - diff.getSeconds())/3600;
+//		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
+//		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
+//
+//		
+//		model.addAttribute("totDomande", tot);
+//		model.addAttribute("ore", hours);
+//		model.addAttribute("minuti", minutes);
+//		model.addAttribute("secondi", seconds);
+//	}
 }

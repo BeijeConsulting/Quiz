@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import it.beije.quiz.entity.Test;
 import it.beije.quiz.entity.User;
-import it.beije.quiz.model.Storico;
-import it.beije.quiz.service.StoricoService;
 import it.beije.quiz.service.TestService;
 
 @Controller

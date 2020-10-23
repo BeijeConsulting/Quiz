@@ -10,7 +10,6 @@
 		<class>it.beije.quiz.entity.Chapter</class>
 		<class>it.beije.quiz.entity.Answer</class>
 		<class>it.beije.quiz.entity.Test</class>
-		<class>it.beije.quiz.model.Storico</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
