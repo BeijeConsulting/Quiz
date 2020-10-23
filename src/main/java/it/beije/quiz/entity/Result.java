@@ -2,6 +2,8 @@ package it.beije.quiz.entity;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -24,9 +27,11 @@ public class Result {
 	@Column(name="user_id")
 	private Integer userId;
 	
+	@JsonProperty("dateTimeBegin")
 	@Column(name="date_time_begin")
 	private LocalDateTime dateTimeBegin;
 	
+	@JsonProperty("dateTimeEnd")
 	@Column(name="date_time_end")
 	private LocalDateTime dateTimeEnd;
 	
@@ -51,6 +56,13 @@ public class Result {
 	public LocalDateTime getDateTimeBegin() {
 		return dateTimeBegin;
 	}
+	
+	@JsonGetter("dateTimeBegin")
+	public String getDateTimeBeginFormat() {
+		DateTimeFormatter shortF = DateTimeFormatter
+				.ofLocalizedDateTime(FormatStyle.SHORT);
+		return shortF.format(this.dateTimeBegin);
+	}
 
 	public void setDateTimeBegin(LocalDateTime dateTimeBegin) {
 		this.dateTimeBegin = dateTimeBegin;
@@ -58,6 +70,13 @@ public class Result {
 
 	public LocalDateTime getDateTimeEnd() {
 		return dateTimeEnd;
+	}
+	
+	@JsonGetter("dateTimeEnd")
+	public String getDateTimeEndFormat() {	
+		DateTimeFormatter shortF = DateTimeFormatter
+				.ofLocalizedDateTime(FormatStyle.SHORT);
+		return shortF.format(this.dateTimeEnd);
 	}
 
 	public void setDateTimeEnd(LocalDateTime dateTimeEnd) {
