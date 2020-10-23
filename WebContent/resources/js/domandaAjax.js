@@ -31,7 +31,6 @@ function setQuestionBody(index) {
 	let questionBody = document.getElementById("question_body");
 	let question = questions[index];
 	
-	console.log(question.testo);
 	let testo = textToHtml(JSON.stringify(question.testo));
 	testo = testo.substring(1, testo.length - 1);
 	
@@ -54,6 +53,8 @@ async function setAnswersBody(index) {
 	}
 }
 
+
+
 function buildAnswer(question, answer) {
 	let answerBlock = document.createElement("div");
 	let input = document.createElement("input");
@@ -64,14 +65,17 @@ function buildAnswer(question, answer) {
 		input.name = "answer_radio";
 	}
 	input.id = input.name;
-	input.value = answer.id;
+	input.value = answer.letter;
 	input.onchange = function () { onInputChange(this) };
 	if (answered[indexQuestions] != undefined && answered[indexQuestions].includes(input.value)) {
 		input.checked = true;
 	}
 	let label = document.createElement("label");
 	label.htmlFor = input.id;
-	label.innerHTML = answer.text;
+	let formattedText =answer.letter + "&nbsp;" textToHtml(JSON.stringify(answer.text));
+	formattedText = formattedText.substring(1, formattedText.length - 1);
+	console.log(formattedText);
+	label.innerHTML = formattedText;
 	
 	answerBlock.appendChild(input);
 	answerBlock.appendChild(label);
@@ -101,7 +105,45 @@ function updateAnswered(input) {
 		answered[indexQuestions][0] = input.value;
 	}
 	
+	updateRispostaData(quiz, indexQuestions);
 	console.log(answered[indexQuestions]);
+}
+
+/*
+function setExplanation(index) {
+	let explanationBody = document.getElementById("explanation_body");
+	let question = questions[index];
+	
+	let explanation = textToHtml(JSON.stringify(question.explanation));
+	explanation = explanation.substring(1, testo.length - 1);
+	
+	explanationBody.innerHTML = explanation;
+}
+*/
+
+async function updateRispostaData(idQuiz, indexDomanda) {
+	let path = getContextPath();
+	let rispostaData = await fetch(path + "/rest/risposta_data/" + idQuiz +"/" + questions[indexDomanda].id).then(response => response.json());
+	let arrayAns = answered[indexDomanda];
+	let stringAns = "";
+	
+	for (let i = 0; i < arrayAns.length; i++) {
+		stringAns += arrayAns[i];
+		if (i + 1 < arrayAns.length) {
+			stringAns += ",";
+		}
+	}
+	
+	rispostaData.risposta = stringAns;
+	
+	rispostaData = await fetch(path + "/rest/risposta_data/" + idQuiz +"/" + questions[indexDomanda].id, {
+		method: 'PUT',
+		body: JSON.stringify(rispostaData),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+			}
+		});
+	console.log(rispostaData);
 }
 
 function nextQuestion() {
@@ -157,6 +199,7 @@ function getContextPath() {
 
 async function onPageLoad(idQuiz) {
 	quiz = idQuiz;
+	console.log(quiz);
 	questions = await getQuestions(idQuiz);
 	setQuestionBody(indexQuestions);
 	setAnswersBody(indexQuestions);

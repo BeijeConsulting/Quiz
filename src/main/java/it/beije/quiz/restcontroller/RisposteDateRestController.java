@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,6 +60,20 @@ public class RisposteDateRestController {
   		return risposta;
   	}
   	
+  	@RequestMapping(value="/risposta_data/{idEsame}/{idDomanda}", method = RequestMethod.GET)
+  	public RisposteDate getRispostaData(@PathVariable Integer idEsame, @PathVariable Integer idDomanda) {
+  		RisposteDate risposta = risposteDateService.rispostaDomanda(idEsame, idDomanda);
+  		log.info("risposte alla domanda" + idDomanda + " : " + risposta);
+  		return risposta;
+  	}
+  	
+  	@RequestMapping(value="/risposta_data/{idEsame}/{idDomanda}", method = RequestMethod.PUT)
+  	public RisposteDate putRispostaData(@RequestBody RisposteDate risposteDate, @PathVariable Integer idEsame, @PathVariable Integer idDomanda) {
+  		RisposteDate risposta = risposteDateService.modifyRispostaUtente(risposteDate.getId(), risposteDate.getRisposta());
+  		log.info("risposta modificata");
+  		return risposta;
+  	}
+  	
 
   	//INSERT
 //  	@RequestMapping(value = "/risposta", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -71,9 +86,4 @@ public class RisposteDateRestController {
   		
   		return risposta;
   	}
-  	
-  	@GetMapping("/rispostedate/quiz/{idQuiz}")
-	public List<RisposteDate> getRisposteDateByIdQuiz(@PathVariable Integer idQuiz) {
-		return risposteDateService.risposteEsame(idQuiz);
-	}
 }

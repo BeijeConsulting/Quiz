@@ -20,5 +20,5 @@ public interface RisposteDateRepository extends JpaRepository<RisposteDate, Inte
 	 	//la singola risposta dell'utente alla singola domanda:
 	Optional<RisposteDate> findByIdDomanda(Integer idDomanda);
 
-	
+	Optional<RisposteDate> findByIdEsameAndIdDomanda(Integer idEsame, Integer idDomanda);
 }
