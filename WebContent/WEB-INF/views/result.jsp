@@ -18,13 +18,13 @@
     		<h1>Result</h1>
 
             <h4>Test name</h4>
-            <p>--</p>
+            <p>${nomeEsame}</p>
             <h4>Time</h4>
-            <p>--</p>
+            <p>${tempo}</p>
             <h4>Correct questions</h4>
-            <p>--</p>
+            <p>${giuste}</p>
             <h4>Number of questions</h4>
-            <p>--</p>
+            <p>${totali}</p>
             
             <a class="link" href="./login">OK</a>
     

@@ -25,6 +25,7 @@ Tempo disponibile : ${ totDomande * 2 } minuti
 <%-- Domande quiz --%>
 	<div id="domanda-wrapper">
 		<div id="testo">
+			
 		</div>
 		<div id="risposte">
 			<div id="risposte-radio">
