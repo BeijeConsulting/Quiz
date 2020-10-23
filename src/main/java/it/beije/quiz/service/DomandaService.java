@@ -21,7 +21,7 @@ public class DomandaService {
         return domandaRepository.saveAndFlush(d);
     }
 
-    public Domanda getByID(Long id){
+    public Domanda getByID(Integer id){
         return domandaRepository.findById(id).orElse(null);
     }
 

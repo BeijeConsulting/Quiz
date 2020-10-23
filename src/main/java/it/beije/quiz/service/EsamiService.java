@@ -23,8 +23,7 @@ public class EsamiService {
 
 
 	public List<Quiz> getEsamiUtente(Integer id_utente) {
-		List<Quiz> esami = esamiRepository.findByIdUtente(id_utente);
-		return esami;
+		return esamiRepository.findByIdUtente(id_utente);
 	}
 	
 	public Quiz getEsameByNomeQuiz(String nomeQuiz) {  //anche se hanno dato lo stesso nome a due 
@@ -35,7 +34,7 @@ public class EsamiService {
 	
 	public Quiz getEsameById(Integer id) {
 		Optional<Quiz> risposta = esamiRepository.findById(id);
-		return risposta.isPresent() ? risposta.get() : null;
+		return risposta.orElse(null);
 	}
 	
 	

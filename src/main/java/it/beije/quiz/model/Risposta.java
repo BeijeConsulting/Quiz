@@ -9,10 +9,10 @@ public class Risposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
+    private Integer id;
 
     @Column(name = "id_domanda")
-    private Long idDomanda;
+    private Integer idDomanda;
 
     @Column
     private String letter;
@@ -20,19 +20,19 @@ public class Risposta {
     @Column
     private String text;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getIdDomanda() {
+    public Integer getIdDomanda() {
         return idDomanda;
     }
 
-    public void setIdDomanda(Long idDomanda) {
+    public void setIdDomanda(Integer idDomanda) {
         this.idDomanda = idDomanda;
     }
 

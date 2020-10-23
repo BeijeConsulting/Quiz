@@ -11,7 +11,7 @@ import it.beije.quiz.model.Quiz;
 @Repository
 public interface EsamiRepository extends JpaRepository<Quiz, Integer> {
 
-	List<Quiz> findByIdUtente(Integer id_utente); //id_utente è INT su DB e Long nel model..
+	List<Quiz> findByIdUtente(Integer id_utente); //id_utente è INT su DB e Integer nel model..
 	
 	List<Quiz> findByNomeQuiz(String nomeQuiz); //dovrebbe essere univoco ma non penso lo sia
 }

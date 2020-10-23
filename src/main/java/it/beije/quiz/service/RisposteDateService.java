@@ -30,9 +30,9 @@ public class RisposteDateService {
 		return risposte;
 	}
 	
-	public RisposteDate rispostaDomanda(Long id_domanda) {
+	public RisposteDate rispostaDomanda(Integer id_domanda) {
 		Optional<RisposteDate> risposta = risposteDateRepository.findByIdDomanda(id_domanda);
-		return risposta.isPresent() ? risposta.get() : null;
+		return risposta.orElse(null);
 	}
 	
 	//@Transactional

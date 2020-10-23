@@ -50,7 +50,7 @@ public class RisposteDateRestController {
   	
   	//SELECT ID_DOMANDA
   	@RequestMapping(value = "/risposta_alla_domanda/{id_domanda}", method = RequestMethod.GET)
-  	public RisposteDate getRisposta(@PathVariable Long id_domanda) {
+  	public RisposteDate getRisposta(@PathVariable Integer id_domanda) {
   		
   		RisposteDate risposta = risposteDateService.rispostaDomanda(id_domanda);
   		

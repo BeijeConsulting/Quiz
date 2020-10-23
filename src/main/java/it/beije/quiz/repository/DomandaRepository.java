@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DomandaRepository extends JpaRepository<Domanda, Long> {
+public interface DomandaRepository extends JpaRepository<Domanda, Integer> {
     List<Domanda> findByBookIdInAndChapterIn(List<Integer> bookId, List<Integer> chapter);
 
     List<Domanda> findByBookIdAndChapter(Integer bookId, Integer chapter);

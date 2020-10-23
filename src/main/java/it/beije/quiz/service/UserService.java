@@ -29,7 +29,7 @@ public class UserService {
 	}
 	
 	
-	public User retrieve(Long id) {
+	public User retrieve(Integer id) {
 		log.debug("Retrieving user with ID " + id);
 		Optional<User> user = userRepository.findById(id);
 		return user.orElse(null);
@@ -61,7 +61,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void modify(Long id, User userData) {
+	public void modify(Integer id, User userData) {
 		log.debug("Modifying user with ID " + id + " as " + userData);
 		if (userData == null) {
 			throw new IllegalArgumentException("This user is null");
@@ -82,7 +82,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void modifyPassword(Long id, String newPassword) {
+	public void modifyPassword(Integer id, String newPassword) {
 		log.debug("Modifying password of user with ID " + id);
 		
 		User user = this.retrieve(id);
@@ -97,7 +97,7 @@ public class UserService {
 		userRepository.saveAndFlush(user);
 	}
 	
-	public boolean checkPassword(Long id, String password) {
+	public boolean checkPassword(Integer id, String password) {
 		log.debug("Checking password of user with ID " + id);
 		User user = this.retrieve(id);
 		

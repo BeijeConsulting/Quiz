@@ -13,7 +13,7 @@ public class RispostaService {
     @Autowired
     private RispostaRepository rispostaRepository;
     
-    public List<Risposta> findByIdDomanda(Long idDomanda) {
+    public List<Risposta> findByIdDomanda(Integer idDomanda) {
     	return rispostaRepository.findByIdDomanda(idDomanda);
     }
     

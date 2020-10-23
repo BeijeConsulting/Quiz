@@ -20,7 +20,7 @@ public class RispostaRestController {
 	private RispostaService rispostaService;
 	
 	@GetMapping("/risposte/domanda/{idDomanda}")
-	public List<Risposta> getRisposte(@PathVariable Long idDomanda) {
+	public List<Risposta> getRisposte(@PathVariable Integer idDomanda) {
 		List<Risposta> risposte = rispostaService.findByIdDomanda(idDomanda);
 		return risposte;
 	}

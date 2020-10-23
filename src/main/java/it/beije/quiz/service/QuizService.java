@@ -1,20 +1,10 @@
 package it.beije.quiz.service;
 
-import it.beije.quiz.model.User;
-import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Quiz;
-import it.beije.quiz.repository.QuizRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 
 // Creato layer Service per togliere la logica dal Controller
 @Service
