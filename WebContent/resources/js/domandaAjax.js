@@ -59,20 +59,20 @@ function buildAnswer(question, answer) {
 	let answerBlock = document.createElement("div");
 	let input = document.createElement("input");
 	input.type = question.answerType;
-	if (input.type == "checkbox") {
+	if (input.type === "checkbox") {
 		input.name = "answer_" + answer.letter;
-	} else if (input.type == "radio"){
+	} else if (input.type === "radio"){
 		input.name = "answer_radio";
 	}
 	input.id = input.name;
 	input.value = answer.letter;
 	input.onchange = function () { onInputChange(this) };
-	if (answered[indexQuestions] != undefined && answered[indexQuestions].includes(input.value)) {
+	if (answered[indexQuestions] !== undefined && answered[indexQuestions].includes(input.value)) {
 		input.checked = true;
 	}
 	let label = document.createElement("label");
 	label.htmlFor = input.id;
-	let formattedText =answer.letter + "&nbsp;" textToHtml(JSON.stringify(answer.text));
+	let formattedText =answer.letter + "&nbsp;" + textToHtml(JSON.stringify(answer.text));
 	formattedText = formattedText.substring(1, formattedText.length - 1);
 	console.log(formattedText);
 	label.innerHTML = formattedText;
@@ -86,7 +86,7 @@ function updateAnswered(input) {
 	if (answered[indexQuestions] == null) {
 		answered[indexQuestions] = [];
 	}
-	if (input.type == "checkbox") {
+	if (input.type === "checkbox") {
 		if (input.checked) {
 			if (!answered[indexQuestions].includes(input.value)) {
 				answered[indexQuestions].push(input.value);
@@ -95,13 +95,13 @@ function updateAnswered(input) {
 			let index = answered[indexQuestions].indexOf(input.value);
 			let newAnswered = [];
 			for(let i = 0; i < answered[indexQuestions].length; i++) {
-				if (i != index) {
+				if (i !== index) {
 					newAnswered.push(answered[indexQuestions][i]);
 				}
 			}
 			answered[indexQuestions] = newAnswered;
 		}
-	} else if (input.type == "radio") {
+	} else if (input.type === "radio") {
 		answered[indexQuestions][0] = input.value;
 	}
 	
@@ -231,30 +231,36 @@ function onSubmitForm() {
 }
 
 
-window.onload = async function () {
-	let sec = fetch("Quiz/rest/quiz/getTimer/{quizId}")
+let prepareTimer = async function (quizID) {
+	let sec = fetch("rest/quiz/getTimer/" + quizID)
 		.then(r => r.text())
 		.then(s => {
 			return Number.parseInt(s);
-		});
-	let display = document.getElementById("timerDisplay");
-	startTimer(sec, display);
+		})
+		.then(sec => {
+			console.log("Seconds: " + sec);
+			startTimer(sec);
+		})
 };
 
-function startTimer(duration, display) {
-	let timer = duration*60;
+function startTimer(duration) {
+	let display = document.getElementById("timerDisplay");
+
+	let timer = duration;
 	let minutes, seconds
 	setInterval(function () {
-		minutes = parseInt(timer / 60, 10);
-		seconds = parseInt(timer % 60, 10);
+		minutes =  Math.floor(timer / 60);
+		seconds = timer - minutes * 60;
 
 		minutes = minutes < 10 ? "0" + minutes : minutes;
 		seconds = seconds < 10 ? "0" + seconds : seconds;
 
-		display.textContent = minutes + ":" + seconds;
+		display.innerHTML = minutes + ":" + seconds;
+
+		console.log("Timer: " + minutes + ":" + seconds);
 
 		if (--timer < 0) {
-			display.textContent = "TEMPO SCADUTO";
+			display.innerHTML = "TEMPO SCADUTO";
 		}
 	}, 1000);
 }
