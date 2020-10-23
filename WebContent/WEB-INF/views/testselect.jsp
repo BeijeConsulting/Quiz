@@ -41,6 +41,10 @@
             </select>
         </div> 
         <br>
+        <input type="radio" value="random" name="random" id="randomq"/>
+        <label for="randomq">Random</label><br>
+        <input type="radio" value="normal" name="random" id="normalq" checked/>
+        <label for="normalq">Normal</label><br>
          Test name: <input type="text" value="" name="name"/><br><br>
          <button type="submit" disable ><span>Confirm</span></button>       
 </form>

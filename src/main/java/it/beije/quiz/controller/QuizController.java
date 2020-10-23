@@ -1,5 +1,6 @@
 package it.beije.quiz.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,6 +64,7 @@ public class QuizController {
 		List<Question> questions = questionService.getChapterQuestions(c.getId());
 		Test t = testService.createTest(name, usr);
 		session.setAttribute("test", t);
+		if(((String)request.getParameter("random")).equals("random")) Collections.shuffle(questions);
 		List<Answer> answers = answerService.createAnswers(questions, t.getId());
 		questionService.setAnswers(answers);
 		questionService.setQuestions(questions);
