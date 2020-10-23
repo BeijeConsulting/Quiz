@@ -19,13 +19,13 @@ public class RestHomeController {
 	@Autowired
 	private DomandaService domandaService;
 	
-	@GetMapping("/")
-	public List<Libro> getLibri() {
-		 List<Libro> libri = domandaService.getBooks();
-		 System.out.println(libri);
-		 return libri;
-	}
-	
+//	@GetMapping("/")
+//	public List<Libro> getLibri() {
+//		 List<Libro> libri = domandaService.getBooks();
+//		 System.out.println(libri);
+//		 return libri;
+//	}
+//	
 	
 	
 }

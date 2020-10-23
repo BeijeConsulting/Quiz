@@ -1,41 +1,42 @@
 package it.beije.quiz;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Risposta;
 //import it.beije.quiz.model.Risposta;
 //import it.beije.quiz.repository.DomandaRepository;
 import it.beije.quiz.service.DomandaService;
-import it.beije.quiz.service.RispostaService;
 
 public class Utils {
 	@Autowired
 	private DomandaService domandaService;
-	@Autowired
-	private RispostaService rispostaService;
 	
 	/*
 	 * Metodo che crea la lista (ordinata) degli elementi XML di un file XML generico
 	 */
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
-		
+		System.out.println("element: " + element);
 		NodeList nodeList = element.getChildNodes();
+		System.out.println("nodeList: " + nodeList);
         Node node = null;
         for (int i = 0; i < nodeList.getLength(); i++) {
         	node = nodeList.item(i);
+        	System.out.println("node: " + node);
         	if (node.getNodeType() == Node.ELEMENT_NODE) {
         		childElements.add((Element)node);
         	}
@@ -50,57 +51,52 @@ public class Utils {
 	 * anche i vari capitoli, n� domanda, risposta/e esatta/e...
 	 * Alla fine della lista risultante vengono aggiunti i vari entity domande cos� caricati.
 	 */
-	public void xmlToDatabase(String pathFile) {
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        // Load the input XML document, parse it and return an instance of the
-	        // Document class.
-	        Document document = builder.parse(new File(pathFile));
-	        Element element = document.getDocumentElement();	        
-	        System.out.println(element.getTagName());
-	        List<Element> domande = Utils.getChildElements(element);
-	        System.out.println(domande);        
-	        List<Element> contenutoDomanda = null;
-	        List<Element> elementiRisposta = null;
-	        Element rispostePossibili = null;
-	        for (Element domanda : domande) {
-	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        String book = domanda.getAttribute("book");
-		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-		        int question = Integer.parseInt(domanda.getAttribute("question"));
-		        String testo = contenutoDomanda.get(0).getTextContent();
-		        //caricare le risposte possibili
-		        rispostePossibili = contenutoDomanda.get(1);
-		        String type = rispostePossibili.getAttribute("type");
-		        elementiRisposta = Utils.getChildElements(rispostePossibili);
-		        List<Risposta> risposte = new ArrayList<Risposta>();
-		        for (Element risposta : elementiRisposta) {
-		        	Risposta r = new Risposta();
-		        	r.setLettera(risposta.getAttribute("value"));
-		        	r.setRisposta(risposta.getTextContent());
-		        	risposte.add(r);
-		        }
-		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = contenutoDomanda.get(3).getTextContent();
-	        	Domanda d = new Domanda(book, chapter, question, testo, type, spiegazione);
-	        	System.out.println(d);
-	        	Domanda dSaved = domandaService.insert(d);
-	        	for (Risposta r : risposte) {
-	        		r.setIdDomanda(dSaved.getId());
-	        		rispostaEsatta = rispostaEsatta.replace(" ", "").replace(",", "");
-	        		if (rispostaEsatta.indexOf(r.getLettera()) < 0) {
-	        			r.setCorretto(false);
-	        		} else {
-	        			r.setCorretto(true);
-	        		}
-	        		rispostaService.insert(r);
-	        	}
-	        }	        		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public void xmlToDatabase(String pathFile) throws ParserConfigurationException, SAXException, IOException {
+//		List<Domanda> domande = new ArrayList<Domanda>();
+//		File inputFile = new File(pathFile);
+//        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//        DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
+//        Document document = documentBuilder.parse(inputFile);
+//        document.getDocumentElement().normalize();
+////        System.out.println("Root element :" + document.getDocumentElement().getNodeName());
+//        NodeList nodeList = document.getElementsByTagName("domanda");
+//        for (int i = 0; i < nodeList.getLength(); i++) {
+//        	Node node = nodeList.item(i);
+////        	System.out.println("NODE: " + node.getNodeName());
+//        	if (node.getNodeType() == node.ELEMENT_NODE) {
+//        		Element element = (Element) node;
+////        		System.out.println("ATTRIBUTES");
+////        		System.out.println("Id: " + element.getAttribute("id"));
+////        		System.out.println("Book: " + element.getAttribute("book"));
+//        		String book = element.getAttribute("book");
+////        		System.out.println("Chapter: " + element.getAttribute("chapter"));
+//        		Integer chapter = Integer.parseInt(element.getAttribute("chapter"));
+////        		System.out.println("Question: " + element.getAttribute("question"));
+//        		Integer question = Integer.parseInt(element.getAttribute("question"));
+////        		System.out.println("CHILDS");
+////        		System.out.println("testo: " + element.getElementsByTagName("testo").item(0).getTextContent());
+//        		String testo = element.getElementsByTagName("testo").item(0).getTextContent();
+////        		System.out.println("risposteEsatte: " + element.getElementsByTagName("risposteEsatte").item(0).getTextContent());
+////        		System.out.println("spiegazione: " + element.getElementsByTagName("spiegazione").item(0).getTextContent());
+//        		String spiegazione = element.getElementsByTagName("spiegazione").item(0).getTextContent();
+//        		String type = "";
+////        		System.out.println("risposte: " + element.getElementsByTagName("risposte").item(0).getTextContent());
+//        		NodeList nodeList2 = document.getElementsByTagName("risposte");
+//        		for (int j = 0; j < nodeList2.getLength(); j++) {
+//        			Node node2 = nodeList2.item(j);
+//        			if (node2.getNodeType() == node2.ELEMENT_NODE) {
+//        				Element element2 = (Element) node2;
+//        				type = element2.getAttribute("type");
+////        				System.out.println("TYPE: " + type);
+//        			}
+//        		}
+//        		Domanda domanda = new Domanda(book, chapter, question, testo, type, spiegazione);
+//        		domande.add(domanda);
+//        		domandaService.insert(domanda);
+//        		System.out.println(domande.get(i));
+//        	}
+//        }
+//	}
 	
 	/*
 	 * Formattazione testo: fa in modo che i vari "a capo" e le tab vengano rispettate anche in una pagina HTML
@@ -131,11 +127,6 @@ public class Utils {
 		}
 		
 		return rispostaEsatta.length() == 0;
-	}
-	
-	public static void main(String[] args) {
-		Utils utils = new Utils();
-		utils.xmlToDatabase("/temp/domande_cap1.xml");
 	}
 
 }

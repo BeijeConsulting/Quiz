@@ -33,6 +33,16 @@ public class QuizController {
 		}
 	}
 	
+	@RequestMapping(value = "/libro", method = RequestMethod.POST)
+	public static String libro(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {			
+			return "libro";
+		} else {
+			return "forbidden";
+		}
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public static String home(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
