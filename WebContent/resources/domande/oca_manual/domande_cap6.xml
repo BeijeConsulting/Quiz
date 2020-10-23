@@ -362,7 +362,7 @@
 			<risposta value="D">You can declare any subclass of Object in the throws part of a method declaration.</risposta>
 			<risposta value="E">You can declare any subclass of RuntimeException in the throws part of a method declaration.</risposta>
 		</risposte>
-		<risposteEsatte> A, B, C, E. </risposteEsatte>
+		<risposteEsatte> A, B, C, E</risposteEsatte>
 		<spiegazione> 
 			Classes listed in the throws part of a method declaration must extend
 			java.lang.Throwable. This includes Error, Exception, and RuntimeException. Arbitrary classes such as String can’t go there. Any Java type, including Exception, can
