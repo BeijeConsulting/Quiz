@@ -7,9 +7,9 @@
 	<meta charset="ISO-8859-1">
 	<title>QUIZ</title>
 </head>
+ <link rel="stylesheet" href="<c:url value="/resources/static/attivita2.css" />">
 <body>
-
-<div id ="timer" style="width: 98%; text-align:right;"></div>
+<div id ="timer" style="width: 80%;  text-align:right;"></div>
 
 <script type="text/javascript">
 var ore = ${ ore };
@@ -47,7 +47,7 @@ myTimer();
 var timer = setInterval(myTimer, 1000);
 
 </script>
-
+<div class="main">
 DOMANDA ${ index + 1 } di ${ questionSize }<br>
 <br>
 ${questionText}
@@ -58,7 +58,7 @@ ${questionText}
   <%-- Ho aggiunto la lettera della risposta che prima non c'era --%>
     <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answer.getFirst() }' value = "${ answer.getFirst() }"
     ${ userAnswer.contains(answer.getFirst()) ? "checked" : "" } > ${answer.getFirst()}. ${answer.getLast()} <br>
-  </c:forEach>
+  </c:forEach><br>
  <c:if test="${index > 0 }"><button type="button" onclick="prec()">&lt;&lt;Prec.</button></c:if>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <c:if test="${index < questionSize -1 }"><button type="submit">Succ.&gt;&gt;</button></c:if>
@@ -72,5 +72,6 @@ function prec(){
 	window.location.href = "http://localhost:8080/quiz/question/${index-1}";
 }
 </script>
+</div>
 </body>
 </html>

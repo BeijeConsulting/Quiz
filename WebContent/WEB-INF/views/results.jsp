@@ -25,6 +25,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+ <link rel="stylesheet" href="<c:url value="/resources/static/attivita2.css" />">
 </head>
 <body>
 <table>
@@ -60,7 +61,7 @@ tr:nth-child(even) {
 	</c:forEach>
 
 </table>
-
-<h3><a href ="./home">Home</a></h3>
+<br>
+<div align="center"><h3><a href ="./home">Home page</a></h3></div>
 </body>
 </html>
