@@ -25,9 +25,9 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/">Home</a></li>
-					<li><a href="/storico">Storico</a></li>
-					<li><a href="/logout">Log out</a></li>
+					<li><a href="./">Home</a></li>
+					<li><a href="./storico">Storico</a></li>
+					<li><a href="./logout">Log out</a></li>
 				</ul>
 			</nav>
 
@@ -37,7 +37,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>Java quiz</p>
-						<h2>Nome libro</h2>
+						<h2>${ libro }</h2>
 					</header>
 				</div>
 			</section>
@@ -45,30 +45,20 @@
 		<!-- One -->
 			<section id="one" class="wrapper style2">
 				<div class="inner">
+					<h3>Seleziona capitoli</h3>
 					<!-- Form -->
                     <form method="post" action="/domanda">
                         <div class="row uniform">
+                        <c:forEach var = "capitolo" items="${ capitoli }">
                             <div class="6u 12u$(small)">
-                                <h3>Seleziona capitoli</h3>
-                                <input type="checkbox" id="capitolo1" name="capitolo1">
-                                <label for="capitolo1">Capitolo 1</label>
+                                <input type="checkbox" id="capitolo${ capitolo }" name="capitolo${ capitolo }">
+                                <label for="capitolo${ capitolo }">Capitolo ${ capitolo }</label>
                             </div>
+                        </c:forEach>
                             <div class="6u 12u$(small)">
                                 <h3>Random?</h3>
                                 <input type="checkbox" id="random" name="random">
                                 <label for="random">random</label>
-                            </div>
-                            <div class="12u$">
-                                <input type="checkbox" id="capitolo2" name="capitolo2">
-                                <label for="capitolo2">Capitolo 2</label>
-                            </div>
-                            <div class="12u$">
-                                <input type="checkbox" id="capitolo3" name="capitolo3">
-                                <label for="capitolo3">Capitolo 3</label>
-                            </div>
-                            <div class="12u$">
-                                <input type="checkbox" id="capitolo4" name="capitolo4">
-                                <label for="capitolo4">Capitolo 4</label>
                             </div>
                             <!-- Break -->
                             <div class="12u$">

@@ -59,8 +59,8 @@ public class DomandaService {
 		List<String> capitoli = new ArrayList<String>();
 		
 		for(Domanda domanda : domande) {
-			if(!capitoli.contains("Capitolo " + domanda.getChapter().toString())) {
-				capitoli.add("Capitolo " + domanda.getChapter().toString());
+			if(!capitoli.contains(domanda.getChapter().toString())) {
+				capitoli.add(domanda.getChapter().toString());
 			}
 		}
 		

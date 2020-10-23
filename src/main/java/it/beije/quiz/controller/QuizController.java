@@ -46,6 +46,7 @@ public class QuizController {
 			String libro = request.getParameter("libro");
 			List<String> capitoli = domandaService.getBooksChapters(libro);
 			model.addAttribute("capitoli", capitoli);
+			model.addAttribute("libro", libro);
 			return "libro";
 		} else {
 			return "forbidden";
@@ -53,9 +54,11 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public static String home(HttpServletRequest request, Model model) {
+	public String home(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			List<String> libri = domandaService.getBooksNames();
+			model.addAttribute("libri", libri);
 			return "index";
 		} else {
 			return "forbidden";
