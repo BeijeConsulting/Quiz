@@ -18,9 +18,10 @@ public class ImportController {
 	ServletContext context;
 
 	@RequestMapping(value = "/import" , method= RequestMethod.GET)
-	public void imp() {
+	public String imp() {
 		String path = context.getRealPath("/resources/domande");
 		System.out.println(path);
 		dbImportService.importFromXml(path);
+		return "import";
 	}
 }
