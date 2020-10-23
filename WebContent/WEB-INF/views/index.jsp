@@ -60,7 +60,11 @@
 										<h2>${ libro }</h2>
 									</header>
 									<footer class="align-center">
-										<a href="#" class="button alt">Seleziona</a>
+									<form action="./libro" method="post" id="form_libro">
+									<input type="hidden" name="libro" id="" value="${ libro }" placeholder="" required/>
+									<input type="submit" class="button alt" value="Seleziona" />
+										<!-- <a href="#" class="button alt">Seleziona</a> -->
+									</form>
 									</footer>
 								</div>
 							</div>

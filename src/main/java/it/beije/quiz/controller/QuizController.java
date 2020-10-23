@@ -7,16 +7,21 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.service.DomandaService;
 
 
 @Controller
 public class QuizController {
+	
+	@Autowired
+	private DomandaService domandaService;
 	
 	private static List<Domanda> domande;
 	private static int tot;
@@ -34,9 +39,13 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/libro", method = RequestMethod.POST)
-	public static String libro(HttpServletRequest request) {
+	public String libro(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
+		
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {			
+			String libro = request.getParameter("libro");
+			List<String> capitoli = domandaService.getBooksChapters(libro);
+			model.addAttribute("capitoli", capitoli);
 			return "libro";
 		} else {
 			return "forbidden";
