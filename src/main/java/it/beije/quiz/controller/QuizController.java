@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -74,16 +75,33 @@ public class QuizController {
 			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
 			List<Domanda> domande = domandaService.findByBookAndChapters(libro, capitoli);
 			session.setAttribute("domande", domande);
-			model.addAttribute("capitoli", capitoli);
-			model.addAttribute("libro", libro);
+			session.setAttribute("capitoli", capitoli);
+			session.setAttribute("libro", libro);
+			String url = "domanda/" + domande.get(0).getQuestion();
 			setTimer(model);
-			return "domanda";
+			return url;
 		} else {
 			return "forbidden";
 		}
 	}
 	
-	
+	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.GET)
+	public String domandaNumero(@PathVariable Integer id, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			String libro = request.getParameter("libro");
+			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
+			List<Domanda> domande = (List<Domanda>) session.getAttribute("domande");
+			session.setAttribute("domande", domande);
+			model.addAttribute("capitoli", capitoli);
+			model.addAttribute("libro", libro);
+			String url = "domanda/" + domande.get(id).getQuestion();
+			setTimer(model);
+			return url;
+		} else {
+			return "forbidden";
+		}
+	}
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public static String init(HttpServletRequest request, Model model) {
 //		HttpSession session = request.getSession();
