@@ -11,7 +11,7 @@
 <script src="<c:url value="/resources/js/domandaAjax.js" />"></script>
 <title>Test Java</title>
 </head>
-<body>
+<body onload="onPageLoad()">
 
 <!-- <div>Time</div>
 <div>Test - Nome</div>
@@ -20,7 +20,12 @@
 <div>Risposte</div>
 <div>Bottoni</div> -->
 
-
+<div id="question_body">Corpo Domanda</div>
+<div id="answers_body">Corpo Domanda</div>
+<div id="page_buttons">
+	<button id="button_prev" type="button" onclick="onClickPrev()">Prec</button>
+	<button id="button_next" type="button" onclick="onClickNext()">Succ</button>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
