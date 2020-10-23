@@ -89,12 +89,10 @@ public class QuizController {
 	public String domandaNumero(@PathVariable Integer id, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
-			String libro = request.getParameter("libro");
-			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
 			List<Domanda> domande = (List<Domanda>) session.getAttribute("domande");
 			session.setAttribute("domande", domande);
-			model.addAttribute("capitoli", capitoli);
-			model.addAttribute("libro", libro);
+			model.addAttribute("capitoli", domande.get(id).getChapter());
+			model.addAttribute("libro", domande.get(id).getBook());
 			String url = "domanda/" + domande.get(id).getQuestion();
 			setTimer(model);
 			return url;
