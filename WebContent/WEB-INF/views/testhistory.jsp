@@ -49,7 +49,7 @@ tr:nth-child(even) {
 		<td><c:out value= "${s.duration}"/></td>
 		<td><c:out value= "${s.score}"/></td>
 		<td><c:out value= "${s.result}"/></td>
-		<td><c:out value= "${s.committed}"/></td>
+		<td><c:out value= '${s.committed eq true ? "commited" : "in progress"}'/></td>
 	</tr>
 	</c:forEach>
 	</table>
