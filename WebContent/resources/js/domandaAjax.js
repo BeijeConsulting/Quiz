@@ -1,4 +1,5 @@
-let questions = [{id: 524, testo:"Ciao", answerType: "checkbox"}, {id: 525, testo:"Arrivederci", answerType: "radio"}];
+let quiz = null;
+let questions = [{id: 0, testo:"Ciao", answerType: "checkbox"}];
 let indexQuestions = 0;
 let answered = [];
 
@@ -18,6 +19,11 @@ async function getQuestions(idQuiz) {
 		.then(response => response.json());
 		
 	return questions;
+}
+
+function setQuestionNumber() {
+	let number = document.getElementById("question_number");
+	number.innerHTML = indexQuestions + 1;
 }
 
 // Shows the question
@@ -104,6 +110,7 @@ function nextQuestion() {
 		setQuestionBody(indexQuestions);
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
+		setQuestionNumber();
 	}
 }
 
@@ -113,6 +120,7 @@ function prevQuestion() {
 		setQuestionBody(indexQuestions);
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
+		setQuestionNumber();
 	}
 }
 
@@ -139,22 +147,27 @@ function prevButtonVisibility() {
 	}
 }
 
+function endTest() {
+	console.log(quiz);
+}
+
 function getContextPath() {
 	   return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 }
 
 async function onPageLoad(idQuiz) {
+	quiz = idQuiz;
 	questions = await getQuestions(idQuiz);
 	setQuestionBody(indexQuestions);
 	setAnswersBody(indexQuestions);
 	setButtonsVisibility();
+	setQuestionNumber();
 }
 
 function textToHtml(str) {
 	str = str.replace(/\\n/g, "<br>");
 	str = str.replace(/\\t/g, "&nbsp;");
 	str = str.replace(/\\"/g, "\"");
-	console.log(str)
 	return str;
 }
 
@@ -168,4 +181,8 @@ function onClickNext() {
 
 function onClickPrev() {
 	prevQuestion();
+}
+
+function onSubmitForm() {
+	endTest();
 }
