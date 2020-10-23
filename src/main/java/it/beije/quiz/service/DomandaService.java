@@ -53,4 +53,17 @@ public class DomandaService {
 		
 		return libri;
 	}
+	
+	public List<String> getBooksChapters(String book) {
+		List<Domanda> domande = domandaRepository.findByBook(book);
+		List<String> capitoli = new ArrayList<String>();
+		
+		for(Domanda domanda : domande) {
+			if(!capitoli.contains("Capitolo " + domanda.getChapter().toString())) {
+				capitoli.add("Capitolo " + domanda.getChapter().toString());
+			}
+		}
+		
+		return capitoli;
+	}
 }
