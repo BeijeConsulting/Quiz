@@ -17,7 +17,7 @@ Questa è la pagina di ingresso al tuo Quiz Online
 
 <form method="post" action="./startQuiz" >
     <label for="nomeQuiz">Nome quiz:</label>
-    <input type="text" name="nomeQuiz" id="nomeQuiz" required>
+    <input type="text" name="nomeQuiz" id="nomeQuiz">
     <h3>Seleziona le sezioni che desideri fare:</h3>
     <b>OCA MANUAL</b>
     <br>

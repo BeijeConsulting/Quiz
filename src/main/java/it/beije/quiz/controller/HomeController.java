@@ -25,7 +25,7 @@ public class HomeController {
 	public String init(HttpSession session) {
 		if (session.getAttribute("userBean") == null) return "signIn";
 		System.out.println("Richiesta GET per /.");
-		return "iniziaQuiz";
+		return "index";
 	}
 
 	@PostMapping("/startQuiz")

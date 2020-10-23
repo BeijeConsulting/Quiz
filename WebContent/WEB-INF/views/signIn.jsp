@@ -47,8 +47,8 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 							</div>
-							<input id="login_email" type="text" name="login_email"
-								   class="form-control" placeholder="Email" required="required" value="" onchange="validateEmail()">
+								<input id="login_email" type="text" name="login_email"
+									   class="form-control" placeholder="Email" required="required" value="" onchange="validateEmail()">
 							<div class="invalid-feedback">
 								Email invalida.
 							</div>
@@ -76,6 +76,7 @@
 					<div class="row justify-content-around">
 						<input type="submit" value="Login" class="btn btn-primary btn-custom">
 					</div>
+
 				</form>
 			</div>
 

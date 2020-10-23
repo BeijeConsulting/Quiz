@@ -17,7 +17,7 @@ public class Quiz {
     private String nomeQuiz;
 
     @Column(name = "passato")
-    private boolean isPassed;
+    private boolean passed;
 
     public Integer getId() {
         return id;
@@ -36,11 +36,11 @@ public class Quiz {
     }
 
     public boolean isPassed() {
-        return isPassed;
+        return passed;
     }
 
     public void setPassed(boolean passed) {
-        isPassed = passed;
+        this.passed = passed;
     }
 
     public Integer getIdUtente() {

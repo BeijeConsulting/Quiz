@@ -11,13 +11,14 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body onload="loadStats(${sessionScope.userBean.id})">
+<div class="container">
 	<h3>Bentornato ${sessionScope.userBean.name}</h3>
 
 	<h5>Ecco le tue statistiche</h5>
 	<p>Esami Passati: <span id="esamiPassati"></span></p>
 	<p>Esami Fatti: <span id="esamiFatti"></span></p>
 	<p>Percentuale esami passati: <span id="percentuale"></span></p>
-
+</div>
 <script src="${pageContext.request.contextPath}/resources/js/statsAjax.js"></script>
 </body>
 </html>
