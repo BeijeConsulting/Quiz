@@ -13,9 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import it.beije.oort.corsa.girardi.entity.Percorso;
-import it.beije.oort.corsa.girardi.entity.Utente;
 import it.beije.quiz.model.RisposteDate;
+import it.beije.quiz.model.User;
 import it.beije.quiz.service.RisposteDateService;
 
 @Controller
@@ -30,18 +29,18 @@ public class HistoryController {
 //	@RequestMapping(value = "/history", method = RequestMethod.GET)
 //	public String storico( HttpServletRequest request, Model model) {
 //		Integer idUtente = 0;
-//		List<Percorso> percorsi = new ArrayList<>();
+//		List<RisposteDate> quiz = new ArrayList<>();
 //		if (utenteService.isThereUtenteSession(request)) {
-//			Userr utenteSession = (User)request.getSession().getAttribute("userBean");
+//			User utenteSession = (User)request.getSession().getAttribute("userBean");
 //			
-//			percorsi = risposteDateService.(utenteSession.getId()); 
+//			percorsi = quizService..(utenteSession.getId()); 
 //			
 //			model.addAttribute("percorsi", percorsi);
-//			return "girardi/storico";
+//			return "history";
 //		} else {
 //			 
 //			model.addAttribute("errore", "Occore fare il login");
-//			return "girardi/my_login";
+//			return "signIn";
 //		}
 //	}
 }
