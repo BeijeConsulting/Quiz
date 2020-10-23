@@ -21,7 +21,7 @@
 <div>Risposte</div>
 <div>Bottoni</div> -->
 	
-	<a href="history/">Torna allo storico degli esami</a>
+		<a href="history">Torna ai Quiz Passati</a><br>
 	
 		<div id="page_title">Test - ${esame.nomeQuiz }</div>
 		<div id="question_title">Question n°<span id="question_number"></span></div>
