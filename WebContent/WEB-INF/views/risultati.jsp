@@ -12,7 +12,7 @@
 		<title>Quiz | Risultati</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="<c:url value="assets/css/main.css" />" />
+		<link rel="stylesheet" href="<c:url value="/assets/css/main.css" />" />
 	</head>
 	<body>
 
@@ -25,9 +25,9 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="./">Home</a></li>
-					<li><a href="./storico">Storico</a></li>
-					<li><a href="./logout">Log out</a></li>
+					<li><a href="/quiz/">Home</a></li>
+					<li><a href="/quiz/storico">Storico</a></li>
+					<li><a href="/quiz/logout">Log out</a></li>
 				</ul>
 			</nav>
 
@@ -37,7 +37,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p>Java quiz</p>
-						<h2>Storico quiz svolti</h2>
+						<h2>Risultato quiz</h2>
 					</header>
 				</div>
 			</section>
@@ -106,11 +106,11 @@
 
 
 		<!-- Scripts -->
-			<script src="<c:url value="assets/js/jquery.min.js" />"></script>
-			<script src="<c:url value="assets/js/jquery.scrollex.min.js" />"></script>
-			<script src="<c:url value="assets/js/skel.min.js" />"></script>
-			<script src="<c:url value="assets/js/util.js" />"></script>
-			<script src="<c:url value="assets/js/main.js" />"></script>
+			<script src="<c:url value="/assets/js/jquery.min.js" />"></script>
+			<script src="<c:url value="/assets/js/jquery.scrollex.min.js" />"></script>
+			<script src="<c:url value="/assets/js/skel.min.js" />"></script>
+			<script src="<c:url value="/assets/js/util.js" />"></script>
+			<script src="<c:url value="/assets/js/main.js" />"></script>
 
 	</body>
 </html>

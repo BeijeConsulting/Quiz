@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Risposta;
 import it.beije.quiz.service.DomandaService;
 
 
@@ -24,6 +25,9 @@ public class QuizController {
 	
 	@Autowired
 	private DomandaService domandaService;
+	
+//	@Autowired
+//	private RispostaService rispostaService;
 	
 	public static List<Domanda> domande;
 	private static int tot;
@@ -78,9 +82,12 @@ public class QuizController {
 			session.setAttribute("libro", libro);
 			//model.addAttribute("risposte", domande.get(0));
 			model.addAttribute("domanda", domande.get(0));
+			Domanda primaDomanda = domande.get(0);
 			int counter = 0;
 			session.setAttribute("counter", counter);
 			setTimer(model);
+//			List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(primaDomanda.getBook(), primaDomanda.getChapter(), primaDomanda.getQuestion());
+//			model.addAttribute("risposte", risposte);
 			return "domanda";
 		} else {
 			return "forbidden";
@@ -91,15 +98,19 @@ public class QuizController {
 	public String domandaNumero(@PathVariable Integer id, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
-			model.addAttribute("capitoli", domande.get(id+1).getChapter());
-			model.addAttribute("libro", domande.get(id+1).getBook());
-			model.addAttribute("domanda", domande.get(id+1));
-			session.setAttribute("counter", id+1);
-			if(id+1 == domande.size()) {
-				return "risultati";
+			if(id+1 < domande.size()) {
+				Domanda domandaAttuale = domande.get(id+1);
+//				List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(domandaAttuale.getBook(), domandaAttuale.getChapter(), domandaAttuale.getQuestion());
+//				model.addAttribute("risposte", risposte);
+				model.addAttribute("capitoli", domandaAttuale.getChapter());
+				model.addAttribute("libro", domandaAttuale.getBook());
+				model.addAttribute("domanda", domandaAttuale);
+				session.setAttribute("counter", id+1);
+			
+				return "domanda";
 			}
 			else {
-				return "domanda";
+				return "risultati";
 			}
 		} else {
 			return "forbidden";
