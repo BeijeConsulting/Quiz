@@ -12,4 +12,6 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer>{
 
 	Optional<Answer> findTopByOrderByIdDesc();
 	
+	Optional<Answer> findByQuestionId(Integer id);
+	
 }

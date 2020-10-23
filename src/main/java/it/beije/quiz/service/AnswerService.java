@@ -44,5 +44,11 @@ public class AnswerService {
 		}
 	}
 	
+	public Answer getByQuestionId(Integer id) {
+		
+		Optional<Answer> answer = answerRepository.findByQuestionId(id);
+		
+		return answer.isPresent() ? answer.get() : null;
+	}
 	
 }

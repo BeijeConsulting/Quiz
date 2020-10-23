@@ -1,10 +1,12 @@
 package it.beije.quiz.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import it.beije.quiz.entity.Book;
 import it.beije.quiz.entity.Question;
@@ -49,7 +51,7 @@ public class QuestionService {
 		}
 	}
 	
-	public List<Question> loadQuestionsBook(Integer idBook) {
+	public List<Question> loadQuestionsBookAndChapter(Integer idBook, String chapter) {
 		
 		if(idBook == null) {
 			throw new IllegalArgumentException("the id book can't be null");
@@ -60,7 +62,16 @@ public class QuestionService {
 			throw new IllegalArgumentException("there is no book with id "+idBook);
 		}
 		
-		return questionRepository.findAllByBookId(idBook);
+		return questionRepository.findAllByBookIdAndChapter(idBook, chapter);
 		
 	}
+	
+	public void loadDomande(Model model, Integer idBook, String[] userSelection){
+        List<Question> domande = new ArrayList<Question>();
+		for (String s : userSelection){
+            domande.addAll(loadQuestionsBookAndChapter(idBook, s));
+        }
+        int totaleDomande = domande.size();
+        model.addAttribute("totDomande", totaleDomande);
+    }
 }

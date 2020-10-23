@@ -35,7 +35,6 @@
 	<h2>History</h2>
 <table>
 	<tr>
-			<!-- <th>User id</th> -->
 			<th>Test name</th>
 			<th>Start</th>
 			<th>Finish</th>
