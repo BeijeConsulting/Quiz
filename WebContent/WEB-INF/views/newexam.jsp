@@ -1,61 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Start your OnLine Quiz</title>
+	<title>Quiz Application</title>
+	
+	<link rel="stylesheet" href="<c:url value="/assets/css/newexam.css" />"/>
+	<script src="<c:url value="/assets/js/newexam.js" />"></script>
+	
 </head>
 <body>
 	
-	This is the entry page to your Online Quiz<br>
-	<br>
-	
- 	<form method="post" action="./load_quiz">
- 	
-	 	<h3>Seleziona i libri che desideri fare:</h3>
-			<br>
-			<button onclick="viewCapitoliOCA()">OCA MANUAL</button>
-			<input type="hidden" name="idBook" id="OCA" value="1">
+	<div id="main-div">
+
+            <div id="create-box">
+    
+                <h1>Create quiz</h1>
+    
+                <form method="POST" action="./load_quiz">
+                
+   					<h4>Choose books:</h4>
+					<br>
+					<input class="button" type="button" onclick="viewCapitoliOCA()" value="OCA MANUAL" id="OCA-button">
+					<input type="hidden" name="idBook" id="OCA" value="1">
 			
-			<button onclick="viewCapitoliMANNING()">MANNING</button>	
-			<input type="hidden" name="MAN" id="MAN" value="2">
+					<input class="button" type="button" onclick="viewCapitoliMANNING()" value="MANNING" id="MAN-button">
+					<input type="hidden" name="MAN" id="MAN" value="2">
 			
-		<h3>Seleziona i capitoli che desideri fare:</h3>
+					<h4>Choose chapters:</h4>
 		
-			<p id="OCA" ></p>
-		 	<br>
-		 	<p id="MAN" ></p>
-			<br>
+					<p id="OCA-view" ></p>
+		 			<br>
+		 			<p id="MAN-view" ></p>
+					<br>
 			
-		<label for="nomeQuiz">Nome quiz:</label>
-			<input type="text" name="nomeQuiz" id="nomeQuiz" required>
-			
-		<label for="numberQuestions">Choose how many questions you wanna do:</label>
-			<input type="text" name="numberQuestions" id="numberQuestions">	
-			
-		<input type="submit" value="PREPARA QUIZ">
-	</form>
+					<h4>Test name:</h4><br>
+					<input class="input-box" type="text" name="nomeQuiz" id="nomeQuiz" required><br>
+					<h4>Choose how many questions you wanna do:</h4><br>
+					<input class="input-box" type="text" name="numberQuestions" id="numberQuestions"><br>
+                    <input class="submit-button" type="submit" value="START" />
+    
+                </form>
+    
+                <a class="link" href="./login">Back</a>
+    
+            </div>
+    
+        </div>
 	
 
  </body>
- 
- <script>
- 
- function viewCapitoliOCA(){
-	 for(var i = 1; i < 7; i++){
-		 document.getElementById('OCA').innerHTML+="<label> Capitolo "+i+"<input type="+"checkbox"+" value=1-"+i+" name="+"questions"+"></label><br>" /* value="+"oca_manual\domande_cap"+i+".xml"+" name="+"questions"+"></label><br>"		 */ 
-	 }
-	 document.getElementById('OCA').innerHTML+="<label> Assessment Test <input type="+"checkbox"+" value=1-"+"Assessment_Test"+" name="+"questions"+"></label><br>" /* value="+"oca_manual\domande_Assessment_Test.xml"+" name="+"questions"+"></label><br>" */
- }
- 
- function viewCapitoliMANNING(){
-	 for(var i = 1; i < 7; i++){
-		 document.getElementById('MAN').innerHTML+="<label> Capitolo "+i+"<input type="+"checkbox"+" value=2-"+i+" name="+"questions"+"></label><br>"		 
-	 }
- } 
- 
- 
- </script>
  
 </html>
