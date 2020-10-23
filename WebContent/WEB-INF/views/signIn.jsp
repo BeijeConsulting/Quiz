@@ -5,23 +5,132 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Sign In</title>
+	<title>QUIZ - Login</title>
+
+	<script src="https://kit.fontawesome.com/e8e37b0541.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/wave.css" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/media/favicon.ico" />
 </head>
 <body>
-<c:if test = "${errore != null}">
-    <b>${errore}</b></br>
-</c:if>
+	<div class="container">
 
-	<h1 style="text-align:center;"><em>Login<em></em></h1>
-	<h3>Enter your credentials</h3>
+		<c:if test="${errore != null}">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Credenziali Errate!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
 
-		<form action="./signIn" method="POST">
-			E-MAIL&nbsp;<input type="email" name="email" value="" /><br/>
- 			PASSWORD&nbsp;<input type="password" name="password" value="" /><br>
-			<input type="submit" value="SIGN IN"/>
-		</form>
-	
+		<div class="row justify-content-around">
+			<!-- Selezione -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<a class="nav-link active" href="#login" data-toggle="tab" aria-controls="login" aria-selected="true">Login</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a class="nav-link" href="#register" data-toggle="tab" aria-controls="register" aria-selected="true">Registrati</a>
+				</li>
+			</ul>
+		</div>
+		<div class="tab-content" id="myTabContent">
+			<!-- Login Form -->
+			<div role="tabpanel" class="tab-pane fade show active" id="login">
+				<form class="form-horizontal" method="post" action="./signIn">
+					<div class="form-group " >
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+							</div>
+							<input id="login_email" type="text" name="login_email"
+								   class="form-control" placeholder="Email" required="required" value="" onchange="validateEmail()">
+							<div class="invalid-feedback">
+								Email invalida.
+							</div>
+							<div class="valid-feedback">
+								Email trovata.
+							</div>
+						</div>
+					</div>
+					<div class="form-group ">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-key"></i></span>
+							</div>
+							<input id="login_password" type="password"
+								   name="login_password" class="form-control" placeholder="Password"
+								   required>
+							<div class="invalid-feedback">
+								Password invalida.
+							</div>
+							<div class="valid-feedback">
+								Password corretta.
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-around">
+						<input type="submit" value="Login" class="btn btn-primary btn-custom">
+					</div>
+				</form>
+			</div>
 
+			<!-- Register Form -->
+			<div role="tabpanel" class="tab-pane fade" id="register">
+				<form class="form-horizontal" method="post" action="./signUp">
+					<div class="form-group ">
+						<div class="form-row">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-user"></i></span>
+								</div>
+								<input type="text" name="name" class="form-control" placeholder="Nome" required="required" value="">
+								<input type="text" name="surname" class="form-control" placeholder="Cognome" required="required" value="">
+							</div>
+						</div>
+					</div>
+					<div class="form-group ">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+							</div>
+							<input type="email" name="email" class="form-control" placeholder="Email" required="required" value="">
+						</div>
+					</div>
+					<div class="form-group ">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							</div>
+							<input type="password" name="password" class="form-control" placeholder="Password" required="required">
+						</div>
+					</div>
+					<div class="form-group ">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							</div>
+							<input type="password" name="cpassword" class="form-control" placeholder="Conferma Password" required="required">
+						</div>
+					</div>
+					<div class="row justify-content-around">
+						<input type="submit" value="Registrati" class="btn btn-primary btn-custom">
+					</div>
+				</form>
+			</div>
 
+		</div>
+
+		</div>
+	<div class="ocean">
+		<div class="wave"></div>
+		<div class="wave"></div>
+	</div>
+
+<script src="${pageContext.request.contextPath}/resources/js/loginValidator.js"></script>
 </body>
 </html>

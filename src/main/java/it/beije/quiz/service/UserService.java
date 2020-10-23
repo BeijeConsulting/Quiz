@@ -25,6 +25,13 @@ public class UserService {
 		Optional<User> user = userRepository.findById(id);
 		return user.orElse(null);
 	}
+
+	public User retrieve(String email) {
+		log.info("Retrieving user with email " + email);
+		Optional<User> user = userRepository.findByEmail(email);
+		log.info("Retrieving user: " + user);
+		return user.orElse(null);
+	}
 	
 	public User retrieve(String email, String password) {
 		log.debug("Retrieving user " + email);

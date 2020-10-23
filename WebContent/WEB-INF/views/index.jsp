@@ -1,81 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+		 pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Inizia il tuo Quiz OnLine</title>
+	<title>Homepage</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
-	Questa è la pagina di ingresso al tuo Quiz Online
+	<h3>Bentornato ${sessionScope.utente.name}</h3>
 
-	<%-- SEZIONE SELEZIONE DOMANDE --%>
 
-	<form method="post" action="./load">
-		<label for="nomeQuiz">Nome quiz:</label>
-		<input type="text" name="nomeQuiz" id="nomeQuiz" required>
-		<h3>Seleziona le sezioni che desideri fare:</h3>
-		<b>OCA MANUAL</b>
-		<br>
-		<label> Capitolo 1
-			<input type="checkbox" value="oca_manual\domande_cap1.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 2
-			<input type="checkbox" value="oca_manual\domande_cap2.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 3
-			<input type="checkbox" value="oca_manual\domande_cap3.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 4
-			<input type="checkbox" value="oca_manual\domande_cap4.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 5
-			<input type="checkbox" value="oca_manual\domande_cap5.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 6
-			<input type="checkbox" value="oca_manual\domande_cap6.xml" name="questions">
-		</label>
-		<br>
-		<label> Assessment Test
-			<input type="checkbox" value="oca_manual\domande_Assessment_Test.xml" name="questions">
-		</label>
-		<br>
-		<b>MANNING</b>
-		<br>
-		<label> Capitolo 1
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap1.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 2
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap2.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 3
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap3.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 4
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap4.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 5
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap5.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 6
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap6.xml" name="questions">
-		</label>
-		<br>
-		<label> Capitolo 7
-			<input type="checkbox" value="oca_certification_guide_manning\domande_cap7.xml" name="questions">
-		</label>
-		<br>
-		<input type="submit" value="PREPARA QUIZ">
-	</form>
 </body>
 </html>

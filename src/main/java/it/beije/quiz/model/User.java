@@ -1,5 +1,8 @@
 package it.beije.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,33 +64,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String toString() {
-		StringBuilder sb = new StringBuilder().append("User [");
-		
-		sb.append("name: ");
-		if(name == null) {
-			sb.append(name);
-		} else {
-			sb.append("\"").append(name).append("\"");
-		}
-		
-		sb.append(" - ").append("surname: ");
-		if(surname == null) {
-			sb.append(surname);
-		} else {
-			sb.append("\"").append(surname).append("\"");
-		}
-		
-		sb.append(" - ").append("email: ");
-		if(email == null) {
-			sb.append(email);
-		} else {
-			sb.append("\"").append(email).append("\"");
-		}
-		
-		sb.append("]");
-		
-		return sb.toString();
-	}
+
 }

@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,18 +21,18 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    @GetMapping(value = "/signIn")
 	public String signIn() {
-		log.info("signIn get...");
+		log.info("login get...");
 		return "signIn";
 	}
 
-	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
+	@PostMapping(value = "/signIn")
 	public String signIn(HttpServletRequest request,
                          Model model) {
-		log.info("signUn post...");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		log.info("Login post...");
+		String email = request.getParameter("login_email");
+		String password = request.getParameter("login_password");
 
 		User user = userService.retrieve(email, password);
 		log.debug("user:" +user);
@@ -40,18 +42,18 @@ public class LoginController {
 			return "iniziaQuiz";
 		}else {
 			log.error("No user");
-			model.addAttribute("errore", "CREDENZIALI ERRATE");
+			model.addAttribute("errore", "Credenziali Errate");
 			return "signIn";
 		}
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	@GetMapping(value = "/signUp")
 	public String signUp() {
 		log.info("signUn get...");
 		return "signUp";
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	@PostMapping(value = "/signUp")
 	public String signUp(User newUser,
                          HttpServletRequest request,
                          Model model) {

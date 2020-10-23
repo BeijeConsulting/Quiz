@@ -48,55 +48,41 @@ public class QuizController {
 //		if (questions != null && questions.length > 0){
 //			quizService.loadDomande(model, questions);
 //			quizService.createQuiz(session, request);
+
 //		}
-//		return "avviaTest";
 //	}
-
-	/**
-	 * Controller per la pagina che mostra la singola domanda.
-	 * La domanda caricata viene presa tramite il metodo caricaDomanda
-	 * @param model model per gestire il timer
-	 * @param index indice della domanda richiesta
-	 * @return richiede il metodo caricaDomanda per caricare la domanda
-	 */
-//	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
-//	public String domanda(Model model,
-//						  @PathVariable("index") int index) {
-//		System.out.println("Richiesta GET per /domanda/index.");
-//		// Sottraggo 1 all'index perchè così nell'url le domande partono da 1 e il numero
-//		// corrisponde sempre al numero della domanda a schermo
-//		index--;
-//		quizService.setTimer(model);
-//		return quizService.caricaDomanda(model, index);
+//
+//	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+//	public String signUp() {
+//		log.info("signUn get...");
+//
+//		return "signUp";
 //	}
-
-	/**
-	 * Post method per salvare la risposta dell'utente e richiedere la domanda successiva
-	 * @param model per la gestione del timer
-	 * @param request per ottenere la risposta
-	 * @param index indice della domanda
- 	 * @return chiama il metodo caricaDomanda per richiedere di mostrare la domanda successiva
-	 */
-//	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
-//	public String risposta(Model model,
-//						   HttpServletRequest request,
-//						   @RequestParam("index") int index) {
-//		System.out.println("Richiesta POST per /domanda.");
-//		// Salva la risposta per la domanda
-//		quizService.saveRisposte(request, index);
-//		quizService.setTimer(model);
-//		// Carica la domanda successiva
-//		return quizService.caricaDomanda(model, ++index);
+//
+//	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+//	public String signUp(User newUser, HttpServletRequest request, HttpServletResponse response, Model model) {
+//		log.info("signIn post...");
+//
+//		userService.insert(newUser);
+//		log.debug("user:" +newUser);
+//
+//		if(newUser != null) {
+//			request.getSession().setAttribute("userBean", newUser);
+//			return "index";
+//		}else {
+//			System.out.println("non c'ï¿½. utente: "+newUser);
+//			model.addAttribute("errore", "CREDENZIALI ERRATE");
+//			return "signUp";
+//		}
 //	}
-
-
-//	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
-//	public String risultati(Model model) {
-//		System.out.println("Richiesta GET per /risultati");
-//		// Ottiene i risultati già
-//		String risultati = quizService.getResults();
-//		model.addAttribute("body", risultati);
-//		return "risultati";
+//
+//	/**
+//	 * Converte tutti gli XML e li inserisce nel database
+//	 */
+//	@RequestMapping(value = "/converter", method = RequestMethod.GET)
+//	public String converter() {
+//		converter.convertAll();
+//		return "index";
 //	}
 
 	/**
