@@ -3,12 +3,14 @@ package it.beije.quiz.service;
 import java.time.Duration;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import it.beije.quiz.Pair;
 import it.beije.quiz.Utils;
 import it.beije.quiz.entity.Answer;
 import it.beije.quiz.entity.Question;
@@ -50,11 +52,18 @@ public class QuestionService {
 				userAnswer = "";
 			}
 			String[] possibleanswers = q.getPossibleAnswers().split(" ||| ");
+			// { B. risposta, C. rispostac,...}
+			List<Pair<String, String>> singleanswers = new ArrayList<>();
+			for(int i = 0; i< possibleanswers.length;i++) {
+				String[] s = possibleanswers[i].split(" &&& ");
+				singleanswers.add(new Pair<String, String>(s[0], s[1]));
+			}
+			
 			model.addAttribute("index", index);
 			model.addAttribute("questionText",Utils.formattaTesto(q.getText()));
 			model.addAttribute("userAnswer", userAnswer);
 			model.addAttribute("answerType", q.getAnswerType());
-			model.addAttribute("possibleAnswers", possibleanswers);
+			model.addAttribute("singleanswers", singleanswers);
 			
 			return "domanda";
 		}
