@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.annotation.SessionScope;
@@ -51,8 +52,8 @@ public class QuizController {
 
 	@RequestMapping(value="/gen_test", method= RequestMethod.POST )
 	public String genTest(HttpServletRequest request, HttpSession session) {
-		String sel = request.getParameter("scelta");
-		String set = request.getParameter("setDomande");
+		String sel = request.getParameter("book");
+		String set = request.getParameter("chapter");
 		String name = request.getParameter("name");
 		int usr = ((User) session.getAttribute("user")).getId();
 		String bookTitle = null;
@@ -72,6 +73,12 @@ public class QuizController {
 		return "quiz_view"; //da cambiare con quello vero
 	}
 
+	
+	@GetMapping(value="/testselect")
+	public String testselect() {
+		log.debug("Accipigna sta funzionando");
+		return "testselect";
+	}
 	private void setTimer(Model model) {
 		if (time == null) {
 			time = LocalTime.now();

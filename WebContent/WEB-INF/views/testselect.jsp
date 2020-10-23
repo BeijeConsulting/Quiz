@@ -8,16 +8,16 @@
 <title>Scelta Domande</title>
 </head>
 <body>
-<form action="sceltaset" method="POST">
-            <label for="scelta">Guide Manning o Manual?</label>
-            <select id="scelta" name="scelta" onchange="updateForm(this)">
+<form action="gen_test" method="POST">
+            <label for="book">Guide Manning o Manual?</label>
+            <select id="book" name="book" onchange="updateForm(this)">
                 <option disabled selected>Seleziona</option>
                 <option value="guide">Guide Manning</option>
                 <option value="manual">Manual</option>
             </select>
 		<div id="guide" style="display: none">
- 		<label for="setDomande">Set Domande</label>
-            <select id="setDomande" name="setDomande">
+ 		<label for="chapter">Set Domande</label>
+            <select id="chapter" name="chapter">
                 <option disabled selected>Seleziona</option>
                 <c:forEach var="i" items="1,2,3,4,5,6,7">
                     <option value="cap${i}">domande capitolo ${i}</option>
@@ -25,8 +25,8 @@
             </select>
         </div>
 		<div id="manual" style="display: none">
- 		<label for="setDomande">Set Domande</label>
-            <select id="setDomande" name="setDomande">
+ 		<label for="chapter">Set Domande</label>
+            <select id="chapter" name="chapter">
                 <option disabled selected>Seleziona</option>
                 <c:forEach var="i" items="1,2,3,4,5,6">
                     <option value="cap${i}">domande capitolo ${i}</option>
@@ -34,7 +34,8 @@
                 	<option value="Assessment_Test">Assesment Test</option>
             </select>
         </div> 
-         <input type="submit" value="Conferma">       
+         NOME TEST<input type="text" value="" name="name"/>
+         <input type="submit" value="Confirm">       
 </form>
 <h3><a href ="./log">Home</a></h3>
 <script>

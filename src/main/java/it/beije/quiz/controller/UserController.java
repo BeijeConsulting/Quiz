@@ -30,15 +30,15 @@ public class UserController {
 		
 		@RequestMapping(value = "/log", method = RequestMethod.POST)
 		public String postLogin(HttpServletRequest request, Model model, @RequestParam String email, @RequestParam String password){
-			User utente = userService.login(email, password);
+			User user = userService.login(email, password);
 			HttpSession session = request.getSession();
-			if(utente==null) {
+			if(user==null) {
 				model.addAttribute("errore", "Credenziali Errate");
 				log.debug("credenziali non valide");
 				return "login";
 			}
 			else { 
-				session.setAttribute("user", utente);
+				session.setAttribute("user", user);
 				return "home";
 			}
 		}

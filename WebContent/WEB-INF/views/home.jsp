@@ -12,7 +12,7 @@
  	<h1>QUIZ MENU':</h1>
 	<div align="right"><a href ="./logout">Logout here     </a></div>
 	<div class="main">
-		<form action="sceltaset" method="GET" >
+		<form action="./testselect" method="GET" >
 			<button type="submit"><span>Start new quiz</span></button>
 		</form>	
 		<br><br>	
