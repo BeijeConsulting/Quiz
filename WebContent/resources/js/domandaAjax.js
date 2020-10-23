@@ -1,4 +1,5 @@
-let questions = [{id: 524, text:"Ciao", answerType: "checkbox"}, {id: 525, text:"Arrivederci", answerType: "radio"}];
+let quiz = null;
+let questions = [{id: 0, testo:"Ciao", answerType: "checkbox"}];
 let indexQuestions = 0;
 let answered = [];
 
@@ -7,7 +8,7 @@ async function getAnswers(idQuestion) {
 	let path = getContextPath();
 	let answers = await fetch(path + "/rest/risposte/domanda/" + idQuestion)
 		.then(response => response.json());
-		
+
 	return answers;
 }
 
@@ -20,12 +21,21 @@ async function getQuestions(idQuiz) {
 	return questions;
 }
 
+function setQuestionNumber() {
+	let number = document.getElementById("question_number");
+	number.innerHTML = indexQuestions + 1;
+}
+
 // Shows the question
 function setQuestionBody(index) {
 	let questionBody = document.getElementById("question_body");
 	let question = questions[index];
 	
-	questionBody.innerHTML = question.text;
+	console.log(question.testo);
+	let testo = textToHtml(JSON.stringify(question.testo));
+	testo = testo.substring(1, testo.length - 1);
+	
+	questionBody.innerHTML = testo;
 }
 
 // Populate the section of the answers
@@ -56,6 +66,9 @@ function buildAnswer(question, answer) {
 	input.id = input.name;
 	input.value = answer.id;
 	input.onchange = function () { onInputChange(this) };
+	if (answered[indexQuestions] != undefined && answered[indexQuestions].includes(input.value)) {
+		input.checked = true;
+	}
 	let label = document.createElement("label");
 	label.htmlFor = input.id;
 	label.innerHTML = answer.text;
@@ -66,24 +79,29 @@ function buildAnswer(question, answer) {
 }
 
 function updateAnswered(input) {
+	if (answered[indexQuestions] == null) {
+		answered[indexQuestions] = [];
+	}
 	if (input.type == "checkbox") {
 		if (input.checked) {
-			if (!answered.includes(input.value)) {
-				answered.push(input.value);
+			if (!answered[indexQuestions].includes(input.value)) {
+				answered[indexQuestions].push(input.value);
 			}
 		} else {
-			let index = answered.indexOf(input.value);
+			let index = answered[indexQuestions].indexOf(input.value);
 			let newAnswered = [];
-			for(let i = 0; i < answered.length; i++) {
+			for(let i = 0; i < answered[indexQuestions].length; i++) {
 				if (i != index) {
-					newAnswered.push(answered[i]);
+					newAnswered.push(answered[indexQuestions][i]);
 				}
 			}
-			answered = newAnswered;
+			answered[indexQuestions] = newAnswered;
 		}
 	} else if (input.type == "radio") {
-		answered[0] = input.value;
+		answered[indexQuestions][0] = input.value;
 	}
+	
+	console.log(answered[indexQuestions]);
 }
 
 function nextQuestion() {
@@ -92,6 +110,7 @@ function nextQuestion() {
 		setQuestionBody(indexQuestions);
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
+		setQuestionNumber();
 	}
 }
 
@@ -101,6 +120,7 @@ function prevQuestion() {
 		setQuestionBody(indexQuestions);
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
+		setQuestionNumber();
 	}
 }
 
@@ -127,14 +147,28 @@ function prevButtonVisibility() {
 	}
 }
 
+function endTest() {
+	console.log(quiz);
+}
+
 function getContextPath() {
 	   return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 }
 
-function onPageLoad() {
+async function onPageLoad(idQuiz) {
+	quiz = idQuiz;
+	questions = await getQuestions(idQuiz);
 	setQuestionBody(indexQuestions);
 	setAnswersBody(indexQuestions);
 	setButtonsVisibility();
+	setQuestionNumber();
+}
+
+function textToHtml(str) {
+	str = str.replace(/\\n/g, "<br>");
+	str = str.replace(/\\t/g, "&nbsp;");
+	str = str.replace(/\\"/g, "\"");
+	return str;
 }
 
 function onInputChange(input) {
@@ -147,4 +181,8 @@ function onClickNext() {
 
 function onClickPrev() {
 	prevQuestion();
+}
+
+function onSubmitForm() {
+	endTest();
 }
