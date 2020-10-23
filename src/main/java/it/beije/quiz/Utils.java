@@ -68,7 +68,7 @@ public class Utils {
         document.getDocumentElement().normalize();
         
         NodeList nodeList = document.getElementsByTagName("domanda");
-        for (int i = 0; i < 1 /*nodeList.getLength()*/; i++) {
+        for (int i = 0; i < nodeList.getLength(); i++) {
         	Node node = nodeList.item(i);
         	if (node.getNodeType() == node.ELEMENT_NODE) {
         		Element element = (Element) node;
@@ -96,7 +96,7 @@ public class Utils {
         					Element element3 = (Element) node3;
         					String lettera = element3.getAttribute("value");
         					boolean corretto = false;
-        					if (risposteEsatte.replace(", ", "").equals(lettera)) {
+        					if (risposteEsatte.contains(lettera)) {
         						corretto = true;
         					}
         					JPAUtils.insertRisposta(idDomanda, lettera, risposta, corretto);
