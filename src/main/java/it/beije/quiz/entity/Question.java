@@ -40,7 +40,7 @@ public class Question {
 		this.answer = correctAnswer;
 		StringBuilder answersBuilder = new StringBuilder();
 		for(Pair<String, String> r : answers) {
-			answersBuilder.append(r).append(" ||| ");
+			answersBuilder.append(r).append(" ;;; ");
 		}
 		this.possibleAnswers = answersBuilder.toString();
 		this.explanation = explanation;

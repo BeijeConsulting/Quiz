@@ -27,7 +27,7 @@ public class Pair<T,V> {
 	
 	@Override
 	public String toString() {
-		return this.first + " &&& " + this.last;
+		return this.first + " ::: " + this.last;
 	}
 	
 }

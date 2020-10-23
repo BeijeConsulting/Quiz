@@ -51,11 +51,10 @@ public class QuestionService {
 			if (userAnswer == null) {
 				userAnswer = "";
 			}
-			String[] possibleanswers = q.getPossibleAnswers().split(" ||| ");
-			// { B. risposta, C. rispostac,...}
+			String[] possibleanswers = q.getPossibleAnswers().split(" ;;; ");
 			List<Pair<String, String>> singleanswers = new ArrayList<>();
-			for(int i = 0; i< possibleanswers.length;i++) {
-				String[] s = possibleanswers[i].split(" &&& ");
+			for(int i = 0; i < possibleanswers.length;i++) {
+				String[] s = (possibleanswers[i].split(" ::: "));
 				singleanswers.add(new Pair<String, String>(s[0], s[1]));
 			}
 			
