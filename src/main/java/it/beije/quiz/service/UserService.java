@@ -27,8 +27,9 @@ public class UserService {
 	}
 
 	public User retrieve(String email) {
-		log.debug("Retrieving user with email " + email);
+		log.info("Retrieving user with email " + email);
 		Optional<User> user = userRepository.findByEmail(email);
+		log.info("Retrieving user: " + user);
 		return user.orElse(null);
 	}
 	

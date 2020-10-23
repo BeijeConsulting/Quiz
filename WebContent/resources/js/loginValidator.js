@@ -4,33 +4,23 @@
 
 let email = document.getElementById('login_email');
 let pw = document.getElementById('login_password');
+let user;
 
-async function validateLogin(){
-    console.log("Validating")
-    if (!validateEmail()){
-        email.className += "is-invalid";
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
-    } else {
-        let user = await getUser();
-        if (user.length === 0){
-            pw.className += "is-invalid";
-            this.preventDefault();
-            this.stopPropagation();
-            return false;
-        } else return true;
-    }
-}
-
-function validateEmail(){
-    fetch("/Quiz/rest/login/getUserByEmail/" + email.value)
-        .then(r => r.json())
-        .then(k => {return k.success})
-}
-
-function getUser(){
-    fetch("/Quiz/rest/login/getUser/" + email.value + "-" + pw.value)
-        .then(r => r.json())
-        .then(k => {return k})
+async function validateEmail(){
+    event.preventDefault();
+    fetch("/Quiz/rest/login/getUserByEmail/" + email.value + "/ok")
+        .then(r => r.text())
+        .then(k => {
+            if (String(k) === ""){
+                console.log("No user")
+                email.classList.remove("is-valid");
+                email.classList.add("is-invalid");
+                return false;
+            } else {
+                console.log("User trovato")
+                email.classList.remove("is-invalid");
+                email.classList.add("is-valid");
+                return true;
+            }
+        })
 }

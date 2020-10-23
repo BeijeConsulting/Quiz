@@ -17,6 +17,16 @@
 </head>
 <body>
 	<div class="container">
+
+		<c:if test="${errore != null}">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Credenziali Errate!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
+
 		<div class="row justify-content-around">
 			<!-- Selezione -->
 			<ul class="nav nav-tabs" role="tablist">
@@ -31,15 +41,19 @@
 		<div class="tab-content" id="myTabContent">
 			<!-- Login Form -->
 			<div role="tabpanel" class="tab-pane fade show active" id="login">
-				<form class="form-horizontal" method="post" action="#" onsubmit="return validateLogin()">
+				<form class="form-horizontal" method="post" action="./signIn">
 					<div class="form-group " >
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 							</div>
-							<input id="login_email" type="text" name="login_email" class="form-control" placeholder="Email" required="required" value="">
+							<input id="login_email" type="text" name="login_email"
+								   class="form-control" placeholder="Email" required="required" value="" onchange="validateEmail()">
 							<div class="invalid-feedback">
 								Email invalida.
+							</div>
+							<div class="valid-feedback">
+								Email trovata.
 							</div>
 						</div>
 					</div>
@@ -48,9 +62,14 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fa fa-key"></i></span>
 							</div>
-							<input id="login_password" type="password" name="login_password" class="form-control" placeholder="Password" required="required">
+							<input id="login_password" type="password"
+								   name="login_password" class="form-control" placeholder="Password"
+								   required>
 							<div class="invalid-feedback">
 								Password invalida.
+							</div>
+							<div class="valid-feedback">
+								Password corretta.
 							</div>
 						</div>
 					</div>
@@ -62,7 +81,7 @@
 
 			<!-- Register Form -->
 			<div role="tabpanel" class="tab-pane fade" id="register">
-				<form class="form-horizontal" method="post" action="">
+				<form class="form-horizontal" method="post" action="./signUp">
 					<div class="form-group ">
 						<div class="form-row">
 							<div class="input-group">
