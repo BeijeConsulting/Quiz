@@ -25,7 +25,7 @@ public class QuizController {
 	@Autowired
 	private DomandaService domandaService;
 	
-	private static List<Domanda> domande;
+	public static List<Domanda> domande;
 	private static int tot;
 	private static LocalTime time = null;
 	
@@ -130,7 +130,7 @@ public class QuizController {
 			tot = domande.size();
 		}
 		else {
-			tot = 10;
+			tot = 0;
 		}
 		System.out.println("###################-> " + domande);
 		int secondi = 2 * 60 * tot;

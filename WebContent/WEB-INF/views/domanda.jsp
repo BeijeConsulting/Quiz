@@ -52,7 +52,7 @@
 				<!-- Form -->
 				<h3>Risposte</h3>
 
-				<form method="post" action="./domanda/${ domanda.question }">
+				<form method="post" action="./domanda/${ domanda.question + 1 }">
 					<div class="row uniform">
 					<c:if test = "${domanda != null && domanda.type.equals(\"radio\")}">
 						<c:forEach var = "risposta" items="${ risposte }">
