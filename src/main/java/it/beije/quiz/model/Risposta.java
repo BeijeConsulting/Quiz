@@ -26,16 +26,39 @@ public class Risposta {
 	private String risposta;
 	@Column
 	private boolean corretto;
+	@Column
+	private String book;
+	@Column
+	private Integer chapter;
 	
 	public Risposta() {}
 	
-	public Risposta(Long idDomanda, String lettera, String risposta, boolean corretto) {
+	public Risposta(Long idDomanda, String lettera, String risposta, boolean corretto, String book, Integer chapter) {
 		this.idDomanda = idDomanda;
 		this.lettera = lettera;
 		this.risposta = risposta;
 		this.corretto = corretto;
+		this.book = book;
+		this.chapter = chapter;
 	}
 	
+	
+	public String getBook() {
+		return book;
+	}
+
+	public void setBook(String book) {
+		this.book = book;
+	}
+
+	public Integer getChapter() {
+		return chapter;
+	}
+
+	public void setChapter(Integer chapter) {
+		this.chapter = chapter;
+	}
+
 	public Long getId() {
 		return id;
 	}
