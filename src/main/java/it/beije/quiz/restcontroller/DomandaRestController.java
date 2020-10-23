@@ -31,7 +31,7 @@ public class DomandaRestController {
 	@GetMapping("/domande/quiz/{idQuiz}")
 	public List<Domanda> getDomandeByIdQuiz(@PathVariable Integer idQuiz) {
 
-		List<RisposteDate> risposteList = risposteDateService.findByIdEsame(idQuiz);
+		List<RisposteDate> risposteList = risposteDateService.risposteEsame(idQuiz);
 		List<Domanda> domandeList = new ArrayList<Domanda>();
 		for(RisposteDate risposta : risposteList) {
 			Domanda domanda = domandaService.getByID(risposta.getIdDomanda());

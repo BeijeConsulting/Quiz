@@ -2,17 +2,24 @@ package it.beije.quiz.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 @Table(name = "esami")
+@JsonInclude(Include.NON_NULL)
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+	@JsonProperty("id_utente")
     @Column(name = "id_utente")
     private Integer idUtente;
 
+	@JsonProperty("name")
     @Column(name = "name")
     private String nomeQuiz;
 

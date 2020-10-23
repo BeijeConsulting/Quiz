@@ -19,7 +19,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import it.beije.quiz.model.User;
 
 @Controller
-@SessionScope
+//@SessionScope
 public class QuizController {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());

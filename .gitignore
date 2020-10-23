@@ -5,3 +5,6 @@
 Quiz.iml
 /target
 persistence.xml
+/.settings/
+/pom.xml
+/.gitignore
