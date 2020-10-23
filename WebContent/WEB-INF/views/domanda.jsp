@@ -54,10 +54,10 @@ ${questionText}
 
 <form action = "/quiz/question" method = "post">
   <input type="hidden" name="index" value="${ index }">
-  <c:forEach var="answers" items="${ possibleAnswers }">
+  <c:forEach var="answer" items="${ singleanswers }">
   <%-- Ho aggiunto la lettera della risposta che prima non c'era --%>
-    <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answers.value }' value = "${ answers.value }"
-    ${ userAnswer.contains(answers.value) ? "checked" : "" } > ${answers.value} ) ${ answers.text } <br>
+    <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answer.getFirst() }' value = "${ answer.getFirst() }"
+    ${ userAnswer.contains(answer.getFirst()) ? "checked" : "" } > ${answer.getFirst()}. ${answer.getLast()} <br>
   </c:forEach>
   <br><input type="submit" value="Invio">
 </form>
