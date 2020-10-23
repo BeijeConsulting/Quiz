@@ -186,3 +186,33 @@ function onClickPrev() {
 function onSubmitForm() {
 	endTest();
 }
+
+
+window.onload = async function () {
+	let sec = fetch("Quiz/rest/quiz/getTimer/{quizId}")
+		.then(r => r.text())
+		.then(s => {
+			return Number.parseInt(s);
+		});
+	let display = document.getElementById("timerDisplay");
+	startTimer(sec, display);
+};
+
+function startTimer(duration, display) {
+	let timer = duration*60;
+	let minutes, seconds
+	setInterval(function () {
+		minutes = parseInt(timer / 60, 10);
+		seconds = parseInt(timer % 60, 10);
+
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		display.textContent = minutes + ":" + seconds;
+
+		if (--timer < 0) {
+			display.textContent = "TEMPO SCADUTO";
+		}
+	}, 1000);
+}
+

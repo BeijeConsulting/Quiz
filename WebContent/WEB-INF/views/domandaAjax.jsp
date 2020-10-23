@@ -21,6 +21,8 @@
 <div>Risposte</div>
 <div>Bottoni</div> -->
 
+<p id="timerDisplay"></p>
+
 <div id="page_title">Test - ${ request.getSession().getAttribute("idQuiz") }</div>
 <div id="question_title">Question n°<span id="question_number"></span></div>
 <div id="question_body">Corpo Domanda</div>

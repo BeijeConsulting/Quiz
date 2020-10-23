@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RispostaDataRepository extends JpaRepository<RisposteDate, Integer> {
 	List<RisposteDate> findByIdEsame(Integer idEsame);
+
+	Integer countByIdEsame(Integer idEsame);
 }

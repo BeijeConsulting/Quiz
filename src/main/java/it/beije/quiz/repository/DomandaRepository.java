@@ -15,4 +15,5 @@ public interface DomandaRepository extends JpaRepository<Domanda, Integer> {
     Integer countByBookIdInAndChapterIn(List<Integer> bookId, List<Integer> chapter);
 
     Integer countByBookIdAndChapter(Integer bookId, Integer chapter);
+
 }
