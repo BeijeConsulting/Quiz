@@ -47,7 +47,7 @@
 				<div class="inner">
 					<h3>Seleziona capitoli</h3>
 					<!-- Form -->
-                    <form method="post" action="./domanda">
+                    <form method="get" action="./domanda" onsubmit="return submitCheck()">
                         <div class="row uniform">
                         <c:forEach var = "capitolo" items="${ capitoli }">
                             <div class="6u 12u$(small)">
@@ -88,6 +88,29 @@
 			</div>
 		</footer>
 
+		<script>
+			var counter = 0;
+			
+			function checkCheckBox() {
+				var checks = document.getElementsByName("capitolo");
+				for(var i = 0; i < checks.length; i++) {
+					if(checks[i].checked) {
+						counter++;
+					}
+				}
+			}
+			
+			function submitCheck() {
+				checkCheckBox();
+				if(counter === 0) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+		
+		</script>
 
 		<!-- Scripts -->
 			<script src="<c:url value="assets/js/jquery.min.js" />"></script>
