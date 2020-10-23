@@ -20,6 +20,11 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String slash() {
+		return login();
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
