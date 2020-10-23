@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>StarPage</title>
+<title>Start Page</title>
 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 </head>
 <body>

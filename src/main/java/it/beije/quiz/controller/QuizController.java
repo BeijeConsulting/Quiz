@@ -49,7 +49,6 @@ public class QuizController {
 	@RequestMapping(value="/gen_test", method= RequestMethod.POST )
 	public String genTest(HttpServletRequest request, HttpSession session) {
 		String sel = request.getParameter("book");
-		System.out.println(sel);
 		String set = request.getParameter("chapter");
 		String name = request.getParameter("name");
 		int usr = ((User) session.getAttribute("user")).getId();
