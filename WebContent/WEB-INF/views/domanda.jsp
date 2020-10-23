@@ -12,7 +12,7 @@
 		<title>Quiz | Test</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="<c:url value="assets/css/main.css" />" />
+		<link rel="stylesheet" href="<c:url value="/assets/css/main.css" />" />
 	</head>
 	<body>
 
@@ -25,9 +25,9 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="./">Home</a></li>
-					<li><a href="./storico">Storico</a></li>
-					<li><a href="./logout">Log out</a></li>
+					<li><a href="/quiz/">Home</a></li>
+					<li><a href="/quiz/storico">Storico</a></li>
+					<li><a href="/quiz/logout">Log out</a></li>
 				</ul>
 			</nav>
 
@@ -37,7 +37,8 @@
 				<div class="inner">
 					<header class="align-center">
 						<p id="timer"></p>
-						<h2>Domanda ${ domanda.question }</h2>
+						<% int counter = (int)session.getAttribute("counter"); %>
+						<h2>Domanda <%= counter %></h2>
 					</header>
 				</div>
 			</section>
@@ -52,7 +53,7 @@
 				<!-- Form -->
 				<h3>Risposte</h3>
 
-				<form method="post" action="./domanda/${ domanda.question + 1 }">
+				<form method="post" action="/quiz/domanda/${ counter }">
 					<div class="row uniform">
 					<c:if test = "${domanda != null && domanda.type.equals(\"radio\")}">
 						<c:forEach var = "risposta" items="${ risposte }">
@@ -89,11 +90,11 @@
 		</footer>
 
 		<!-- Scripts -->
-			<script src="<c:url value="assets/js/jquery.min.js" />"></script>
-			<script src="<c:url value="assets/js/jquery.scrollex.min.js" />"></script>
-			<script src="<c:url value="assets/js/skel.min.js" />"></script>
-			<script src="<c:url value="assets/js/util.js" />"></script>
-			<script src="<c:url value="assets/js/main.js" />"></script>
+			<script src="<c:url value="/assets/js/jquery.min.js" />"></script>
+			<script src="<c:url value="/assets/js/jquery.scrollex.min.js" />"></script>
+			<script src="<c:url value="/assets/js/skel.min.js" />"></script>
+			<script src="<c:url value="/assets/js/util.js" />"></script>
+			<script src="<c:url value="/assets/js/main.js" />"></script>
 			
 			<script type="text/javascript">
 				var ore = ${ ore };
