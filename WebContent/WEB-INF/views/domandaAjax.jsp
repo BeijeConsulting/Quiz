@@ -11,7 +11,7 @@
 <script src="<c:url value="/resources/js/domandaAjax.js" />"></script>
 <title>Test Java</title>
 </head>
-<body onload="onPageLoad(13)">
+<body onload='onPageLoad(${sessionScope.idQuiz})'>
 <!-- <body onload="onPageLoad(${request.getSession().getAttribute('idQuiz')})"> -->
 
 <!-- <div>Time</div>
@@ -21,7 +21,6 @@
 <div>Risposte</div>
 <div>Bottoni</div> -->
 
-<div id="page_title">Test - ${ request.getSession().getAttribute("idQuiz") }</div>
 <div id="question_title">Question n°<span id="question_number"></span></div>
 <div id="question_body">Corpo Domanda</div>
 <div id="answers_body">Corpo Domanda</div>

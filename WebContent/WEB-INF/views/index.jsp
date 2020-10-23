@@ -24,7 +24,7 @@
 		<a href="${pageContext.request.contextPath}/startQuiz">Nuovo Quiz</a>
 	</button>
 	<button>
-		<a href="#">Vedi Quiz Passati</a>
+		<a href="history">Vedi Quiz Passati</a>
 	</button>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/statsAjax.js"></script>

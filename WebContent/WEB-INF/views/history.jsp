@@ -9,9 +9,8 @@
 <title>History</title>
 </head>
 <body>
-	<a href="./index">Go to index</a>
 	
-	<h4>${user.name} ecco lo storico dei quiz che hai completato: <br></h4>
+	<h4>${user.name} ecco lo storico dei quiz che hai completato:</h4>
 
 	<table>
 		<tr>
@@ -21,10 +20,10 @@
 	 	</tr>
 	   	<c:forEach var = "esame" items="${esami}">
 	   		<tr>
-		   		<th><c:out value = "${esame.passato eq 0 ? 'Bocciato': 'Promosso'}"/></th>
-		   		<th><c:out value = "${esame.name}"/></th>
-		   		<th><c:out value = "${esame.results}"/></th>
-				<th><button onclick="./quiz_review/${esame.id}"> Riguarda risposte</button></th>
+	   			<th><c:out value = "${esame.nomeQuiz}"/></th>
+		   		<th><c:out value = "${esame.passed eq false ? 'Bocciato': 'Promosso'}"/></th>
+
+				<th><a href="quiz_review/${esame.id}">Riguarda risposte</a></th> 
 				<br>
 		    </tr>
 		</c:forEach>

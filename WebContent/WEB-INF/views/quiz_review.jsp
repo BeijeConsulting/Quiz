@@ -1,70 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Quiz review</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="<c:url value="/resources/js/quiz_review.js" />"></script>
+<title>Quiz Review</title>
 </head>
-<body>
+<body onload='onPageLoad(${esame.id})'>
+<!-- <body onload="onPageLoad(${request.getSession().getAttribute('idQuiz')})"> -->
 
-	<a href="./history">Torna allo storico dei quiz</a>
-	<button onclick="./history">Torna allo storico dei quiz</button>
+<!-- <div>Time</div>
+<div>Test - Nome</div>
+<div>Domanda n° </div>
+<div>Corpo domanda</div>
+<div>Risposte</div>
+<div>Bottoni</div> -->
 	
-	<!-- PER ORA è IL COPIA INCOLLA DI history.jsp, CI DEVO LAVORARE -->
-	<h4>${user.name} ecco le risposte dei quiz che hai completato: <br></h4>
+	<a href="history/">Torna allo storico degli esami</a>
+	
+		<div id="page_title">Test - ${esame.nomeQuiz }</div>
+		<div id="question_title">Question n°<span id="question_number"></span></div>
+		<div id="question_body">Corpo Domanda</div>
+		<div id="answers_body">Corpo Domanda</div>
+		
+		<div id="given_answer"></div>
+		<div id="correct_answer"></div>
+		<div id="explanation_body"></div>
+		
+		<div id="page_buttons">
+			<button id="button_prev" type="button" onclick="onClickPrev()">Prev</button>
+			<button id="button_next" type="button" onclick="onClickNext()">Next</button>
+		</div>
 
-	<table>
-		<tr>
-		    <th>ESITO</th>
-		    <th>NOME</th>
-		    <th>RISULTATO</th>
-	 	</tr>
-	   	<c:forEach var = "esame" items="${esami}">
-	   		<tr>
-		   		<th><c:out value = "${esame.passato eq 0 ? 'Bocciato': 'Promosso'}"/></th>
-		   		<th><c:out value = "${esame.name}"/></th>
-		   		<th><c:out value = "${esame.results}"/></th>
-				<th><button onclick="./quiz_review/${esame.id}"> Riguarda risposte</button></th>
-				<br>
-		    </tr>
-		</c:forEach>
-	</table>
-
-
-<script>
-let memory = "";
-//prende i dati da un url
-function inserimento(valore) {
- fetch('https://jsonplaceholder.typicode.com/todos/1')
-  .then(response => response.json())
-  .then(json => {
-		console.log(json);
-  
-		memory = json.title;
-		document.getElementById('memory').innerHTML=memory;
-
-  })
-}
-</script>
-		<script>
-		let memory = "";
-		let url = 'http://localhost:8080/OortSpring/rest/libri_autore/' 
-		//prende i dati da un url
-		function libriAutore() {
-			//let valore = document.getElementById("myForm").elements[0].value;
-			let valore = document.getElementById("myForm").elements.namedItem("select").value;
-			fetch(url + valore)
-			 .then(response => response.json())
-			 .then(json => {
-				console.log(json);
-				
-					memory = json[0].id_autore;
-					document.getElementById('id_autore').innerHTML = memory;
-		  		})
-		  }
-		</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
-</html>
+</html></html>
