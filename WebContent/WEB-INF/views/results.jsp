@@ -30,7 +30,7 @@ tr:nth-child(even) {
 <body>
 <table>
 	<tr>
-		<th>Utente</th>
+		<th>User</th>
 		<th>Score</th>
 		<th>Percentage</th>
 		<th>Threshold</th>
