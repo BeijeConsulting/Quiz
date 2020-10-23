@@ -1,6 +1,7 @@
 package it.beije.quiz.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,19 +25,23 @@ public class RestDomandaController {
 	@Autowired
 	private DomandaService domandaService;
 	
-	@GetMapping("/domanda")
-	public String libro(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String libro, @RequestParam List<String> capitoli) throws IOException {
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {			
-			List<Domanda> domande = domandaService.findByBookAndChapters(libro, capitoli);
-			model.addAttribute("capitoli", capitoli);
-			model.addAttribute("libro", libro);
-			response.sendRedirect("domanda.jsp");
-			return "libro";
-			
-		} else {
-			return "forbidden";
-		}
-	}
+//	@GetMapping("/domanda")
+//	public List<Domanda> domande(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+//		HttpSession session = request.getSession();
+//		
+//		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {		
+//			String libro = request.getParameter("libro");
+//			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
+//			System.out.println("Capitoli: " + capitoli);
+//			List<Domanda> domande = domandaService.findByBookAndChapters(libro, capitoli);
+//			System.out.println("Domande: " + domande);
+//			model.addAttribute("capitoli", capitoli);
+//			model.addAttribute("libro", libro);
+//			//response.sendRedirect("./domanda");
+//			return domande;
+//			
+//		} else {
+//			return null;
+//		}
+//	}
 }

@@ -51,7 +51,7 @@
                         <div class="row uniform">
                         <c:forEach var = "capitolo" items="${ capitoli }">
                             <div class="6u 12u$(small)">
-                                <input type="checkbox" value="capitolo${ capitolo }" id="capitolo${ capitolo }" name="capitolo">
+                                <input type="checkbox" value="${ capitolo }" id="capitolo${ capitolo }" name="capitolo">
                                 <label for="capitolo${ capitolo }">Capitolo ${ capitolo }</label>
                             </div>
                         </c:forEach>
@@ -67,6 +67,7 @@
                             </div>
                             <!-- Break -->
                             <div class="12u$">
+                            	<input type="hidden" name="libro" id="" value="${ libro }" placeholder="" required/>
                                 <ul class="actions">
                                     <li><input type="submit" value="Start test" /></li>
                                 </ul>

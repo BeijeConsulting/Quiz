@@ -147,6 +147,8 @@ print 'It took ' + i + ' iterations to sort the deck.';
 				
 				var timer = setInterval(myTimer, 1000);				
 			</script>
+			
+			
 
 	</body>
 </html>
