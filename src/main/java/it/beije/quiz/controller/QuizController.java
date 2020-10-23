@@ -2,6 +2,7 @@ package it.beije.quiz.controller;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +70,12 @@ public class QuizController {
 	public String domanda(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			String libro = request.getParameter("libro");
+			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
+			List<Domanda> domande = domandaService.findByBookAndChapters(libro, capitoli);
+			session.setAttribute("domande", domande);
+			model.addAttribute("capitoli", capitoli);
+			model.addAttribute("libro", libro);
 			setTimer(model);
 			return "domanda";
 		} else {
