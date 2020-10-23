@@ -2,12 +2,9 @@ package it.beije.quiz.restcontroller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +38,7 @@ public class RisposteDateRestController {
   	
   	//SELECT ALL ID_ESAME 
   	@RequestMapping(value = "/risposte_date_utente_esame/{id_esame}", method = RequestMethod.GET)
-  	public List<RisposteDate> getRisposteEsame(@PathVariable Integer id_esame) {
+  	public List<RisposteDate> getRisposteEsame(@PathVariable Long id_esame) {
   		
   		List<RisposteDate> risposte = risposteDateService.risposteEsame(id_esame);
   		
@@ -52,7 +49,7 @@ public class RisposteDateRestController {
   	
   	//SELECT ID_DOMANDA
   	@RequestMapping(value = "/risposta_alla_domanda/{id_domanda}", method = RequestMethod.GET)
-  	public RisposteDate getRisposta(@PathVariable Integer id_domanda) {
+  	public RisposteDate getRisposta(@PathVariable Long id_domanda) {
   		
   		RisposteDate risposta = risposteDateService.rispostaDomanda(id_domanda);
   		

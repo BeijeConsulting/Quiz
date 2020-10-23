@@ -7,20 +7,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 @Table(name = "risposte_date")
+@JsonInclude(Include.NON_NULL)
 public class RisposteDate {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
+    private Integer id;
 
+	@JsonProperty("id_utente")
     @Column(name = "id_utente")
-    private Long idUtente;
+    private Integer idUtente;
     
+	@JsonProperty("id_domanda")
     @Column(name = "id_domanda")
     private Long idDomanda;
     
+	@JsonProperty("id_esame")
     @Column(name = "id_esame")
     private Long idEsame;
 
@@ -30,7 +38,7 @@ public class RisposteDate {
 
     public RisposteDate() {}
 
-	public RisposteDate(Long id_utente, Long id_domanda, Long id_esame,
+	public RisposteDate(Integer id_utente, Long id_domanda, Long id_esame,
 			String risposta) {
 		this.idUtente = id_utente;
 		this.idDomanda= id_domanda;
@@ -39,17 +47,17 @@ public class RisposteDate {
 	}
 	
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     
-    public Long getIdUtente() {
+    public Integer getIdUtente() {
         return idUtente;
     }
-    public void setIdUtente(Long idUtente) {
+    public void setIdUtente(Integer idUtente) {
         this.idUtente = idUtente;
     }
     

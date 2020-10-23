@@ -25,12 +25,12 @@ public class RisposteDateService {
 		return risposte;
 	}
 	
-	public List<RisposteDate> risposteEsame(Integer id_esame) {
+	public List<RisposteDate> risposteEsame(Long id_esame) {
 		List<RisposteDate> risposte = risposteDateRepository.findByIdEsame(id_esame);
 		return risposte;
 	}
 	
-	public RisposteDate rispostaDomanda(Integer id_domanda) {
+	public RisposteDate rispostaDomanda(Long id_domanda) {
 		Optional<RisposteDate> risposta = risposteDateRepository.findByIdDomanda(id_domanda);
 		return risposta.isPresent() ? risposta.get() : null;
 	}

@@ -2,26 +2,31 @@ package it.beije.quiz.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 @Table(name = "esami")
+@JsonInclude(Include.NON_NULL)
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+	@JsonProperty("id_utente")
     @Column(name = "id_utente")
     private Long idUtente;
 
+	@JsonProperty("name")
     @Column(name = "name")
     private String nomeQuiz;
 
     @Column(name = "results")
     private String results;
 
-    @Column(name = "percentuale")
-    private Double percentuale;
-
+	@JsonProperty("passato")
     @Column(name = "passato")
     private boolean isPassed;
 
@@ -47,14 +52,6 @@ public class Quiz {
 
     public void setResults(String results) {
         this.results = results;
-    }
-
-    public Double getPercentuale() {
-        return percentuale;
-    }
-
-    public void setPercentuale(Double percentuale) {
-        this.percentuale = percentuale;
     }
 
     public boolean isPassed() {
