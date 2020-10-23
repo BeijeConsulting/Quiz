@@ -129,7 +129,6 @@ public class QuizController {
 		}
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
-		System.out.println("###################-> " + domande);
 		int tot;
 		if(domande != null) {
 			tot = domande.size();
@@ -137,7 +136,7 @@ public class QuizController {
 		else {
 			tot = 0;
 		}
-		System.out.println("###################-> " + domande);
+		System.out.println("###################-> " + tot);
 		int secondi = 2 * 60 * tot;
 		long hours = (secondi - diff.getSeconds())/3600;
 		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
