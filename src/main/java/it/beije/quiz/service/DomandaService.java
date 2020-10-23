@@ -66,4 +66,12 @@ public class DomandaService {
 		
 		return capitoli;
 	}
+	
+	public List<Domanda> findByBookAndChapters(String book, List<String> chapters) {
+		List<Domanda> domande = new ArrayList<Domanda>();
+		for(String chapter : chapters) {
+			domande.addAll(domandaRepository.findByBookAndChapter(book, Integer.parseInt(chapter)));
+		}
+		return domande;
+	}
 }

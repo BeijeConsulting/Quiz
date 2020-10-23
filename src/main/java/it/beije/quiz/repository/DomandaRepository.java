@@ -10,5 +10,6 @@ import it.beije.quiz.model.Domanda;
 public interface DomandaRepository extends JpaRepository<Domanda, Long> {
 
 	List<Domanda> findByBook(String book);
+	List<Domanda> findByBookAndChapter(String book, int chapter);
 
 }
