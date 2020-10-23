@@ -28,7 +28,7 @@ tr:nth-child(even) {
 <body>
 
 
-<h2>Quiz history <%=((User)(session.getAttribute("user"))).getNickname()%></h2><br>
+<h2>Your quiz history, <%=((User)(session.getAttribute("user"))).getNickname()%>:</h2><br>
 <h3><a href ="home">Home page</a></h3><br>
 
 	<table>
