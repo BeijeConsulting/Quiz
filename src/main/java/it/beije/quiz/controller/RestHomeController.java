@@ -22,6 +22,7 @@ public class RestHomeController {
 	@GetMapping("/")
 	public List<Libro> getLibri() {
 		 List<Libro> libri = domandaService.getBooks();
+		 System.out.println(libri);
 		 return libri;
 	}
 	
