@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="<c:url value="/resources/static/attivita.css" />">
 </head>
 <body>
+<h3>Total questions: "${totQuestions}" </h3>
+<h3><c:out value="Average time needed: ${hours}:${minutes}.${seconds} (hh:mm.ss)"/> </h3>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div align="center"> <h2><a href="question/0">Start Test</a></h2></div> <br>
 <div align="center"> <h3><a href="home">Exit</a></h3></div>

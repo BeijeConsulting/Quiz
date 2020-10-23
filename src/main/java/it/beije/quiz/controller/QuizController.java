@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +48,7 @@ public class QuizController {
 	
 
 	@RequestMapping(value="/gen_test", method= RequestMethod.POST )
-	public String genTest(HttpServletRequest request, HttpSession session) {
+	public String genTest(HttpServletRequest request, HttpSession session, Model model) {
 		String sel = request.getParameter("book");
 		String set = request.getParameter("chapter");
 		String name = request.getParameter("name");
@@ -67,7 +68,16 @@ public class QuizController {
 		List<Answer> answers = answerService.createAnswers(questions, t.getId());
 		questionService.setAnswers(answers);
 		questionService.setQuestions(questions);
-		return "quiz_view"; //da cambiare con quello vero
+		model.addAttribute("totQuestions", questions.size());
+		int secondi = 2 * 60 * questions.size();
+		long hours = (secondi)/3600;
+		long minutes = (secondi)/60 - hours* 60;
+		long seconds = (secondi) - hours * 3600 - minutes * 60;
+
+		model.addAttribute("hours", hours);
+		model.addAttribute("minutes", minutes);
+		model.addAttribute("seconds", seconds);
+		return "quiz_view"; 
 	}
 
 	
