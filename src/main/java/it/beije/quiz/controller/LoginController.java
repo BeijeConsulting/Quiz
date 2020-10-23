@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,7 +37,8 @@ public class LoginController {
 
 		if(user != null) {
 			request.getSession().setAttribute("userBean", user);
-			return "iniziaQuiz";
+			request.getSession().setAttribute("userID", user.getId());
+			return "redirect:/";
 		}else {
 			log.error("No user");
 			model.addAttribute("errore", "Credenziali Errate");
@@ -63,7 +62,8 @@ public class LoginController {
 
 		if(newUser != null) {
 			request.getSession().setAttribute("userBean", newUser);
-			return "iniziaQuiz";
+			request.getSession().setAttribute("userID", newUser.getId());
+			return "redirect:/";
 		}else {
 			log.error("No user");
 			model.addAttribute("errore", "CREDENZIALI ERRATE");

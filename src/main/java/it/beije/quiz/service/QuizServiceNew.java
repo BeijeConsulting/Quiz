@@ -24,7 +24,7 @@ public class QuizServiceNew {
     }
 
     public Integer getCorrectQuizByUser(Integer userId){
-        return quizRepository.countQuizByIdUtenteAndPassed(userId, true);
+        return quizRepository.countQuizByIdUtenteAndPassedTrue(userId);
     }
 
     public Integer getAllQuizByUser(Integer userId){

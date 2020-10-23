@@ -26,7 +26,7 @@ public class RisposteDate {
     
 	@JsonProperty("id_domanda")
     @Column(name = "id_domanda")
-    private Long idDomanda;
+    private Integer idDomanda;
     
 	@JsonProperty("id_esame")
     @Column(name = "id_esame")
@@ -37,8 +37,8 @@ public class RisposteDate {
 
     public RisposteDate() {}
 
-	public RisposteDate(Integer id_utente, Long id_domanda, Integer id_esame,
-			String risposta) {
+	public RisposteDate(Integer id_utente, Integer id_domanda, Integer id_esame,
+                        String risposta) {
 		this.idUtente = id_utente;
 		this.idDomanda= id_domanda;
 		this.idEsame = id_esame;
@@ -60,10 +60,10 @@ public class RisposteDate {
         this.idUtente = idUtente;
     }
     
-    public Long getIdDomanda() {
+    public Integer getIdDomanda() {
         return idDomanda;
     }
-    public void setIdDomanda(Long idDomanda) {
+    public void setIdDomanda(Integer idDomanda) {
         this.idDomanda = idDomanda;
     }
     

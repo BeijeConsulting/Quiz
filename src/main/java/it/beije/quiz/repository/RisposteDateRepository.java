@@ -12,13 +12,13 @@ import it.beije.quiz.model.RisposteDate;
 public interface RisposteDateRepository extends JpaRepository<RisposteDate, Integer> {
 
 	 	//tutte le risposte date dall'utente:
-	List<RisposteDate> findByIdUtente(Integer id_utente);
+	List<RisposteDate> findByIdUtente(Integer idUtente);
 	
 	 	//tutte le risposte date dall'utente in un determinato esame:
-	List<RisposteDate> findByIdEsame(Integer id_esame);
+	List<RisposteDate> findByIdEsame(Integer idEsame);
 	
 	 	//la singola risposta dell'utente alla singola domanda:
-	Optional<RisposteDate> findByIdDomanda(Long id_domanda);
+	Optional<RisposteDate> findByIdDomanda(Integer idDomanda);
 
 	
 }

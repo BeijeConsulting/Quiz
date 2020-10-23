@@ -12,7 +12,7 @@ public class Domanda {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@Column(name = "book_title")
 	private String book;
@@ -50,7 +50,7 @@ public class Domanda {
 
 	public Domanda(){}
 
-	public Domanda(Long id, String book, int chapter, int question, String testo,
+	public Domanda(Integer id, String book, int chapter, int question, String testo,
 				   String answerType,
 				   String rispostaEsatta, String spiegazione) {
 		this.id = id;
@@ -75,7 +75,7 @@ public class Domanda {
 		this.spiegazione = spiegazione;
 	}
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	

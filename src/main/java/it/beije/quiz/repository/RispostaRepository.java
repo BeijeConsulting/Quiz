@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RispostaRepository extends JpaRepository<Risposta, Long> {
-	
-	List<Risposta> findByIdDomanda(Long idDomanda);
-	
+public interface RispostaRepository extends JpaRepository<Risposta, Integer> {
+	List<Risposta> findByIdDomanda(Integer idDomanda);
 }

@@ -24,7 +24,7 @@ public class DomandaRestController {
 	private RisposteDateService risposteDateService;
 
 	@GetMapping("/getDomanda/{id}")
-	public Domanda getDomanda(@PathVariable Long id){
+	public Domanda getDomanda(@PathVariable Integer id){
 		return domandaService.getByID(id);
 	}
 
