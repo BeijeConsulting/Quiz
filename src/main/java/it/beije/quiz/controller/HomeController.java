@@ -23,15 +23,11 @@ public class HomeController {
 //			return "home";
 //		}
 //	}
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/newexam", method = RequestMethod.GET)
 	public String index() {
-		return "index";
+		return "newexam";
 	}
 	
-	@RequestMapping(value="/summary", method = RequestMethod.GET)
-	public void userSummary() {
-		//TODO return summary for all user exams with stats, meant to be called by ajax
-	}
 	
 //	@RequestMapping(value="/exam", method = RequestMethod.GET)
 //	public String createExam() {

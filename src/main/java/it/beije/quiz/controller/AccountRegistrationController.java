@@ -44,7 +44,7 @@ public class AccountRegistrationController {
 			session.setAttribute("surname", user.getSurname());
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("auth", true);
-			returnPath = "myaccount";
+			returnPath = "userhome";
 		} else {
 			model.addAttribute("error", "ERROR: Email already used");
 			returnPath = "accountregistration";

@@ -52,8 +52,8 @@
 		 document.getElementById('MAN').innerHTML+="<label> Capitolo "+i+"<input type="+"checkbox"+" value="+"oca_certification_guide_manning\domande_cap"+i+".xml"+" name="+"questions"+"></label><br>"		 
 	 }
  } 
-
-
+ 
+ 
  </script>
  
 </html>

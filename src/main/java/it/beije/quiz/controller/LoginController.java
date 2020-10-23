@@ -37,7 +37,7 @@ public class LoginController {
 			session.setAttribute("surname", user.getSurname());
 			session.setAttribute("userid", user.getId());
 			session.setAttribute("auth", true);
-			returnPath = "myaccount";
+			returnPath = "userhome";
 		} else {
 			model.addAttribute("error", "ERROR: Email or password incorrect");
 			returnPath = "login";

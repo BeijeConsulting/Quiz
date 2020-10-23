@@ -19,7 +19,7 @@ import it.beije.quiz.service.ResultService;
 
 
 @RestController
-public class QuestionsController {
+public class UserHomeRestController {
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -39,9 +39,12 @@ public class QuestionsController {
 	@GetMapping("/history")
 	public List<Result> getUserHistory(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		session.setAttribute("userId", new Integer(1));
-		List<Result> history = resultService.findByUserId((Integer)session.getAttribute("userId"));
-		return history;
+		if(session==null) return null;
+		else {
+			session.setAttribute("userId", new Integer(1));
+			List<Result> history = resultService.findByUserId((Integer)session.getAttribute("userId"));
+			return history;
+		}
 	}
 	
 }
