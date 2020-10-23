@@ -2,6 +2,8 @@ package it.beije.quiz.service;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -19,6 +21,13 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	
+	public boolean isThereUserSession (HttpServletRequest request) {
+		User utenteSession = (User)request.getSession().getAttribute("userBean");
+		return (utenteSession != null);
+	}
+	
 	
 	public User retrieve(Long id) {
 		log.debug("Retrieving user with ID " + id);
