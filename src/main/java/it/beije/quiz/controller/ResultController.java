@@ -40,6 +40,12 @@ public class ResultController {
 		resultService.save(new Result((Integer)session.getAttribute("userid"), start, finish, giuste,
 				(Integer)session.getAttribute("totDomande"), (String)session.getAttribute("nameQuiz")));
 		
+		session.removeAttribute("nameQuiz");
+		session.removeAttribute("start_time");
+		session.removeAttribute("finish_time");
+		session.removeAttribute("index");
+		session.removeAttribute("exam");
+		session.removeAttribute("totDomande");
 		return "result";
 	}
 	

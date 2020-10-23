@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.beije.quiz.entity.QNA;
+
 @RequestMapping(value="/exam")
 @RestController
 public class ExamApiController {
@@ -39,7 +40,7 @@ public class ExamApiController {
 			
 			List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 			int index = (Integer)session.getAttribute("index");
-			int tot = (Integer)session.getAttribute("tot");
+			int tot = (Integer)session.getAttribute("totDomande");
 			exam.set(index, question); //Aggiorna la risposta corrente nella lista di sessione
 			
 			if(index<tot) {
@@ -59,7 +60,7 @@ public class ExamApiController {
 			
 			List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 			int index = (Integer)session.getAttribute("index");
-			int tot = (Integer)session.getAttribute("tot");
+			int tot = (Integer)session.getAttribute("totDomande");
 			exam.set(index, question);
 			
 			if(index<0) return null; //ERRORE oppure non fa andare indietro
@@ -75,7 +76,7 @@ public class ExamApiController {
 		HttpSession session = request.getSession(false);
 		List<QNA> exam = (List<QNA>)session.getAttribute("exam");
 		int index = (Integer)session.getAttribute("index");
-		int tot = (Integer)session.getAttribute("tot");
+		int tot = (Integer)session.getAttribute("totDomande");
 		if(id<0 || id > tot) throw new IllegalArgumentException();
 		exam.set(index, question);
 		session.setAttribute("index", id);
@@ -110,18 +111,13 @@ public class ExamApiController {
 
 	private void setTimer(HttpSession session) {
 		LocalDateTime start = (LocalDateTime)session.getAttribute("start_time");
-		int totalTime = 2*((Integer)session.getAttribute("tot"));
+		int totalTime = 2*((Integer)session.getAttribute("totDomande"));
 		if(start==null) {
 			Duration d = Duration.ofMinutes(totalTime);
 			start = LocalDateTime.now();
 			session.setAttribute("start_time", start);
 			session.setAttribute("max_time", start.plus(d));
 		}
-	}
-	
-	@GetMapping(value="/testredirect")
-	public void testRedirect(HttpServletResponse response) throws IOException {
-		response.sendRedirect("/Quiz/login");
 	}
 	
 	private void stopTimer(HttpSession session) {
