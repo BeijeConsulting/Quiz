@@ -37,7 +37,7 @@
 				<div class="inner">
 					<header class="align-center">
 						<p id="timer"></p>
-						<h2>Domanda X</h2>
+						<h2>Domanda ${ domanda.question }</h2>
 					</header>
 				</div>
 			</section>
@@ -47,49 +47,32 @@
 				<div class="inner">
 					<!-- Preformatted Code -->
 					<h3>Domanda</h3>
-					<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam rem ipsum dolor sit amet nullam id egestas urna aliquam 
-						rem ipsum dolor sit amet nullam id egestas urna aliquam rem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-					<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-	print 'Iteration ' + i;
-	deck.shuffle();
-	i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';
-</code></pre>
+					<p></p>
+					<pre><code>${ domanda.testo }</code></pre>
 				<!-- Form -->
 				<h3>Risposte</h3>
 
-				<form method="post" action="#">
+				<form method="post" action="./domanda/${ domanda.question }">
 					<div class="row uniform">
-						<div class="12u$">
-							<input type="radio" id="priority-low" name="priority" checked>
-							<label for="priority-low">Low Priority</label>
+					<c:if test = "${domanda != null && domanda.type.equals(\"radio\")}">
+						<c:forEach var = "risposta" items="${ risposte }">
+							<div class="12u$">
+								<input type="radio" id="${ risposta.lettera }" name="${ risposta.lettera }" checked>
+								<label for="${ risposta.lettera }">${ risposta.lettera }) ${ risposta.risposta }</label>
+							</div>
+						</c:forEach>
+					</c:if>
+					<c:if test = "${domanda != null && domanda.type.equals(\"checkbox\")}">
+						<c:forEach var = "risposta" items="${ risposte }">
+							<div class="12u$">
+								<input type="checkbox" id="${ risposta.lettera }" name="${ risposta.lettera }">
+								<label for="${ risposta.lettera }">${ risposta.lettera }) ${ risposta.risposta }</label>
 						</div>
-						<div class="12u$">
-							<input type="radio" id="priority-normal" name="priority">
-							<label for="priority-normal">Normal Priority</label>
-						</div>
-						<div class="12u$">
-							<input type="radio" id="priority-high" name="priority">
-							<label for="priority-high">High Priority</label>
-						</div>
-						<!-- Break -->
-						<div class="12u$">
-							<input type="checkbox" id="copy" name="copy">
-							<label for="copy">Email me a copy of this message</label>
-						</div>
-						<div class="12u$">
-							<input type="checkbox" id="human" name="human" checked>
-							<label for="human">I am a human and not a robot</label>
-						</div>
-						<!-- Break -->
+						</c:forEach>
+					</c:if>
 						<div class="12u$">
 							<ul class="actions">
 								<li><input type="submit" value="Next" /></li>
-								<li><input type="reset" value="Reset" class="alt" /></li>
 							</ul>
 						</div>
 					</div>
