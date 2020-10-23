@@ -31,7 +31,6 @@ function setQuestionBody(index) {
 	let questionBody = document.getElementById("question_body");
 	let question = questions[index];
 	
-	console.log(question.testo);
 	let testo = textToHtml(JSON.stringify(question.testo));
 	testo = testo.substring(1, testo.length - 1);
 	
@@ -54,6 +53,8 @@ async function setAnswersBody(index) {
 	}
 }
 
+
+
 function buildAnswer(question, answer) {
 	let answerBlock = document.createElement("div");
 	let input = document.createElement("input");
@@ -71,7 +72,7 @@ function buildAnswer(question, answer) {
 	}
 	let label = document.createElement("label");
 	label.htmlFor = input.id;
-	let formattedText = textToHtml(JSON.stringify(answer.text));
+	let formattedText =answer.letter + "&nbsp;" textToHtml(JSON.stringify(answer.text));
 	formattedText = formattedText.substring(1, formattedText.length - 1);
 	console.log(formattedText);
 	label.innerHTML = formattedText;
@@ -107,6 +108,18 @@ function updateAnswered(input) {
 	updateRispostaData(quiz, indexQuestions);
 	console.log(answered[indexQuestions]);
 }
+
+/*
+function setExplanation(index) {
+	let explanationBody = document.getElementById("explanation_body");
+	let question = questions[index];
+	
+	let explanation = textToHtml(JSON.stringify(question.explanation));
+	explanation = explanation.substring(1, testo.length - 1);
+	
+	explanationBody.innerHTML = explanation;
+}
+*/
 
 async function updateRispostaData(idQuiz, indexDomanda) {
 	let path = getContextPath();
