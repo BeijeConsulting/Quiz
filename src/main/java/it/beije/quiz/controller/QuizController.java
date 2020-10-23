@@ -38,12 +38,6 @@ public class QuizController {
 	 * Controller pagina iniziale. Carica il file xml e mostra le domande disponibili
 	 * @return la pagina di index
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String init(HttpSession session) {
-		if (session.getAttribute("userBean") == null) return "signIn";
-		System.out.println("Richiesta GET per /.");
-		return "index";
-	}
 
 //	@RequestMapping(value = "/load", method = RequestMethod.POST)
 //	public String init(Model model,
@@ -104,65 +98,10 @@ public class QuizController {
 //		model.addAttribute("body", risultati);
 //		return "risultati";
 //	}
-	
-	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
-	public String signIn() {
-		log.info("signIn get...");
-
-		return "signIn";
-	}
-	
-	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
-	public String signIn(HttpServletRequest request, HttpServletResponse response, Model model) {
-		log.info("signUn post...");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-			
-		User user = userService.retrieve(email, password);	
-		log.debug("user:" +user);
-		
-		if(user != null) {
-			request.getSession().setAttribute("userBean", user);
-			return "index";
-		}else {
-			System.out.println("non c'è. utente: "+ user);
-			model.addAttribute("errore", "CREDENZIALI ERRATE");
-			return "signIn";
-		}
-	}
-	
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String signUp() {
-		log.info("signUn get...");
-		
-		return "signUp";
-	}
-	
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String signUp(User newUser, HttpServletRequest request, HttpServletResponse response, Model model) {
-		log.info("signIn post...");
-
-		userService.insert(newUser);
-		log.debug("user:" +newUser);
-
-		if(newUser != null) {
-			request.getSession().setAttribute("userBean", newUser);
-			return "index";
-		}else {
-			System.out.println("non c'è. utente: "+newUser);
-			model.addAttribute("errore", "CREDENZIALI ERRATE");
-			return "signUp";
-		}
-	}
 
 	/**
 	 * Converte tutti gli XML e li inserisce nel database
 	 */
-	@RequestMapping(value = "/converter", method = RequestMethod.GET)
-	public String converter() {
-		converter.convertAll();
-		return "index";
-	}
 	
 	@RequestMapping(value = "/testdomanda", method = RequestMethod.GET)
 	public String testdomanda() {

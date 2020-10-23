@@ -11,7 +11,8 @@
 <script src="<c:url value="/resources/js/domandaAjax.js" />"></script>
 <title>Test Java</title>
 </head>
-<body onload="onPageLoad()">
+<body onload="onPageLoad(13)">
+<!-- <body onload="onPageLoad(${request.getSession().getAttribute('idQuiz')})"> -->
 
 <!-- <div>Time</div>
 <div>Test - Nome</div>

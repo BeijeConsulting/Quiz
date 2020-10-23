@@ -37,7 +37,7 @@ public class LoginController {
 
 		if(user != null) {
 			request.getSession().setAttribute("userBean", user);
-			return "index";
+			return "iniziaQuiz";
 		}else {
 			log.error("No user");
 			model.addAttribute("errore", "CREDENZIALI ERRATE");
@@ -61,7 +61,7 @@ public class LoginController {
 
 		if(newUser != null) {
 			request.getSession().setAttribute("userBean", newUser);
-			return "index";
+			return "iniziaQuiz";
 		}else {
 			log.error("No user");
 			model.addAttribute("errore", "CREDENZIALI ERRATE");
