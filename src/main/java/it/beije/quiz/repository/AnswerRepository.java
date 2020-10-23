@@ -12,4 +12,6 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer>{
 
 	List<Answer> findByTest(Integer test_id);
 
+	List<Answer> findByTestAndCorrect(int test, boolean b);
+
 }

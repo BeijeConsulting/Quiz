@@ -48,7 +48,7 @@ var timer = setInterval(myTimer, 1000);
 
 </script>
 
-DOMANDA ${ index + 1 } di ${ totDomande }<br>
+DOMANDA ${ index + 1 } di ${ questionSize }<br>
 <br>
 ${questionText}
 
@@ -59,14 +59,18 @@ ${questionText}
     <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answer.getFirst() }' value = "${ answer.getFirst() }"
     ${ userAnswer.contains(answer.getFirst()) ? "checked" : "" } > ${answer.getFirst()}. ${answer.getLast()} <br>
   </c:forEach>
-  <br><input type="submit" value="Invio">
+ <c:if test="${index > 0 }"><button type="button" onclick="prec()">&lt;&lt;Prec.</button></c:if>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <c:if test="${index < questionSize -1 }"><button type="submit">Succ.&gt;&gt;</button></c:if>
+  <c:if test="${index == questionSize -1 }"><button type="submit">SUBMIT</button></c:if>
 </form>
-<br>
-<br>
 
-<c:if test="${index > 0 }"><a href="/quiz/question/${ index - 1 }">&lt;&lt;Prec.</a></c:if>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<%--era da modificare tot in totDomande per visualizzare il link, svista negli attributi del model --%>
-<c:if test="${index < totDomande-1 }"><a href="/quiz/domanda/${ index + 1 }">Succ.&gt;&gt;</a></c:if>
+<br>
+<br>
+<script>
+function prec(){
+	window.location.href = "http://localhost:8080/quiz/question/${index-1}";
+}
+</script>
 </body>
 </html>
