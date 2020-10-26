@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-	<title>QUIZ</title>
+<meta charset="ISO-8859-1">
+<title>HTTP 403 FORBIDDEN</title>
 </head>
 <body>
-	${ body }
+	<h1>HTTP 403 FORBIDDEN</h1>
 </body>
 </html>

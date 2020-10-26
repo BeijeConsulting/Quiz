@@ -1,112 +1,114 @@
 package it.beije.quiz;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import it.beije.quiz.jpa.JPAUtils;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.Risposta;
+//import it.beije.quiz.model.Risposta;
+//import it.beije.quiz.repository.DomandaRepository;
+import it.beije.quiz.service.DomandaService;
 
 public class Utils {
+	@Autowired
+	private DomandaService domandaService;
 	
-	
-	
+	/*
+	 * Metodo che crea la lista (ordinata) degli elementi XML di un file XML generico
+	 */
 	public static List<Element> getChildElements(Element element) {
 		List<Element> childElements = new ArrayList<Element>();
-		
+		System.out.println("element: " + element);
 		NodeList nodeList = element.getChildNodes();
+		System.out.println("nodeList: " + nodeList);
         Node node = null;
         for (int i = 0; i < nodeList.getLength(); i++) {
         	node = nodeList.item(i);
+        	System.out.println("node: " + node);
         	if (node.getNodeType() == Node.ELEMENT_NODE) {
         		childElements.add((Element)node);
         	}
         }
-		
 		return childElements;
 	}
 
-	/* 
-	 * Lettura del file domande in formato XML
-	 * In output una lista oggetti "Domanda" formati dai seguenti parametri:
-	 * - id
-	 * - book
-	 * - chapter
-	 * - question
-	 * - testo
-	 * - answerType
-	 * - risposte
-	 * - rispostaEsatta
-	 * - spiegazione
-	 */
-	
-	public static List<Domanda> readFileDomande(String pathFile) {
-		List<Domanda> arrayDomande = new ArrayList<Domanda>();
-		
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	        DocumentBuilder builder = factory.newDocumentBuilder();
-
-	        // Load the input XML document, parse it and return an instance of the
-	        // Document class.
-	        Document document = builder.parse(new File(pathFile));
-	        Element element = document.getDocumentElement();	        
-//	        System.out.println(element.getTagName());
-	        List<Element> domande = Utils.getChildElements(element);
-//	        System.out.println(domande);
-	        	        
-	        List<Element> contenutoDomanda = null;
-	        List<Element> elementiRisposta = null;
-	        Element rispostePossibili = null;
-	        for (Element domanda : domande) {
-	        	contenutoDomanda = Utils.getChildElements(domanda);
-		        int id = Integer.parseInt(domanda.getAttribute("id"));
-		        String book = domanda.getAttribute("book");
-		        int chapter = Integer.parseInt(domanda.getAttribute("chapter"));
-		        int question = Integer.parseInt(domanda.getAttribute("question"));
-		        String testo = contenutoDomanda.get(0).getTextContent();
-		        
-		        //caricare le risposte possibili
-		        rispostePossibili = contenutoDomanda.get(1);
-		        String answerType = rispostePossibili.getAttribute("type");
-		        elementiRisposta = Utils.getChildElements(rispostePossibili);
-		        List<Risposta> risposte = new ArrayList<Risposta>();
-		        for (Element risposta : elementiRisposta) {
-		        	Risposta r = new Risposta();
-		        	r.setValue(risposta.getAttribute("value"));
-		        	r.setText(risposta.getTextContent());
-		        	
-		        	risposte.add(r);
-		        }
-		        
-		        String rispostaEsatta = contenutoDomanda.get(2).getTextContent();
-		        String spiegazione = contenutoDomanda.get(3).getTextContent();
-		        
-	        	Domanda d = new Domanda(id, book, chapter, question, testo, answerType, risposte, rispostaEsatta, spiegazione);
-	        	arrayDomande.add(d);
-	        	
-//	        	System.out.println(d);
-	        }	        		
-	        
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return arrayDomande;
-	}
 	
 	/*
-	 * Il testo della domanda viene formattato 
+	 * Metodo per leggere le domande da un file XML, prima carica il file, ne trova tutti gli elementi
+	 * e trova il testo delle varie domande pi� le possibili risposte di quella domanda, trovandone
+	 * anche i vari capitoli, n� domanda, risposta/e esatta/e...
+	 * Alla fine della lista risultante vengono aggiunti i vari entity domande cos� caricati.
 	 */
+	//PARSE DOMANDA E RISPOSTA DA XML A DATABASE 
+		public void xmlToDatabase(String pathFile) throws ParserConfigurationException, SAXException, IOException {
+			List<Domanda> domande = new ArrayList<Domanda>();
+			List<Risposta> answers = new ArrayList<Risposta>();
+			File inputFile = new File(pathFile);
+	        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
+	        Document document = documentBuilder.parse(inputFile);
+	        document.getDocumentElement().normalize();
+	        NodeList nodeList = document.getElementsByTagName("domanda");
+	        for (int i = 0; i < nodeList.getLength(); i++) {
+	        	Node node = nodeList.item(i);
+	        	if (node.getNodeType() == node.ELEMENT_NODE) {
+	        		Element element = (Element) node;
+	        		Long idDomanda = Long.parseLong(element.getAttribute("id"));
+	        		String book = element.getAttribute("book");
+	        		Integer chapter = Integer.parseInt(element.getAttribute("chapter"));
+	        		Integer question = Integer.parseInt(element.getAttribute("question"));
+	        		String testo = element.getElementsByTagName("testo").item(0).getTextContent();
+	        		String spiegazione = element.getElementsByTagName("spiegazione").item(0).getTextContent();
+	        		String type = "";
+	        		String risposteEsatte = element.getElementsByTagName("risposteEsatte").item(0).getTextContent();
+	        		NodeList nodeList2 = element.getElementsByTagName("risposte");
+	        		Node node2 = nodeList2.item(0);
+	        		if (node2.getNodeType() == node2.ELEMENT_NODE) {
+	        			Element element2 = (Element) node2;
+	        			type = element2.getAttribute("type");
+	        			NodeList nodeList3 = element.getElementsByTagName("risposta");
+	        			for (int j = 0; j < nodeList3.getLength(); j++) {
+	        				Node node3 = nodeList3.item(j);
+	        				String risposta = node3.getTextContent();
+	        				if (node3.getNodeType() == node3.ELEMENT_NODE) {
+	        					Element element3 = (Element) node3;
+	        					String lettera = element3.getAttribute("value");
+	        					boolean corretto = false;
+	        					if (risposteEsatte.contains(lettera)) {
+	        						corretto = true;
+	        					}
+	        					JPAUtils.insertRisposta(idDomanda, lettera, risposta, corretto, book, chapter);
+	        				}
+	        			}
+	        		}
+	        		JPAUtils.insertDomanda(book, chapter, question, testo, type, spiegazione);
+	        	}
+	        }
+		}
+
+
+
+
+
+
 	
+	/*
+	 * Formattazione testo: fa in modo che i vari "a capo" e le tab vengano rispettate anche in una pagina HTML
+	 */
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
 			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -116,11 +118,11 @@ public class Utils {
 	}
 	
 	/*
-	 * Vengono comparati le stringhe di risposta esatta e di risposta date
-	 * 
+	 * Vengono date le risposte date dagli utenti e la risposta esatta.
+	 * Il risultato � se l'utente ha dato la risposta corretta.
 	 */
-	
 	public static boolean controllaRisposta(String rispostaEsatta, String risposta) {
+		rispostaEsatta = rispostaEsatta.replace(" ", "").replace(",", ""); // Bug fixato
 		for (int i = 0; i < risposta.length(); i++) {
 			char c = risposta.charAt(i);
 			if (c == ' ' || c == ',') continue;

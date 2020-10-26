@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Quiz | Login</title>
+		<title>Quiz | Registrazione</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="<c:url value="assets/css/main.css" />" />
@@ -35,7 +35,7 @@
 				<div class="inner">
 					<header class="align-center">
                         <p>Java quiz</p>
-						<h2>Login</h2>
+						<h2>Registrazione</h2>
 					</header>
 				</div>
 			</section>
@@ -48,8 +48,16 @@
                             
                             <!-- Form -->
 
-								<form action="./login" method="post" id="form_login">
+								<form action="./register" method="post" id="form_login">
 									<div class="row uniform">
+										<div class="12u$">
+											<input type="text" name="nome" id="nome" value="" placeholder="Nome" required/>
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="12u$">
+											<input type="text" name="cognome" id="cognome" value="" placeholder="Cognome" required/>
+                                        </div>
+                                        <!-- Break -->
 										<div class="12u$">
 											<input type="email" name="email" id="email" value="" placeholder="Email" required/>
                                         </div>
@@ -60,13 +68,13 @@
 										<!-- Break -->
 										<div class="12u$">
 											<ul class="actions">
-												<li><input type="submit" value="Login" /></li>
-												<li>Nuovo utente? <a href="./register">Registrati!</a></li>
+												<li><input type="submit" value="Registrati" /></li>
+												<li>Già registrato? <a href="./login">Log in!</a></li>
 											</ul>
 										</div>
-										<c:if test = "${errorLogin != null && errorLogin.length() > 0}">
+										<c:if test = "${errorRegister != null && errorRegister.length() > 0}">
 								 			<div class="12u$">
-								 				${ errorLogin }
+								 				${ errorRegister }
 											</div>
 										</c:if>
 									</div>

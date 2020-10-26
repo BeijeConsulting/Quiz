@@ -1,110 +1,165 @@
-//package it.beije.quiz.controller;
-//
-//import java.io.IOException;
-//import java.time.Duration;
-//import java.time.LocalTime;
-//import java.util.ArrayList;
-//import java.util.Enumeration;
-//import java.util.List;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.context.annotation.SessionScope;
-//
-//import it.beije.quiz.Utils;
-//import it.beije.quiz.model.Domanda;
-//import it.beije.quiz.model.Risposta;
-//
-//
-//@Controller
-//@SessionScope
-//public class QuizController {
-//	
-//	private List<Domanda> domande;
-//	private int tot;
-//	private LocalTime time = null;
-//
-//
-//	/**
-//	 * Simply selects the home view to render by returning its name.
-//	 */
-////	@RequestMapping(value = "/home", method = RequestMethod.GET)
-////	public String home(Locale locale, Model model) {
-////		System.out.println("Home Page Requested, locale = " + locale);
-////		Date date = new Date();
-////		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-////
-////		String formattedDate = dateFormat.format(date);
-////
-////		model.addAttribute("serverTime", formattedDate);
-////
-////		return "home";
-////	}
-//
-////	@RequestMapping(value = "/user", method = RequestMethod.POST)
-////	public String user(@Validated User user, Model model) {
-////		System.out.println("User Page Requested");
-////		model.addAttribute("userName", user.getUserName());
-////		return "user";
-////	}
-//	
-//	
-//	/*
-//	 * Alla richiesta "/" avviene la lettura del file di domande XML 
-//	 * e viene anche caricato il numero di domande totali.
-//	 */
-//	
+package it.beije.quiz.controller;
+
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Risposta;
+import it.beije.quiz.service.DomandaService;
+import it.beije.quiz.service.RispostaService;
+
+
+@Controller
+public class QuizController {
+	
+	@Autowired
+	private DomandaService domandaService;
+	
+	@Autowired
+	private RispostaService rispostaService;
+	
+	public static List<Domanda> domande;
+	private static int tot;
+	private static LocalTime time = null;
+	
+
+	@RequestMapping(value = "/storico", method = RequestMethod.GET)
+	public static String storico(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {			
+			return "storico";
+		} else {
+			return "forbidden";
+		}
+	}
+	
+	@RequestMapping(value = "/libro", method = RequestMethod.POST)
+	public String libro(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {			
+			String libro = request.getParameter("libro");
+			List<String> capitoli = domandaService.getBooksChapters(libro);
+			model.addAttribute("capitoli", capitoli);
+			model.addAttribute("libro", libro);
+			return "libro";
+		} else {
+			return "forbidden";
+		}
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			List<String> libri = domandaService.getBooksNames();
+			model.addAttribute("libri", libri);
+			return "index";
+		} else {
+			return "forbidden";
+		}
+	}
+	
+	@RequestMapping(value = "/domanda", method = RequestMethod.GET)
+	public String domanda(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			String libro = request.getParameter("libro");
+			List<String> capitoli = Arrays.asList(request.getParameterValues("capitolo"));
+			domande = domandaService.findByBookAndChapters(libro, capitoli);
+			session.setAttribute("capitoli", capitoli);
+			session.setAttribute("libro", libro);
+			//model.addAttribute("risposte", domande.get(0));
+			model.addAttribute("domanda", domande.get(0));
+			Domanda primaDomanda = domande.get(0);
+			int counter = 0;
+			session.setAttribute("counter", counter);
+			setTimer(model);
+			List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(primaDomanda.getBook(), primaDomanda.getChapter(), primaDomanda.getQuestion());
+			model.addAttribute("risposte", risposte);
+			return "domanda";
+		} else {
+			return "forbidden";
+		}
+	}
+	
+	@RequestMapping(value = "/domanda/{id}", method = RequestMethod.POST)
+	public String domandaNumero(@PathVariable Integer id, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {	
+			if(id+1 < domande.size()) {
+				Domanda domandaAttuale = domande.get(id+1);
+				List<Risposta> risposte = rispostaService.findByBookAndChapterAndQuestion(domandaAttuale.getBook(), domandaAttuale.getChapter(), domandaAttuale.getQuestion());
+				model.addAttribute("risposte", risposte);
+				model.addAttribute("capitoli", domandaAttuale.getChapter());
+				model.addAttribute("libro", domandaAttuale.getBook());
+				model.addAttribute("domanda", domandaAttuale);
+				session.setAttribute("counter", id+1);
+			
+				return "domanda";
+			}
+			else {
+				return "risultati";
+			}
+		} else {
+			return "forbidden";
+		}
+	}
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String init(Model model) {
-//		
-//		if (domande == null) {
-//			domande = Utils.readFileDomande("C:\\temp\\domande.xml");
-//			tot = domande.size();
+//	public static String init(HttpServletRequest request, Model model) {
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
+//			
+//			if (domande == null) {
+//				domande = Utils.readFileDomande("C:\\temp\\domande\\oca_certification_guide_manning\\domande_cap1.xml");
+//				tot = domande.size();
+//			}
+//			
+//			model.addAttribute("totDomande", tot);
+//			
+//			return "index";
+//		} else {
+//			return "forbidden";
 //		}
-//		
-//		model.addAttribute("totDomande", tot);
-//		
-//		return "index";
 //	}
-//	
-//	/*
-//	 * Viene settato un timer inziale che indica il tempo disponibile
-//	 * per eseguire il test.
-//	 * Richiamato dalla request mapping "/domanda/{index}"
-//	 */
-//	
-//	private void setTimer(Model model) {
-//		if (time == null) {
-//			time = LocalTime.now();
-//		}
-//		LocalTime now = LocalTime.now();
-//		Duration diff = Duration.between(time, now);
-//		int tot = domande.size();
-//		int secondi = 2 * 60 * tot;
-//		long hours = (secondi - diff.getSeconds())/3600;
-//		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
-//		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
-//		
-//		model.addAttribute("totDomande", tot);
-//		model.addAttribute("ore", hours);
-//		model.addAttribute("minuti", minutes);
-//		model.addAttribute("secondi", seconds);
-//	}
-//	
-//	/*
-//	 * Dalla lista di domande viene caricata la domanda
-//	 * e la risposta associata.
-//	 * Inoltre tutti gli attributi della classe domanda
-//	 * vengono caricati nel model.
-//	 */
-//	
+	
+	public static void setTimer(Model model) {
+		if (time == null) {
+			time = LocalTime.now();
+		}
+		LocalTime now = LocalTime.now();
+		Duration diff = Duration.between(time, now);
+		int tot;
+		if(domande != null) {
+			tot = domande.size();
+		}
+		else {
+			tot = 0;
+		}
+		System.out.println("###################-> " + tot);
+		int secondi = 2 * 60 * tot;
+		long hours = (secondi - diff.getSeconds())/3600;
+		long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
+		long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
+		
+		model.addAttribute("totDomande", tot);
+		model.addAttribute("ore", hours);
+		model.addAttribute("minuti", minutes);
+		model.addAttribute("secondi", seconds);
+	}
+	
 //	private String caricaDomanda(Model model, int index) {
 //		if (index < tot) {
 //			Domanda d = domande.get(index);
@@ -125,78 +180,77 @@
 //			return "riepilogo";
 //		}
 //	}
-//	
-//	/*
-//	 * Viene caricata la domanda con il corrispettivo indice
-//	 * 
-//	 */
-//	
+	
 //	@RequestMapping(value = "/domanda/{index}", method = RequestMethod.GET)
-//	public String domanda(Model model, @PathVariable("index") int index) {
+//	public String domanda(HttpServletRequest request, Model model, @PathVariable("index") int index) {
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
 //		
-//		setTimer(model);
-//		
-//		return caricaDomanda(model, index);
+//			setTimer(model);
+//			
+//			return caricaDomanda(model, index);
+//		}
+//		else {
+//			return "forbidden";
+//		}
 //	}
-//	
-//	/*
-//	 * Una volta scelta la risposta essa viene memorizzata 
-//	 * 
-//	 */
-//	
+	
 //	@RequestMapping(value = "/domanda", method = RequestMethod.POST)
 //	public String risposta(Model model, HttpServletRequest request,
 //			@RequestParam("index") int index) {
-//
-//		Enumeration<String> enums = request.getParameterNames();
-//		StringBuilder builder = new StringBuilder();
-//		while (enums.hasMoreElements()) {
-//			String name = enums.nextElement();
-//			//System.out.println(name + " : " + request.getParameter(name));
-//			if (name.startsWith("rspt_")) {
-//				builder.append(request.getParameter(name));
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
+//		
+//			Enumeration<String> enums = request.getParameterNames();
+//			StringBuilder builder = new StringBuilder();
+//			while (enums.hasMoreElements()) {
+//				String name = enums.nextElement();
+//				//System.out.println(name + " : " + request.getParameter(name));
+//				if (name.startsWith("rspt_")) {
+//					builder.append(request.getParameter(name));
+//				}
 //			}
+//			domande.get(index).setRispostaUtente(builder.toString());
+//			
+//			setTimer(model);
+//			
+//			return caricaDomanda(model, ++index);
 //		}
-//		domande.get(index).setRispostaUtente(builder.toString());
-//		
-//		setTimer(model);
-//		
-//		return caricaDomanda(model, ++index);
+//		else {
+//			return "forbidden";
+//		}
 //	}
-//	
-//	/*
-//	 * Viene fatto un controllo delle risposte se esse sono corrette,
-//	 * questo viene fatto alla fine del test 
-//	 * Del riferimento all'oggetto domanda viene comparato:
-//	 * "getRispostaEsatta()" e "getRispostaUtente()" con il metodo controlla risposta
-//	 */
-//
+
 //	@RequestMapping(value = "/risultati", method = RequestMethod.GET)
-//	public String risultati(Model model) {
-//		//ELABORAZIONE RISPOSTE
-//		StringBuilder builder = new StringBuilder();
-//		for (Domanda d : domande) {
-//			boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
-//			
-//			builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
-//			if (corretta) {
-//				builder.append("ESATTO!!! :)<br>");
-//			} else {
-//				builder.append("La risposta esatta era " +  d.getRispostaEsatta() + " :(<br>");
+//	public String risultati(HttpServletRequest request, Model model) {
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute("auth") != null && (boolean)session.getAttribute("auth")) {
+//			//ELABORAZIONE RISPOSTE
+//			StringBuilder builder = new StringBuilder();
+//			for (Domanda d : domande) {
+//				boolean corretta = Utils.controllaRisposta(d.getRispostaEsatta(), d.getRispostaUtente());
+//				
+//				builder.append("DOMANDA " + d.getId() + " : la tua risposta : " + d.getRispostaUtente() + "<br><br>");
+//				if (corretta) {
+//					builder.append("ESATTO!!! :)<br>");
+//				} else {
+//					builder.append("La risposta esatta era " +  d.getRispostaEsatta() + " :(<br>");
+//				}
+//				
+//				builder.append("<br><br>");
 //			}
 //			
-//			builder.append("<br><br>");
+//			model.addAttribute("body", builder.toString());
+//			
+//			return "risultati";
 //		}
-//		
-//		model.addAttribute("body", builder.toString());
-//		
-//		return "risultati";
+//		else {
+//			return "forbidden";
+//		}
 //	}
-//	
-//	
-//	
-//	/////// REST
-//	
+	
+	/////// REST
+	
 //	@RequestMapping(value = "/api/domanda", method = RequestMethod.GET)
 //	public void testrest(Model model, HttpServletResponse response) throws IOException {
 //		System.out.println("entra??");
@@ -210,5 +264,5 @@
 //		response.setContentType("application/json");
 //		response.getWriter().append(domanda.toJson());
 //	}
-//
-//}
+
+}
