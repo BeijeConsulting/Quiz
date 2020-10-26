@@ -39,7 +39,7 @@
 					<h4>Test name:</h4><br>
 					<input class="input-box" type="text" name="nomeQuiz" id="nomeQuiz" required><br>
 					<h4>Choose how many questions you wanna do:</h4><br>
-					<input class="input-box" type="text" name="numberQuestions" id="numberQuestions"><br>
+					<input class="input-box" type="text" name="numberQuestions" id="numberQuestions" required><br>
                     <input class="submit-button" type="submit" value="START" />
     
                 </form>
