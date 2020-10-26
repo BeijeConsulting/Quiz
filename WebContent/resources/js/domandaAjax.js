@@ -65,7 +65,7 @@ async function setAnswersBody(index) {
 function buildAnswer(question, answer) {
 	let answerBlock = document.createElement("div");
 	let input = document.createElement("input");
-	input.type = question.answerType;
+	input.type = question.answer_type;
 	if (input.type === "checkbox") {
 		input.name = "answer_" + answer.letter;
 	} else if (input.type === "radio"){
@@ -239,7 +239,7 @@ function onSubmitForm() {
 
 
 let prepareTimer = async function (quizID) {
-	let sec = fetch("rest/quiz/getTimer/" + quizID)
+	fetch("rest/quiz/getTimer/" + quizID)
 		.then(r => r.text())
 		.then(s => {
 			return Number.parseInt(s);
@@ -247,7 +247,7 @@ let prepareTimer = async function (quizID) {
 		.then(sec => {
 			console.log("Seconds: " + sec);
 			startTimer(sec);
-		})
+		});
 };
 
 function startTimer(duration) {

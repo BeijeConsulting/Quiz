@@ -18,7 +18,7 @@ import java.util.Random;
 @Service
 public class QuizGeneratorService {
     @Autowired
-    private QuizServiceNew quizServiceNew;
+    private QuizService quizService;
     @Autowired
     private DomandaRepository domandaRepository;
     @Autowired
@@ -34,7 +34,7 @@ public class QuizGeneratorService {
                 ? request.getParameter("nomeQuiz")
                 : Integer.toString(new Random().nextInt()));
         quiz.setIdUtente((Integer) session.getAttribute("userID"));
-        Integer idQuiz = quizServiceNew.saveQuiz(quiz);
+        Integer idQuiz = quizService.saveQuiz(quiz);
         session.setAttribute("idQuiz", idQuiz);
 
         // Creo le domande per il quiz

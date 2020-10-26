@@ -1,5 +1,8 @@
 package it.beije.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,15 +30,18 @@ public class Domanda {
 	private String testo;
 
 	@Column(name="answer_type")
+	@JsonProperty("answer_type")
 	private String answerType;
 
 	@Column(name="book_id")
+	@JsonProperty("book_id")
 	private Integer bookId;
 
 	@Transient
 	private String rispostaUtente = "";
 
 	@Column(name="risposta_esatta")
+	@JsonProperty("risposta_esatta")
 	private String rispostaEsatta;
 	@Column
 	private String spiegazione;

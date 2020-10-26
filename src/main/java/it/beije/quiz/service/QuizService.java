@@ -1,37 +1,33 @@
 package it.beije.quiz.service;
 
+import it.beije.quiz.model.Quiz;
+import it.beije.quiz.repository.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.time.Duration;
-import java.time.LocalTime;
+import java.util.NoSuchElementException;
 
-// Creato layer Service per togliere la logica dal Controller
 @Service
 public class QuizService {
-    private int totaleDomande;
-    private LocalTime time = null;
+    @Autowired
+    private QuizRepository quizRepository;
 
-    // TODO questo metodo ora come ora è rotto. Serve? Si può fare tutto con Rest ;)
-    /**
-     * Metodo per aggiornare il timer
-     */
-    public void setTimer(Model model) {
-        System.out.println("Enter setTimer method.");
-        if (time == null) {
-            time = LocalTime.now();
-        }
-        LocalTime now = LocalTime.now();
-        Duration diff = Duration.between(time, now);
-        int secondi = 2 * 60 * totaleDomande;
-        long hours = (secondi - diff.getSeconds())/3600;
-        long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
-        long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
+    public Integer saveQuiz(Quiz q){
+        return quizRepository.saveAndFlush(q).getId();
+    }
 
-        model.addAttribute("totDomande", totaleDomande);
-        model.addAttribute("ore", hours);
-        model.addAttribute("minuti", minutes);
-        model.addAttribute("secondi", seconds);
-        System.out.println("Exit setTimer method.");
+    public void overwriteQuiz(Quiz newQuiz, Integer idOldQuiz){
+        Quiz oldQuiz = quizRepository.findById(idOldQuiz).orElse(null);
+        if (oldQuiz == null) throw new NoSuchElementException("No quiz with such ID");
+        newQuiz.setId(idOldQuiz);
+        quizRepository.saveAndFlush(newQuiz);
+    }
+
+    public Integer getCorrectQuizByUser(Integer userId){
+        return quizRepository.countQuizByIdUtenteAndPassedTrue(userId);
+    }
+
+    public Integer getAllQuizByUser(Integer userId){
+        return quizRepository.countQuizByIdUtente(userId);
     }
 }

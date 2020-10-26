@@ -22,13 +22,11 @@ public class RisposteDateService {
     
     
 	public List<RisposteDate> risposteUtenteTutte(Integer id_utente) {
-		List<RisposteDate> risposte = risposteDateRepository.findByIdUtente(id_utente);
-		return risposte;
+		return risposteDateRepository.findByIdUtente(id_utente);
 	}
 	
 	public List<RisposteDate> risposteEsame(Integer id_esame) {
-		List<RisposteDate> risposte = risposteDateRepository.findByIdEsame(id_esame);
-		return risposte;
+		return risposteDateRepository.findByIdEsame(id_esame);
 	}
 	
 	public RisposteDate rispostaDomanda(Integer id_domanda) {
@@ -63,7 +61,7 @@ public class RisposteDateService {
 		if(rispostaData.get() == null) {
 			return null;
 		}
-		
+
 		rispostaData.get().setRisposta(risposte);
 		return risposteDateRepository.saveAndFlush(rispostaData.get());
 	}

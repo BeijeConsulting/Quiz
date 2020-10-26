@@ -6,24 +6,20 @@ let answered = [];
 // Get the answers to a given question id
 async function getAnswers(idQuestion) {
 	let path = getContextPath();
-	let answers = await fetch(path + "/rest/risposte/domanda/" + idQuestion)
+	return await fetch(path + "/rest/risposte/domanda/" + idQuestion)
 		.then(response => response.json());
-
-	return answers;
 }
 
 // Get the questions to a given quiz id
 async function getQuestions(idQuiz) {
 	let path = getContextPath();
-	let questions = await fetch(path + "/rest/domande/quiz/" + idQuiz)
+	return await fetch(path + "/rest/domande/quiz/" + idQuiz)
 		.then(response => response.json());
-		
-	return questions;
 }
 
 function setQuestionNumber() {
 	let number = document.getElementById("question_number");
-	number.innerHTML = indexQuestions + 1;
+	number.innerHTML = String(indexQuestions + 1);
 }
 
 // Shows the question
@@ -100,10 +96,9 @@ function nextQuestion() {
 		setAnswersBody(indexQuestions);
 		setButtonsVisibility();
 		setQuestionNumber();
-		
-			setCorrectAnswer(indexQuestions);
-	setGivenAnswer(quiz, indexQuestions);
-	setExplanation(indexQuestions);
+		setCorrectAnswer(indexQuestions);
+		setGivenAnswer(quiz, indexQuestions);
+		setExplanation(indexQuestions);
 	}
 }
 
@@ -155,6 +150,7 @@ function getContextPath() {
 async function onPageLoad(idQuiz) {
 	quiz = idQuiz;
 	questions = await getQuestions(idQuiz);
+	console.log("Questions: " + questions)
 	setQuestionBody(indexQuestions);
 	setAnswersBody(indexQuestions);
 
@@ -170,6 +166,7 @@ async function onPageLoad(idQuiz) {
 
 //----------------
 async function getGivenAnswer(idQuiz,indexDomanda) {
+	let path = getContextPath();
 	let rispostaData = await fetch(path + "/rest/risposta_data/" + idQuiz +"/" + questions[indexDomanda].id).then(response => response.json());
 	return rispostaData;
 }
@@ -181,21 +178,21 @@ async function setGivenAnswer(idQuiz, indexDomanda) {
 	let testo = textToHtml(JSON.stringify(rispostaData.risposta));
 	testo = testo.substring(1, testo.length - 1);
 	
-	given.innerHTML = testo;
+	given.innerHTML = "Risposta data: " + testo;
 }
 
 function setExplanation(index) {
 	let explanationBody = document.getElementById("explanation_body");
 	let question = questions[index];
 	
-	let explanation = textToHtml(JSON.stringify(question.explanation));
-	explanation = explanation.substring(1, testo.length - 1);
+	let explanation = textToHtml(JSON.stringify(question.spiegazione));
+	explanation = explanation.substring(1, explanation.length - 1);
 	
-	explanationBody.innerHTML = spiegazione;
+	explanationBody.innerHTML = explanation;
 }
 
 // Shows the question correct answer -------------------
-function setCorrectAnwer(index) {
+function setCorrectAnswer(index) {
 	let questionBody = document.getElementById("correct_answer");
 	let question = questions[index];
 	
@@ -203,11 +200,7 @@ function setCorrectAnwer(index) {
 	let testo = textToHtml(JSON.stringify(question.risposta_esatta));
 	testo = testo.substring(1, testo.length - 1);
 	
-	questionBody.innerHTML = testo;
-}
-
-//-------------------------------
-
+	questionBody.innerHTML = "Risposta corretta: " +  testo;
 }
 
 function textToHtml(str) {
