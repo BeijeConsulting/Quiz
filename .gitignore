@@ -8,3 +8,4 @@ persistence.xml
 /.settings/
 /pom.xml
 /.gitignore
+/lib
