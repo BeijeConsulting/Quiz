@@ -16,7 +16,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import it.beije.quiz.jpa.JPAUtils;
 import it.beije.quiz.model.Domanda;
+import it.beije.quiz.model.Risposta;
 //import it.beije.quiz.model.Risposta;
 //import it.beije.quiz.repository.DomandaRepository;
 import it.beije.quiz.service.DomandaService;
@@ -51,52 +53,58 @@ public class Utils {
 	 * anche i vari capitoli, n� domanda, risposta/e esatta/e...
 	 * Alla fine della lista risultante vengono aggiunti i vari entity domande cos� caricati.
 	 */
-//	public void xmlToDatabase(String pathFile) throws ParserConfigurationException, SAXException, IOException {
-//		List<Domanda> domande = new ArrayList<Domanda>();
-//		File inputFile = new File(pathFile);
-//        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
-//        Document document = documentBuilder.parse(inputFile);
-//        document.getDocumentElement().normalize();
-////        System.out.println("Root element :" + document.getDocumentElement().getNodeName());
-//        NodeList nodeList = document.getElementsByTagName("domanda");
-//        for (int i = 0; i < nodeList.getLength(); i++) {
-//        	Node node = nodeList.item(i);
-////        	System.out.println("NODE: " + node.getNodeName());
-//        	if (node.getNodeType() == node.ELEMENT_NODE) {
-//        		Element element = (Element) node;
-////        		System.out.println("ATTRIBUTES");
-////        		System.out.println("Id: " + element.getAttribute("id"));
-////        		System.out.println("Book: " + element.getAttribute("book"));
-//        		String book = element.getAttribute("book");
-////        		System.out.println("Chapter: " + element.getAttribute("chapter"));
-//        		Integer chapter = Integer.parseInt(element.getAttribute("chapter"));
-////        		System.out.println("Question: " + element.getAttribute("question"));
-//        		Integer question = Integer.parseInt(element.getAttribute("question"));
-////        		System.out.println("CHILDS");
-////        		System.out.println("testo: " + element.getElementsByTagName("testo").item(0).getTextContent());
-//        		String testo = element.getElementsByTagName("testo").item(0).getTextContent();
-////        		System.out.println("risposteEsatte: " + element.getElementsByTagName("risposteEsatte").item(0).getTextContent());
-////        		System.out.println("spiegazione: " + element.getElementsByTagName("spiegazione").item(0).getTextContent());
-//        		String spiegazione = element.getElementsByTagName("spiegazione").item(0).getTextContent();
-//        		String type = "";
-////        		System.out.println("risposte: " + element.getElementsByTagName("risposte").item(0).getTextContent());
-//        		NodeList nodeList2 = document.getElementsByTagName("risposte");
-//        		for (int j = 0; j < nodeList2.getLength(); j++) {
-//        			Node node2 = nodeList2.item(j);
-//        			if (node2.getNodeType() == node2.ELEMENT_NODE) {
-//        				Element element2 = (Element) node2;
-//        				type = element2.getAttribute("type");
-////        				System.out.println("TYPE: " + type);
-//        			}
-//        		}
-//        		Domanda domanda = new Domanda(book, chapter, question, testo, type, spiegazione);
-//        		domande.add(domanda);
-//        		domandaService.insert(domanda);
-//        		System.out.println(domande.get(i));
-//        	}
-//        }
-//	}
+	//PARSE DOMANDA E RISPOSTA DA XML A DATABASE 
+		public void xmlToDatabase(String pathFile) throws ParserConfigurationException, SAXException, IOException {
+			List<Domanda> domande = new ArrayList<Domanda>();
+			List<Risposta> answers = new ArrayList<Risposta>();
+			File inputFile = new File(pathFile);
+	        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
+	        Document document = documentBuilder.parse(inputFile);
+	        document.getDocumentElement().normalize();
+	        NodeList nodeList = document.getElementsByTagName("domanda");
+	        for (int i = 0; i < nodeList.getLength(); i++) {
+	        	Node node = nodeList.item(i);
+	        	if (node.getNodeType() == node.ELEMENT_NODE) {
+	        		Element element = (Element) node;
+	        		Long idDomanda = Long.parseLong(element.getAttribute("id"));
+	        		String book = element.getAttribute("book");
+	        		Integer chapter = Integer.parseInt(element.getAttribute("chapter"));
+	        		Integer question = Integer.parseInt(element.getAttribute("question"));
+	        		String testo = element.getElementsByTagName("testo").item(0).getTextContent();
+	        		String spiegazione = element.getElementsByTagName("spiegazione").item(0).getTextContent();
+	        		String type = "";
+	        		String risposteEsatte = element.getElementsByTagName("risposteEsatte").item(0).getTextContent();
+	        		NodeList nodeList2 = element.getElementsByTagName("risposte");
+	        		Node node2 = nodeList2.item(0);
+	        		if (node2.getNodeType() == node2.ELEMENT_NODE) {
+	        			Element element2 = (Element) node2;
+	        			type = element2.getAttribute("type");
+	        			NodeList nodeList3 = element.getElementsByTagName("risposta");
+	        			for (int j = 0; j < nodeList3.getLength(); j++) {
+	        				Node node3 = nodeList3.item(j);
+	        				String risposta = node3.getTextContent();
+	        				if (node3.getNodeType() == node3.ELEMENT_NODE) {
+	        					Element element3 = (Element) node3;
+	        					String lettera = element3.getAttribute("value");
+	        					boolean corretto = false;
+	        					if (risposteEsatte.contains(lettera)) {
+	        						corretto = true;
+	        					}
+	        					JPAUtils.insertRisposta(idDomanda, lettera, risposta, corretto, book, chapter);
+	        				}
+	        			}
+	        		}
+	        		JPAUtils.insertDomanda(book, chapter, question, testo, type, spiegazione);
+	        	}
+	        }
+		}
+
+
+
+
+
+
 	
 	/*
 	 * Formattazione testo: fa in modo che i vari "a capo" e le tab vengano rispettate anche in una pagina HTML
