@@ -60,7 +60,7 @@ ${questionText}
     <input type = "${ answerType }" name='rspt_${ answerType eq "radio" ? "radio" : answer.getFirst() }' value = "${ answer.getFirst() }"
     ${ userAnswer.contains(answer.getFirst()) ? "checked" : "" } > ${answer.getFirst()}. ${answer.getLast()} <br>
   </c:forEach><br>
- <c:if test="${index > 0 }"><button type="button" onclick="prec()">&lt;&lt;Back.</button></c:if>
+ <c:if test="${index > 0 }"><button type="submit" name="prec" value="true">&lt;&lt;Back.</button></c:if>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <c:if test="${index < questionSize -1 }"><button type="submit">Next.&gt;&gt;</button></c:if>
   <c:if test="${index == questionSize -1 }"><button type="submit">SUBMIT</button></c:if>
@@ -68,11 +68,6 @@ ${questionText}
 
 <br>
 <br>
-<script>
-function prec(){
-	window.location.href = "http://localhost:8080/quiz/question/${index-1}";
-}
-</script>
 </div>
 </body>
 </html>

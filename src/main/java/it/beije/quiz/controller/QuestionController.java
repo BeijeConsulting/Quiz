@@ -45,11 +45,13 @@ public class QuestionController {
 		Test test = (Test)session.getAttribute("test");
 		Enumeration<String> answers =  request.getParameterNames();
 		StringBuilder builder = new StringBuilder();
+		boolean prec = false;
 		int index = 0;
 		while(answers.hasMoreElements()) {
 			String s = answers.nextElement();
 			if(s.equalsIgnoreCase("index")) index = Integer.parseInt(request.getParameter(s));
-			else {
+			else if (s.equalsIgnoreCase("prec")) prec = Boolean.parseBoolean(request.getParameter(s));
+			else{
 				s = request.getParameter(s);
 				builder.append(s);
 			}
@@ -57,7 +59,7 @@ public class QuestionController {
 		Answer a = questionService.getAnswer(index);
 		a.setAnswer(builder.toString());
 //		setTimer(model);		
-		return questionService.loadQuestion(model, ++index, test);
+		return questionService.loadQuestion(model, prec ? --index : ++index, test);
 	}
 	
 	@GetMapping(value = "/result")
