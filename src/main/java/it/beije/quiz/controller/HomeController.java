@@ -24,21 +24,20 @@ import it.beije.quiz.service.QuestionService;
 
 @Controller
 public class HomeController {
-	
+
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private QuestionService questionService;
-	
+
 	@Autowired
 	private AnswerService answerService;
-	
+
 	@RequestMapping(value = "/newexam", method = RequestMethod.GET)
 	public String index() {
 		return "newexam";
 	}
-		
-	
+
 	/*
 	 * caricare tutte le domande scelte dall'utente in base a libro e capitolo
 	 */
@@ -46,44 +45,53 @@ public class HomeController {
 	public String loadQuestionsBook(Model model, HttpServletRequest request, @Param("questions") String[] questions) {
 		log.debug("lista di domande del capitolo del libro");
 		HttpSession session = request.getSession(false);
-		
+
 		Integer numberQuestions = new Integer(request.getParameter("numberQuestions"));
 		List<Question> domande = new ArrayList<Question>();
-		for(String s: questions) {
-			if(s.charAt(0)=='1') {
+		for (String s : questions) {
+			if (s.charAt(0) == '1') {
+				System.out.println(s.substring(2));
 				domande.addAll(questionService.loadQuestionsBookAndChapter(1, s.substring(2)));
-			}else if(s.charAt(0)=='2'){
+			} else if (s.charAt(0) == '2') {
 				domande.addAll(questionService.loadQuestionsBookAndChapter(2, s.substring(2)));
 			}
-			
+
 		}
-		
-		if(domande.size() > numberQuestions) {
-			Random r = new Random();
-			for(int i = 0; i < domande.size() - numberQuestions; i++) {
-				domande.remove(r.nextInt(domande.size()));
-			}
-			
+
+		// System.out.println(domande.size());
+		// System.out.println(numberQuestions);
+		if (numberQuestions <= 0 || numberQuestions >= domande.size()) {
+			numberQuestions = 1;
 		}
-		
-		List<QNA> quiz = loadQuiz(domande);
-		
+
+		Random r = new Random();
+		System.out.println("prova");
+		int num = domande.size() - numberQuestions;
+		List<Question> tempQuiz = new ArrayList<Question>();
+		for (int i = 0; i < numberQuestions; i++) {
+			tempQuiz.add(domande.get(r.nextInt(domande.size())));
+		}
+
+		// System.out.println(domande.size());
+
+		List<QNA> quiz = loadQuiz(tempQuiz);
+
 		session.setAttribute("exam", quiz);
 		session.setAttribute("totDomande", quiz.size());
 		session.setAttribute("nameQuiz", request.getParameter("nomeQuiz"));
 
 		model.addAttribute("totDomande", quiz.size());
 		model.addAttribute("nameQuiz", request.getParameter("nomeQuiz"));
-		
+
 		return "test";
 	}
-	
-	private List<QNA> loadQuiz(List<Question> domande){
+
+	private List<QNA> loadQuiz(List<Question> domande) {
 		List<QNA> result = new ArrayList<QNA>();
-		for(Question q: domande) {
+		for (Question q : domande) {
 			result.add(new QNA(q, answerService.getByQuestionId(q.getId()), null));
 		}
-		
+
 		return result;
 	}
 	
