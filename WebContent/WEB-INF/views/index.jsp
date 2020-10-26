@@ -11,7 +11,7 @@
 <body>
 <div align="center"><h1>WELCOME</h1></div><br><br>
 <div align="left">Firts time here? Import DataBase from this link: <a href="import">ImportDB </a></div>
-<div align="left"><mark>N.B</mark> You have to import database just one time, or the system dosn't work at runtime!</div>
+<div align="left"><mark>N.B</mark> You have to import database just once, otherwise the system won't work at runtime!</div>
 <div class="here">
 <form action="./log">
 <button type="submit" ><span>LOGIN</span></button><br>
