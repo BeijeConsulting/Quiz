@@ -14,7 +14,7 @@
         }
 
         function start() {
-            fetch('./exam/domanda', {
+            fetch('./exam/question', {
                 method:'post'
             }).then(response=>response.json()).then(function(json){
                 document.getElementById('domanda-testo').innerHTML = json.testo;
@@ -24,7 +24,7 @@
         }
 
         function change() {
-            fetch('./exam/domanda', {
+            fetch('./exam/question', {
                 method:'post'
             }).then(response=>response.json()).then(function(json){
                 document.getElementById('domanda-testo').innerHTML = json.testo;

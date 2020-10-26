@@ -43,7 +43,7 @@ public class HomeController {
 	 * caricare tutte le domande scelte dall'utente in base a libro e capitolo
 	 */
 	@RequestMapping(value = "/load_quiz", method = RequestMethod.POST)
-	public String loadQuestionsBook(Model model, HttpServletRequest request, @PathVariable Integer id, @Param("questions") String[] questions) {
+	public String loadQuestionsBook(Model model, HttpServletRequest request, @Param("questions") String[] questions) {
 		log.debug("lista di domande del capitolo del libro");
 		HttpSession session = request.getSession(false);
 		
@@ -86,4 +86,6 @@ public class HomeController {
 		
 		return result;
 	}
+	
+
 }
