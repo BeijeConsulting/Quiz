@@ -53,7 +53,7 @@ public class HistoryController {
 			return "history";
 		} else {
 			 
-			model.addAttribute("errore", "Occore fare il login");
+			model.addAttribute("errore", "Occorre fare il login");
 			return "signIn";
 		}
 	}

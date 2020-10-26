@@ -12,15 +12,7 @@
 <title>Quiz Review</title>
 </head>
 <body onload='onPageLoad(${esame.id})'>
-<!-- <body onload="onPageLoad(${request.getSession().getAttribute('idQuiz')})"> -->
 
-<!-- <div>Time</div>
-<div>Test - Nome</div>
-<div>Domanda n° </div>
-<div>Corpo domanda</div>
-<div>Risposte</div>
-<div>Bottoni</div> -->
-	
 		<a href="http://localhost:8080/Quiz/history">Torna ai Quiz Passati</a><br>
 	
 		<div id="page_title">Test - ${esame.nomeQuiz }</div>
@@ -41,4 +33,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
-</html></html>
+</html>
