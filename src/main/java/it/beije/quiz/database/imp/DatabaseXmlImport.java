@@ -8,7 +8,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,11 +17,12 @@ import it.beije.quiz.utils.Utils;
 import it.beije.quiz.entity.Book;
 import it.beije.quiz.entity.Chapter;
 import it.beije.quiz.entity.Question;
+import it.beije.quiz.entity.QuestionAnswer;
 import it.beije.quiz.repository.BookRepository;
 import it.beije.quiz.repository.ChapterRepository;
+import it.beije.quiz.repository.QuestionAnswerRepository;
 import it.beije.quiz.repository.QuestionRepository;
 
-@Service
 public class DatabaseXmlImport {
 	
 	@Autowired
@@ -31,9 +31,11 @@ public class DatabaseXmlImport {
 	private ChapterRepository chapterRepo;
 	@Autowired
 	private QuestionRepository questionRepo;
+	@Autowired
+	private QuestionAnswerRepository questionAnswerRepo;
 	
 	@Transactional
-	public void importFromXml(String path) {
+	private void importFromDirectory(String path) {
 		File mainDir = new File(path);
 		if(!mainDir.isDirectory()) {
 			System.out.println("specified path doesn't lead to a dir");
@@ -54,13 +56,11 @@ public class DatabaseXmlImport {
 					saveQuestions(chapter, ch.getId());
 				}
 			}
-			
 		}
 	}
 
 	@Transactional
-	private void saveQuestions(File chapter, int chapter_id) {
-		List<Question> questionList = new ArrayList<Question>();	
+	private void saveQuestions(File chapter, int chapter_id) {	
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
@@ -88,17 +88,29 @@ public class DatabaseXmlImport {
 		        String correctAnswer = questionElements.get(2).getTextContent();
 		        String explanation = questionElements.get(3).getTextContent();
 		        
-	        	Question d = new Question(chapter_id, text, answerType, answers, correctAnswer, explanation);
-	        	questionList.add(d);
+	        	Question d = new Question(chapter_id, text, answerType, correctAnswer, explanation);
+	        	questionRepo.saveAndFlush(d);
+	        	
+	        	for(Pair<String, String> p : answers) {
+	        		QuestionAnswer ans = new QuestionAnswer(p.getFirst(), p.getLast());
+	        		ans.setQuestion(d.getId());
+	        		questionAnswerRepo.saveAndFlush(ans);
+	        	}
 	        }	        		
 	        
 		} catch (Exception e) {
 			System.out.println("Capitolo non importato: " + chapter_id + "\nRivedere xml");;
 		}
-		for(Question q : questionList) {
-			questionRepo.save(q);
-		}
 		
+	}
+	
+	public static void main(String[] args) {
+		if(args.length != 1) {
+			System.out.println("correct usage: java DatabaseXmlImport <pathToBooks>");
+			System.exit(0);
+		}
+		DatabaseXmlImport instance = new DatabaseXmlImport();
+		instance.importFromDirectory(args[0]);
 	}
 
 }
