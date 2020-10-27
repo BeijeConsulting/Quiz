@@ -20,7 +20,7 @@ public class AnswerService {
 	@Autowired
 	private AnswerRepository answerRepo;
 	
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional
 	public List<Answer> createAnswers(List<Question> questions, int test_id) {

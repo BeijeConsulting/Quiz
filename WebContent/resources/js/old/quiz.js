@@ -183,6 +183,7 @@ function prevButtonVisibility() {
 }
 
 function endTest() {
+	// todo deve fare qualcosa
 	console.log(quiz);
 }
 
