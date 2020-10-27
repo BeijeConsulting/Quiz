@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.beije.quiz.entity.Test;
 import it.beije.quiz.repository.AnswerRepository;
-import it.beije.quiz.service.TestService;
+import it.beije.quiz.service.old.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,19 +1,13 @@
-package it.beije.quiz.service;
+package it.beije.quiz.service.old;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.beije.quiz.entity.Question;
-import it.beije.quiz.entity.Test;
 import it.beije.quiz.repository.AnswerRepository;
 import it.beije.quiz.repository.QuestionRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class QuizGeneratorService {
