@@ -35,6 +35,10 @@ public class QuestionService {
 	
 	private List<Question> questions;
 	private List<Answer> answers;
+
+	public Question getById(Integer id_question){
+		return questionRepo.findById(id_question).orElse(null);
+	}
 	
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
@@ -50,6 +54,14 @@ public class QuestionService {
 	
 	public Answer getAnswer(int index) {
 		return answers.get(index);
+	}
+
+	public List<Question> getQuestionsFromMultipleChapters(List<Integer> chapter_ids){
+		return questionRepo.findAllByChapterIn(chapter_ids);
+	}
+
+	public Integer countQuestionsFromMultipleChapters(List<Integer> chapter_ids){
+		return questionRepo.countByChapterIn(chapter_ids);
 	}
 	
 	public String loadQuestion(Model model, Integer index, Test test) {
@@ -83,26 +95,26 @@ public class QuestionService {
 	}
 	
 	public String result(Model model, Test test/*, LocalTime time*/) {
-		for (int i = 0; i < questions.size(); i++){
+		for (int i = 0; i < questions.size(); i++) {
 			boolean correct = Utils.controllaRisposta(questions.get(i).getAnswer(), answers.get(i).getAnswer());
-			
+
 			if (correct) {
 				answers.get(i).setCorrect(true);
 			} else {
 				answers.get(i).setCorrect(false);
 			}
-			
+
 		}
 		model.addAttribute("questions", questions);
 		model.addAttribute("answers", answers);
 
 		LocalTime now = LocalTime.now();
 		Duration diff = Duration.between(time, now);
-		long hours = diff.getSeconds()/3600;
-		long minutes = diff.getSeconds()/60 - hours* 60;
-		long seconds =  diff.getSeconds() - hours * 3600 - minutes * 60;
-		test.setDuration(hours+":"+minutes+"."+seconds);
-		
+		long hours = diff.getSeconds() / 3600;
+		long minutes = diff.getSeconds() / 60 - hours * 60;
+		long seconds = diff.getSeconds() - hours * 3600 - minutes * 60;
+		test.setDuration(hours + ":" + minutes + "." + seconds);
+
 		answerService.saveAll(answers);
 		int counter = answerService.getCorrect(test.getId());
 		NumberFormat numForm = NumberFormat.getInstance();
@@ -118,23 +130,4 @@ public class QuestionService {
 		testRepository.saveAndFlush(test);
 		return "results";
 	}
-	
-	public void setTimer(Model model) {
-	if (time == null) {
-		time = LocalTime.now();
-	}
-	LocalTime now = LocalTime.now();
-	Duration diff = Duration.between(time, now);
-	int secondi = 2 * 60 * questions.size();
-	long hours = (secondi - diff.getSeconds())/3600;
-	long minutes = (secondi - diff.getSeconds())/60 - hours* 60;
-	long seconds = (secondi - diff.getSeconds()) - hours * 3600 - minutes * 60;
-
-
-	model.addAttribute("ore", hours);
-	model.addAttribute("minuti", minutes);
-	model.addAttribute("secondi", seconds);
-}
-
-	
 }

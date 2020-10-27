@@ -8,26 +8,27 @@ import javax.persistence.Id;
 
 @Entity
 public class Chapter {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "chapter_id")
 	private Integer id;
-	@Column
-	private Integer book;
+
+	@Column(name = "book")
+	private Integer bookId;
 	@Column
 	private String title;
+
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getBook() {
-		return book;
+	public Integer getBookId() {
+		return bookId;
 	}
-	public void setBook(Integer book) {
-		this.book = book;
+	public void setBookId(Integer book) {
+		this.bookId = book;
 	}
 	public String getTitle() {
 		return title;
@@ -35,6 +36,4 @@ public class Chapter {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
 }

@@ -11,15 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import it.beije.quiz.entity.User;
 import it.beije.quiz.repository.UserRepository;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
-
 @Service
 public class UserService {
-	
-//	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -31,19 +24,18 @@ public class UserService {
 
 	public User loadByEmail(String email) {
 		Optional<User> utente = userRepository.findByEmail(email.toLowerCase());
-		return utente.isPresent() ? utente.get() : null;
+		return utente.orElse(null);
 	}
 	
 	public User login(String email, String password) {
 	Optional<User> utente = userRepository.findByEmailAndPassword(email.toLowerCase(), password);
-	return utente.isPresent() ? utente.get() : null;
+	return utente.orElse(null);
 }
 	
 	public User loadById(Integer id) {
 	Optional<User> utente = userRepository.findById(id);
-	return utente.isPresent() ? utente.get() : null;
+	return utente.orElse(null);
 }
-
 
 @Transactional
 	public void insert(User utente) {
@@ -54,8 +46,6 @@ public class UserService {
 			!"".equals(utente.getEmail()) || !"".equals(utente.getPassword())) {
 	
 			userRepository.save(utente);
-//			log.info("utente inserito!");
 		} else throw new IllegalArgumentException("dati utente non presenti");
 	}
-	
 }

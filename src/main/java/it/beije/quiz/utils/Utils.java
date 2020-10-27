@@ -30,10 +30,13 @@ public class Utils {
 
 	public static String[] listFileNames(File dir) {
 		String[] fileNames = dir.list();
-		for(int i = 0; i<fileNames.length; i++) {
-			fileNames[i] = fileNames[i].replace(".xml", "");
+		if (fileNames == null) return null;
+		else {
+			for(int i = 0; i < fileNames.length; i++) {
+				fileNames[i] = fileNames[i].replace(".xml", "");
+			}
+			return fileNames;
 		}
-		return fileNames;
 	}
 	
 	/*
@@ -42,13 +45,12 @@ public class Utils {
 	 */
 	public static String formattaTesto(String testo) {
 		if (testo != null && testo.length() > 0) {
-			testo = testo.replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+			testo = testo.replace("\n", "<br>")
+					.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
 		}
-		
 		return testo;
 	}
-	
-	
+
 	/*
 	 * controlla risposta per risposta, controllando se � presente la lettera corrispondente alla 
 	 * risposta corretta. C'era il problema delle risposteEsatte scritte con la virgola, risolto
@@ -66,8 +68,6 @@ public class Utils {
 				rispostaEsatta = rispostaEsatta.replace(Character.toString(c), "");
 			}
 		}
-		
 		return rispostaEsatta.length() == 0;
 	}
-
 }

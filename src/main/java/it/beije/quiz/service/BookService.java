@@ -10,13 +10,11 @@ import it.beije.quiz.repository.BookRepository;
 
 @Service
 public class BookService {
-
 	@Autowired
 	private BookRepository bookRepo;
 
 	public Book getBook(String bookTitle) {
 		Optional<Book> optBook = bookRepo.findByTitle(bookTitle);
-		return optBook.isPresent() ? optBook.get() : null;
+		return optBook.orElse(null);
 	}
-
 }

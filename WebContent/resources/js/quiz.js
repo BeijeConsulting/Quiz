@@ -60,8 +60,6 @@ async function setAnswersBody(index) {
 	}
 }
 
-
-
 function buildAnswer(question, answer) {
 	let answerBlock = document.createElement("div");
 	let input = document.createElement("input");
@@ -115,18 +113,6 @@ function updateAnswered(input) {
 	updateRispostaData(quiz, indexQuestions);
 	console.log(answered[indexQuestions]);
 }
-
-/*
-function setExplanation(index) {
-	let explanationBody = document.getElementById("explanation_body");
-	let question = questions[index];
-	
-	let explanation = textToHtml(JSON.stringify(question.explanation));
-	explanation = explanation.substring(1, testo.length - 1);
-	
-	explanationBody.innerHTML = explanation;
-}
-*/
 
 async function updateRispostaData(idQuiz, indexDomanda) {
 	let path = getContextPath();
@@ -271,4 +257,3 @@ function startTimer(duration) {
 		}
 	}, 1000);
 }
-

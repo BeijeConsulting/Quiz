@@ -1,12 +1,12 @@
 package it.beije.quiz.service;
 
-import it.beije.quiz.model.Domanda;
-import it.beije.quiz.model.Quiz;
-import it.beije.quiz.model.RisposteDate;
-import it.beije.quiz.repository.DomandaRepository;
-import it.beije.quiz.repository.RispostaDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import it.beije.quiz.entity.Question;
+import it.beije.quiz.entity.Test;
+import it.beije.quiz.repository.AnswerRepository;
+import it.beije.quiz.repository.QuestionRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,58 +18,47 @@ import java.util.Random;
 @Service
 public class QuizGeneratorService {
     @Autowired
-    private QuizService quizService;
+    private TestService testService;
     @Autowired
-    private DomandaRepository domandaRepository;
+    private QuestionRepository questionRepo;
     @Autowired
-    private RispostaDataRepository rispostaDataRepository;
+    private AnswerRepository answerRepo;
 
-    public void createNewQuiz(HttpServletRequest request,
-                              HttpSession session){
-        // Creo il quiz
-        System.out.println("Creo nuovo quiz");
-        Quiz quiz = new Quiz();
-        // Imposta il nome. Se vuoto, crea un numero casuale e lo usa come nome
-        quiz.setNomeQuiz(request.getParameter("nomeQuiz") != null
-                ? request.getParameter("nomeQuiz")
-                : Integer.toString(new Random().nextInt()));
-        quiz.setIdUtente((Integer) session.getAttribute("userID"));
-        Integer idQuiz = quizService.saveQuiz(quiz);
-        session.setAttribute("idQuiz", idQuiz);
+    // Todo rifare
+//    public void createNewQuiz(HttpServletRequest request,
+//                              HttpSession session){
+//        // Creo il quiz
+//        System.out.println("Creo nuovo quiz");
+//        Test test = new Test();
+//        // Imposta il nome. Se vuoto, crea un numero casuale e lo usa come nome
+//        test.setName(request.getParameter("nomeQuiz") != null
+//                ? request.getParameter("nomeQuiz")
+//                : Integer.toString(new Random().nextInt()));
+//        test.setUserId((Integer) session.getAttribute("userID"));
+//        Integer idTest = testService.createTest(test);
+//        session.setAttribute("idQuiz", idTest);
+//
+//        // Creo le domande per il quiz
+//        System.out.println("Creo domande per quiz");
+//        String shuffle = request.getParameter("shuffle");
+//        String totDomandeString = request.getParameter("totDomande");
+//        String[] questions = request.getParameterValues("questions");
+//        List<Question> domande = new ArrayList<>();
+//
+//        for (String s : questions){
+//            String[] divisi = s.split("-");
+//            domande.addAll(getQuestions(Integer.parseInt(divisi[0]), Integer.parseInt(divisi[1])));
+//        }
+//        // Randomizzo le domande se richiesto dall'utente
+//        if (shuffle != null && shuffle.equalsIgnoreCase("true")){
+//            Collections.shuffle(domande);
+//        }
+//        // Se l'utente ha selezionato meno domande, qui ritorno solo quel numero max di domande
+//        domande = domande.subList(0, Integer.parseInt(totDomandeString));
+//        createQuestionsInDatabase(domande, session);
+//    }
 
-        // Creo le domande per il quiz
-        System.out.println("Creo domande per quiz");
-        String shuffle = request.getParameter("shuffle");
-        String totDomandeString = request.getParameter("totDomande");
-        String[] questions = request.getParameterValues("questions");
-        List<Domanda> domande = new ArrayList<>();
-
-        for (String s : questions){
-            String[] divisi = s.split("-");
-            domande.addAll(getDomande(Integer.parseInt(divisi[0]), Integer.parseInt(divisi[1])));
-        }
-        // Randomizzo le domande se richiesto dall'utente
-        if (shuffle != null && shuffle.equalsIgnoreCase("true")){
-            Collections.shuffle(domande);
-        }
-        // Se l'utente ha selezionato meno domande, qui ritorno solo quel numero max di domande
-        domande = domande.subList(0, Integer.parseInt(totDomandeString));
-        createQuestionsInDatabase(domande, session);
-    }
-
-    private List<Domanda> getDomande(Integer libro, Integer capitolo){
-        return domandaRepository.findByBookIdAndChapter(libro, capitolo);
-    }
-
-    private void createQuestionsInDatabase(List<Domanda> domande, HttpSession session){
-        for (Domanda d : domande){
-            System.out.println("domanda: " + d);
-            RisposteDate r = new RisposteDate();
-            System.out.println(r);
-            r.setIdDomanda(d.getId());
-            r.setIdEsame((Integer) session.getAttribute("idQuiz"));
-            r.setIdUtente((Integer) session.getAttribute("userID"));
-            System.out.println(rispostaDataRepository.saveAndFlush(r).getRisposta());
-        }
+    private List<Question> getQuestions(Integer id_chapter){
+    	return questionRepo.findByChapter(id_chapter);
     }
 }

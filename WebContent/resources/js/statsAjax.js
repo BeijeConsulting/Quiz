@@ -1,3 +1,4 @@
+// Given an user id, it will load some stats and display them in the homepage
 function loadStats(idUser){
     let passati, fatti, percentuale
     console.log("Loading stats for user " + idUser)

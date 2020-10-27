@@ -15,7 +15,7 @@ public class ChapterService {
 	private ChapterRepository chapterRepo;
 
 	public Chapter getChapter(Integer book, String cName) {
-		Optional<Chapter> optChapter = chapterRepo.getByBookAndTitle(book, cName);
+		Optional<Chapter> optChapter = chapterRepo.getByBookIdAndTitle(book, cName);
 		return optChapter.isPresent() ? optChapter.get() : null;
 	}
 

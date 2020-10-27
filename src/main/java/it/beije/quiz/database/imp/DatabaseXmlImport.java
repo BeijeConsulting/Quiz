@@ -48,7 +48,7 @@ public class DatabaseXmlImport {
 				for(String c : chapters) {
 					Chapter ch = new Chapter();
 					ch.setTitle(c.replace("domande_", "").replace(".xml", ""));
-					ch.setBook(b.getId());
+					ch.setBookId(b.getId());
 					ch = chapterRepo.saveAndFlush(ch);
 					File chapter = new File(bookDir, c);
 					saveQuestions(chapter, ch.getId());
