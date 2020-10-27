@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Beije Quiz | Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload" onload="hideElements()">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<!-- <h1><a href="#">Spectral</a></h1> -->
+						<!-- <nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="generic.html">Generic</a></li>
+											<li><a href="elements.html">Elements</a></li>
+											<li><a href="#">Sign Up</a></li>
+											<li><a href="#">Log In</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav> -->
+					</header>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Beije | Quiz</h2>
+                            <p id="pTitle">Login</p>
+
+                            <section>
+                                <form method="post" action="#">
+                                    <div class="row gtr-uniform">
+                                        <div class="col-4 col-12-xsmall" name="name">
+
+                                        </div>
+                                        <div class="col-4 col-12-xsmall" name="name">
+                                            <input type="text" name="name" id="name" value="" placeholder="Name" required/>
+                                        </div>
+                                        <div class="col-4 col-12-xsmall" name="name">
+                                            
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="col-4 col-12-xsmall"  name="surname">
+
+                                        </div>
+                                        <div class="col-4 col-12-xsmall"  name="surname">
+                                            <input type="text" name="surname" id="surname" value="" placeholder="Surname" required/>
+                                        </div>
+                                        <div class="col-4 col-12-xsmall"  name="surname">
+                                            
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="col-4 col-12-xsmall">
+
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            <input type="email" name="email" id="email" value="" placeholder="Email" required/>
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            <input type="password" name="password" id="password" value="" placeholder="Password" required/>
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            <ul class="actions special">
+                                                <li><input type="submit" value="Log in" class="primary" /></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            <p class="tiny" id="alreadyRegistered">New user? <a id="alreadyRegisteredA" onclick="change()">Register!</a></p>
+                                        </div>
+                                        <div class="col-4 col-12-xsmall">
+                                            
+                                        </div>
+                                        <!-- Break -->
+                                    </div>
+                                </form>
+                            </section>
+						</div>
+					</section>
+			</div>
+
+        <!-- Scripts -->
+        <script>
+            var names = document.getElementsByName("name");
+            var surnames = document.getElementsByName("surname");
+            var title = document.getElementById("pTitle");
+            var registerLogin = document.getElementById("alreadyRegistered");
+
+            function hideElements() {
+                if(title.innerHTML === "Login") {
+                    for(var i = 0; i < 4; i++) {
+                        names[i].style.display = "none";
+                        surnames[i].style.display = "none";
+                    }
+                }
+                else {
+                    for(var i = 0; i < 4; i++) {
+                        names[i].style.display = "block";
+                        surnames[i].style.display = "block";
+                    }
+                }
+            }
+
+            function change() {
+                if(title.innerHTML === "Login") {
+                    title.innerHTML = "Register";
+                    registerLogin.innerHTML = "Already registered? <a onclick=\"change()\">Log in!</a>";
+                    hideElements();
+                }
+                else {
+                    title.innerHTML = "Login";
+                    registerLogin.innerHTML = "New user? <a onclick=\"change()\">Register!</a>";
+                    hideElements();
+                }
+            }
+
+        </script>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
