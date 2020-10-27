@@ -42,10 +42,17 @@ public class TimerRestController {
         return timer;
     }
 
-    @PutMapping("/setQuizTimer/{quizId}")
-    public void setQuizTimer(@PathVariable Integer quizId,
+    /**
+     * Save the current timer onto the database. Used to avoid exploit client-side
+     * @param timer the current timer to save
+     */
+    @PutMapping("/setQuizTimer")
+    public void setQuizTimer(HttpSession session,
                              @RequestBody Long timer){
         // todo maybe call this once every 10 seconds and not every second?
         // set timer on db
+        // todo finish
+        Integer quizId = (Integer) session.getAttribute("quizId");
+
     }
 }
