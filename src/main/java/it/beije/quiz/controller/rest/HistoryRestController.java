@@ -8,15 +8,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.beije.quiz.entity.Partecipate;
+import it.beije.quiz.service.PartecipateService;
+
 @RestController
 @RequestMapping("/history")
 public class HistoryRestController {
 
 	@Autowired
-	private ParticipateService participareService;
+	private PartecipateService partecipateService;
+	
 	@GetMapping("/exams/{userId}")
-	public List<Participate> getUserExams(@PathVariable Integer userId) {
-		return participateService.getAllByUserId(userId);
+	public List<Partecipate> getUserExams(@PathVariable Integer userId) {
+		return partecipateService.getAllByUserId(userId);
 	}
+	
+	//TODO Should return all questions of given Partecipate of given User
+//	@GetMapping("/exam/")
+//	public 
 	
 }
