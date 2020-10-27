@@ -9,9 +9,7 @@ import it.beije.quiz.entity.Answer;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer>{
+	List<Answer> findByIdTest(Integer test_id);
 
-	List<Answer> findByTest(Integer test_id);
-
-	List<Answer> findByTestAndCorrect(int test, boolean b);
-
+	List<Answer> findByIdTestAndCorrectIsTrue(Integer id_test);
 }

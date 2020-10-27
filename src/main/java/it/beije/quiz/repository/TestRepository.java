@@ -9,6 +9,5 @@ import it.beije.quiz.entity.Test;
 
 @Repository
 public interface TestRepository extends JpaRepository<Test, Integer> {
-	List<Test> findByUser(Integer user);
-
+	List<Test> findByUser(Integer id_user);
 }

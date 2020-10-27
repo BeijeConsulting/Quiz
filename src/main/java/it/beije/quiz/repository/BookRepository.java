@@ -9,7 +9,5 @@ import it.beije.quiz.entity.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer>{
-
 	Optional<Book> findByTitle(String bookTitle);
-
 }
