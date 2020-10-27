@@ -1,7 +1,6 @@
 let domandeSelected = document.getElementById('totDomande');
 let timerP = document.getElementById('timerP');
 let timerSpan = document.getElementById('timer');
-let submitButton = document.getElementById('submit');
 
 // Main functions which will run everytime the user changes his input. It will make a REST API request to
 // get the number of questions chosen and will modify the page accordingly.

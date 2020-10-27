@@ -15,7 +15,7 @@ public class TestService {
 	@Autowired
 	private TestRepository testRepo;
 
-	public Integer createTest(Test test) {
+	public Integer saveQuiz(Test test) {
 		test.setDate(LocalDate.now().toString());
 		testRepo.saveAndFlush(test);
 		return test.getId();
