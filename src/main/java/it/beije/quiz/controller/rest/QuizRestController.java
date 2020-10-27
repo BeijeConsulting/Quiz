@@ -3,6 +3,7 @@ package it.beije.quiz.controller.rest;
 import java.util.List;
 
 import it.beije.quiz.entity.Test;
+import it.beije.quiz.repository.AnswerRepository;
 import it.beije.quiz.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,9 @@ public class QuizRestController {
 	
     @Autowired
     private TestService testService;
+
+	@Autowired
+	private AnswerRepository answerRepository;
 
 	/**
 	 * REST Get method which returns all Quiz object linked to a User
@@ -69,5 +73,39 @@ public class QuizRestController {
 		testService.saveQuiz(quiz);
 		log.debug("Saved Quiz: " + quiz);
 		return quiz;
+	}
+
+	/**
+	 * REST Get method to return the count of all Quiz passed by a User
+	 * @param userId the id of the User to check
+	 * @return the count of all passed (correct) Quiz from the User
+	 */
+	@GetMapping("/getPassedExams/{userId}")
+	public Integer getPassedQuizByUser(@PathVariable Integer userId){
+		log.debug("Requested all Passed Exams by User ID: " + userId);
+		return testService.countCorrectQuizByUser(userId);
+	}
+
+	/**
+	 * REST Get method to return the count of all Quiz given by a User
+	 * @param userId the id of the User to check
+	 * @return the count of all Quiz done by the User
+	 */
+	@GetMapping("/getGivenExams/{userId}")
+	public Integer getAllQuizByUser(@PathVariable Integer userId){
+		log.debug("Requested all Quiz given by User ID: " + userId);
+		return testService.countQuizByUser(userId);
+	}
+
+	/**
+	 * REST Get method to return the time in seconds available for a Quiz
+	 * @param quizId the id of the Quiz
+	 * @return the time in seconds
+	 */
+	@GetMapping("/getQuizTimer/{quizId}")
+	public long getSecondsForExam(@PathVariable Integer quizId){
+		log.debug("Requested Timer for Quiz ID: " + quizId);
+		Integer domande = answerRepository.countByIdTest(quizId);
+		return domande * 60 * 2L;
 	}
 }

@@ -11,13 +11,15 @@ import it.beije.quiz.entity.Answer;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer>{
 
-	List<Answer> findByTest(Integer test_id);
+	List<Answer> findByIdTest(Integer test_id);
 
-	List<Answer> findByTestAndCorrect(int test, boolean b);
+	List<Answer> findByIdTestAndCorrectIsTrue(Integer test_id);
 	
 	List<Answer> findByQuizId(Integer quizId);
 	
 	Optional<Answer> findByQuizIdAndQuestionId(Integer quizId, Integer questionId);
+
+	Integer countByIdTest(Integer idTest);
 
 	//it.beije.quiz.entity.Answer @ Integer quiz -> quizId
 	//it.beije.quiz.entity.Answer @ Integer question -> questionId
