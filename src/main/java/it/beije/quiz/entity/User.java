@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "user_id")
@@ -24,8 +23,7 @@ public class User {
 
 	@Column(name="password")
 	private String password;
-	
-	
+
 	public User() {}
 
 	public User(String nickname, String email, String password) {
@@ -33,8 +31,7 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -72,5 +69,4 @@ public class User {
 		
 		return builder.toString();
 	}
-	
 }

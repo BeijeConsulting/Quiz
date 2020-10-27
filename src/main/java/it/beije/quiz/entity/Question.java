@@ -12,26 +12,30 @@ import it.beije.quiz.utils.Pair;
 
 @Entity
 public class Question {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "question_id")
 	private Integer id;
+
 	@Column
 	private Integer chapter;
+
 	@Column
 	private String text;
+
 	@Column
 	private String answer;
+
 	@Column(name = "possible_answers")
 	private String possibleAnswers;
+
 	@Column(name = "answer_type")
 	private String answerType;
+
 	@Column
 	private String explanation;
 	
 	public Question() {}
-	
 	
 	public Question(int chapter_id, String text, String answerType, List<Pair<String, String>> answers, String correctAnswer, String explanation) {
 		this.chapter = chapter_id;
@@ -101,6 +105,4 @@ public class Question {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
-
-	
 }

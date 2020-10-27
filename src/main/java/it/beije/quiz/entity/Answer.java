@@ -11,40 +11,43 @@ import javax.persistence.Id;
 @Entity
 public class Answer implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "answer_id")
 	private Integer id;
-	@Column
-	private Integer test;
-	@Column
-	private Integer question;
+
+	@Column(name = "test")
+	private Integer idTest;
+
+	@Column(name = "questions")
+	private Integer idQuestions;
+
 	@Column
 	private String answer;
+
 	@Column
 	private Boolean correct;
-	@Column
-	private int ind;
-	
-	
+
+	@Column(name = "ind")
+	private int answerIndex;
+
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getTest() {
-		return test;
+	public Integer getIdTest() {
+		return idTest;
 	}
-	public void setTest(Integer test) {
-		this.test = test;
+	public void setIdTest(Integer test) {
+		this.idTest = test;
 	}
-	public Integer getQuestion() {
-		return question;
+	public Integer getIdQuestions() {
+		return idQuestions;
 	}
-	public void setQuestion(Integer question) {
-		this.question = question;
+	public void setIdQuestions(Integer question) {
+		this.idQuestions = question;
 	}
 	public String getAnswer() {
 		return answer;
@@ -59,12 +62,10 @@ public class Answer implements Serializable{
 	public void setCorrect(Boolean correct) {
 		this.correct = correct;
 	}
-	public int getInd() {
-		return ind;
+	public int getAnswerIndex() {
+		return answerIndex;
 	}
-	public void setInd(int ind) {
-		this.ind = ind;
+	public void setAnswerIndex(int ind) {
+		this.answerIndex = ind;
 	}
-	
-	
 }

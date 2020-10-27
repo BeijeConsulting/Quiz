@@ -25,10 +25,10 @@ public class AnswerService {
 	public List<Answer> createAnswers(List<Question> questions, int test_id) {
 		for(int i = 0; i < questions.size(); i++) {
 			Answer a = new Answer();
-			a.setInd(i);
-			a.setQuestion(questions.get(i).getId());
-			a.setTest(test_id);
-			log.debug(""+a.getQuestion());
+			a.setAnswerIndex(i);
+			a.setIdQuestions(questions.get(i).getId());
+			a.setIdTest(test_id);
+			log.debug(""+a.getIdQuestions());
 			answerRepo.saveAndFlush(a);
 		}
 		return answerRepo.findByTest(test_id);		

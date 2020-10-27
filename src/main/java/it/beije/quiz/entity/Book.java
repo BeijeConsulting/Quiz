@@ -8,15 +8,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Book {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "book_id")
 	private Integer id;
+
 	@Column
 	private String title;
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -29,6 +28,4 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
 }
