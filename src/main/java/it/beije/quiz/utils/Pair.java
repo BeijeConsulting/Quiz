@@ -29,5 +29,4 @@ public class Pair<T,V> {
 	public String toString() {
 		return this.first + " ::: " + this.last;
 	}
-	
 }
