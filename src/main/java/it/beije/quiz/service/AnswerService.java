@@ -56,12 +56,12 @@ public class AnswerService {
 	
 	//if given answer alredy exists on db update it, otherwise do nothing and return null
 	@Transactional
-	public Answer updateAnswer(Integer id, String answer) {
-		Optional<Answer> o = answerRepo.findById(id);
+	public Answer updateAnswer(Answer answer) {
+		Optional<Answer> o = answerRepo.findById(answer.getId());
 		if(o.get() == null) {
 			return null;
 		}
-		o.get().setAnswer(answer);
+		o.get().setAnswer(answer.getAnswer());
 		return answerRepo.saveAndFlush(o.get());
 	}
 	
