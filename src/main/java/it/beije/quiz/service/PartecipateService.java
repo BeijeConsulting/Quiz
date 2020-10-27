@@ -2,6 +2,9 @@ package it.beije.quiz.service;
 
 import it.beije.quiz.entity.Partecipate;
 import it.beije.quiz.repository.PartecipateRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +36,9 @@ public class PartecipateService {
             p.setTimer(timer);
             partecipateRepository.saveAndFlush(p);
         }
+    }
+    
+    public List<Partecipate> getAllByUserId(Integer userId) {
+    	return partecipateRepository.findByUserId(userId);
     }
 }
