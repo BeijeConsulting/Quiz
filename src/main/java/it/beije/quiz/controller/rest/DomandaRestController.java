@@ -1,8 +1,12 @@
 package it.beije.quiz.controller.rest;
 
+import it.beije.quiz.entity.Answer;
+import it.beije.quiz.entity.Question;
 import it.beije.quiz.model.Domanda;
 import it.beije.quiz.model.RisposteDate;
+import it.beije.quiz.service.AnswerService;
 import it.beije.quiz.service.DomandaService;
+import it.beije.quiz.service.QuestionService;
 import it.beije.quiz.service.RisposteDateService;
 
 import java.util.ArrayList;
@@ -18,26 +22,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest")
 public class DomandaRestController {
 	@Autowired
-	private DomandaService domandaService;
+	private QuestionService questionService;
 
 	@Autowired
-	private RisposteDateService risposteDateService;
+	private AnswerService answerService;
 
 	@GetMapping("/getDomanda/{id}")
-	public Domanda getDomanda(@PathVariable Integer id){
-		return domandaService.getByID(id);
+	public Question getDomanda(@PathVariable Integer id){
+		return questionService.getById(id);
 	}
 
 	@GetMapping("/domande/quiz/{idQuiz}")
-	public List<Domanda> getDomandeByIdQuiz(@PathVariable Integer idQuiz) {
-
-		List<RisposteDate> risposteList = risposteDateService.risposteEsame(idQuiz);
-		List<Domanda> domandeList = new ArrayList<Domanda>();
-		for(RisposteDate risposta : risposteList) {
-			Domanda domanda = domandaService.getByID(risposta.getIdDomanda());
+	public List<Question> getDomandeByIdQuiz(@PathVariable Integer idQuiz) {
+		// Todo sistemare
+		List<Answer> risposteList = answerService.risposteEsame(idQuiz);
+		List<Question> domandeList = new ArrayList<>();
+		for(Answer risposta : risposteList) {
+			Question domanda = questionService.getByID(risposta.getIdDomanda());
 			domandeList.add(domanda);
 		}
-
 		return domandeList;
 	}
 }

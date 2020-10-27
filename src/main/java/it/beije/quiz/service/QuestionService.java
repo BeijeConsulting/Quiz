@@ -35,6 +35,10 @@ public class QuestionService {
 	
 	private List<Question> questions;
 	private List<Answer> answers;
+
+	public Question getById(Integer id_question){
+		return questionRepo.findById(id_question).orElse(null);
+	}
 	
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
@@ -118,7 +122,8 @@ public class QuestionService {
 		testRepository.saveAndFlush(test);
 		return "results";
 	}
-	
+
+	// todo togliere?
 	public void setTimer(Model model) {
 	if (time == null) {
 		time = LocalTime.now();

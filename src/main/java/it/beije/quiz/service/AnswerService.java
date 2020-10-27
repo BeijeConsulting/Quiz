@@ -19,7 +19,7 @@ public class AnswerService {
 	@Autowired
 	private AnswerRepository answerRepo;
 	
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional
 	public List<Answer> createAnswers(List<Question> questions, int test_id) {
@@ -31,7 +31,7 @@ public class AnswerService {
 			log.debug(""+a.getIdQuestions());
 			answerRepo.saveAndFlush(a);
 		}
-		return answerRepo.findByTest(test_id);		
+		return answerRepo.findByIdTest(test_id);
 	}
 	
 	public void saveAll(List<Answer> answers) {
@@ -41,7 +41,6 @@ public class AnswerService {
 	}
 	
 	public int getCorrect(int test) {
-		return answerRepo.findByTestAndCorrect(test, true).size();
+		return answerRepo.findByIdTestAndCorrectIsTrue(test).size();
 	}
-
 }

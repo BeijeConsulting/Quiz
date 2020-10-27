@@ -21,9 +21,15 @@ public class TestService {
 		return test.getId();
 	}
 
-	public List<Test> getByUser(Integer user) {
-		
-		return testRepo.findByUser(user);
+	public List<Test> getEsamiUtente(Integer id_user) {
+		return testRepo.findByUserId(id_user);
 	}
 
+	public Test getEsameById(Integer id_esame){
+		return testRepo.findById(id_esame).orElse(null);
+	}
+
+	public Test getEsameByNomeQuiz(String nomeQuiz){
+		return testRepo.findByName(nomeQuiz).orElse(null);
+	}
 }

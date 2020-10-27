@@ -1,6 +1,6 @@
 package it.beije.quiz.controller.rest;
 
-import it.beije.quiz.model.User;
+import it.beije.quiz.entity.User;
 import it.beije.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +17,6 @@ public class LoginRestController {
     @GetMapping("/login/getUserByEmail/{email}/ok")
     public User emailExist(@PathVariable String email){
         System.out.println("Rest controller for user by email: " + email);
-        return userService.retrieve(email);
-    }
-
-    @GetMapping("/login/getUser/{email}-{pw}")
-    public User getUser(@PathVariable String email,
-                              @PathVariable String pw){
-
-        return userService.retrieve(email, pw);
+        return userService.loadByEmail(email);
     }
 }
