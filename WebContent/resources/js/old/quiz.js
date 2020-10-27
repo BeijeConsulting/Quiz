@@ -223,7 +223,7 @@ function onSubmitForm() {
 	endTest();
 }
 
-
+// todo da modificare con nuovo rest
 let prepareTimer = async function (quizID) {
 	fetch("rest/quiz/getTimer/" + quizID)
 		.then(r => r.text())
@@ -250,7 +250,7 @@ function startTimer(duration) {
 
 		display.innerHTML = minutes + ":" + seconds;
 
-		console.log("Timer: " + minutes + ":" + seconds);
+		// save to db the timer in millis
 
 		if (--timer < 0) {
 			display.innerHTML = "TEMPO SCADUTO";

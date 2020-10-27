@@ -10,7 +10,7 @@
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/media/favicon.ico" />
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="<c:url value="/resources/js/quiz.js" />"></script>
+	<script src="<c:url value="/resources/js/old/quiz.js" />"></script>
 	<title>Test Java</title>
 </head>
 <body onload='onPageLoad(${sessionScope.idQuiz}); prepareTimer(${sessionScope.idQuiz})'>

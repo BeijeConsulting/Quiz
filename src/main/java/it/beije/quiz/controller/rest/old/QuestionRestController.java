@@ -1,4 +1,4 @@
-package it.beije.quiz.controller.rest;
+package it.beije.quiz.controller.rest.old;
 
 import it.beije.quiz.entity.Answer;
 import it.beije.quiz.entity.Question;

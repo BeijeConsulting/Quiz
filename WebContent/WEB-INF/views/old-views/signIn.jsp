@@ -132,6 +132,6 @@
 		<div class="wave"></div>
 	</div>
 
-<script src="${pageContext.request.contextPath}/resources/js/loginValidator.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/old/loginValidator.js"></script>
 </body>
 </html>

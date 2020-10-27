@@ -131,6 +131,6 @@
         </form>
     </div>
 </div>
-<script src="<c:url value="/resources/js/quizCreatorAjax.js"/>"></script>
+<script src="<c:url value="/resources/js/old/quizCreatorAjax.js"/>"></script>
 </body>
 </html>

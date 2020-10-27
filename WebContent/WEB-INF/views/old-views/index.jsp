@@ -70,6 +70,6 @@
 			</button>
 	</div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/statsAjax.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/old/statsAjax.js"></script>
 </body>
 </html>
