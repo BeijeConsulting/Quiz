@@ -5,24 +5,19 @@ import java.text.NumberFormat;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import it.beije.quiz.Pair;
-import it.beije.quiz.Utils;
 import it.beije.quiz.entity.Answer;
 import it.beije.quiz.entity.Question;
 import it.beije.quiz.entity.Test;
-import it.beije.quiz.repository.AnswerRepository;
 import it.beije.quiz.repository.QuestionRepository;
 import it.beije.quiz.repository.TestRepository;
+import it.beije.quiz.utils.Pair;
+import it.beije.quiz.utils.Utils;
 
 @Service
 public class QuestionService {
