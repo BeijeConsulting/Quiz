@@ -39,8 +39,12 @@ public class AnswerService {
 			answerRepo.saveAndFlush(a);
 		}
 	}
+
+	public List<Answer> getAnswersFromExamId(Integer exam_id){
+		return answerRepo.findByIdTest(exam_id);
+	}
 	
-	public int getCorrect(int test) {
-		return answerRepo.findByIdTestAndCorrectIsTrue(test).size();
+	public int getCorrect(int test_id) {
+		return answerRepo.findByIdTestAndCorrectIsTrue(test_id).size();
 	}
 }

@@ -10,4 +10,6 @@ import it.beije.quiz.entity.Question;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer>{
 	List<Question> findByChapter(Integer chapter_id);
+	List<Question> findAllByChapterIn(List<Integer> chapter_ids);
+	Integer countByChapterIn(List<Integer> integer_ids);
 }

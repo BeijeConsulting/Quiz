@@ -12,4 +12,6 @@ import it.beije.quiz.entity.Test;
 public interface TestRepository extends JpaRepository<Test, Integer> {
 	List<Test> findByUserId(Integer id_user);
 	Optional<Test> findByName(String name);
+	Integer countByUserId(Integer user_id);
+	Integer countByUserIdAndResultIsTrue(Integer user_id);
 }

@@ -21,7 +21,7 @@ public class TestService {
 		return test.getId();
 	}
 
-	public List<Test> getEsamiUtente(Integer id_user) {
+	public List<Test> getQuizByUserId(Integer id_user) {
 		return testRepo.findByUserId(id_user);
 	}
 
@@ -31,5 +31,13 @@ public class TestService {
 
 	public Test getEsameByNomeQuiz(String nomeQuiz){
 		return testRepo.findByName(nomeQuiz).orElse(null);
+	}
+
+	public Integer countCorrectQuizByUser(Integer user_id){
+		return testRepo.countByUserIdAndResultIsTrue(user_id);
+	}
+
+	public Integer countQuizByUser(Integer user_id){
+		return testRepo.countByUserId(user_id);
 	}
 }

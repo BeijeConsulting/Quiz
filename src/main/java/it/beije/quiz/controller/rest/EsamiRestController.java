@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/api")
 public class EsamiRestController {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -28,7 +28,7 @@ public class EsamiRestController {
     //SELECT ALL BY ID_UTENTE
 	@RequestMapping(value = "/esami_utente/{id_utente}", method = RequestMethod.GET)
 	public List<Test> getEsamiUtente(@PathVariable Integer id_utente) {
-		List<Test> esami = testService.getEsamiUtente(id_utente);
+		List<Test> esami = testService.getQuizByUserId(id_utente);
 		log.info("esami svolti dall'utente " + id_utente + " : " + esami);
 		return esami;		
 	}

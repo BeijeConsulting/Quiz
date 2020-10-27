@@ -1,7 +1,7 @@
 package it.beije.quiz.controller.rest;
 
-import it.beije.quiz.model.Domanda;
-import it.beije.quiz.service.DomandaService;
+import it.beije.quiz.entity.Question;
+import it.beije.quiz.service.QuestionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,57 +14,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/api")
 public class QuizGeneratorRestController {
     @Autowired
-    private DomandaService domandaService;
+    private QuestionService questionService;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/getDomanda/{bookIDs}/{chapters}")
-    public List<Domanda> getByBookAndChapter(@PathVariable String bookIDs,
-                                             @PathVariable String chapters){
-        String[] libri = bookIDs.split("-");
+    public List<Question> getByBookAndChapter(@PathVariable String bookIDs,
+                                              @PathVariable String chapters){
         String[] capitoli = chapters.split("-");
-        List<Integer> nrLibri = new ArrayList<>();
-        for (String s : libri){
-            if (s != null)
-            nrLibri.add(Integer.parseInt(s));
-        }
         List<Integer> nrChapters = new ArrayList<>();
         for (String s : capitoli){
             if (s != null)
                 nrChapters.add(Integer.parseInt(s));
         }
-        return domandaService.getDomandeByBookAndChapter(nrLibri, nrChapters);
+        return questionService.getQuestionsFromMultipleChapters(nrChapters);
     }
 
-    @GetMapping("/countQuestions/{bookIDs}/{chapters}")
-    public Integer countByBookAndChapter(@PathVariable String bookIDs,
-                                             @PathVariable String chapters){
-        log.info("Requested count for questions at this url:" + bookIDs + " " + chapters);
-        String[] libri = bookIDs.split(",");
-        String[] capitoli = chapters.split(",");
-
-        Integer count = 0;
-
-        List<Integer> nrLibri = new ArrayList<>();
-        for (String s : libri){
+    @GetMapping("/countQuestions/{chaptersString}")
+    public Integer countByChapters(@PathVariable String chaptersString){
+        String[] chapters = chaptersString.split(",");
+        List<Integer> chaptersIds = new ArrayList<>();
+        for (String s : chapters){
             if (s != null)
-                nrLibri.add(Integer.parseInt(s));
+                chaptersIds.add(Integer.parseInt(s));
         }
-        log.info("Number of the selected Books: " + nrLibri.toString());
-        List<Integer> nrChapters = new ArrayList<>();
-        for (String s : capitoli){
-            if (s != null)
-                nrChapters.add(Integer.parseInt(s));
-        }
-
-        for (int i = 0; i < nrChapters.size(); i++){
-            count += domandaService.countDomandeSimple(nrLibri.get(i), nrChapters.get(i));
-        }
-
-        log.info("Number of the selected Chapters: " + nrChapters.toString());
-        return count;
+        return questionService.countQuestionsFromMultipleChapters(chaptersIds);
     }
 }
