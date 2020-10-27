@@ -16,14 +16,19 @@ public class Answer implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "answer_id")
 	private Integer id;
+	
 	@Column
 	private Integer test;
+	
 	@Column
 	private Integer question;
+	
 	@Column
 	private String answer;
+	
 	@Column
 	private Boolean correct;
+	
 	@Column
 	private int ind;
 	

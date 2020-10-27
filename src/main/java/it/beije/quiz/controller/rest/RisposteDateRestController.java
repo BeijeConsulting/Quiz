@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.beije.quiz.model.RisposteDate;
-import it.beije.quiz.service.RisposteDateService;
+import it.beije.quiz.entity.Answer;
+import it.beije.quiz.service.AnswerService;
 
 @RestController
 @RequestMapping("/rest")
@@ -24,66 +24,68 @@ public class RisposteDateRestController {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
     @Autowired
-    private RisposteDateService risposteDateService;
+    private AnswerService answerService;
     
     
-  //SELECT ALL ID_UTENTE
-  	@RequestMapping(value = "/risposte_date_utente/{id_utente}", method = RequestMethod.GET)
-  	public List<RisposteDate> getRisposteUtente(@PathVariable Integer id_utente) {
-  		
-  		List<RisposteDate> risposte = risposteDateService.risposteUtenteTutte(id_utente);
-  		
-		log.info("risposte date dall'utente " + id_utente + " : " + risposte);
-  		
-  		return risposte;		
-  	}
+    //SELECT ALL ID_UTENTE
+    //TEORICAMENTE RITORNA TUTTE LE RISPOSTE DADE DA UTENTE X IN ASSOLUTO, FORSE NON PIU SUPPORTATO
+    
+//  	@RequestMapping(value = "/risposte_date_utente/{id_utente}", method = RequestMethod.GET)
+//  	public List<Answer> getRisposteUtente(@PathVariable Integer id_utente) {
+//  		
+//  		List<Answer> risposte = AnswerService.risposteUtenteTutte(id_utente);
+//  		
+//		log.info("risposte date dall'utente " + id_utente + " : " + risposte);
+//  		
+//  		return risposte;		
+//  	}
   	
   	//SELECT ALL ID_ESAME 
+    //SELECT ALL ANSWERS OF GIVEN EXAM (QuizId)
   	@RequestMapping(value = "/risposte_date_utente_esame/{id_esame}", method = RequestMethod.GET)
-  	public List<RisposteDate> getRisposteEsame(@PathVariable Integer id_esame) {
+  	public List<Answer> getRisposteEsame(@PathVariable Integer quizId) {
   		
-  		List<RisposteDate> risposte = risposteDateService.risposteEsame(id_esame);
-  		
-		log.info("risposte date dall'utente nell'esame " + id_esame + " : " + risposte);
-  		
+  		List<Answer> risposte = answerService.selectAllByQuizId(quizId);
+		log.info("risposte date dall'utente nell'esame " + quizId + " : " + risposte);
   		return risposte;		
   	}
   	
   	//SELECT ID_DOMANDA
-  	@RequestMapping(value = "/risposta_alla_domanda/{id_domanda}", method = RequestMethod.GET)
-  	public RisposteDate getRisposta(@PathVariable Integer id_domanda) {
-  		
-  		RisposteDate risposta = risposteDateService.rispostaDomanda(id_domanda);
-  		
-		log.info("risposte alla domanda" + id_domanda + " : " + risposta);
-
-  		return risposta;
-  	}
+  	//DATA UNA DOMANDA(IL SUO ID) RITORNA LA SUA RISPOSTA --- NON SERVE PIU VISTA NUOVAA IMPLEMENTAZIONE DI QUESTION
+  	//SUL DB CHE CONTIENE GIA' LE SUE RISPOSTE
+  	
+//  	@RequestMapping(value = "/risposta_alla_domanda/{id_domanda}", method = RequestMethod.GET)
+//  	public Answer getRisposta(@PathVariable Integer questionId) {
+//  		
+//  		Answer risposta = answerService.selectAnswerByQuestionID(questionId);
+//  		
+//		log.info("risposte alla domanda" + questionId + " : " + risposta);
+//
+//  		return risposta;
+//  	}
   	
   	@RequestMapping(value="/risposta_data/{idEsame}/{idDomanda}", method = RequestMethod.GET)
-  	public RisposteDate getRispostaData(@PathVariable Integer idEsame, @PathVariable Integer idDomanda) {
-  		RisposteDate risposta = risposteDateService.rispostaDomanda(idEsame, idDomanda);
-  		log.info("risposte alla domanda" + idDomanda + " : " + risposta);
+  	public Answer getRispostaData(@PathVariable Integer idQuiz, @PathVariable Integer idQuestion) {
+  		Answer risposta = answerService.selectByQuizIdAndQuestionId(idQuiz, idQuestion);
+  		log.info("risposte alla domanda" + idQuestion + " : " + risposta);
   		return risposta;
   	}
   	
   	@RequestMapping(value="/risposta_data/{idEsame}/{idDomanda}", method = RequestMethod.PUT)
-  	public RisposteDate putRispostaData(@RequestBody RisposteDate risposteDate, @PathVariable Integer idEsame, @PathVariable Integer idDomanda) {
-  		RisposteDate risposta = risposteDateService.modifyRispostaUtente(risposteDate.getId(), risposteDate.getRisposta());
-  		log.info("risposta modificata");
-  		return risposta;
+  	public Answer putRispostaData(@RequestBody Answer answer, @PathVariable Integer idEsame, @PathVariable Integer idDomanda) {
+  		Answer returnAnswer = answerService.updateAnswer(answer.getId(), answer.getAnswer());
+  			log.debug("Risposta modificata");
+  			return returnAnswer;
   	}
   	
-
   	//INSERT
-//  	@RequestMapping(value = "/risposta", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   	@PostMapping("/risposta")
-  	public RisposteDate insertLibro(@RequestBody RisposteDate risposta) {
+  	public Answer insertLibro(@RequestBody Answer answer) {
 
-		log.info("ricevo dati risposta" + risposta);
+		log.info("ricevo dati risposta" + answer);
   		
-		risposteDateService.insert(risposta);
+		answerService.insert(answer);
   		
-  		return risposta;
+  		return answer;
   	}
 }
