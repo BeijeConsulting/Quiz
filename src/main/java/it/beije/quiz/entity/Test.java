@@ -18,8 +18,8 @@ public class Test implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "test_id")
 	private Integer id;
-	@Column
-	private Integer user;
+	@Column(name = "user")
+	private Integer userId;
 	@Column
 	private String name;
 	@Column
@@ -40,11 +40,11 @@ public class Test implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getUser() {
-		return user;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setUser(Integer user) {
-		this.user = user;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;
