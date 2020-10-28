@@ -5,6 +5,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Quiz MVC Project</name>
+
+	<properties>
+		<spring-security.version>5.4.1</spring-security.version>
+		<spring.version>5.2.0.RELEASE</spring.version>
+		<springfox.version>3.0.0</springfox.version>
+	</properties>
+
   <build>
     <plugins>
       <plugin>
@@ -24,16 +31,17 @@
       </plugin>
     </plugins>
   </build>
+
   <dependencies>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-web</artifactId>
-  		<version>5.2.0.RELEASE</version>
+  		<version>${spring.version}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
-  		<version>5.2.0.RELEASE</version>
+  		<version>${spring.version}</version>
   	</dependency>
   	<dependency>
   		<groupId>javax.servlet</groupId>
@@ -51,9 +59,9 @@
 	    <version>2.2.0.RELEASE</version>
 	</dependency>
 	<dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-core</artifactId>
-    <version>5.4.21.Final</version>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.4.21.Final</version>
 	</dependency>
 	<dependency>
 	    <groupId>mysql</groupId>
@@ -70,5 +78,32 @@
 	    <artifactId>jackson-databind</artifactId>
 	    <version>2.9.10.1</version>
 	</dependency>
-	</dependencies>
+	<!--SECURITY-->
+<!--	  <dependency>-->
+<!--		  <groupId>org.springframework.security</groupId>-->
+<!--		  <artifactId>spring-security-core</artifactId>-->
+<!--		  <version>${spring-security.version}</version>-->
+<!--	  </dependency>-->
+<!--	  <dependency>-->
+<!--		  <groupId>org.springframework.security</groupId>-->
+<!--		  <artifactId>spring-security-web</artifactId>-->
+<!--		  <version>${spring-security.version}</version>-->
+<!--	  </dependency>-->
+<!--	  <dependency>-->
+<!--		  <groupId>org.springframework.security</groupId>-->
+<!--		  <artifactId>spring-security-config</artifactId>-->
+<!--		  <version>${spring-security.version}</version>-->
+<!--	  </dependency>-->
+	  <!--SWAGGER - DOCS PER API REST-->
+	  <dependency>
+		  <groupId>io.springfox</groupId>
+		  <artifactId>springfox-swagger2</artifactId>
+		  <version>${springfox.version}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>io.springfox</groupId>
+		  <artifactId>springfox-swagger-ui</artifactId>
+		  <version>${springfox.version}</version>
+	  </dependency>
+  </dependencies>
 </project>
