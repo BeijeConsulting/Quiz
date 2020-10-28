@@ -6,6 +6,7 @@
 	<persistence-unit name="quiz">
 		<class>it.beije.quiz.entity.User</class>
 		<class>it.beije.quiz.entity.Question</class>
+		<class>it.beije.quiz.entity.QuestionAnswer</class>
 		<class>it.beije.quiz.entity.Book</class>
 		<class>it.beije.quiz.entity.Chapter</class>
 		<class>it.beije.quiz.entity.Answer</class>
