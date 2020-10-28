@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waves.css" />
 
     <%-- JS --%>
-    <script src="${pageContext.request.contextPath}/resources/js/old/login-register.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/ale/login-register.js"></script>
 
     <%-- FONTS --%>
     <script src="https://kit.fontawesome.com/e8e37b0541.js" crossorigin="anonymous"></script>
