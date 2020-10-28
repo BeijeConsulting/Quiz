@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,6 +24,7 @@ import it.beije.quiz.repository.ChapterRepository;
 import it.beije.quiz.repository.QuestionAnswerRepository;
 import it.beije.quiz.repository.QuestionRepository;
 
+@Service
 public class DatabaseXmlImport {
 	
 	@Autowired

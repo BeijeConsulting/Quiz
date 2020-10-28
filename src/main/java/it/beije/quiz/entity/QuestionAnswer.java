@@ -20,6 +20,8 @@ public class QuestionAnswer {
 	@Column
 	private String text;
 	
+	public QuestionAnswer() {}
+	
 	public QuestionAnswer(String value, String text) {
 		this.value = value;
 		this.text = text;
