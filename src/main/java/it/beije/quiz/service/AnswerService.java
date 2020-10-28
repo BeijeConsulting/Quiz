@@ -41,9 +41,10 @@ public class AnswerService {
 		}
 	}
 	
-	public int getCorrect(int test) {
-		return answerRepo.findByTestAndCorrect(test, true).size();
-	}
+	//Credo non serva piu
+//	public int getCorrect(int test) {
+//		return answerRepo.findByTestAndCorrect(test, true).size();
+//	}
 
 	public List<Answer> selectAllByQuizId(Integer quizId) {
 		return answerRepo.findByQuizId(quizId);
