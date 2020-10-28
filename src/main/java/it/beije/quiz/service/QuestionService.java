@@ -3,10 +3,12 @@ package it.beije.quiz.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.beije.quiz.entity.Question;
 import it.beije.quiz.repository.QuestionRepository;
 
+@Service
 public class QuestionService {
 
 	@Autowired
