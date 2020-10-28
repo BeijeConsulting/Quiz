@@ -9,5 +9,5 @@ import it.beije.quiz.entity.Chapter;
 
 @Repository
 public interface ChapterRepository extends JpaRepository<Chapter, Integer> {
-	Optional<Chapter> getByBookIdAndTitle(Integer id_book, String chapter_name);
+	Optional<Chapter> getByBookIdAndTitle(Integer bookId, String title);
 }
