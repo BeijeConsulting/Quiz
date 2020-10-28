@@ -5,27 +5,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="question")
 public class Question {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "question_id")
-	private Integer id;
+	private Integer questionId;
 
-	@Column
+	@Column(name = "chapter")
 	private Integer chapter;
 
-	@Column
+	@Column(name = "text")
 	private String text;
 
-	@Column
-	private String answer;
+	@Column(name = "correct_answer")
+	private String correctAnswer;
 
 	@Column(name = "answer_type")
 	private String answerType;
 
-	@Column
+	@Column(name = "explanation")
 	private String explanation;
 	
 	public Question() {}
@@ -34,54 +37,43 @@ public class Question {
 		this.chapter = chapter_id;
 		this.text = text;
 		this.answerType = answerType;
-		this.answer = correctAnswer;
+		this.correctAnswer = correctAnswer;
 		this.explanation = explanation;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getQuestionId() {
+		return questionId;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public void setQuestionId(Integer questionId) {
+		this.questionId = questionId;
 	}
-
 	public Integer getChapter() {
 		return chapter;
 	}
-
 	public void setChapter(Integer chapter) {
 		this.chapter = chapter;
 	}
-
 	public String getText() {
 		return text;
 	}
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
-	public String getAnswer() {
-		return answer;
+	public String getCorrectAnswer() {
+		return correctAnswer;
 	}
-
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setCorrectAnswer(String correctAnswer) {
+		this.correctAnswer = correctAnswer;
 	}
-
 	public String getAnswerType() {
 		return answerType;
 	}
-
 	public void setAnswerType(String answerType) {
 		this.answerType = answerType;
 	}
-
 	public String getExplanation() {
 		return explanation;
 	}
-
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}

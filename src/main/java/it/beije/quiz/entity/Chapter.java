@@ -5,30 +5,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="chapter")
 public class Chapter {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "chapter_id")
-	private Integer id;
+	private Integer chapterId;
 
 	@Column(name = "book")
 	private Integer bookId;
-	@Column
+	
+	@Column(name = "title")
 	private String title;
 
-	public Integer getId() {
-		return id;
+	public Chapter() {}
+
+	public Integer getChapterId() {
+		return chapterId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setChapterId(Integer chapterId) {
+		this.chapterId = chapterId;
 	}
 	public Integer getBookId() {
 		return bookId;
 	}
-	public void setBookId(Integer book) {
-		this.bookId = book;
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
 	}
 	public String getTitle() {
 		return title;

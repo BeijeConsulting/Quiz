@@ -5,22 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="book")
 public class Book {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "book_id")
-	private Integer id;
+	private Integer bookId;
 
-	@Column
+	@Column(name="title")
 	private String title;
 
-	public Integer getId() {
-		return id;
+	public Integer getBookId() {
+		return bookId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
 	}
 	public String getTitle() {
 		return title;

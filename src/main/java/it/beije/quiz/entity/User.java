@@ -13,7 +13,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private Integer id;
+	private Integer userId;
 	
 	@Column(name="nickname")
 	private String nickname;
@@ -23,6 +23,12 @@ public class User {
 
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="class")
+	private Integer beijeClassId;
+	
+	@Column(name="admin")
+	private boolean admin;
 
 	public User() {}
 
@@ -31,42 +37,41 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
-
-	public Integer getId() {
-		return id;
+	
+	public Integer getUserId() {
+		return userId;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-
 	public String getNickname() {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	
-	public String toString() {
-		StringBuilder builder = new StringBuilder("utente [");
-		builder.append("nickname : ").append(this.nickname)
-			.append(" - email : ").append(this.email).append("]");
-		
-		return builder.toString();
+	public Integer getBeijeClassId() {
+		return beijeClassId;
+	}
+	public void setBeijeClassId(Integer beijeClassId) {
+		this.beijeClassId = beijeClassId;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 }
