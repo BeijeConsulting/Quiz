@@ -2,8 +2,8 @@ package it.beije.quiz.controller.rest.old;
 
 import it.beije.quiz.entity.Answer;
 import it.beije.quiz.entity.Question;
-import it.beije.quiz.service.AnswerService;
-import it.beije.quiz.service.QuestionService;
+import it.beije.quiz.service.old.AnswerService;
+import it.beije.quiz.service.old.QuestionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

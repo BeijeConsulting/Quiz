@@ -1,12 +1,17 @@
 package it.beije.quiz.controller.rest;
 
 import it.beije.quiz.repository.AnswerRepository;
-import it.beije.quiz.service.TestService;
+import it.beije.quiz.service.PartecipateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
+/**
+ * REST Controller to handle all request regarding the Quiz Timer
+ */
 @RestController
 @RequestMapping("/api")
 public class TimerRestController {
@@ -14,30 +19,40 @@ public class TimerRestController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private TestService testService;
+    private PartecipateService partecipateService;
 
     @Autowired
     private AnswerRepository answerRepository;
 
     /**
      * REST Get method to return the time in seconds available for a Quiz
-     * @param quizId the id of the Quiz
+     * @param session used to get the quiz id
      * @return the time in seconds
      */
-    @GetMapping("/getQuizTimer/{quizId}")
-    public long getSecondsForQuiz(@PathVariable Integer quizId){
-        // get timer from db
-        // if null
+    @GetMapping("/getQuizTimer")
+    public long getSecondsForQuiz(HttpSession session){
+        Integer quizId = (Integer) session.getAttribute("quizId");
+        Long timer = partecipateService.getTimerFromDatabase(quizId);
+        if (timer == null) {
             log.debug("Requested Timer for Quiz ID: " + quizId);
             Integer domande = answerRepository.countByIdTest(quizId);
-            return domande * 60 * 2L;
-        // else
-            // return timer from db
+            timer = domande * 60 * 2L;
+            partecipateService.setTimerOnDatabase(quizId, timer);
+        }
+        return timer;
     }
 
-    @PutMapping("/setQuizTimer/{quizId}")
-    public void setQuizTimer(@PathVariable Integer quizId,
+    /**
+     * Save the current timer onto the database. Used to avoid exploit client-side
+     * @param timer the current timer to save
+     */
+    @PutMapping("/setQuizTimer")
+    public void setQuizTimer(HttpSession session,
                              @RequestBody Long timer){
+        // todo maybe call this once every 10 seconds and not every second?
         // set timer on db
+        // todo finish
+        Integer quizId = (Integer) session.getAttribute("quizId");
+
     }
 }

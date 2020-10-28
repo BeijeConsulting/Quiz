@@ -15,7 +15,6 @@ import it.beije.quiz.database.JpaEntityManager;
 @EnableTransactionManagement
 @EnableJpaRepositories(value = {"it.beije.quiz.repository"})
 public class ConfigurationClass {
-	
     @Primary
     @Bean(name="transactionManager")
     public PlatformTransactionManager dbTransactionManager() {
@@ -23,5 +22,4 @@ public class ConfigurationClass {
         transactionManager.setEntityManagerFactory(JpaEntityManager.getInstance());
         return transactionManager;
     }
-	
 }

@@ -1,4 +1,4 @@
-package it.beije.quiz.service;
+package it.beije.quiz.service.old;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,12 +56,12 @@ public class AnswerService {
 	
 	//if given answer alredy exists on db update it, otherwise do nothing and return null
 	@Transactional
-	public Answer updateAnswer(Answer answer) {
-		Optional<Answer> o = answerRepo.findById(answer.getId());
+	public Answer updateAnswer(Integer id, String answer) {
+		Optional<Answer> o = answerRepo.findById(id);
 		if(o.get() == null) {
 			return null;
 		}
-		o.get().setAnswer(answer.getAnswer());
+		o.get().setAnswer(answer);
 		return answerRepo.saveAndFlush(o.get());
 	}
 	
