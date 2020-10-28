@@ -23,6 +23,7 @@
 	</beans:bean>
 	
 	<mvc:resources mapping="/assets/**" location="/assets/"/>
+	<mvc:resources mapping="/images/**" location="/images/"/>
 	<mvc:annotation-driven />
 
 </beans:beans>

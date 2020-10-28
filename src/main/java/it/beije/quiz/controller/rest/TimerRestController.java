@@ -1,6 +1,5 @@
 package it.beije.quiz.controller.rest;
 
-import it.beije.quiz.repository.AnswerRepository;
 import it.beije.quiz.service.PartecipateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +20,8 @@ public class TimerRestController {
     @Autowired
     private PartecipateService partecipateService;
 
-    @Autowired
-    private AnswerRepository answerRepository;
+//    @Autowired
+//    private AnswerRepository answerRepository;
 
     /**
      * REST Get method to return the time in seconds available for a Quiz
@@ -35,8 +34,8 @@ public class TimerRestController {
         Long timer = partecipateService.getTimerFromDatabase(quizId);
         if (timer == null) {
             log.debug("Requested Timer for Quiz ID: " + quizId);
-            Integer domande = answerRepository.countByIdTest(quizId);
-            timer = domande * 60 * 2L;
+//            Integer domande = answerRepository.countByIdTest(quizId);
+//            timer = domande * 60 * 2L;
             partecipateService.setTimerOnDatabase(quizId, timer);
         }
         return timer;
